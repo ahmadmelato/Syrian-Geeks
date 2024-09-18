@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">Syrian Geeks</string>
+    <string name="mail">البريد الالكتروني</string>
+    <string name="password">كلمة السر</string>
+    <string name="Login">تسجيل دخول</string>
+    <string name="Forgotyourpassword">نسيت كلمة السر ?</string>
+    <string name="Idonthaveaccount">لا تملك حساب ؟ </string>
+    <string name="createaccount">قم بإنشاء حساب</string>
+
+    <string name="signup">إنشاء حساب</string>
+    <string name="Ihaveaccount">لدي حساب بالفعل ؟ </string>
+    <string name="useaccount">قم بتسجيل الدخول</string>
+    <string name="next">التالي</string>
+    <string name="back">السابق</string>
+
+    <string name="nameinenglish">الاسم باللغة الانكليزية</string>
+    <string name="nameinarabic">الاسم باللغة العربية</string>
+    <string name="brithday">تاريخ الميلاد</string>
+    <string name="specialneeds">هل تعرف نفسك من ذوي الاحتياجات الخاصة</string>
+
+    <string-array name="gender_options">
+        <item>ذكر</item>
+        <item>انثى</item>
+    </string-array>
+
+</resources>
