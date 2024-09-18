@@ -17,6 +17,7 @@
     <string name="nameinarabic">الاسم باللغة العربية</string>
     <string name="brithday">تاريخ الميلاد</string>
     <string name="specialneeds">هل تعرف نفسك من ذوي الاحتياجات الخاصة</string>
+    <string name="gender">الجنس</string>
 
     <string-array name="gender_options">
         <item>ذكر</item>
