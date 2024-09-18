@@ -17,14 +17,15 @@ public class SliderAdapter extends FragmentStateAdapter {
     public Fragment createFragment(int position) {
         switch (position){
             case 0:return FirstFragment.newInstance();
-            case 1:return FirstFragment.newInstance();
-            case 2:return FirstFragment.newInstance();
+            case 1:return SecondFragment.newInstance();
+            case 2:return ThirdFragment.newInstance();
+            case 3:return ForthFragment.newInstance();
         }
         return null;
     }
 
     @Override
     public int getItemCount() {
-        return 3;
+        return 4;
     }
 }
