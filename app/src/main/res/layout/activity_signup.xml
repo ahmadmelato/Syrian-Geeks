@@ -36,6 +36,7 @@
             android:id="@+id/step_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_weight="0"
             android:padding="16dp"
             app:sv_animationType="Line"
             app:sv_doneCircleColor="@color/my_light_primary"
@@ -49,25 +50,25 @@
             app:sv_selectedStepNumberColor="@color/white"
             app:sv_selectedTextColor="@color/my_light_primary"
             app:sv_stepLineWidth="1dp"
-            android:layout_weight="0"
             app:sv_stepNumberTextSize="12sp"
             app:sv_stepPadding="4dp"
-
             app:sv_typeface="@font/dinnextltarabicregular" />
+
 
         <androidx.viewpager2.widget.ViewPager2
             android:id="@+id/viewpager"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"/>
+
 
         <LinearLayout
             style="?android:attr/buttonBarStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layoutDirection="rtl"
             android:layout_marginHorizontal="5dp"
+            android:layoutDirection="rtl"
             android:orientation="horizontal">
 
             <Button
@@ -96,9 +97,9 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
             android:layout_marginVertical="5dp"
             android:layoutDirection="ltr"
-            android:layout_gravity="center"
             android:orientation="horizontal">
 
 
@@ -108,8 +109,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="5dp"
                 android:fontFamily="@font/dinnextltarabicregular"
-                android:theme="@style/Theme.SyrianGeeks.Text"
-                android:text="@string/useaccount" />
+                android:text="@string/useaccount"
+                android:theme="@style/Theme.SyrianGeeks.Text" />
 
             <TextView
                 android:layout_width="match_parent"
