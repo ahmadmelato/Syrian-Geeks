@@ -40,8 +40,11 @@
     </string-array>
 
     <string name="Resetpassword">إعادة تعيين كلمة المرور</string>
-    <string name="ResetpasswordText">من فضلك قم بإدخال بريدك الالكتروني لتتمكن من إعادة تعيين \nكلمة المرور</string>
+    <string name="ResetpasswordText">من فضلك قم بإدخال بريدك الالكتروني لتتمكن من إعادة تعيين كلمة المرور</string>
     <string name="sure">تأكيد</string>
+
+    <string name="activeCode">كود التفعيل</string>
+    <string name="activeCodeText">قد قمنا بإرسال رمز التفعيل للبريد الالكتروني الخاص بك</string>
 
 
 </resources>
