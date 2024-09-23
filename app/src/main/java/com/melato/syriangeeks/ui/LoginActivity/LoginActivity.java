@@ -14,6 +14,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityLoginBinding;
+import com.melato.syriangeeks.ui.ForgotPasswordActivity.ForgotPasswordActivity;
 import com.melato.syriangeeks.ui.SignupActivity.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -24,7 +25,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        binding = DataBindingUtil.setContentView(this ,R.layout.activity_login);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_login);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -32,14 +33,19 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         });
 
         binding.createAccount.setOnClickListener(this);
+        binding.btuRestPassword.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()){
+        switch (v.getId()) {
             case R.id.createAccount:
-                Intent intent = new Intent(LoginActivity.this, SignupActivity.class);
-                startActivity(intent);
+                Intent signupActivity = new Intent(LoginActivity.this, SignupActivity.class);
+                startActivity(signupActivity);
+                break;
+            case R.id.btuRestPassword:
+                Intent forgotPasswordActivity = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
+                startActivity(forgotPasswordActivity);
                 break;
         }
     }
