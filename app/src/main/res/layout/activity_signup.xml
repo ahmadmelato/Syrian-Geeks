@@ -18,9 +18,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="5dp"
             android:contentDescription="TODO"
-            android:padding="10dp"
             android:src="@drawable/logo" />
 
         <TextView
@@ -36,7 +35,7 @@
         <com.shuhart.stepview.StepView
             android:id="@+id/step_view"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:padding="16dp"
             app:sv_animationType="Line"
             app:sv_doneCircleColor="@color/my_light_primary"
@@ -68,11 +67,11 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layoutDirection="rtl"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="5dp"
             android:orientation="horizontal">
 
             <Button
-                android:id="@+id/btuLogin1"
+                android:id="@+id/btuNext"
                 style="@style/Theme.SyrianGeeks"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -82,7 +81,7 @@
                 android:text="@string/next" />
 
             <Button
-                android:id="@+id/btuLogin2"
+                android:id="@+id/btuBack"
                 style="@style/Theme.SyrianGeeks.Button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -97,7 +96,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginVertical="10dp"
+            android:layout_marginVertical="5dp"
             android:layoutDirection="ltr"
             android:layout_gravity="center"
             android:orientation="horizontal">
