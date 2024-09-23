@@ -1,33 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".ui.ActiveCodeActivity.ActiveCodeActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <include
-        android:id="@+id/main_toolbar"
-        layout="@layout/back_bar" />
+    <data>
 
-    <TextView
+    </data>
+
+    <LinearLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:fontFamily="@font/dinnextltarabicregular"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:text="@string/activeCode" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.ActiveCodeActivity.ActiveCodeActivity">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:textSize="18sp"
-        android:fontFamily="@font/dinnextltarabicregular"
-        android:text="@string/activeCodeText" />
+        <include
+            android:id="@+id/main_toolbar"
+            layout="@layout/back_bar" />
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:textStyle="bold"
+            android:textSize="20sp"
+            android:text="@string/activeCode" />
 
-</LinearLayout>
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            android:textSize="18sp"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="@string/activeCodeText" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginVertical="10dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:background="@drawable/rectangle_active"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:inputType="number"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:maxLength="1"
+                android:lines="1"
+                android:layout_marginHorizontal="10dp"
+                android:paddingHorizontal="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:maxLength="1"
+                android:lines="1"
+                android:background="@drawable/rectangle_active"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:inputType="number"
+                android:layout_marginHorizontal="10dp"
+                android:paddingHorizontal="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:maxLength="1"
+                android:lines="1"
+                android:background="@drawable/rectangle_active"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:inputType="number"
+                android:layout_marginHorizontal="10dp"
+                android:paddingHorizontal="20dp" />
+
+            <EditText
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:autofillHints=""
+                android:textAlignment="center"
+                android:textSize="30sp"
+                android:maxLength="1"
+                android:lines="1"
+                android:background="@drawable/rectangle_active"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:inputType="number"
+                android:layout_marginHorizontal="10dp"
+                android:paddingHorizontal="20dp" />
+
+        </LinearLayout>
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="50dp">
+
+            <ProgressBar
+                android:id="@+id/mainprogress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/shap_1"
+                android:indeterminateDrawable="@drawable/cpb_1"
+                android:indeterminateDuration="@android:integer/config_longAnimTime"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btuSure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/ic_rectangle_142"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="@string/sure" />
+
+        </RelativeLayout>
+
+    </LinearLayout>
+</layout>
