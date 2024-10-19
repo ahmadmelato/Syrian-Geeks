@@ -1,12 +1,16 @@
 <resources>
     <string name="app_name">Syrian Geeks</string>
+    <string name="entro">من هنا يبدأ المستقلون رحلتهم</string>
+
     <string name="mail">البريد الالكتروني</string>
     <string name="password">كلمة السر</string>
     <string name="Login">تسجيل دخول</string>
     <string name="Forgotyourpassword">نسيت كلمة السر ?</string>
     <string name="Idonthaveaccount">لا تملك حساب ؟ </string>
     <string name="createaccount">قم بإنشاء حساب</string>
-    <string name="entro">من هنا يبدأ المستقلون رحلتهم</string>
+    <string name="or">أو</string>
+    <string name="LoginAsGuest">تسجيل دخول كضيف</string>
+
 
     <string name="signup">إنشاء حساب</string>
     <string name="Ihaveaccount">لدي حساب بالفعل ؟ </string>
