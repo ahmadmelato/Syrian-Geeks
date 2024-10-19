@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
@@ -45,58 +44,62 @@
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
                 android:autofillHints=""
                 android:background="@drawable/rectangle_active"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:inputType="number"
+                android:lines="1"
+                android:maxLength="1"
+                android:paddingHorizontal="20dp"
                 android:textAlignment="center"
                 android:textSize="30sp"
-                android:maxLength="1"
-                android:lines="1"
-                android:layout_marginHorizontal="10dp"
-                android:paddingHorizontal="20dp" />
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
                 android:autofillHints=""
-                android:textAlignment="center"
-                android:textSize="30sp"
-                android:maxLength="1"
-                android:lines="1"
                 android:background="@drawable/rectangle_active"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:inputType="number"
-                android:layout_marginHorizontal="10dp"
-                android:paddingHorizontal="20dp" />
+                android:lines="1"
+                android:maxLength="1"
+                android:paddingHorizontal="20dp"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
                 android:autofillHints=""
-                android:textAlignment="center"
-                android:textSize="30sp"
-                android:maxLength="1"
-                android:lines="1"
                 android:background="@drawable/rectangle_active"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:inputType="number"
-                android:layout_marginHorizontal="10dp"
-                android:paddingHorizontal="20dp" />
+                android:lines="1"
+                android:maxLength="1"
+                android:paddingHorizontal="20dp"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_marginHorizontal="10dp"
                 android:autofillHints=""
-                android:textAlignment="center"
-                android:textSize="30sp"
-                android:maxLength="1"
-                android:lines="1"
                 android:background="@drawable/rectangle_active"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:inputType="number"
-                android:layout_marginHorizontal="10dp"
-                android:paddingHorizontal="20dp" />
+                android:lines="1"
+                android:maxLength="1"
+                android:paddingHorizontal="20dp"
+                android:textAlignment="center"
+                android:textSize="30sp"
+                tools:ignore="LabelFor,SpeakableTextPresentCheck" />
 
         </LinearLayout>
 
@@ -122,6 +125,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:minWidth="300dp"
                 android:background="@drawable/ic_rectangle_142"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="@string/sure" />
