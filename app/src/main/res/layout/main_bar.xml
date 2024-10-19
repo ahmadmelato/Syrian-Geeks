@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -15,10 +16,10 @@
         <ImageView
             android:layout_width="0dp"
             android:layout_height="?actionBarSize"
-            android:contentDescription="@string/app_name"
-            android:padding="5dp"
             android:layout_weight="1"
+            android:contentDescription="@string/app_name"
             android:maxWidth="90dp"
+            android:padding="5dp"
             android:src="@drawable/logo" />
 
         <TextView
@@ -26,18 +27,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="?actionBarSize"
-            android:text="أهلا أحمد"
             android:fontFamily="@font/dinnextltarabicregular"
+            android:text="أهلا أحمد"
             android:textSize="18sp" />
 
-        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="50dp"
-            android:padding="10dp"
+            android:layout_width="60dp"
             android:layout_height="match_parent"
+            android:padding="10dp"
             android:src="@drawable/img"
-            app:civ_border_width="1dp"
-            app:civ_border_color="@color/my_light_primary" />
+            app:civ_border_color="@color/my_light_primary"
+            app:civ_border_width="1dp" />
 
         <ImageButton
             android:id="@+id/toolbar_notify"
@@ -49,7 +50,7 @@
             android:src="@drawable/notify" />
 
         <ImageButton
-            android:id="@+id/toolbar_back"
+            android:id="@+id/toolbar_openmenu"
             android:layout_width="40dp"
             android:layout_height="?actionBarSize"
             android:background="@android:color/transparent"
