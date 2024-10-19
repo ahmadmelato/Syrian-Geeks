@@ -11,7 +11,7 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
+        android:fitsSystemWindows="true"
         tools:context=".ui.MainActivity.MainActivity">
 
         <FrameLayout
@@ -21,24 +21,27 @@
             android:layout_centerInParent="true"
             android:animateLayoutChanges="true" />
 
-        <RelativeLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_alignParentBottom="true">
+            android:background="@color/blue">
 
             <com.google.android.material.bottomnavigation.BottomNavigationView
                 android:id="@+id/bottomnavigation"
-                android:layout_width="match_parent"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_gravity="bottom"
                 android:layoutDirection="rtl"
                 android:theme="@style/Base.Theme.SyrianGeeks.ButtonNavigationView"
                 app:itemIconTint="@color/bottom_nav_item_color"
                 app:itemTextAppearance="@style/Base.Theme.SyrianGeeks.ButtonNavigationView"
                 app:itemTextColor="@color/bottom_nav_item_color"
                 app:labelVisibilityMode="labeled"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 app:menu="@menu/bottom_menu" />
 
             <com.google.android.material.floatingactionbutton.FloatingActionButton
@@ -46,12 +49,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                android:layout_centerHorizontal="true"
                 android:contentDescription="@string/app_name"
-                android:src="@drawable/book"/>
-
-        </RelativeLayout>
+                android:src="@drawable/book"
+                android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                app:layout_constraintEnd_toEndOf="@+id/bottomnavigation"
+                app:layout_constraintStart_toStartOf="@+id/bottomnavigation"
+                app:layout_constraintTop_toTopOf="@+id/bottomnavigation"
+                android:layout_marginTop="10dp"
+                app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </RelativeLayout>
 </layout>
