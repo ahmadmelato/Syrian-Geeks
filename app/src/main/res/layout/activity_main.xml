@@ -43,7 +43,8 @@
                 android:layout_gravity="start"
                 android:fitsSystemWindows="true"
                 android:layoutDirection="rtl"
-                app:itemTextAppearance="@style/NavigationView"
+                android:theme="@style/Base.Theme.SyrianGeeks.NavigationView"
+                app:itemTextAppearance="@style/Base.Theme.SyrianGeeks.NavigationView"
                 app:headerLayout="@layout/nav_header"
                 app:menu="@menu/drawer_menu" />
 
