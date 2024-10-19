@@ -65,4 +65,10 @@
     <string name="Whoweare">من نحن</string>
     <string name="Signout">تسجيل الخروج</string>
 
+    <string name="search">ابحث عن دورة , مقالة أو مهارة </string>
+    <string name="main">الرئيسية</string>
+    <string name="Blog">المدونة</string>
+    <string name="society">المجتمع</string>
+    <string name="Events">الفعاليات</string>
+
 </resources>

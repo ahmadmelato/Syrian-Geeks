@@ -11,44 +11,47 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.MainActivity.MainActivity">
 
-        <androidx.drawerlayout.widget.DrawerLayout
-            android:id="@+id/drawer_layout"
+        <FrameLayout
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_centerInParent="true"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            android:layoutDirection="rtl"
-            tools:openDrawer="start">
+            android:animateLayoutChanges="true" />
 
-            <LinearLayout
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_alignParentBottom="true">
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottomnavigation"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
-
-                <include
-                    android:id="@+id/main_toolbar"
-                    layout="@layout/main_bar" />
-            </LinearLayout>
-
-
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/nav_view"
-                android:layout_width="280dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:fitsSystemWindows="true"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_gravity="bottom"
                 android:layoutDirection="rtl"
-                android:theme="@style/Base.Theme.SyrianGeeks.NavigationView"
-                app:itemTextAppearance="@style/Base.Theme.SyrianGeeks.NavigationView"
-                app:headerLayout="@layout/nav_header"
-                app:menu="@menu/drawer_menu" />
+                android:theme="@style/Base.Theme.SyrianGeeks.ButtonNavigationView"
+                app:itemIconTint="@color/bottom_nav_item_color"
+                app:itemTextAppearance="@style/Base.Theme.SyrianGeeks.ButtonNavigationView"
+                app:itemTextColor="@color/bottom_nav_item_color"
+                app:labelVisibilityMode="labeled"
+                app:menu="@menu/bottom_menu" />
 
-        </androidx.drawerlayout.widget.DrawerLayout>
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/addfbtu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/book"/>
+
+        </RelativeLayout>
 
     </RelativeLayout>
 </layout>

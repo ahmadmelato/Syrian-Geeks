@@ -20,6 +20,17 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="Base.Theme.SyrianGeeks.ButtonNavigationView" parent="Base.Theme.SyrianGeeks">
+        <item name="android:fontFamily">@font/dinnextltarabicregular</item>
+    </style>
+
+    <style name="Base.Theme.SyrianGeeks.Fab_4_rounded" parent="Base.Theme.SyrianGeeks">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="android:backgroundTint">@color/blue</item>
+    </style>
+
+
     <style name="Theme.SyrianGeeks.Button" parent="Base.Theme.SyrianGeeks">
         <!-- Customize your light theme here. -->
         <item name="android:textColor">@color/my_light_primary</item>
