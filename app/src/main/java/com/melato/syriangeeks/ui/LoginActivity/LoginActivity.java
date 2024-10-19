@@ -15,6 +15,7 @@ import androidx.databinding.DataBindingUtil;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityLoginBinding;
 import com.melato.syriangeeks.ui.ForgotPasswordActivity.ForgotPasswordActivity;
+import com.melato.syriangeeks.ui.MainActivity.MainActivity;
 import com.melato.syriangeeks.ui.SignupActivity.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
@@ -34,6 +35,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
 
         binding.createAccount.setOnClickListener(this);
         binding.btuRestPassword.setOnClickListener(this);
+        binding.btuLogin.setOnClickListener(this);
     }
 
     @Override
@@ -46,6 +48,10 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btuRestPassword:
                 Intent forgotPasswordActivity = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
                 startActivity(forgotPasswordActivity);
+                break;
+            case R.id.btuLogin:
+                Intent mainActivity = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(mainActivity);
                 break;
         }
     }

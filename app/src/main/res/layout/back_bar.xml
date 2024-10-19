@@ -12,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="?actionBarSize"
         android:layout_weight="1"
+        android:fontFamily="@font/dinnextltarabicregular"
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textSize="25sp" />

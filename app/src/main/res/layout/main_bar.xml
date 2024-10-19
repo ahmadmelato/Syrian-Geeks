@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="?actionBarSize"
+        android:gravity="center"
+        android:layoutDirection="ltr"
+        android:orientation="horizontal">
+
+        <ImageView
+            android:layout_width="0dp"
+            android:layout_height="?actionBarSize"
+            android:contentDescription="@string/app_name"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:maxWidth="90dp"
+            android:src="@drawable/logo" />
+
+        <TextView
+            android:id="@+id/toolbar_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="?actionBarSize"
+            android:text="أهلا أحمد"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:textSize="18sp" />
+
+        <de.hdodenhof.circleimageview.CircleImageView xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/profile_image"
+            android:layout_width="50dp"
+            android:padding="10dp"
+            android:layout_height="match_parent"
+            android:src="@drawable/img"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/my_light_primary" />
+
+        <ImageButton
+            android:id="@+id/toolbar_notify"
+            android:layout_width="50dp"
+            android:layout_height="?actionBarSize"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+
+            android:src="@drawable/notify" />
+
+        <ImageButton
+            android:id="@+id/toolbar_back"
+            android:layout_width="40dp"
+            android:layout_height="?actionBarSize"
+            android:background="@android:color/transparent"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/main_menu" />
+    </LinearLayout>
+</layout>
