@@ -15,6 +15,11 @@
         <item name="colorPrimary">@color/blue</item>
     </style>
 
+    <style name="NavigationView" parent="android:Widget.TextView">
+        <item name="fontFamily">@font/dinnextltarabicregular</item>
+    </style>
+
+
     <style name="Theme.SyrianGeeks.Button" parent="Base.Theme.SyrianGeeks">
         <!-- Customize your light theme here. -->
         <item name="android:textColor">@color/my_light_primary</item>

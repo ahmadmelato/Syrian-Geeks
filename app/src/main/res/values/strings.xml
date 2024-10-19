@@ -53,6 +53,16 @@
 
     <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
     <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
-
+    <string name="pages">الصفحات</string>
+    <string name="dashboard">لوحة القيادة</string>
+    <string name="myprofile">ملفي الشخصي</string>
+    <string name="Mycourses">دوراتي</string>
+    <string name="CourseActivities">أنشطة الدورة</string>
+    <string name="Certificates">الشهادات</string>
+    <string name="Reference">المرجعية</string>
+    <string name="Leaderboard">جدول المتصدرين</string>
+    <string name="vision">رؤية</string>
+    <string name="Whoweare">من نحن</string>
+    <string name="Signout">تسجيل الخروج</string>
 
 </resources>

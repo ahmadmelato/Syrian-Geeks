@@ -1,24 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tool="http://schemas.android.com/tools"
     tool:showIn="navigation_view">
 
 
-    <item
-        android:id="@+id/menu_logout"
-        android:icon="@drawable/notify"
-        android:title="@string/app_name"
-        android:visible="true" />
 
     <item
-        android:id="@+id/menu_about"
-        android:icon="@drawable/notify"
-        android:title="@string/app_name" />
+        android:id="@+id/nav_divider"
+        android:title="@string/pages"
+        android:checkable="false">
+        <menu>
+            <item
+                android:icon="@drawable/dashbord"
+                android:title="@string/dashboard" />
 
-    <item
-        android:id="@+id/menu_exit"
-        android:icon="@drawable/notify"
-        android:title="@string/app_name" />
+            <item
+                android:icon="@drawable/profile"
+                android:title="@string/myprofile" />
 
+            <item
+                android:icon="@drawable/courses"
+                android:title="@string/Mycourses" />
+
+            <item
+                android:icon="@drawable/courseactivities"
+                android:title="@string/CourseActivities" />
+
+            <item
+                android:icon="@drawable/certificates"
+                android:title="@string/Certificates" />
+
+            <item
+                android:icon="@drawable/reference"
+                android:title="@string/Reference" />
+
+            <item
+                android:icon="@drawable/leaderboard"
+                android:title="@string/Leaderboard" />
+        </menu>
+
+    </item>
+
+    <item android:title="@string/vision">
+        <menu>
+            <item
+                android:icon="@drawable/whoweare"
+                android:title="@string/Whoweare" />
+
+            <item
+                android:icon="@drawable/signout"
+                android:title="@string/Signout" />
+
+        </menu>
+
+    </item>
 
 </menu>
