@@ -12,17 +12,7 @@
         android:layout_height="match_parent"
         tools:context=".ui.MainActivity.MainFragment">
 
-        <androidx.drawerlayout.widget.DrawerLayout
-            android:id="@+id/drawer_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:layoutDirection="rtl"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:openDrawer="start">
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -68,19 +58,6 @@
 
             </LinearLayout>
 
-            <com.google.android.material.navigation.NavigationView
-                android:id="@+id/nav_view"
-                android:layout_width="280dp"
-                android:layout_height="match_parent"
-                android:layout_gravity="start"
-                android:fitsSystemWindows="true"
-                android:layoutDirection="rtl"
-                android:theme="@style/Base.Theme.SyrianGeeks.NavigationView"
-                app:headerLayout="@layout/nav_header"
-                app:itemTextAppearance="@style/Base.Theme.SyrianGeeks.NavigationView"
-                app:menu="@menu/drawer_menu" />
-
-        </androidx.drawerlayout.widget.DrawerLayout>
 
     </RelativeLayout>
 </layout>

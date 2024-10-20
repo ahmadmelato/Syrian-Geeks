@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <item
-        android:id="@+id/main"
+        android:id="@+id/item_main"
         android:icon="@drawable/main"
         android:title="@string/main" />
 
     <item
-        android:id="@+id/Blog"
+        android:id="@+id/item_Blog"
         android:icon="@drawable/blog"
         android:title="@string/Blog" />
 
@@ -17,12 +17,12 @@
         android:enabled="false" />
 
     <item
-        android:id="@+id/society"
+        android:id="@+id/item_society"
         android:icon="@drawable/society"
         android:title="@string/society" />
 
     <item
-        android:id="@+id/Events"
+        android:id="@+id/item_Events"
         android:icon="@drawable/events"
         android:title="@string/Events" />
 

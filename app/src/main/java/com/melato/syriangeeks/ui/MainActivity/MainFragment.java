@@ -19,7 +19,7 @@ import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentMainBinding;
 
 
-public class MainFragment extends Fragment implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
+public class MainFragment extends Fragment implements View.OnClickListener {
 
     private FragmentMainBinding binding;
     private ImageButton toolbar_openmenu;
@@ -44,28 +44,23 @@ public class MainFragment extends Fragment implements View.OnClickListener, Navi
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.navView.setNavigationItemSelectedListener(this);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(getActivity(), binding.drawerLayout, null,
-                R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        binding.drawerLayout.addDrawerListener(toggle);
-        toggle.syncState();
+
 
         toolbar_openmenu = view.findViewById(R.id.toolbar_openmenu);
         toolbar_openmenu.setOnClickListener(this);
     }
 
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.toolbar_openmenu:
-                binding.drawerLayout.open();
+                MainActivity mainActivity = (MainActivity) getActivity();
+                mainActivity.openDrawerLayout();
                 break;
         }
     }
 
-    @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return true;
-    }
+
 
 }

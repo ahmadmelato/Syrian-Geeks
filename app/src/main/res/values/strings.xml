@@ -51,8 +51,6 @@
     <string name="activeCode">كود التفعيل</string>
     <string name="activeCodeText">قد قمنا بإرسال رمز التفعيل للبريد الالكتروني الخاص بك</string>
 
-    <string name="navigation_drawer_open" translatable="false">Open navigation drawer</string>
-    <string name="navigation_drawer_close" translatable="false">Close navigation drawer</string>
     <string name="pages">الصفحات</string>
     <string name="dashboard">لوحة القيادة</string>
     <string name="myprofile">ملفي الشخصي</string>

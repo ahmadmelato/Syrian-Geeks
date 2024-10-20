@@ -7,58 +7,86 @@
 
     </data>
 
-    <RelativeLayout
-        android:id="@+id/main"
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true"
-        tools:context=".ui.MainActivity.MainActivity">
+        android:layoutDirection="rtl"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:openDrawer="start">
 
-        <FrameLayout
-            android:id="@+id/fragment_container"
+        <RelativeLayout
+            android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_centerInParent="true"
-            android:animateLayoutChanges="true" />
+            android:fitsSystemWindows="true"
+            tools:context=".ui.MainActivity.MainActivity">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:layout_centerHorizontal="true"
-            android:background="@color/blue">
-
-            <com.google.android.material.bottomnavigation.BottomNavigationView
-                android:id="@+id/bottomnavigation"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layoutDirection="rtl"
-                android:theme="@style/Base.Theme.SyrianGeeks.ButtonNavigationView"
-                app:itemIconTint="@color/bottom_nav_item_color"
-                app:itemTextAppearance="@style/Base.Theme.SyrianGeeks.ButtonNavigationView"
-                app:itemTextColor="@color/bottom_nav_item_color"
-                app:labelVisibilityMode="labeled"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:menu="@menu/bottom_menu" />
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:id="@+id/addfbtu"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+            <FrameLayout
+                android:id="@+id/fragment_container"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:paddingVertical="5dp"
                 android:layout_centerInParent="true"
-                android:layout_centerHorizontal="true"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/book"
-                android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                app:layout_constraintEnd_toEndOf="@+id/bottomnavigation"
-                app:layout_constraintStart_toStartOf="@+id/bottomnavigation"
-                app:layout_constraintTop_toTopOf="@+id/bottomnavigation"
-                android:layout_marginTop="10dp"
-                app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
+                android:animateLayoutChanges="true" />
 
-    </RelativeLayout>
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:background="@color/blue">
+
+                <com.google.android.material.bottomnavigation.BottomNavigationView
+                    android:id="@+id/bottomnavigation"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="rtl"
+                    android:theme="@style/Base.Theme.SyrianGeeks.ButtonNavigationView"
+                    app:itemIconTint="@color/bottom_nav_item_color"
+                    app:itemTextAppearance="@style/Base.Theme.SyrianGeeks.ButtonNavigationView"
+                    app:itemTextColor="@color/bottom_nav_item_color"
+                    app:labelVisibilityMode="labeled"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:menu="@menu/bottom_menu" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:id="@+id/addfbtu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/book"
+                    android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:layout_constraintEnd_toEndOf="@+id/bottomnavigation"
+                    app:layout_constraintStart_toStartOf="@+id/bottomnavigation"
+                    app:layout_constraintTop_toTopOf="@+id/bottomnavigation"
+                    app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:tint="@color/white" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </RelativeLayout>
+
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="280dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            android:layoutDirection="rtl"
+            android:theme="@style/Base.Theme.SyrianGeeks.NavigationView"
+            app:headerLayout="@layout/nav_header"
+            app:itemTextAppearance="@style/Base.Theme.SyrianGeeks.NavigationView"
+            app:menu="@menu/drawer_menu" />
+
+    </androidx.drawerlayout.widget.DrawerLayout>
+
 </layout>
