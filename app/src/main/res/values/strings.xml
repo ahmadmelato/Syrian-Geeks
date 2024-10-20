@@ -68,5 +68,7 @@
     <string name="Blog">المدونة</string>
     <string name="society">المجتمع</string>
     <string name="Events">الفعاليات</string>
+    <string name="Discoverthecourses">اكتشف الدورات</string>
+    <string name="Myactivities">أنشطتي</string>
 
 </resources>

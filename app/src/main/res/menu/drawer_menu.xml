@@ -11,18 +11,22 @@
         android:checkable="false">
         <menu>
             <item
+                android:id="@+id/item_dashbord"
                 android:icon="@drawable/dashbord"
                 android:title="@string/dashboard" />
 
             <item
+                android:id="@+id/item_profile"
                 android:icon="@drawable/profile"
                 android:title="@string/myprofile" />
 
             <item
+                android:id="@+id/item_courses"
                 android:icon="@drawable/courses"
                 android:title="@string/Mycourses" />
 
             <item
+                android:id="@+id/item_courseactivities"
                 android:icon="@drawable/courseactivities"
                 android:title="@string/CourseActivities" />
 

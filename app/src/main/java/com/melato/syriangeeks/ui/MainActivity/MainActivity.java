@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private ActivityMainBinding binding;
     private MainFragment mainFragment;
+    private DashbordFragment dashbordFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.navView.setNavigationItemSelectedListener(this);
         binding.bottomnavigation.setOnItemSelectedListener(this::onNavigationItemSelected);
         mainFragment = new MainFragment();
+        dashbordFragment = new DashbordFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
-
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
     }
 
@@ -47,10 +49,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.open();
     }
 
+    public void openMain(){
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         Toast.makeText(getApplicationContext(), item.getTitle() + "", Toast.LENGTH_SHORT).show();
         switch (item.getItemId()) {
+            case R.id.item_dashbord:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, dashbordFragment).commit();
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                binding.drawerLayout.close();
+                break;
             case R.id.item_main:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
                 binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
