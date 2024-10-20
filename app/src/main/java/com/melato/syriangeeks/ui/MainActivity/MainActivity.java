@@ -6,15 +6,12 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
-
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityMainBinding;
@@ -24,6 +21,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ActivityMainBinding binding;
     private MainFragment mainFragment;
     private DashbordFragment dashbordFragment;
+    private CourseActivitiesFragment courseActivitiesFragment;
+    private CoursesFragment coursesFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +39,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.bottomnavigation.setOnItemSelectedListener(this::onNavigationItemSelected);
         mainFragment = new MainFragment();
         dashbordFragment = new DashbordFragment();
+        courseActivitiesFragment = new CourseActivitiesFragment();
+        coursesFragment = new CoursesFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
@@ -49,35 +50,42 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.open();
     }
 
-    public void openMain(){
+    public void openMain() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        Toast.makeText(getApplicationContext(), item.getTitle() + "", Toast.LENGTH_SHORT).show();
-        switch (item.getItemId()) {
-            case R.id.item_dashbord:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, dashbordFragment).commit();
-                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-                binding.drawerLayout.close();
-                break;
-            case R.id.item_main:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
-                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
-                break;
-            case R.id.item_Blog:
-                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-                break;
-            case R.id.item_Events:
-                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-                break;
-            case R.id.item_society:
-                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-                break;
-            default:
-                return false;
+
+
+        int itemId = item.getItemId();
+        if (itemId == R.id.item_dashbord) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, dashbordFragment).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.drawerLayout.close();
+        } else if (itemId == R.id.item_profile) {
+            Toast.makeText(getApplicationContext(), item.getTitle() + "", Toast.LENGTH_SHORT).show();
+        } else if (itemId == R.id.item_courses) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, coursesFragment).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.drawerLayout.close();
+        } else if (itemId == R.id.item_courseactivities) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, courseActivitiesFragment).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.drawerLayout.close();
+            //--------------------------------------------------------------------------------------------------------------
+        } else if (itemId == R.id.item_main) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+        } else if (itemId == R.id.item_Blog) {
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        } else if (itemId == R.id.item_Events) {
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        } else if (itemId == R.id.item_society) {
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        } else {
+            return false;
         }
         return true;
     }
