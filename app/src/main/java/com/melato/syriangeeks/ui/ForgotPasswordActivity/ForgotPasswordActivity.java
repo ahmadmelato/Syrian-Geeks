@@ -14,8 +14,6 @@ import androidx.databinding.DataBindingUtil;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityForgotPasswordBinding;
 import com.melato.syriangeeks.ui.ActiveCodeActivity.ActiveCodeActivity;
-import com.melato.syriangeeks.ui.LoginActivity.LoginActivity;
-import com.melato.syriangeeks.ui.SignupActivity.SignupActivity;
 
 public class ForgotPasswordActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -38,14 +36,12 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.toolbar_back:
-                onBackPressed();
-                break;
-            case R.id.btuSure:
-                Intent activeCodeActivity = new Intent(ForgotPasswordActivity.this, ActiveCodeActivity.class);
-                startActivity(activeCodeActivity);
-                break;
+        int id = v.getId();
+        if (id == R.id.toolbar_back) {
+            finish();
+        } else if (id == R.id.btuSure) {
+            Intent activeCodeActivity = new Intent(ForgotPasswordActivity.this, ActiveCodeActivity.class);
+            startActivity(activeCodeActivity);
         }
     }
 }

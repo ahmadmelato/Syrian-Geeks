@@ -1,5 +1,6 @@
 package com.melato.syriangeeks.ui.ActiveCodeActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,6 +13,7 @@ import androidx.databinding.DataBindingUtil;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityActiveCodeBinding;
+import com.melato.syriangeeks.ui.NewPasswordActivity.NewPasswordActivity;
 
 public class ActiveCodeActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -29,14 +31,16 @@ public class ActiveCodeActivity extends AppCompatActivity implements View.OnClic
         });
 
         findViewById(R.id.toolbar_back).setOnClickListener(this);
+        binding.btuSure.setOnClickListener(this);
     }
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.toolbar_back:
-                onBackPressed();
-                break;
+        if (v.getId() == R.id.toolbar_back) {
+            finish();
+        } else if (v.getId() == R.id.btuSure) {
+            Intent activeCodeActivity = new Intent(ActiveCodeActivity.this, NewPasswordActivity.class);
+            startActivity(activeCodeActivity);
         }
     }
 }

@@ -50,6 +50,9 @@
 
     <string name="activeCode">كود التفعيل</string>
     <string name="activeCodeText">قد قمنا بإرسال رمز التفعيل للبريد الالكتروني الخاص بك</string>
+    <string name="Setnewpassword">تعيين كلمة مرور جديدة</string>
+    <string name="newpasswordsecurity">من فضلك قم بتعيين كلمة مرور جديدة و تأكد أنها تختلف عن السابقة من أجل أمانك</string>
+    <string name="Updatepassword">تحديث كلمة المرور</string>
 
     <string name="pages">الصفحات</string>
     <string name="dashboard">لوحة القيادة</string>
@@ -62,6 +65,7 @@
     <string name="vision">رؤية</string>
     <string name="Whoweare">من نحن</string>
     <string name="Signout">تسجيل الخروج</string>
+    <string name="Notifications">الإشعارات</string>
 
     <string name="search">ابحث عن دورة , مقالة أو مهارة </string>
     <string name="main">الرئيسية</string>

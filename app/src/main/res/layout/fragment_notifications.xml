@@ -26,7 +26,7 @@
                 android:layout_marginStart="?actionBarSize"
                 android:layout_weight="1"
                 android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/Certificates"
+                android:text="@string/Notifications"
                 android:textSize="20sp" />
 
             <ImageButton
