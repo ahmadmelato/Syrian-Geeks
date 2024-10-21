@@ -26,6 +26,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private DashbordFragment dashbordFragment;
     private CourseActivitiesFragment courseActivitiesFragment;
     private CoursesFragment coursesFragment;
+    private CertificatesFragment certificatesFragment;
+    private ReferenceFragment referenceFragment;
+    private LeaderboardFragment leaderboardFragment;
+    private NotificationsFragment notificationsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +48,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dashbordFragment = new DashbordFragment();
         courseActivitiesFragment = new CourseActivitiesFragment();
         coursesFragment = new CoursesFragment();
+        certificatesFragment= new CertificatesFragment();
+        referenceFragment = new ReferenceFragment();
+        leaderboardFragment = new LeaderboardFragment();
+        notificationsFragment =new NotificationsFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
@@ -60,7 +68,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     } else if (fragmentManager.getBackStackEntryCount() >= 1) {
                         fragmentManager.popBackStack();
                     } else {
-                        // Exit the activity if no fragments are left
                         MainActivity.this.finish();
                     }
                 }
@@ -81,6 +88,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
     }
 
+    public void openNotifications() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, notificationsFragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int itemId = item.getItemId();
@@ -98,6 +110,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, courseActivitiesFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
+        }else if (itemId == R.id.item_certificates) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, certificatesFragment).addToBackStack(null).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.drawerLayout.close();
+        }else if (itemId == R.id.item_reference) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, referenceFragment).addToBackStack(null).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.drawerLayout.close();
+        }else if (itemId == R.id.item_leaderboard) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, leaderboardFragment).addToBackStack(null).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.drawerLayout.close();
+        }else if (itemId == R.id.signout) {
+            this.finish();
             //--------------------------------------------------------------------------------------------------------------
         } else if (itemId == R.id.item_main) {
             getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);

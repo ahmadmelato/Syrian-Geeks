@@ -31,14 +31,17 @@
                 android:title="@string/CourseActivities" />
 
             <item
+                android:id="@+id/item_certificates"
                 android:icon="@drawable/certificates"
                 android:title="@string/Certificates" />
 
             <item
+                android:id="@+id/item_reference"
                 android:icon="@drawable/reference"
                 android:title="@string/Reference" />
 
             <item
+                android:id="@+id/item_leaderboard"
                 android:icon="@drawable/leaderboard"
                 android:title="@string/Leaderboard" />
         </menu>
@@ -52,6 +55,7 @@
                 android:title="@string/Whoweare" />
 
             <item
+                android:id="@+id/signout"
                 android:icon="@drawable/signout"
                 android:title="@string/Signout" />
 
