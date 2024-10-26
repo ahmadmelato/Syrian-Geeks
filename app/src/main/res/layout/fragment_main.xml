@@ -1,63 +1,161 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
     </data>
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         tools:context=".ui.MainActivity.MainFragment">
 
 
+        <include
+            android:id="@+id/main_toolbar"
+            layout="@layout/main_bar" />
 
-            <LinearLayout
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp">
+
+            <EditText
+                android:id="@+id/editText"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:autofillHints="@string/search"
+                android:background="@drawable/ic_path_2480"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:hint="@string/search"
+                android:inputType="text"
+                android:paddingHorizontal="50dp"
+                android:textColorHint="@color/textColorHint" />
 
-                <include
-                    android:id="@+id/main_toolbar"
-                    layout="@layout/main_bar" />
+            <ImageButton
+                android:id="@+id/toolbar_back"
+                android:layout_width="50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/editText"
+                android:layout_alignBottom="@+id/editText"
+                android:layout_alignParentEnd="@+id/editText"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/search" />
 
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp">
-
-                    <EditText
-                        android:id="@+id/editText"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:autofillHints="@string/search"
-                        android:background="@drawable/ic_path_2480"
-                        android:fontFamily="@font/dinnextltarabicregular"
-                        android:hint="@string/search"
-                        android:inputType="text"
-                        android:paddingHorizontal="50dp"
-                        android:textColorHint="@color/textColorHint" />
-
-                    <ImageButton
-                        android:id="@+id/toolbar_back"
-                        android:layout_width="50dp"
-                        android:layout_height="wrap_content"
-                        android:layout_alignBottom="@+id/editText"
-                        android:layout_alignTop="@+id/editText"
-                        android:layout_alignParentEnd="@+id/editText"
-                        android:background="@android:color/transparent"
-                        android:contentDescription="@string/app_name"
-                        android:src="@drawable/search" />
-
-                </RelativeLayout>
+        </RelativeLayout>
 
 
-            </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/show_more1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="@string/Showall"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:theme="@style/Theme.SyrianGeeks.Text" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="@string/Trainings"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
 
 
-    </RelativeLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/show_more2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="@string/Showall"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:theme="@style/Theme.SyrianGeeks.Text" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="@string/Blog"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="5dp"
+            android:layout_marginVertical="5dp"
+            android:gravity="center"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/show_more3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="@string/Showall"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:theme="@style/Theme.SyrianGeeks.Text" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="@string/Events"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+
+    </LinearLayout>
 </layout>
