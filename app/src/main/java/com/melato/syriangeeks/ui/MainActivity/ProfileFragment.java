@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.melato.syriangeeks.R;
-import com.melato.syriangeeks.databinding.FragmentNotificationsBinding;
 import com.melato.syriangeeks.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener{
