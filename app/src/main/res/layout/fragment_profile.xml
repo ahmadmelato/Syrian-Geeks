@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".ui.MainActivity.ProfileFragment">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="?actionBarSize"
+            android:gravity="center"
+            android:layoutDirection="ltr"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/toolbar_date"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="?actionBarSize"
+                android:layout_weight="1"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="@string/Profile"
+                android:textSize="20sp" />
+
+            <ImageButton
+                android:id="@+id/toolbar_back"
+                android:layout_width="?actionBarSize"
+                android:layout_height="?actionBarSize"
+                android:background="@android:color/transparent"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/ic_back" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layoutDirection="ltr"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="horizontal">
+
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="أحمد ميلاتو"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/Copyprofilelink"
+                    android:drawableRight="@drawable/copy"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/changepassword"
+                    android:drawableRight="@drawable/lock"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="آخر تحديث للملف الشخصي منذ 30 يوم"
+                    android:textSize="15sp" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="110dp"
+                android:layout_height="110dp"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/profile_logo" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+</layout>

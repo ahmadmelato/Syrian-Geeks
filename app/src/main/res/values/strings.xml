@@ -78,4 +78,8 @@
     <string name="Trainings">التدريبات</string>
     <string name="Showall">عرض الكل</string>
 
+    <string name="Profile">الملف الشخصي</string>
+    <string name="Copyprofilelink">\tنسخ رابط الملف الشخصي\t</string>
+    <string name="changepassword">\tتغيير كلمة المرور\t</string>
+
 </resources>

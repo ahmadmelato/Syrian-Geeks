@@ -2,7 +2,6 @@ package com.melato.syriangeeks.ui.MainActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -30,6 +29,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private ReferenceFragment referenceFragment;
     private LeaderboardFragment leaderboardFragment;
     private NotificationsFragment notificationsFragment;
+    private ProfileFragment profileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         referenceFragment = new ReferenceFragment();
         leaderboardFragment = new LeaderboardFragment();
         notificationsFragment =new NotificationsFragment();
+        profileFragment = new ProfileFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
@@ -101,7 +102,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
         } else if (itemId == R.id.item_profile) {
-            Toast.makeText(getApplicationContext(), item.getTitle() + "", Toast.LENGTH_SHORT).show();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, profileFragment).addToBackStack(null).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.drawerLayout.close();
         } else if (itemId == R.id.item_courses) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, coursesFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
