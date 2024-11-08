@@ -2,7 +2,6 @@ package com.melato.syriangeeks.data;
 
 
 
-import com.google.gson.Gson;
 import com.melato.syriangeeks.model.ErrorAPI;
 import com.melato.syriangeeks.model.UserModel;
 

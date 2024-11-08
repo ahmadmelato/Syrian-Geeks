@@ -84,5 +84,7 @@
 
     <string name="Loggedinsuccessfully">تم تسجيل الدخول بنجاح</string>
     <string name="FailedtoloaddataChecknetwork">فشلت العملية الرجاء التاكد من الشبكة</string>
+    <string name="Passwordisveryshort">يجب ان تكون كلمة السر اكثر من 6 محارف</string>
+    <string name="fillEmail">الرجاء ادخال البريد الالكتروني</string>
 
 </resources>

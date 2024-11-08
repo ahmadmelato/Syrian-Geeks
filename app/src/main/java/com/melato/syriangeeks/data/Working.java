@@ -32,6 +32,12 @@ public class Working {
         return View.VISIBLE;
     }
 
+    public boolean isBooleanFinish(){
+        if(connectionState == ClientAPI.Run)
+            return false;
+        return true;
+    }
+
     public String getsSmg() {
         return smg;
     }

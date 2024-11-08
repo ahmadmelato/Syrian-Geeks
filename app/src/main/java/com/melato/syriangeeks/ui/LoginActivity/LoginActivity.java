@@ -48,15 +48,17 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             if (working != null) {
                 binding.mainprogress.setVisibility(working.isProgressing());
                 binding.btuLogin.setVisibility(working.isFinish());
-                if(!working.isRunning())
+                binding.createAccount.setEnabled(working.isBooleanFinish());
+                binding.btuLoginGuest.setEnabled(working.isBooleanFinish());
+                if (!working.isRunning())
                     Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
             }
         });
 
         loginViewModel.userLiveData.observe(this, userModel -> {
-            if(userModel != null){
-                loginViewModel.saveData(getApplicationContext(),userModel);
-                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+            if (userModel != null) {
+                loginViewModel.saveData(getApplicationContext(), userModel);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                 startActivity(intent);
                 LoginActivity.this.finish();
             }
@@ -79,8 +81,15 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.btuLogin:
                 String email = binding.email.getText().toString();
                 String password = binding.password.getText().toString();
-                if (!email.isEmpty() && password.length() >= 6)
-                    loginViewModel.login(email, password,this);
+                if (email.isEmpty()) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.fillEmail), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                if (password.length() < 6) {
+                    Toast.makeText(getApplicationContext(), getResources().getString(R.string.Passwordisveryshort), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                loginViewModel.login(email, password, this);
                 break;
         }
     }
