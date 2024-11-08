@@ -2,16 +2,21 @@ package com.melato.syriangeeks.data;
 
 
 
+import com.google.gson.Gson;
 import com.melato.syriangeeks.model.ErrorAPI;
+import com.melato.syriangeeks.model.UserModel;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import okhttp3.OkHttpClient;
 import okhttp3.ResponseBody;
+import retrofit2.Call;
 import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -23,7 +28,7 @@ public class ClientAPI {
     public static int Filed = 0;
     public static int Run = -1;
 
-    private static final String BASE_URL = "http://192.168.1.100:5000/";
+    private static final String BASE_URL = "https://sygeeks.net/api/v1/";
     private InterfaceAPI interfaceAPI;
     public static ClientAPI clientAPI;
     public TokenInterceptor tokenInterceptor;
@@ -112,12 +117,12 @@ public class ClientAPI {
         return clientAPI;
     }
 
-//    public Call<UserModel> login(String mail_p, String password_p) {
-//        Map<String, Object> queryMap = new HashMap<>();
-//        queryMap.put("mail_p", mail_p);
-//        queryMap.put("password_p", password_p);
-//        return interfaceAPI.login(queryMap);
-//    }
+    public Call<UserModel> login(String mail, String password) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("email", mail);
+        queryMap.put("password", password);
+        return interfaceAPI.login(queryMap);
+    }
 //
 //    public Call<UserModel> singup(String first_name_p, String last_name_p, String mail_p, String password_p) {
 //        Map<String, Object> queryMap = new HashMap<>();

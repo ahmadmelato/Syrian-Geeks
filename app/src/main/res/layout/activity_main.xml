@@ -18,26 +18,25 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:openDrawer="start">
 
-        <RelativeLayout
+        <LinearLayout
             android:id="@+id/main"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fitsSystemWindows="true"
+            android:orientation="vertical"
             tools:context=".ui.MainActivity.MainActivity">
 
             <FrameLayout
                 android:id="@+id/fragment_container"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="0dp"
                 android:paddingVertical="5dp"
-                android:layout_centerInParent="true"
+                android:layout_weight="1"
                 android:animateLayoutChanges="true" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_centerHorizontal="true"
                 android:background="@color/blue">
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -73,7 +72,7 @@
                     app:tint="@color/white" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
-        </RelativeLayout>
+        </LinearLayout>
 
         <com.google.android.material.navigation.NavigationView
             android:id="@+id/nav_view"

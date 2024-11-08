@@ -44,7 +44,7 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layoutDirection="ltr"
-            android:layout_marginHorizontal="10dp"
+            android:layout_marginHorizontal="5dp"
             android:orientation="horizontal">
 
 
@@ -95,6 +95,14 @@
                 android:src="@drawable/profile_logo" />
 
         </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/sectionsRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/profile_item_section"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="5dp"/>
 
 
     </LinearLayout>
