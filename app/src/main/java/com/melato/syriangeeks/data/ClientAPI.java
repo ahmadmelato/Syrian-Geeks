@@ -3,6 +3,7 @@ package com.melato.syriangeeks.data;
 
 
 import com.melato.syriangeeks.model.ErrorAPI;
+import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
 
 import java.io.IOException;
@@ -116,7 +117,7 @@ public class ClientAPI {
         return clientAPI;
     }
 
-    public Call<UserModel> login(String mail, String password) {
+    public Call<ResponseBodyModel> login(String mail, String password) {
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("email", mail);
         queryMap.put("password", password);

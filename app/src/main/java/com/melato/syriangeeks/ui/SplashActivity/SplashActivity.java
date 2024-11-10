@@ -2,6 +2,7 @@ package com.melato.syriangeeks.ui.SplashActivity;
 
 import static com.melato.syriangeeks.ui.SplashActivity.SplashActivityViewModel.text;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Insets;
 import android.os.Bundle;
@@ -16,7 +17,9 @@ import androidx.lifecycle.ViewModelProviders;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivitySplashBinding;
 import com.melato.syriangeeks.ui.LoginActivity.LoginActivity;
+import com.melato.syriangeeks.ui.MainActivity.MainActivity;
 
+@SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
 
     private SplashActivityViewModel splashActivityViewModel;
@@ -36,14 +39,14 @@ public class SplashActivity extends AppCompatActivity {
 //        });
 
         splashActivityViewModel.txt.observe(this, s -> {
-            if (s.length() > text.length()) {
+            if (s.length() > text.length() && splashActivityViewModel.getData(getApplicationContext()) == null) {
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
                 SplashActivity.this.finish();
-            } else if (s.length() > text.length()) {
-//                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
-//                startActivity(intent);
-//                SplashActivity.this.finish();
+            } else if (s.length() > text.length() && splashActivityViewModel.getData(getApplicationContext()) != null) {
+                Intent intent = new Intent(SplashActivity.this, MainActivity.class);
+                startActivity(intent);
+                SplashActivity.this.finish();
             }
             binding.title.setText(s);
         });

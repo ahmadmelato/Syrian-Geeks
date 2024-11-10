@@ -1,9 +1,15 @@
 package com.melato.syriangeeks.ui.SplashActivity;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Handler;
 
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
+
+import com.google.gson.Gson;
+import com.melato.syriangeeks.data.ClientAPI;
+import com.melato.syriangeeks.model.UserModel;
 
 public class SplashActivityViewModel extends ViewModel {
 
@@ -34,4 +40,16 @@ public class SplashActivityViewModel extends ViewModel {
             }
         });
     }
+
+    public UserModel getData(Context context){
+        SharedPreferences preferences = context.getSharedPreferences("MyPrefsLoginData", Context.MODE_PRIVATE);
+        String loginInfo = preferences.getString("loginInfo", null);
+        if(loginInfo != null){
+            UserModel userModel = new Gson().fromJson(loginInfo,UserModel.class);
+            ClientAPI.setClientAPIToken(userModel.getToken());
+            return userModel;
+        }
+        return null;
+    }
+
 }

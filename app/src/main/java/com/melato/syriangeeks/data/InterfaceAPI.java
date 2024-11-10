@@ -1,6 +1,7 @@
 package com.melato.syriangeeks.data;
 
 
+import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
 
 import java.util.List;
@@ -13,7 +14,7 @@ import retrofit2.http.POST;
 public interface InterfaceAPI {
 
     @POST("sign-in")
-    Call<UserModel> login(@Body Map<String, Object> queryMap);
+    Call<ResponseBodyModel> login(@Body Map<String, Object> queryMap);
 //
 //    @POST("singup")
 //    Call<UserModel> singup(@Body Map<String, Object> queryMap);
