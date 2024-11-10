@@ -28,7 +28,7 @@
             android:layout_marginStart="?actionBarSize"
             android:fontFamily="@font/dinnextltarabicregular"
             android:paddingHorizontal="10dp"
-            android:text="أهلا أحمد"
+            android:text="أهلا "
             android:textSize="18sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView

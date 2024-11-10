@@ -92,11 +92,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        mainViewModel.userLiveData.observe(this, userModel -> {
+        MainViewModel.userLiveData.observe(this, userModel -> {
             if (userModel == null) {
                 MainActivity.this.finish();
             }
         });
+
+        mainViewModel.getData(getApplicationContext());
 
     }
 
@@ -166,4 +168,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+
+    public MainViewModel getMainViewModel() {
+        return mainViewModel;
+    }
 }

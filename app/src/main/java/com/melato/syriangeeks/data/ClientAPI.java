@@ -1,7 +1,6 @@
 package com.melato.syriangeeks.data;
 
 
-
 import com.melato.syriangeeks.model.ErrorAPI;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
@@ -12,6 +11,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import okhttp3.OkHttpClient;
@@ -126,6 +126,10 @@ public class ClientAPI {
 
     public Call<ResponseBodyModel> logout() {
         return interfaceAPI.logout();
+    }
+
+    public Call<ResponseBodyModel> getCourses(String sortTag) {
+        return interfaceAPI.getCourses(sortTag);
     }
 //
 //    public Call<UserModel> singup(String first_name_p, String last_name_p, String mail_p, String password_p) {

@@ -3,9 +3,9 @@ package com.melato.syriangeeks.model;
 import com.google.gson.JsonElement;
 
 public class ResponseBodyModel {
-    public boolean result;
-    public String message;
-    public JsonElement data;
+    private boolean result;
+    private String message;
+    private JsonElement data;
 
     public boolean isResult() {
         return result;
