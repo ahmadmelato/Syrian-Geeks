@@ -2,6 +2,7 @@ package com.melato.syriangeeks.ui.MainActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -13,6 +14,7 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.navigation.NavigationView;
 import com.melato.syriangeeks.R;
@@ -21,6 +23,8 @@ import com.melato.syriangeeks.databinding.ActivityMainBinding;
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActivityMainBinding binding;
+    private MainViewModel mainViewModel;
+
     private MainFragment mainFragment;
     private DashbordFragment dashbordFragment;
     private CourseActivitiesFragment courseActivitiesFragment;
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, 0);
@@ -48,10 +53,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         dashbordFragment = new DashbordFragment();
         courseActivitiesFragment = new CourseActivitiesFragment();
         coursesFragment = new CoursesFragment();
-        certificatesFragment= new CertificatesFragment();
+        certificatesFragment = new CertificatesFragment();
         referenceFragment = new ReferenceFragment();
         leaderboardFragment = new LeaderboardFragment();
-        notificationsFragment =new NotificationsFragment();
+        notificationsFragment = new NotificationsFragment();
         profileFragment = new ProfileFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
@@ -59,9 +64,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
-                if(binding.drawerLayout.isOpen()){
+                if (binding.drawerLayout.isOpen()) {
                     binding.drawerLayout.close();
-                }else{
+                } else {
                     FragmentManager fragmentManager = getSupportFragmentManager();
                     if (fragmentManager.getBackStackEntryCount() == 1) {
                         fragmentManager.popBackStack();
@@ -74,7 +79,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         };
-        getOnBackPressedDispatcher().addCallback(this,onBackPressedCallback);
+        getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
+
+        mainViewModel.working.observe(this, working -> {
+            if (working != null) {
+//                binding.mainprogress.setVisibility(working.isProgressing());
+//                binding.btuLogin.setVisibility(working.isFinish());
+//                binding.createAccount.setEnabled(working.isBooleanFinish());
+//                binding.btuLoginGuest.setEnabled(working.isBooleanFinish());
+                if (!working.isRunning())
+                    Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        mainViewModel.userLiveData.observe(this, userModel -> {
+            if (userModel == null) {
+                MainActivity.this.finish();
+            }
+        });
 
     }
 
@@ -113,20 +135,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, courseActivitiesFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
-        }else if (itemId == R.id.item_certificates) {
+        } else if (itemId == R.id.item_certificates) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, certificatesFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
-        }else if (itemId == R.id.item_reference) {
+        } else if (itemId == R.id.item_reference) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, referenceFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
-        }else if (itemId == R.id.item_leaderboard) {
+        } else if (itemId == R.id.item_leaderboard) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, leaderboardFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
-        }else if (itemId == R.id.signout) {
-            this.finish();
+        } else if (itemId == R.id.signout) {
+            mainViewModel.logout(getApplicationContext());
             //--------------------------------------------------------------------------------------------------------------
         } else if (itemId == R.id.item_main) {
             getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);

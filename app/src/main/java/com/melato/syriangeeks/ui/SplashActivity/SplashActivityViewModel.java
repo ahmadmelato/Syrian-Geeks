@@ -44,8 +44,8 @@ public class SplashActivityViewModel extends ViewModel {
     public UserModel getData(Context context){
         SharedPreferences preferences = context.getSharedPreferences("MyPrefsLoginData", Context.MODE_PRIVATE);
         String loginInfo = preferences.getString("loginInfo", null);
-        if(loginInfo != null){
-            UserModel userModel = new Gson().fromJson(loginInfo,UserModel.class);
+        UserModel userModel = new Gson().fromJson(loginInfo,UserModel.class);
+        if(userModel != null){
             ClientAPI.setClientAPIToken(userModel.getToken());
             return userModel;
         }

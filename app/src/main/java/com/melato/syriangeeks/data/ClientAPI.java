@@ -123,6 +123,10 @@ public class ClientAPI {
         queryMap.put("password", password);
         return interfaceAPI.login(queryMap);
     }
+
+    public Call<ResponseBodyModel> logout() {
+        return interfaceAPI.logout();
+    }
 //
 //    public Call<UserModel> singup(String first_name_p, String last_name_p, String mail_p, String password_p) {
 //        Map<String, Object> queryMap = new HashMap<>();

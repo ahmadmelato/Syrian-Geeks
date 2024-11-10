@@ -25,7 +25,7 @@ public class TokenInterceptor implements Interceptor {
     public okhttp3.Response intercept(Chain chain) throws IOException {
         Request request = chain.request()
                 .newBuilder()
-                .addHeader("Authorization", token)
+                .addHeader("Authorization", "Bearer " + token)
                 .build();
         return chain.proceed(request);
     }

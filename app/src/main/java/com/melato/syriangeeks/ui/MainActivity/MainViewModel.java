@@ -1,4 +1,4 @@
-package com.melato.syriangeeks.ui.LoginActivity;
+package com.melato.syriangeeks.ui.MainActivity;
 
 import android.content.Context;
 import android.content.SharedPreferences;
@@ -6,32 +6,24 @@ import android.content.res.Resources;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
-import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.data.Working;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
 
-import java.lang.reflect.Type;
-import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class LoginViewModel extends ViewModel {
+public class MainViewModel extends ViewModel {
 
     public MutableLiveData<Working> working = new MutableLiveData<>();
     public MutableLiveData<UserModel> userLiveData = new MutableLiveData<>();
-
 
     private void setProgressOK(String msg) {
         synchronized (working) {
@@ -57,19 +49,17 @@ public class LoginViewModel extends ViewModel {
         }
     }
 
-    public void login(String mail_p, String password_p, Context context) {
+    public void logout(Context context) {
         setProgressRun("");
         Resources resources = context.getResources();
-        ClientAPI.getClientAPI().login(mail_p, password_p).enqueue(new Callback<ResponseBodyModel>() {
+        ClientAPI.getClientAPI().logout().enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
                     assert response.body() != null;
                     setProgressOK(response.body().getMessage());
-                    UserModel userModel =  new Gson().fromJson(response.body().getData(), UserModel.class);
-                    ClientAPI.setClientAPIToken(userModel.getToken());
-                    userLiveData.setValue(userModel);
-                    saveData(context, userModel);
+                    userLiveData.setValue(null);
+                    saveData(context, null);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -78,11 +68,10 @@ public class LoginViewModel extends ViewModel {
             @Override
             public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
                 setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
-                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+                Log.println(Log.ERROR, "Syrian Geeks", t.getMessage());
             }
         });
     }
-
 
     public void saveData(Context context, UserModel userModel) {
         SharedPreferences preferences = context.getSharedPreferences("MyPrefsLoginData", Context.MODE_PRIVATE);
@@ -91,6 +80,4 @@ public class LoginViewModel extends ViewModel {
         editor.putString("loginInfo", new Gson().toJson(userModel));
         editor.apply();
     }
-
-
 }

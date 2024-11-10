@@ -15,6 +15,9 @@ public interface InterfaceAPI {
 
     @POST("sign-in")
     Call<ResponseBodyModel> login(@Body Map<String, Object> queryMap);
+
+    @POST("logout")
+    Call<ResponseBodyModel> logout();
 //
 //    @POST("singup")
 //    Call<UserModel> singup(@Body Map<String, Object> queryMap);

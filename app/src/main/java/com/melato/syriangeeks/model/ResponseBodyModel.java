@@ -1,9 +1,11 @@
 package com.melato.syriangeeks.model;
 
+import com.google.gson.JsonElement;
+
 public class ResponseBodyModel {
     public boolean result;
     public String message;
-    public Object data;
+    public JsonElement data;
 
     public boolean isResult() {
         return result;
@@ -13,7 +15,7 @@ public class ResponseBodyModel {
         return message;
     }
 
-    public Object getData() {
+    public JsonElement getData() {
         return data;
     }
 }
