@@ -131,15 +131,11 @@ public class ClientAPI {
     public Call<ResponseBodyModel> getCourses(String sortTag) {
         return interfaceAPI.getCourses(sortTag);
     }
-//
-//    public Call<UserModel> singup(String first_name_p, String last_name_p, String mail_p, String password_p) {
-//        Map<String, Object> queryMap = new HashMap<>();
-//        queryMap.put("first_name_p", first_name_p);
-//        queryMap.put("last_name_p", last_name_p);
-//        queryMap.put("mail_p", mail_p);
-//        queryMap.put("password_p", password_p);
-//        return interfaceAPI.singup(queryMap);
-//    }
+
+    public Call<ResponseBodyModel> getBlogs() {
+        return interfaceAPI.getBlogs();
+    }
+
 
 
 }

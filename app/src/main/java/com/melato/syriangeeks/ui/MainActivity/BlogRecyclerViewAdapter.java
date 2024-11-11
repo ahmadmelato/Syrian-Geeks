@@ -11,15 +11,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.melato.syriangeeks.R;
+import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.CourseModel;
 
-import java.util.List;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
 
 
-public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecyclerViewAdapter.CourseRecyclerViewAdapterViewHolder> {
+public class BlogRecyclerViewAdapter extends RecyclerView.Adapter<BlogRecyclerViewAdapter.CourseRecyclerViewAdapterViewHolder> {
 
-    public List<CourseModel.Datum> CourseModels;
+    public List<BlogModel.Blog> blogList;
     private onItemClickListener mlistener;
     public Context context;
 
@@ -33,64 +36,57 @@ public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecycl
 
     public static class CourseRecyclerViewAdapterViewHolder extends RecyclerView.ViewHolder {
         //add views
-        TextView course_name, teacher_name, course_days, course_hour;
+        TextView blog_name, blog_date;
 
         public CourseRecyclerViewAdapterViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
             //initail views
-            course_name = itemView.findViewById(R.id.course_name);
-            teacher_name = itemView.findViewById(R.id.teacher_name);
-            course_days = itemView.findViewById(R.id.course_days);
-            course_hour = itemView.findViewById(R.id.course_hour);
+            blog_name = itemView.findViewById(R.id.blog_name);
+            blog_date = itemView.findViewById(R.id.blog_date);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (listener != null) {
-                        int position = getAdapterPosition();
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.OnItemClick(position);
-                        }
+            itemView.setOnClickListener(v -> {
+                if (listener != null) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.OnItemClick(position);
                     }
                 }
             });
         }
     }
 
-    public CourseRecyclerViewAdapter(Context context) {
-        this.CourseModels = new ArrayList<>();
+    public BlogRecyclerViewAdapter(Context context) {
+        this.blogList = new ArrayList<>();
         this.context = context;
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setCourseModels(List<CourseModel.Datum> CourseModels) {
-        this.CourseModels = CourseModels;
+    public void setBlogList(List<BlogModel.Blog> blogList) {
+        this.blogList = blogList;
         this.notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public CourseRecyclerViewAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.course_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.blog_item, parent, false);
         CourseRecyclerViewAdapterViewHolder LAH = new CourseRecyclerViewAdapterViewHolder(v, mlistener);
         return LAH;
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
     @Override
     public void onBindViewHolder(@NonNull final CourseRecyclerViewAdapterViewHolder ViewHolder, int position) {
-        CourseModel.Datum courseModel = this.CourseModels.get(position);
+        BlogModel.Blog blog = this.blogList.get(position);
         ViewHolder.setIsRecyclable(false);
         //processing views
-        ViewHolder.course_name.setText(courseModel.getTitle());
-        ViewHolder.teacher_name.setText(courseModel.getInstructor_name());
-        ViewHolder.course_hour.setText(courseModel.getTotal_sales() + " ساعة");
-        //ViewHolder.course_hour.setText(courseModel.getTitle());
+        ViewHolder.blog_name.setText(blog.title);
+        ViewHolder.blog_date.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(blog.created_at));
     }
 
     @Override
     public int getItemCount() {
-        return CourseModels.size();
+        return blogList.size();
     }
 
 }

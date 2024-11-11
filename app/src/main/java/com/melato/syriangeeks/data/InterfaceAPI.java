@@ -23,9 +23,10 @@ public interface InterfaceAPI {
 
     @GET("courses")
     Call<ResponseBodyModel> getCourses(@Query("sortTag") String sortTag);
-//
-//    @POST("singup")
-//    Call<UserModel> singup(@Body Map<String, Object> queryMap);
+
+    @GET("blogs")
+    Call<ResponseBodyModel> getBlogs();
+
 
     
 }

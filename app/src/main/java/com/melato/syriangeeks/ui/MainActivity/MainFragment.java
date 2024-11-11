@@ -35,6 +35,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     private FragmentMainBinding binding;
     private MainViewModel mainViewModel;
     private CourseRecyclerViewAdapter courseRecyclerViewAdapter;
+    private BlogRecyclerViewAdapter blogRecyclerViewAdapter;
 
     public MainFragment() {
         // Required empty public constructor
@@ -71,12 +72,22 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         });
 
         binding.RecyclerView1.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL,false));
+        binding.RecyclerView2.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL,false));
+        binding.RecyclerView3.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL,false));
+
         courseRecyclerViewAdapter = new CourseRecyclerViewAdapter(getContext());
+        blogRecyclerViewAdapter = new BlogRecyclerViewAdapter(getContext());
         binding.RecyclerView1.setAdapter(courseRecyclerViewAdapter);
-        binding.RecyclerView2.setAdapter(courseRecyclerViewAdapter);
+        binding.RecyclerView2.setAdapter(blogRecyclerViewAdapter);
         binding.RecyclerView3.setAdapter(courseRecyclerViewAdapter);
+
+
         mainViewModel.courseModelLiveData.observe(getViewLifecycleOwner(), courseModels -> {
             courseRecyclerViewAdapter.setCourseModels(courseModels);
+        });
+
+        mainViewModel.blogModelLiveData.observe(getViewLifecycleOwner(), blogs -> {
+            blogRecyclerViewAdapter.setBlogList(blogs);
         });
 
         mainViewModel.getCourses(requireContext(),"");

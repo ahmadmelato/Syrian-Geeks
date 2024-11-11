@@ -14,6 +14,7 @@ import com.google.gson.reflect.TypeToken;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.data.Working;
+import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
@@ -32,6 +33,7 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<Working> working = new MutableLiveData<>();
     public static MutableLiveData<UserModel> userLiveData = new MutableLiveData<>();
     public MutableLiveData<List<CourseModel.Datum>> courseModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<BlogModel.Blog>> blogModelLiveData = new MutableLiveData<>();
 
     private void setProgressOK(String msg) {
         synchronized (working) {
@@ -81,17 +83,42 @@ public class MainViewModel extends ViewModel {
         });
     }
 
-    public void getCourses(Context context,String sortTag) {
+    public void getCourses(Context context, String sortTag) {
         setProgressRun("");
         Resources resources = context.getResources();
         ClientAPI.getClientAPI().getCourses(sortTag).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
+                    getBlogs(context);
                     assert response.body() != null;
-                    setProgressOK(response.body().getMessage());
+//                    setProgressOK(response.body().getMessage());
                     CourseModel courseModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("courses"), CourseModel.class);
                     courseModelLiveData.setValue(courseModel.data);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getBlogs(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getBlogs().enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
+                    BlogModel blogModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), BlogModel.class);
+                    blogModelLiveData.setValue(blogModel.data);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -113,11 +140,11 @@ public class MainViewModel extends ViewModel {
         editor.apply();
     }
 
-    public void getData(Context context){
+    public void getData(Context context) {
         SharedPreferences preferences = context.getSharedPreferences("MyPrefsLoginData", Context.MODE_PRIVATE);
         String loginInfo = preferences.getString("loginInfo", null);
-        UserModel userModel = new Gson().fromJson(loginInfo,UserModel.class);
-        if(userModel != null){
+        UserModel userModel = new Gson().fromJson(loginInfo, UserModel.class);
+        if (userModel != null) {
             userLiveData.setValue(userModel);
         }
     }
