@@ -9,9 +9,9 @@
         android:shape="ring"
         android:useLevel="false">
         <gradient
-            android:centerColor="#000000F8"
+            android:centerColor="#7BC3EC"
             android:centerY="0.5"
-            android:endColor="#FBFBFB"
+            android:endColor="#0277BD"
             android:startColor="#39B3C1C3"
             android:type="sweep"
             android:useLevel="false" />

@@ -80,6 +80,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        binding.RecyclerView1.setHasFixedSize(true);
+        binding.RecyclerView2.setHasFixedSize(true);
+        binding.RecyclerView3.setHasFixedSize(true);
         binding.RecyclerView1.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
         binding.RecyclerView2.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
         binding.RecyclerView3.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));

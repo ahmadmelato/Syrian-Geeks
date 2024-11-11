@@ -1,5 +1,8 @@
 package com.melato.syriangeeks.model;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -32,11 +35,16 @@ public class EventModel {
         public int id;
         public String title;
         public String slug;
-        public String content;
+        private String content;
         public String address;
         public int image_id;
         public Date start_date;
         public Image image;
+
+        public String getContent() {
+            Document document = Jsoup.parse(content);
+            return document.text();
+        }
     }
 
 }

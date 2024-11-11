@@ -45,6 +45,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/dinnextltarabicregular"
+            android:lines="3"
             android:text="حدث سنوي مميز يجمع الخريجين من مختلف السنوات والمتخصصين من مختلف القطاعات لتبادل الأفكار "
             android:textSize="8sp" />
 

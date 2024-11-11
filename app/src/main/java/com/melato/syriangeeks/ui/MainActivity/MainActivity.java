@@ -1,5 +1,6 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -19,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.navigation.NavigationView;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityMainBinding;
+import com.melato.syriangeeks.ui.LoginActivity.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -94,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         MainViewModel.userLiveData.observe(this, userModel -> {
             if (userModel == null) {
+                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                startActivity(intent);
                 MainActivity.this.finish();
             }
         });
@@ -150,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
         } else if (itemId == R.id.signout) {
+            binding.drawerLayout.close();
             mainViewModel.logout(getApplicationContext());
             //--------------------------------------------------------------------------------------------------------------
         } else if (itemId == R.id.item_main) {

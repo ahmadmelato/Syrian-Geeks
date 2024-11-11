@@ -82,7 +82,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         ViewHolder.setIsRecyclable(false);
         //processing views
         ViewHolder.event_name.setText(item.title);
-        //ViewHolder.event_dis.setText(item.content);
+        ViewHolder.event_dis.setText(item.getContent());
         ViewHolder.event_location.setText(item.address);
         ViewHolder.event_date.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(item.start_date));
     }
