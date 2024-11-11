@@ -136,6 +136,10 @@ public class ClientAPI {
         return interfaceAPI.getBlogs();
     }
 
+    public Call<ResponseBodyModel> getEvents() {
+        return interfaceAPI.getEvents();
+    }
+
 
 
 }

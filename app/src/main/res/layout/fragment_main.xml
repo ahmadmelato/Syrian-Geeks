@@ -18,155 +18,179 @@
             android:id="@+id/main_toolbar"
             layout="@layout/main_bar" />
 
-
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp">
+            android:layout_height="match_parent">
 
-            <EditText
-                android:id="@+id/editText"
+
+            <LinearLayout
+                android:id="@+id/main"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp">
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:autofillHints="@string/search"
+                        android:background="@drawable/ic_path_2480"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:hint="@string/search"
+                        android:inputType="text"
+                        android:paddingHorizontal="50dp"
+                        android:textColorHint="@color/textColorHint" />
+
+                    <ImageButton
+                        android:id="@+id/toolbar_back"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/editText"
+                        android:layout_alignBottom="@+id/editText"
+                        android:layout_alignParentEnd="@+id/editText"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/search" />
+
+                </RelativeLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:gravity="center"
+                    android:layoutDirection="ltr"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/show_more1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:text="@string/Showall"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:theme="@style/Theme.SyrianGeeks.Text" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:text="@string/Trainings"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/RecyclerView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/course_item" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:gravity="center"
+                    android:layoutDirection="ltr"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/show_more2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:text="@string/Showall"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:theme="@style/Theme.SyrianGeeks.Text" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:text="@string/Blog"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/RecyclerView2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/blog_item" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:gravity="center"
+                    android:layoutDirection="ltr"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/show_more3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:text="@string/Showall"
+                        android:textAlignment="center"
+                        android:textSize="18sp"
+                        android:theme="@style/Theme.SyrianGeeks.Text" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:text="@string/Events"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
+
+                </LinearLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/RecyclerView3"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:listitem="@layout/events_item" />
+
+
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/mainprogress"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
-                android:autofillHints="@string/search"
-                android:background="@drawable/ic_path_2480"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:hint="@string/search"
-                android:inputType="text"
-                android:paddingHorizontal="50dp"
-                android:textColorHint="@color/textColorHint" />
-
-            <ImageButton
-                android:id="@+id/toolbar_back"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/editText"
-                android:layout_alignBottom="@+id/editText"
-                android:layout_alignParentEnd="@+id/editText"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/search" />
+                android:indeterminateDrawable="@drawable/cpb_1"
+                android:indeterminateDuration="@android:integer/config_longAnimTime"
+                android:visibility="visible" />
 
         </RelativeLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:gravity="center"
-            android:layoutDirection="ltr"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/show_more1"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/Showall"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:theme="@style/Theme.SyrianGeeks.Text" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/Trainings"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerView1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/course_item" />
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:gravity="center"
-            android:layoutDirection="ltr"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/show_more2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/Showall"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:theme="@style/Theme.SyrianGeeks.Text" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/Blog"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/blog_item"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp"
-            android:gravity="center"
-            android:layoutDirection="ltr"
-            android:orientation="horizontal">
-
-            <TextView
-                android:id="@+id/show_more3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/Showall"
-                android:textAlignment="center"
-                android:textSize="18sp"
-                android:theme="@style/Theme.SyrianGeeks.Text" />
-
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/Events"
-                android:textSize="20sp"
-                android:textStyle="bold" />
-
-        </LinearLayout>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/RecyclerView3"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="horizontal"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:listitem="@layout/events_item"/>
-
 
     </LinearLayout>
 </layout>

@@ -27,6 +27,9 @@ public interface InterfaceAPI {
     @GET("blogs")
     Call<ResponseBodyModel> getBlogs();
 
+    @GET("events")
+    Call<ResponseBodyModel> getEvents();
+
 
     
 }

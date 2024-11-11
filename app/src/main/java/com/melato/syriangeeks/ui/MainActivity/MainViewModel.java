@@ -10,17 +10,15 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.data.Working;
 import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.CourseModel;
+import com.melato.syriangeeks.model.EventModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
 
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,6 +32,7 @@ public class MainViewModel extends ViewModel {
     public static MutableLiveData<UserModel> userLiveData = new MutableLiveData<>();
     public MutableLiveData<List<CourseModel.Datum>> courseModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<BlogModel.Blog>> blogModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<EventModel.Item>> eventModelLiveData = new MutableLiveData<>();
 
     private void setProgressOK(String msg) {
         synchronized (working) {
@@ -115,10 +114,34 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
+                    getEvents(context);
                     assert response.body() != null;
-                    setProgressOK(response.body().getMessage());
                     BlogModel blogModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), BlogModel.class);
                     blogModelLiveData.setValue(blogModel.data);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getEvents(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getEvents().enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
+                    EventModel eventModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("events"), EventModel.class);
+                    eventModelLiveData.setValue(eventModel.data);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }

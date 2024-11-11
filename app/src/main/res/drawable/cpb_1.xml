@@ -5,15 +5,16 @@
     android:pivotY="50%"
     android:toDegrees="270">
 
-    <shape android:shape="ring"
+    <shape
+        android:shape="ring"
         android:useLevel="false">
         <gradient
-            android:useLevel="false"
-            android:type="sweep"
+            android:centerColor="#7BC3EC"
             android:centerY="0.5"
-            android:endColor="#FBFBFB"
+            android:endColor="#0277BD"
             android:startColor="#39B3C1C3"
-            android:centerColor="#000000F8"></gradient>
+            android:type="sweep"
+            android:useLevel="false" />
     </shape>
 
 </rotate>

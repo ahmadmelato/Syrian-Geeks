@@ -36,6 +36,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     private MainViewModel mainViewModel;
     private CourseRecyclerViewAdapter courseRecyclerViewAdapter;
     private BlogRecyclerViewAdapter blogRecyclerViewAdapter;
+    private EventRecyclerViewAdapter eventRecyclerViewAdapter;
 
     public MainFragment() {
         // Required empty public constructor
@@ -45,7 +46,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        binding = DataBindingUtil.inflate(inflater,R.layout.fragment_main, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_main, container, false);
         return binding.getRoot();
     }
 
@@ -60,9 +61,17 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         toolbar_openmenu.setOnClickListener(this);
         toolbar_notify.setOnClickListener(this);
         mainViewModel = ((MainActivity) requireActivity()).getMainViewModel();
+
+        mainViewModel.working.observe(getViewLifecycleOwner(), working -> {
+            if (working != null) {
+                binding.mainprogress.setVisibility(working.isProgressing());
+                binding.main.setVisibility(working.isFinish());
+            }
+        });
+
         MainViewModel.userLiveData.observe(getViewLifecycleOwner(), userModel -> {
             if (userModel != null) {
-                toolbar_name.setText("أهلا " +userModel.getUser().getName());
+                toolbar_name.setText("أهلا " + userModel.getUser().getName());
                 Glide.with(this)
                         .load(userModel.getUser().getAvatar())
                         .placeholder(R.drawable.img)
@@ -71,15 +80,16 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        binding.RecyclerView1.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL,false));
-        binding.RecyclerView2.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL,false));
-        binding.RecyclerView3.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL,false));
+        binding.RecyclerView1.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
+        binding.RecyclerView2.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
+        binding.RecyclerView3.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
 
-        courseRecyclerViewAdapter = new CourseRecyclerViewAdapter(getContext());
-        blogRecyclerViewAdapter = new BlogRecyclerViewAdapter(getContext());
+        courseRecyclerViewAdapter = new CourseRecyclerViewAdapter(requireContext());
+        blogRecyclerViewAdapter = new BlogRecyclerViewAdapter(requireContext());
+        eventRecyclerViewAdapter = new EventRecyclerViewAdapter(requireContext());
         binding.RecyclerView1.setAdapter(courseRecyclerViewAdapter);
         binding.RecyclerView2.setAdapter(blogRecyclerViewAdapter);
-        binding.RecyclerView3.setAdapter(courseRecyclerViewAdapter);
+        binding.RecyclerView3.setAdapter(eventRecyclerViewAdapter);
 
 
         mainViewModel.courseModelLiveData.observe(getViewLifecycleOwner(), courseModels -> {
@@ -90,7 +100,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             blogRecyclerViewAdapter.setBlogList(blogs);
         });
 
-        mainViewModel.getCourses(requireContext(),"");
+        mainViewModel.eventModelLiveData.observe(getViewLifecycleOwner(), events -> {
+            eventRecyclerViewAdapter.setEventList(events);
+        });
+
+        mainViewModel.getCourses(requireContext(), "");
     }
 
 
