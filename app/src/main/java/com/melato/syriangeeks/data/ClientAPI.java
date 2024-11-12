@@ -21,6 +21,7 @@ import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 
 public class ClientAPI {
     public static int OK = 200;
@@ -28,7 +29,7 @@ public class ClientAPI {
     public static int Filed = 0;
     public static int Run = -1;
 
-    private static final String BASE_URL = "https://sygeeks.net/api/v1/";
+    private static final String BASE_URL = "https://sygeeks.net";
     private InterfaceAPI interfaceAPI;
     public static ClientAPI clientAPI;
     public TokenInterceptor tokenInterceptor;
@@ -140,6 +141,36 @@ public class ClientAPI {
         return interfaceAPI.getEvents();
     }
 
-
+    public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
+                                          String work_field, String other_work_field, String experience_years, String freelancer, String freelancer_years, String cv_file,
+                                          String country, String state, String location, String place, String disability, String email, String phone, String phone_dial,
+                                          String password, String password_confirmation, String newsletter, String agree) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("name", name);
+        queryMap.put("name_ar", name_ar);
+        queryMap.put("date_of_birthphone", date_of_birth);
+        queryMap.put("gender", gender);
+        queryMap.put("nationality", nationality);
+        queryMap.put("education", education);
+        queryMap.put("work_field", work_field);
+        queryMap.put("other_work_field", other_work_field);
+        queryMap.put("experience_years", experience_years);
+        queryMap.put("freelancer", freelancer);
+        queryMap.put("freelancer_years", freelancer_years);
+        queryMap.put("cv_file", cv_file);
+        queryMap.put("country", country);
+        queryMap.put("state", state);
+        queryMap.put("location", location);
+        queryMap.put("place", place);
+        queryMap.put("disability", disability);
+        queryMap.put("email", email);
+        queryMap.put("phone", phone);
+        queryMap.put("phone_dial", phone_dial);
+        queryMap.put("password", password);
+        queryMap.put("password_confirmation", password_confirmation);
+        queryMap.put("newsletter", newsletter);
+        queryMap.put("agree", agree);
+        return interfaceAPI.signup(queryMap);
+    }
 
 }

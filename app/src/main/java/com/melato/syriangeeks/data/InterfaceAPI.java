@@ -15,20 +15,23 @@ import retrofit2.http.Query;
 
 public interface InterfaceAPI {
 
-    @POST("sign-in")
+    @POST("/api/v1/sign-in")
     Call<ResponseBodyModel> login(@Body Map<String, Object> queryMap);
 
-    @POST("logout")
+    @POST("/api/v1/logout")
     Call<ResponseBodyModel> logout();
 
-    @GET("courses")
+    @GET("/api/v1/courses")
     Call<ResponseBodyModel> getCourses(@Query("sortTag") String sortTag);
 
-    @GET("blogs")
+    @GET("/api/v1/blogs")
     Call<ResponseBodyModel> getBlogs();
 
-    @GET("events")
+    @GET("/api/v1/events")
     Call<ResponseBodyModel> getEvents();
+
+    @POST("/api/v1/sign-up")
+    Call<ResponseBodyModel> signup(@Body Map<String, Object> queryMap);
 
 
     
