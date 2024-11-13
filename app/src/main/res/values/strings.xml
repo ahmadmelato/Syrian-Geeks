@@ -81,6 +81,7 @@
     <string name="Resetpassword">إعادة تعيين كلمة المرور</string>
     <string name="ResetpasswordText">من فضلك قم بإدخال بريدك الالكتروني لتتمكن من إعادة تعيين كلمة المرور</string>
     <string name="sure">تأكيد</string>
+    <string name="Resure">اعادة ارسال</string>
 
     <string name="activeCode">كود التفعيل</string>
     <string name="activeCodeText">قد قمنا بإرسال رمز التفعيل للبريد الالكتروني الخاص بك</string>
@@ -120,5 +121,7 @@
     <string name="FailedtoloaddataChecknetwork">فشلت العملية الرجاء التاكد من الشبكة</string>
     <string name="Passwordisveryshort">يجب ان تكون كلمة السر اكثر من 6 محارف</string>
     <string name="fillEmail">الرجاء ادخال البريد الالكتروني</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

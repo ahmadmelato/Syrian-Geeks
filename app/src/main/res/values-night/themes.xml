@@ -1,7 +1,45 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
+<!--    <style name="Base.Theme.SyrianGeeks" parent="Theme.Material3.DayNight.NoActionBar">-->
+<!--        &lt;!&ndash; Customize your dark theme here. &ndash;&gt;-->
+<!--        &lt;!&ndash; <item name="colorPrimary">@color/my_dark_primary</item> &ndash;&gt;-->
+<!--    </style>-->
+
     <style name="Base.Theme.SyrianGeeks" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/my_light_primary</item>
     </style>
+
+    <style name="Theme.SyrianGeeks.Text" parent="Base.Theme.SyrianGeeks">
+        <!-- Customize your light theme here. -->
+        <item name="android:textColor">@color/blue</item>
+    </style>
+
+    <style name="Theme.SyrianGeeks.Login.Button" parent="Base.Theme.SyrianGeeks">
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/blue</item>
+    </style>
+
+    <style name="Base.Theme.SyrianGeeks.NavigationView" parent="Base.Theme.SyrianGeeks">
+        <item name="android:fontFamily">@font/dinnextltarabicregular</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="Base.Theme.SyrianGeeks.ButtonNavigationView" parent="Base.Theme.SyrianGeeks">
+        <item name="android:fontFamily">@font/dinnextltarabicregular</item>
+    </style>
+
+    <style name="Base.Theme.SyrianGeeks.Fab_4_rounded" parent="Base.Theme.SyrianGeeks">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="android:backgroundTint">@color/blue</item>
+    </style>
+
+
+    <style name="Theme.SyrianGeeks.Button" parent="Base.Theme.SyrianGeeks">
+        <!-- Customize your light theme here. -->
+        <item name="android:textColor">@color/my_light_primary</item>
+    </style>
+
+    <style name="Theme.SyrianGeeks" parent="Base.Theme.SyrianGeeks" />
 </resources>

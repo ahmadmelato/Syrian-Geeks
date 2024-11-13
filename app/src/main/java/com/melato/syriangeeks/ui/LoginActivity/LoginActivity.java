@@ -40,6 +40,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         binding.createAccount.setOnClickListener(this);
         binding.btuRestPassword.setOnClickListener(this);
         binding.btuLogin.setOnClickListener(this);
+        binding.btuLoginGuest.setOnClickListener(this);
 
         loginViewModel.working.observe(this, working -> {
             if (working != null) {
@@ -70,6 +71,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             case R.id.createAccount:
                 Intent signupActivity = new Intent(LoginActivity.this, SignupActivity.class);
                 startActivity(signupActivity);
+                LoginActivity.this.finish();
                 break;
             case R.id.btuRestPassword:
                 Intent forgotPasswordActivity = new Intent(LoginActivity.this, ForgotPasswordActivity.class);
@@ -87,6 +89,11 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                     return;
                 }
                 loginViewModel.login(email, password, this);
+                break;
+            case R.id.btuLoginGuest:
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                startActivity(intent);
+                LoginActivity.this.finish();
                 break;
         }
     }

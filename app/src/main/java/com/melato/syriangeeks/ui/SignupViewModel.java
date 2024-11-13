@@ -66,7 +66,6 @@ public class SignupViewModel extends ViewModel {
             agree = new ObservableField<>("");
 
 
-
     private void setProgressOK(String msg) {
         synchronized (working) {
             working.setValue(new Working(ClientAPI.OK, msg));
@@ -100,7 +99,7 @@ public class SignupViewModel extends ViewModel {
         return countriesModels;
     }
 
-    public List<CountriesModel.State> getCountriesCityModels(Context context,int index) {
+    public List<CountriesModel.State> getCountriesCityModels(Context context, int index) {
         if (countriesModels == null) {
             Type listType = new TypeToken<List<CountriesModel>>() {
             }.getType();
@@ -124,7 +123,7 @@ public class SignupViewModel extends ViewModel {
         return json;
     }
 
-//    String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
+    //    String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
 //    String work_field, String other_work_field, String experience_years, String freelancer, String freelancer_years, String cv_file,
 //    String country, String state, String location, String place, String disability, String email, String phone, String phone_dial,
 //    String password, String password_confirmation, String newsletter, String agree,
@@ -161,6 +160,5 @@ public class SignupViewModel extends ViewModel {
         editor.putString("mail", mail);
         editor.apply();
     }
-
 
 }

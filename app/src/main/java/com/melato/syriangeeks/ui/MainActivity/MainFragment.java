@@ -1,14 +1,12 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
 import android.annotation.SuppressLint;
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -21,11 +19,6 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentMainBinding;
-import com.melato.syriangeeks.model.CourseModel;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -94,6 +87,10 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         binding.RecyclerView2.setAdapter(blogRecyclerViewAdapter);
         binding.RecyclerView3.setAdapter(eventRecyclerViewAdapter);
 
+        binding.showMore1.setOnClickListener(this);
+        binding.showMore2.setOnClickListener(this);
+        binding.showMore3.setOnClickListener(this);
+
 
         mainViewModel.courseModelLiveData.observe(getViewLifecycleOwner(), courseModels -> {
             courseRecyclerViewAdapter.setCourseModels(courseModels);
@@ -107,7 +104,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             eventRecyclerViewAdapter.setEventList(events);
         });
 
-        mainViewModel.getCourses(requireContext(), "");
+        mainViewModel.getIndexCourses(requireContext(), "");
     }
 
 
@@ -121,6 +118,15 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         } else if (id == R.id.toolbar_notify) {
             assert mainActivity != null;
             mainActivity.openNotifications();
+        } else if (id == R.id.show_more1) {
+            assert mainActivity != null;
+            mainActivity.openAllCousres();
+        } else if (id == R.id.show_more2) {
+            assert mainActivity != null;
+            mainActivity.openAllBlog();
+        } else if (id == R.id.show_more3) {
+            assert mainActivity != null;
+            mainActivity.openAllEvents();
         }
     }
 

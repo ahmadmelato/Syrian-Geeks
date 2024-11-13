@@ -2,6 +2,9 @@ package com.melato.syriangeeks.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -19,6 +22,7 @@ public class BlogModel {
     public Object prev_page_url;
     public int myto;
     public int total;
+
 
     public class IconImage {
         public int id;
@@ -42,9 +46,14 @@ public class BlogModel {
     public class Blog {
         public int id;
         public String title;
-        public String description;
+        private String description;
         public int image_id;
         public Date created_at;
         public IconImage icon_image;
+
+        public String getDescription() {
+            Document document = Jsoup.parse(description);
+            return document.text();
+        }
     }
 }

@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private LeaderboardFragment leaderboardFragment;
     private NotificationsFragment notificationsFragment;
     private ProfileFragment profileFragment;
+    private PublicCoursesFragment publicCoursesFragment;
+    private PublicBlogFragment publicBlogFragment;
+    private PublicEventsFragment publicEventsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +63,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         leaderboardFragment = new LeaderboardFragment();
         notificationsFragment = new NotificationsFragment();
         profileFragment = new ProfileFragment();
+        publicCoursesFragment = new PublicCoursesFragment();
+        publicBlogFragment = new PublicBlogFragment();
+        publicEventsFragment = new PublicEventsFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
@@ -96,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         MainViewModel.userLiveData.observe(this, userModel -> {
             if (userModel == null) {
-                Intent intent = new Intent(getApplicationContext(),LoginActivity.class);
+                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
                 startActivity(intent);
                 MainActivity.this.finish();
             }
@@ -173,6 +179,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    public void openAllCousres() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, publicCoursesFragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    public void openAllBlog() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, publicBlogFragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    public void openAllEvents() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, publicEventsFragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
 
     public MainViewModel getMainViewModel() {
         return mainViewModel;

@@ -33,6 +33,12 @@ public interface InterfaceAPI {
     @POST("/api/v1/sign-up")
     Call<ResponseBodyModel> signup(@Body Map<String, Object> queryMap);
 
+    @POST("/api/v1/student/send-verification")
+    Call<ResponseBodyModel> send_verification(@Body Map<String, Object> queryMap);
+
+    @POST("/api/v1/student/verify-email")
+    Call<ResponseBodyModel> verify_email(@Body Map<String, Object> queryMap);
+
 
     
 }

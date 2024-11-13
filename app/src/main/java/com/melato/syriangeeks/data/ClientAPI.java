@@ -24,6 +24,7 @@ import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 
 public class ClientAPI {
     public static int OK = 200;
@@ -120,9 +121,9 @@ public class ClientAPI {
         return clientAPI;
     }
 
-    public Call<ResponseBodyModel> login(String mail, String password) {
+    public Call<ResponseBodyModel> login(String email, String password) {
         Map<String, Object> queryMap = new HashMap<>();
-        queryMap.put("email", mail);
+        queryMap.put("email", email);
         queryMap.put("password", password);
         return interfaceAPI.login(queryMap);
     }
@@ -141,6 +142,20 @@ public class ClientAPI {
 
     public Call<ResponseBodyModel> getEvents() {
         return interfaceAPI.getEvents();
+    }
+
+    public Call<ResponseBodyModel> send_verification(String email) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("email", email);
+        return interfaceAPI.send_verification(queryMap);
+    }
+
+    public Call<ResponseBodyModel> verify_email(String email, String code) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("email", email);
+        queryMap.put("code", code);
+        System.out.println(new Gson().toJson(queryMap));
+        return interfaceAPI.verify_email(queryMap);
     }
 
     public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
@@ -180,5 +195,6 @@ public class ClientAPI {
         System.err.println(new Gson().toJson(queryMap));
         return interfaceAPI.signup(queryMap);
     }
+
 
 }

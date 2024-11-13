@@ -17,6 +17,7 @@ import androidx.viewpager2.widget.ViewPager2;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivitySignupBinding;
 import com.melato.syriangeeks.ui.ActiveCodeActivity.ActiveCodeActivity;
+import com.melato.syriangeeks.ui.LoginActivity.LoginActivity;
 import com.melato.syriangeeks.ui.SignupViewModel;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
@@ -99,7 +100,9 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                 }
                 break;
             case R.id.btuLogin:
-                finish();
+                Intent signupActivity = new Intent(SignupActivity.this, LoginActivity.class);
+                startActivity(signupActivity);
+                this.finish();
                 break;
 
         }

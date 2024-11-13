@@ -89,9 +89,32 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
-                    getBlogs(context);
                     assert response.body() != null;
-//                    setProgressOK(response.body().getMessage());
+                    setProgressOK(response.body().getMessage());
+                    CourseModel courseModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("courses"), CourseModel.class);
+                    courseModelLiveData.setValue(courseModel.data);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getIndexCourses(Context context, String sortTag) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getCourses(sortTag).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getIndexBlogs(context);
+                    assert response.body() != null;
                     CourseModel courseModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("courses"), CourseModel.class);
                     courseModelLiveData.setValue(courseModel.data);
                 } else {
@@ -114,7 +137,31 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
-                    getEvents(context);
+                    assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
+                    BlogModel blogModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), BlogModel.class);
+                    blogModelLiveData.setValue(blogModel.data);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getIndexBlogs(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getBlogs().enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getIndexEvents(context);
                     assert response.body() != null;
                     BlogModel blogModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), BlogModel.class);
                     blogModelLiveData.setValue(blogModel.data);
@@ -132,6 +179,30 @@ public class MainViewModel extends ViewModel {
     }
 
     public void getEvents(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getEvents().enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
+                    EventModel eventModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("events"), EventModel.class);
+                    eventModelLiveData.setValue(eventModel.data);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getIndexEvents(Context context) {
         setProgressRun("");
         Resources resources = context.getResources();
         ClientAPI.getClientAPI().getEvents().enqueue(new Callback<ResponseBodyModel>() {
