@@ -1,5 +1,6 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentPublicEventsBinding;
+import com.melato.syriangeeks.model.EventModel;
 
 public class PublicEventsFragment extends Fragment implements View.OnClickListener {
 
@@ -49,6 +52,15 @@ public class PublicEventsFragment extends Fragment implements View.OnClickListen
             publicEventViewAdapter.setEventList(items);
         });
         viewModel.getEvents(requireContext());
+
+        publicEventViewAdapter.SetOnItemClickListener(position -> {
+            EventModel.Item  item =  publicEventViewAdapter.itemList.get(position);
+            Intent intent = new Intent(requireContext(),PublicEventsDetailsActivity.class);
+            intent.putExtra("data",new Gson().toJson(item));
+            startActivity(intent);
+        });
+
+
 
     }
 

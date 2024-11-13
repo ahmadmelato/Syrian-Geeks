@@ -1,5 +1,7 @@
 package com.melato.syriangeeks.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 

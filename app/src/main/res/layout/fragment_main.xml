@@ -45,6 +45,7 @@
                         android:fontFamily="@font/dinnextltarabicregular"
                         android:hint="@string/search"
                         android:inputType="text"
+                        android:enabled="false"
                         android:paddingHorizontal="50dp"
                         android:textColorHint="@color/textColorHint" />
 

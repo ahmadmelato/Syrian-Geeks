@@ -1,6 +1,7 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -17,8 +18,10 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentMainBinding;
+import com.melato.syriangeeks.model.EventModel;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -102,6 +105,13 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         mainViewModel.eventModelLiveData.observe(getViewLifecycleOwner(), events -> {
             eventRecyclerViewAdapter.setEventList(events);
+        });
+
+        eventRecyclerViewAdapter.SetOnItemClickListener(position -> {
+            EventModel.Item  item =  eventRecyclerViewAdapter.itemList.get(position);
+            Intent intent = new Intent(requireContext(),PublicEventsDetailsActivity.class);
+            intent.putExtra("data",new Gson().toJson(item));
+            startActivity(intent);
         });
 
         mainViewModel.getIndexCourses(requireContext(), "");
