@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivitySplashBinding;
+import com.melato.syriangeeks.ui.ActiveCodeActivity.ActiveCodeActivity;
 import com.melato.syriangeeks.ui.LoginActivity.LoginActivity;
 import com.melato.syriangeeks.ui.MainActivity.MainActivity;
 
@@ -39,7 +40,12 @@ public class SplashActivity extends AppCompatActivity {
 //        });
 
         splashActivityViewModel.txt.observe(this, s -> {
-            if (s.length() > text.length() && splashActivityViewModel.getData(getApplicationContext()) == null) {
+            if (s.length() > text.length() && splashActivityViewModel.getDataVerfiy_Code(getApplicationContext()) != null) {
+                Intent intent = new Intent(SplashActivity.this, ActiveCodeActivity.class);
+                startActivity(intent);
+                SplashActivity.this.finish();
+            }
+            else if (s.length() > text.length() && splashActivityViewModel.getData(getApplicationContext()) == null) {
                 Intent intent = new Intent(SplashActivity.this, LoginActivity.class);
                 startActivity(intent);
                 SplashActivity.this.finish();

@@ -1,6 +1,5 @@
 package com.melato.syriangeeks.ui.LoginActivity;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -12,15 +11,13 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityLoginBinding;
-import com.melato.syriangeeks.model.UserModel;
 import com.melato.syriangeeks.ui.ForgotPasswordActivity.ForgotPasswordActivity;
 import com.melato.syriangeeks.ui.MainActivity.MainActivity;
-import com.melato.syriangeeks.ui.SignupActivity.SignupActivity;
+import com.melato.syriangeeks.ui.SignActivity.SignupActivity;
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 

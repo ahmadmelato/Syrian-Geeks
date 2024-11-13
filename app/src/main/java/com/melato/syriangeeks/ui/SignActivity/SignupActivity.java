@@ -1,8 +1,9 @@
-package com.melato.syriangeeks.ui.SignupActivity;
+package com.melato.syriangeeks.ui.SignActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.DragEvent;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,12 +16,8 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivitySignupBinding;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
-import io.socket.client.On;
+import com.melato.syriangeeks.ui.ActiveCodeActivity.ActiveCodeActivity;
+import com.melato.syriangeeks.ui.SignupViewModel;
 
 public class SignupActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -39,6 +36,21 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        signupViewModel.working.observe(this, working -> {
+            if (working != null) {
+                binding.mainprogress.setVisibility(working.isProgressing());
+                binding.buttonPanel.setVisibility(working.isFinish());
+                binding.btuLogin.setEnabled(working.isBooleanFinish());
+                if (working.isSuccessful()){
+                    Intent intent = new Intent(SignupActivity.this, ActiveCodeActivity.class);
+                    startActivity(intent);
+                    this.finish();
+                }
+                if (!working.isRunning())
+                    Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
+            }
         });
 
         sliderAdapter = new SliderAdapter(this);
@@ -61,6 +73,7 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
         binding.stepView.setStepsNumber(sliderAdapter.getItemCount());
         binding.btuBack.setOnClickListener(this);
         binding.btuNext.setOnClickListener(this);
+        binding.btuLogin.setOnClickListener(this);
 
 
     }
@@ -73,8 +86,10 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btuNext:
-                if (binding.viewpager.getCurrentItem() < sliderAdapter.getItemCount()) {
+                if (binding.viewpager.getCurrentItem() < sliderAdapter.getItemCount() - 1) {
                     binding.viewpager.setCurrentItem(binding.viewpager.getCurrentItem() + 1);
+                }else{
+                    signupViewModel.signup(getApplicationContext());
                 }
                 break;
 
@@ -83,6 +98,10 @@ public class SignupActivity extends AppCompatActivity implements View.OnClickLis
                     binding.viewpager.setCurrentItem(binding.viewpager.getCurrentItem() - 1);
                 }
                 break;
+            case R.id.btuLogin:
+                finish();
+                break;
+
         }
     }
 }

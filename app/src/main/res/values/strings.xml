@@ -26,6 +26,7 @@
     <string name="study">التعليم</string>
     <string name="work">مجال العمل</string>
     <string name="numberofexp">عدد سنوات الخبرة</string>
+    <string name="nationality">الجنسية</string>
     <string name="freework">هل عملت كمستقل/عامل حر من قبل</string>
     <string name="file">ملف السية الذاتية</string>
     <string name="country">دولة الإقامة</string>
@@ -39,6 +40,11 @@
     <string name="Iagreeto">أوافق على</string>
     <string name="privacypolicy">سياسة الخصوصية</string>
 
+
+    <string-array name="nationality_options">
+        <item>سوري</item>
+        <item>غير ذلك</item>
+    </string-array>
     <string-array name="gender_options">
         <item>ذكر</item>
         <item>انثى</item>

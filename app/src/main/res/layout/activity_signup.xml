@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".ui.SignupActivity.SignupActivity">
+        tools:context=".ui.SignActivity.SignupActivity">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -62,37 +62,57 @@
             android:layout_weight="1" />
 
 
-        <LinearLayout
-            style="?android:attr/buttonBarStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginHorizontal="5dp"
-            android:layoutDirection="rtl"
-            android:orientation="horizontal">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-            <Button
-                android:id="@+id/btuNext"
-                style="@style/Theme.SyrianGeeks"
+            <ProgressBar
+                android:id="@+id/mainprogress"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@drawable/ic_rectangle_142"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/next" />
+                android:layout_centerInParent="true"
+                android:layout_marginVertical="5dp"
+                android:background="@drawable/shap_1"
+                android:indeterminateDrawable="@drawable/cpb_1"
+                android:indeterminateDuration="@android:integer/config_longAnimTime"
+                android:visibility="gone" />
 
-            <Button
-                android:id="@+id/btuBack"
-                style="@style/Theme.SyrianGeeks.Button"
+            <LinearLayout
+                android:id="@+id/buttonPanel"
+                style="?android:attr/buttonBarStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_centerInParent="true"
                 android:layout_marginHorizontal="5dp"
-                android:layout_weight="1"
-                android:background="@drawable/ic_path_2480"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/back" />
+                android:layoutDirection="rtl"
+                android:orientation="horizontal">
 
-        </LinearLayout>
+                <Button
+                    android:id="@+id/btuNext"
+                    style="@style/Theme.SyrianGeeks"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_rectangle_142"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/next" />
+
+                <Button
+                    android:id="@+id/btuBack"
+                    style="@style/Theme.SyrianGeeks.Button"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/ic_path_2480"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/back" />
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
 
         <LinearLayout
             android:layout_width="wrap_content"

@@ -1,4 +1,4 @@
-package com.melato.syriangeeks.ui.SignupActivity;
+package com.melato.syriangeeks.ui.SignActivity;
 
 import android.os.Bundle;
 
@@ -14,11 +14,9 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.melato.syriangeeks.R;
-import com.melato.syriangeeks.databinding.FragmentMainBinding;
 import com.melato.syriangeeks.databinding.FragmentThirdBinding;
 import com.melato.syriangeeks.model.CountriesModel;
-
-import java.util.Objects;
+import com.melato.syriangeeks.ui.SignupViewModel;
 
 
 public class ThirdFragment extends Fragment {
@@ -38,20 +36,26 @@ public class ThirdFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         signupViewModel = ((SignupActivity) requireActivity()).getSignupViewModel();
-        ArrayAdapter<CountriesModel> adapter1 = new ArrayAdapter<>(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                signupViewModel.getCountriesModels(requireContext())
-        );
+        binding.setViewmodel(signupViewModel);
 
-        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        binding.conutery.setAdapter(adapter1);
+        binding.city.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                CountriesModel.State selectedCountry = (CountriesModel.State) parent.getItemAtPosition(position);
+                signupViewModel.state.set(selectedCountry.name);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
         binding.conutery.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 CountriesModel selectedCountry = (CountriesModel) parent.getItemAtPosition(position);
-                String countryName = selectedCountry.name;
+                signupViewModel.country.set(selectedCountry.name);
                 ArrayAdapter<CountriesModel.State> adapter1 = new ArrayAdapter<>(
                         requireContext(),
                         android.R.layout.simple_spinner_item,
@@ -68,6 +72,47 @@ public class ThirdFragment extends Fragment {
             }
         });
 
+        binding.nationalityspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                signupViewModel.nationality.set(String.valueOf(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        binding.stateSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                CharSequence selectedCountry = (CharSequence) parent.getItemAtPosition(position);
+                signupViewModel.place.set(selectedCountry.toString());
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        ArrayAdapter<CountriesModel> adapter1 = new ArrayAdapter<>(
+                requireContext(),
+                android.R.layout.simple_spinner_item,
+                signupViewModel.getCountriesModels(requireContext())
+        );
+
+        adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.conutery.setAdapter(adapter1);
+
+        ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(
+                requireContext(),
+                R.array.nationality_options,
+                R.layout.simple_spinner_item
+        );
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        binding.nationalityspinner.setAdapter(adapter3);
 
         ArrayAdapter<CharSequence> adapter4 = ArrayAdapter.createFromResource(
                 requireContext(),
@@ -76,6 +121,7 @@ public class ThirdFragment extends Fragment {
         );
         adapter4.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.stateSpinner.setAdapter(adapter4);
+
     }
 
     @Override

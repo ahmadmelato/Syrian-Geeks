@@ -1,13 +1,16 @@
 package com.melato.syriangeeks.data;
 
 
+import com.google.gson.Gson;
 import com.melato.syriangeeks.model.ErrorAPI;
 import com.melato.syriangeeks.model.ResponseBodyModel;
-import com.melato.syriangeeks.model.UserModel;
 
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,7 +24,6 @@ import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
 
 public class ClientAPI {
     public static int OK = 200;
@@ -145,10 +147,15 @@ public class ClientAPI {
                                           String work_field, String other_work_field, String experience_years, String freelancer, String freelancer_years, String cv_file,
                                           String country, String state, String location, String place, String disability, String email, String phone, String phone_dial,
                                           String password, String password_confirmation, String newsletter, String agree) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        try {
+            date_of_birth = dateFormat.format(dateFormat.parse(date_of_birth));
+        } catch (ParseException ignored) {
+        }
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("name", name);
         queryMap.put("name_ar", name_ar);
-        queryMap.put("date_of_birthphone", date_of_birth);
+        queryMap.put("date_of_birth", date_of_birth);
         queryMap.put("gender", gender);
         queryMap.put("nationality", nationality);
         queryMap.put("education", education);
@@ -170,6 +177,7 @@ public class ClientAPI {
         queryMap.put("password_confirmation", password_confirmation);
         queryMap.put("newsletter", newsletter);
         queryMap.put("agree", agree);
+        System.err.println(new Gson().toJson(queryMap));
         return interfaceAPI.signup(queryMap);
     }
 

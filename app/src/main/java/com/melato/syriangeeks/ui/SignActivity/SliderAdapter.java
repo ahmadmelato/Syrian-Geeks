@@ -1,4 +1,4 @@
-package com.melato.syriangeeks.ui.SignupActivity;
+package com.melato.syriangeeks.ui.SignActivity;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -21,7 +21,7 @@ public class SliderAdapter extends FragmentStateAdapter {
             case 2:return ThirdFragment.newInstance();
             case 3:return ForthFragment.newInstance();
         }
-        return null;
+        return new Fragment();
     }
 
     @Override

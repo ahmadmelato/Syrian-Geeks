@@ -1,4 +1,4 @@
-package com.melato.syriangeeks.ui.SignupActivity;
+package com.melato.syriangeeks.ui.SignActivity;
 
 import android.os.Bundle;
 
@@ -10,16 +10,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.melato.syriangeeks.R;
-import com.melato.syriangeeks.databinding.FragmentFirstBinding;
 import com.melato.syriangeeks.databinding.FragmentSecondBinding;
+import com.melato.syriangeeks.ui.SignupViewModel;
 
 public class SecondFragment extends Fragment {
 
     private FragmentSecondBinding binding;
-
+    private SignupViewModel signupViewModel;
     public SecondFragment() {
         // Required empty public constructor
     }
@@ -31,6 +32,46 @@ public class SecondFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        signupViewModel = ((SignupActivity) requireActivity()).getSignupViewModel();
+        binding.setViewmodel(signupViewModel);
+
+        binding.freelancerspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                signupViewModel.freelancer.set(String.valueOf(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        binding.edSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                signupViewModel.education.set(String.valueOf(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+        binding.workSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                signupViewModel.work_field.set(String.valueOf(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
         ArrayAdapter<CharSequence> adapter0 = ArrayAdapter.createFromResource(
                 requireContext(),
                 R.array.ed_options,
@@ -54,6 +95,8 @@ public class SecondFragment extends Fragment {
         );
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.freelancerspinner.setAdapter(adapter2);
+
+
 
     }
 

@@ -41,11 +41,20 @@ public class SplashActivityViewModel extends ViewModel {
         });
     }
 
-    public UserModel getData(Context context){
+    public String getDataVerfiy_Code(Context context) {
+        SharedPreferences preferences = context.getSharedPreferences("MyPrefsSignupData", Context.MODE_PRIVATE);
+        String mail = preferences.getString("mail", null);
+        if (mail != null) {
+            return mail;
+        }
+        return null;
+    }
+
+    public UserModel getData(Context context) {
         SharedPreferences preferences = context.getSharedPreferences("MyPrefsLoginData", Context.MODE_PRIVATE);
         String loginInfo = preferences.getString("loginInfo", null);
-        UserModel userModel = new Gson().fromJson(loginInfo,UserModel.class);
-        if(userModel != null){
+        UserModel userModel = new Gson().fromJson(loginInfo, UserModel.class);
+        if (userModel != null) {
             ClientAPI.setClientAPIToken(userModel.getToken());
             return userModel;
         }

@@ -1,4 +1,4 @@
-package com.melato.syriangeeks.ui.SignupActivity;
+package com.melato.syriangeeks.ui.SignActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
@@ -11,18 +11,17 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Spinner;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentFirstBinding;
+import com.melato.syriangeeks.ui.SignupViewModel;
 
-import java.text.SimpleDateFormat;
-import java.util.Date;
-
-public class FirstFragment extends Fragment {
+public class FirstFragment extends Fragment{
 
     private FragmentFirstBinding binding;
+    private SignupViewModel signupViewModel;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -37,6 +36,31 @@ public class FirstFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        signupViewModel = ((SignupActivity) requireActivity()).getSignupViewModel();
+        binding.setViewmodel(signupViewModel);
+        binding.genderspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                signupViewModel.gender.set(String.valueOf(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+        binding.yesnospinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                signupViewModel.disability.set(String.valueOf(position));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         ArrayAdapter<CharSequence> adapter1 = ArrayAdapter.createFromResource(
                 requireContext(),
                 R.array.gender_options,
@@ -53,7 +77,7 @@ public class FirstFragment extends Fragment {
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.yesnospinner.setAdapter(adapter2);
 
-        binding.brithday.setText(new SimpleDateFormat("yyyy-MM-dd").format(new Date()));
+
     }
 
     @Override
@@ -62,4 +86,5 @@ public class FirstFragment extends Fragment {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_first, container, false);
         return binding.getRoot();
     }
+
 }
