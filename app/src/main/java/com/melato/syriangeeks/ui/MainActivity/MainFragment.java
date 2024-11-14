@@ -21,6 +21,7 @@ import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentMainBinding;
+import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.EventModel;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -114,7 +115,15 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             startActivity(intent);
         });
 
-        mainViewModel.getIndexCourses(requireContext(), "");
+        blogRecyclerViewAdapter.SetOnItemClickListener(position -> {
+            BlogModel.Blog  item =  blogRecyclerViewAdapter.blogList.get(position);
+            Intent intent = new Intent(requireContext(),PublicBlogDetailsActivity.class);
+            intent.putExtra("id",item.id);
+            startActivity(intent);
+        });
+
+        if(savedInstanceState == null)
+            mainViewModel.getIndexCourses(requireContext(), "");
     }
 
 

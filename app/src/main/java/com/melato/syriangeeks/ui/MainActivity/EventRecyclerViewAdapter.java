@@ -5,13 +5,17 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.melato.syriangeeks.R;
+import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.model.EventModel;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -35,7 +39,8 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
 
     public static class CourseRecyclerViewAdapterViewHolder extends RecyclerView.ViewHolder {
         //add views
-        TextView event_name, event_dis,event_location,event_date;
+        TextView event_name, event_dis, event_location, event_date;
+        ImageView img;
 
         public CourseRecyclerViewAdapterViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
@@ -44,7 +49,7 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
             event_dis = itemView.findViewById(R.id.event_dis);
             event_location = itemView.findViewById(R.id.event_location);
             event_date = itemView.findViewById(R.id.event_date);
-
+            img = itemView.findViewById(R.id.img);
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     int position = getAdapterPosition();
@@ -85,6 +90,24 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         ViewHolder.event_dis.setText(item.getContent());
         ViewHolder.event_location.setText(item.address);
         ViewHolder.event_date.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(item.start_date));
+        loadImage(ClientAPI.BASE_URL + "/storage/" + item.image.original, ViewHolder.img);
+    }
+
+    private void loadImage(String url, ImageView img) {
+        Picasso.get()
+                .load(url)
+                .placeholder(R.drawable.img_events) // Optional: Placeholder while loading
+                .error(R.drawable.img_events) // Optional: Image to show on error
+                .into(img, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                    }
+                });
     }
 
     @Override

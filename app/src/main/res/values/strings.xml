@@ -101,6 +101,8 @@
     <string name="Whoweare">من نحن</string>
     <string name="Signout">تسجيل الخروج</string>
     <string name="Notifications">الإشعارات</string>
+    <string name="evetdis">تفاصيل الفعالية</string>
+    <string name="blogdis">تفاصيل المدونة</string>
 
     <string name="search">ابحث عن دورة , مقالة أو مهارة </string>
     <string name="main">الرئيسية</string>
@@ -122,7 +124,6 @@
     <string name="Passwordisveryshort">يجب ان تكون كلمة السر اكثر من 6 محارف</string>
     <string name="fillEmail">الرجاء ادخال البريد الالكتروني</string>
     <string name="like">انا مهتم في الحضور</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="ilike">مهتم بالحضور</string>
 
 </resources>

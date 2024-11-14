@@ -1,5 +1,6 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,8 +15,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentPublicBlogBinding;
+import com.melato.syriangeeks.model.BlogModel;
+import com.melato.syriangeeks.model.EventModel;
 
 
 public class PublicBlogFragment extends Fragment implements View.OnClickListener {
@@ -49,6 +53,13 @@ public class PublicBlogFragment extends Fragment implements View.OnClickListener
             publicBlogViewAdapter.setBlogList(courseModels);
         });
         viewModel.getBlogs(requireContext());
+
+        publicBlogViewAdapter.SetOnItemClickListener(position -> {
+            BlogModel.Blog  item =  publicBlogViewAdapter.blogList.get(position);
+            Intent intent = new Intent(requireContext(),PublicBlogDetailsActivity.class);
+            intent.putExtra("id",item.id);
+            startActivity(intent);
+        });
 
     }
 

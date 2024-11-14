@@ -5,14 +5,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.melato.syriangeeks.R;
+import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.CourseModel;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -37,12 +41,14 @@ public class BlogRecyclerViewAdapter extends RecyclerView.Adapter<BlogRecyclerVi
     public static class CourseRecyclerViewAdapterViewHolder extends RecyclerView.ViewHolder {
         //add views
         TextView blog_name, blog_date;
+        ImageView img;
 
         public CourseRecyclerViewAdapterViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
             //initail views
             blog_name = itemView.findViewById(R.id.blog_name);
             blog_date = itemView.findViewById(R.id.blog_date);
+            img = itemView.findViewById(R.id.img);
 
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
@@ -82,6 +88,24 @@ public class BlogRecyclerViewAdapter extends RecyclerView.Adapter<BlogRecyclerVi
         //processing views
         ViewHolder.blog_name.setText(blog.title);
         ViewHolder.blog_date.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(blog.created_at));
+        loadImage(ClientAPI.BASE_URL+"/storage/"+blog.icon_image.original,ViewHolder.img);
+    }
+
+    private void loadImage(String url, ImageView img) {
+        Picasso.get()
+                .load(url)
+                .placeholder(R.drawable.img_blog_logo) // Optional: Placeholder while loading
+                .error(R.drawable.img_blog_logo) // Optional: Image to show on error
+                .into(img, new Callback() {
+                    @Override
+                    public void onSuccess() {
+
+                    }
+
+                    @Override
+                    public void onError(Exception e) {
+                    }
+                });
     }
 
     @Override
