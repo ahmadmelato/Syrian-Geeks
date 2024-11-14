@@ -31,7 +31,7 @@ public class SliderMainAdapter extends FragmentStateAdapter {
             case 0:
                 return new OverviewFragment(model);
             case 1:
-                return new TrainingMethodologyFragment();
+                return new TrainingMethodologyFragment(model);
             case 2:
                 return new RequirementFragment();
         }

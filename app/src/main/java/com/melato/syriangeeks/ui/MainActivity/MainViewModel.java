@@ -186,6 +186,7 @@ public class MainViewModel extends ViewModel {
 
     public void getCourseDetails(Context context, Integer id) {
         setProgressRun("");
+        System.out.println(id+" sss");
         Resources resources = context.getResources();
         ClientAPI.getClientAPI().getCourseDetails(id).enqueue(new Callback<ResponseBodyModel>() {
             @Override
