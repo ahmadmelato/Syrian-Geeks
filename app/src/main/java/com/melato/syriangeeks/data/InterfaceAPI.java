@@ -11,6 +11,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface InterfaceAPI {
@@ -26,6 +27,9 @@ public interface InterfaceAPI {
 
     @GET("/api/v1/blogs")
     Call<ResponseBodyModel> getBlogs();
+
+    @GET("/api/v1/blogs/{blog_id}/details")
+    Call<ResponseBodyModel> getBlogsDetails(@Path("blog_id") Integer integer);
 
     @GET("/api/v1/events")
     Call<ResponseBodyModel> getEvents();

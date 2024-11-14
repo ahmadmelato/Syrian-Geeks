@@ -25,6 +25,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Path;
 
 public class ClientAPI {
     public static int OK = 200;
@@ -148,6 +149,11 @@ public class ClientAPI {
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("email", email);
         return interfaceAPI.send_verification(queryMap);
+    }
+
+    public Call<ResponseBodyModel> getBlogsDetails(Integer id){
+        return interfaceAPI.getBlogsDetails(id);
+
     }
 
     public Call<ResponseBodyModel> verify_email(String email, String code) {
