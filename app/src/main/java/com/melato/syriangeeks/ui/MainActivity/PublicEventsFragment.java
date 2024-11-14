@@ -40,7 +40,8 @@ public class PublicEventsFragment extends Fragment implements View.OnClickListen
         viewModel.working.observe(getViewLifecycleOwner(), working -> {
             if (working != null) {
                 binding.mainprogress.setVisibility(working.isProgressing());
-                binding.listRecyclerView.setVisibility(working.isFinish());
+                binding.listRecyclerView.setVisibility(working.isSuccessfulView());
+                binding.nointernet.setVisibility(working.isNotSuccessfulView());
             }
         });
         binding.listRecyclerView.setHasFixedSize(true);
@@ -51,16 +52,18 @@ public class PublicEventsFragment extends Fragment implements View.OnClickListen
         viewModel.eventModelLiveData.observe(getViewLifecycleOwner(), items -> {
             publicEventViewAdapter.setEventList(items);
         });
-        viewModel.getEvents(requireContext());
+
 
         publicEventViewAdapter.SetOnItemClickListener(position -> {
-            EventModel.Item  item =  publicEventViewAdapter.itemList.get(position);
-            Intent intent = new Intent(requireContext(),PublicEventsDetailsActivity.class);
-            intent.putExtra("data",new Gson().toJson(item));
+            EventModel.Item item = publicEventViewAdapter.itemList.get(position);
+            Intent intent = new Intent(requireContext(), PublicEventsDetailsActivity.class);
+            intent.putExtra("data", new Gson().toJson(item));
             startActivity(intent);
         });
 
+        binding.nointernet.setOnClickListener(this);
 
+        viewModel.getEvents(requireContext());
 
     }
 
@@ -71,6 +74,8 @@ public class PublicEventsFragment extends Fragment implements View.OnClickListen
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.openMain();
+        } else if (v.getId() == R.id.nointernet) {
+            viewModel.getEvents(requireContext());
         }
     }
 

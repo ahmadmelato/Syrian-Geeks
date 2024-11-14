@@ -28,7 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.Locale;
 import java.util.Objects;
 
-public class PublicBlogDetailsActivity extends AppCompatActivity  implements View.OnClickListener{
+public class PublicBlogDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityPublicBlogDetailsBinding binding;
     private MainViewModel mainViewModel;
@@ -49,7 +49,8 @@ public class PublicBlogDetailsActivity extends AppCompatActivity  implements Vie
         mainViewModel.working.observe(this, working -> {
             if (working != null) {
                 binding.mainprogress.setVisibility(working.isProgressing());
-                binding.main.setVisibility(working.isFinish());
+                binding.main.setVisibility(working.isSuccessfulView());
+                binding.nointernet.setVisibility(working.isNotSuccessfulView());
                 if (!working.isRunning())
                     Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
             }
@@ -78,6 +79,7 @@ public class PublicBlogDetailsActivity extends AppCompatActivity  implements Vie
         });
 
         binding.toolbarBack.setOnClickListener(this);
+        binding.nointernet.setOnClickListener(this);
         mainViewModel.getBlogsDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
     }
 
@@ -85,6 +87,8 @@ public class PublicBlogDetailsActivity extends AppCompatActivity  implements Vie
     public void onClick(View v) {
         if (v.getId() == R.id.toolbar_back) {
             finish();
+        } else if (v.getId() == R.id.nointernet) {
+            mainViewModel.getBlogsDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
         }
     }
 

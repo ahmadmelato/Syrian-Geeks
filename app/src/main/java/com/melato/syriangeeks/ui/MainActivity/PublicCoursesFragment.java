@@ -39,7 +39,8 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
         viewModel.working.observe(getViewLifecycleOwner(), working -> {
             if (working != null) {
                 binding.mainprogress.setVisibility(working.isProgressing());
-                binding.listRecyclerView.setVisibility(working.isFinish());
+                binding.listRecyclerView.setVisibility(working.isSuccessfulView());
+                binding.nointernet.setVisibility(working.isNotSuccessfulView());
             }
         });
         binding.listRecyclerView.setHasFixedSize(true);
@@ -52,13 +53,14 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
         });
 
         publicCourseViewAdapter.SetOnItemClickListener(position -> {
-            CourseModel.Datum  item =  publicCourseViewAdapter.CourseModels.get(position);
+            CourseModel.Datum item = publicCourseViewAdapter.CourseModels.get(position);
             Intent intent = new Intent(requireContext(), PublicCourseDetailsActivity.class);
-            intent.putExtra("id",item.getId());
+            intent.putExtra("id", item.getId());
             startActivity(intent);
         });
 
         viewModel.getCourses(requireContext(), "");
+        binding.nointernet.setOnClickListener(this);
 
     }
 
@@ -76,6 +78,8 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.openMain();
+        } else if (v.getId() == R.id.nointernet) {
+            viewModel.getCourses(requireContext(), "");
         }
     }
 

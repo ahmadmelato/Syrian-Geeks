@@ -81,6 +81,16 @@
                 android:layout_centerInParent="true"
                 tools:listitem="@layout/public_events_item"/>
 
+
+            <ImageView
+                android:id="@+id/nointernet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/wifi"
+                android:visibility="gone" />
+
             <ProgressBar
                 android:id="@+id/mainprogress"
                 android:layout_width="wrap_content"

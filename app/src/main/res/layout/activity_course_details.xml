@@ -58,7 +58,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="180dp"
+                    android:layout_height="170dp"
                     android:layout_marginHorizontal="5dp">
 
                     <ImageView
@@ -129,7 +129,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="5dp"
-                    android:layout_marginVertical="2dp"
+                    android:layout_marginVertical="1dp"
                     android:layoutDirection="ltr"
                     app:cardCornerRadius="10dp">
 
@@ -138,7 +138,7 @@
                         android:layout_height="wrap_content"
                         android:columnCount="2"
                         android:layoutDirection="ltr"
-                        android:padding="5dp"
+                        android:padding="1dp"
                         android:rowCount="3">
 
                         <LinearLayout
@@ -149,7 +149,7 @@
                             android:gravity="center"
                             android:layoutDirection="ltr"
                             android:orientation="horizontal"
-                            android:paddingVertical="5dp">
+                            android:paddingVertical="2dp">
 
                             <TextView
                                 android:id="@+id/course_days"
@@ -190,7 +190,7 @@
                             android:gravity="center"
                             android:layoutDirection="ltr"
                             android:orientation="horizontal"
-                            android:paddingVertical="5dp">
+                            android:paddingVertical="2dp">
 
                             <TextView
                                 android:id="@+id/course_hour"
@@ -231,7 +231,7 @@
                             android:gravity="center"
                             android:layoutDirection="ltr"
                             android:orientation="horizontal"
-                            android:paddingVertical="5dp">
+                            android:paddingVertical="2dp">
 
                             <TextView
                                 android:id="@+id/course_access"
@@ -272,7 +272,7 @@
                             android:gravity="center"
                             android:layoutDirection="ltr"
                             android:orientation="horizontal"
-                            android:paddingVertical="5dp">
+                            android:paddingVertical="2dp">
 
                             <TextView
                                 android:id="@+id/course_time"
@@ -313,7 +313,7 @@
                             android:gravity="center"
                             android:layoutDirection="ltr"
                             android:orientation="horizontal"
-                            android:paddingVertical="5dp">
+                            android:paddingVertical="2dp">
 
                             <TextView
                                 android:id="@+id/course_teath"
@@ -355,7 +355,7 @@
                             android:gravity="center"
                             android:layoutDirection="ltr"
                             android:orientation="horizontal"
-                            android:paddingVertical="5dp">
+                            android:paddingVertical="2dp">
 
                             <TextView
                                 android:id="@+id/course_dep"
@@ -393,10 +393,20 @@
 
                 </androidx.cardview.widget.CardView>
 
+                <Button
+                    android:id="@+id/btuJouin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:minWidth="350dp"
+                    android:text="انضمام الى الدورة" />
+
                 <com.google.android.material.tabs.TabLayout
                     android:id="@+id/tabs"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
                     android:layoutDirection="rtl"
                     app:tabTextAppearance="@style/tab_text" />
 
@@ -412,6 +422,15 @@
 
 
         </LinearLayout>
+
+        <ImageView
+            android:id="@+id/nointernet"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/wifi"
+            android:visibility="gone" />
 
         <ProgressBar
             android:id="@+id/mainprogress"

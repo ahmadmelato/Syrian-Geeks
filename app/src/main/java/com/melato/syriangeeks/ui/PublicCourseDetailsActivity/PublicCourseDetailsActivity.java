@@ -44,7 +44,8 @@ public class PublicCourseDetailsActivity extends AppCompatActivity implements Vi
         mainViewModel.working.observe(this, working -> {
             if (working != null) {
                 binding.mainprogress.setVisibility(working.isProgressing());
-                binding.main1.setVisibility(working.isFinish());
+                binding.main1.setVisibility(working.isSuccessfulView());
+                binding.nointernet.setVisibility(working.isNotSuccessfulView());
                 if (!working.isRunning())
                     Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
             }
@@ -59,7 +60,7 @@ public class PublicCourseDetailsActivity extends AppCompatActivity implements Vi
             binding.courseTeath.setText(courseDetalsModel.instructor_name);
             loadImage(ClientAPI.BASE_URL + "/storage/" + courseDetalsModel.thumbnail_image.original);
 
-            sliderMainAdapter = new SliderMainAdapter(PublicCourseDetailsActivity.this,courseDetalsModel);
+            sliderMainAdapter = new SliderMainAdapter(PublicCourseDetailsActivity.this, courseDetalsModel);
             binding.viewpager.setAdapter(sliderMainAdapter);
             new TabLayoutMediator(binding.tabs, binding.viewpager, (tab, position) -> {
                 tab.setText(sliderMainAdapter.getItem(position));
@@ -67,7 +68,7 @@ public class PublicCourseDetailsActivity extends AppCompatActivity implements Vi
         });
 
         binding.toolbarBack.setOnClickListener(this);
-
+        binding.nointernet.setOnClickListener(this);
 
         mainViewModel.getCourseDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
 
@@ -77,6 +78,8 @@ public class PublicCourseDetailsActivity extends AppCompatActivity implements Vi
     public void onClick(View v) {
         if (v.getId() == R.id.toolbar_back) {
             finish();
+        } else if (v.getId() == R.id.nointernet) {
+            mainViewModel.getCourseDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
         }
     }
 

@@ -77,7 +77,7 @@ public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecy
         ViewHolder.setIsRecyclable(false);
         //processing views
         ViewHolder.lessons_name.setText(blog.title);
-        ViewHolder.lessons_time.setText("درس " + blog.lessonsCount + " - " + blog.time);
+        ViewHolder.lessons_time.setText( blog.lessonsCount + " درس" + " - " + blog.time);
     }
 
 

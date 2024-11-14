@@ -41,7 +41,8 @@ public class PublicBlogFragment extends Fragment implements View.OnClickListener
         viewModel.working.observe(getViewLifecycleOwner(), working -> {
             if (working != null) {
                 binding.mainprogress.setVisibility(working.isProgressing());
-                binding.listRecyclerView.setVisibility(working.isFinish());
+                binding.listRecyclerView.setVisibility(working.isSuccessfulView());
+                binding.nointernet.setVisibility(working.isNotSuccessfulView());
             }
         });
         binding.listRecyclerView.setHasFixedSize(true);
@@ -52,14 +53,17 @@ public class PublicBlogFragment extends Fragment implements View.OnClickListener
         viewModel.blogModelLiveData.observe(getViewLifecycleOwner(), courseModels -> {
             publicBlogViewAdapter.setBlogList(courseModels);
         });
-        viewModel.getBlogs(requireContext());
 
         publicBlogViewAdapter.SetOnItemClickListener(position -> {
-            BlogModel.Blog  item =  publicBlogViewAdapter.blogList.get(position);
-            Intent intent = new Intent(requireContext(),PublicBlogDetailsActivity.class);
-            intent.putExtra("id",item.id);
+            BlogModel.Blog item = publicBlogViewAdapter.blogList.get(position);
+            Intent intent = new Intent(requireContext(), PublicBlogDetailsActivity.class);
+            intent.putExtra("id", item.id);
             startActivity(intent);
         });
+
+        binding.nointernet.setOnClickListener(this);
+
+        viewModel.getBlogs(requireContext());
 
     }
 
@@ -77,6 +81,8 @@ public class PublicBlogFragment extends Fragment implements View.OnClickListener
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.openMain();
+        } else if (v.getId() == R.id.nointernet) {
+            viewModel.getBlogs(requireContext());
         }
     }
 

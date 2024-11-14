@@ -40,8 +40,7 @@ public class ForgotPasswordActivity extends AppCompatActivity implements View.On
         if (id == R.id.toolbar_back) {
             finish();
         } else if (id == R.id.btuSure) {
-            Intent activeCodeActivity = new Intent(ForgotPasswordActivity.this, ActiveCodeActivity.class);
-            startActivity(activeCodeActivity);
+
         }
     }
 }

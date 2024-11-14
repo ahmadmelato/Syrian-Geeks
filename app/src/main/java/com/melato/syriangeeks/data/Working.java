@@ -26,6 +26,18 @@ public class Working {
         return View.GONE;
     }
 
+    public int isSuccessfulView(){
+        if(connectionState == ClientAPI.OK)
+            return View.VISIBLE;
+        return View.GONE;
+    }
+
+    public int isNotSuccessfulView(){
+        if(connectionState != ClientAPI.OK && connectionState != ClientAPI.Run)
+            return View.VISIBLE;
+        return View.GONE;
+    }
+
     public int isFinish(){
         if(connectionState == ClientAPI.Run)
             return View.GONE;

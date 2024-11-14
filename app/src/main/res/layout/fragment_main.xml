@@ -42,10 +42,10 @@
                         android:layout_centerInParent="true"
                         android:autofillHints="@string/search"
                         android:background="@drawable/ic_path_2480"
+                        android:enabled="false"
                         android:fontFamily="@font/dinnextltarabicregular"
                         android:hint="@string/search"
                         android:inputType="text"
-                        android:enabled="false"
                         android:paddingHorizontal="50dp"
                         android:textColorHint="@color/textColorHint" />
 
@@ -181,6 +181,15 @@
 
 
             </LinearLayout>
+
+            <ImageView
+                android:id="@+id/nointernet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/wifi"
+                android:visibility="gone" />
 
             <ProgressBar
                 android:id="@+id/mainprogress"
