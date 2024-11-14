@@ -17,7 +17,7 @@
         android:theme="@style/Theme.SyrianGeeks"
         tools:targetApi="31">
         <activity
-            android:name=".ui.MainActivity.CourseDetailsActivity"
+            android:name=".ui.MainActivity.PublicCourseDetailsActivity"
             android:exported="false" />
         <activity
             android:name=".ui.MainActivity.PublicBlogDetailsActivity"

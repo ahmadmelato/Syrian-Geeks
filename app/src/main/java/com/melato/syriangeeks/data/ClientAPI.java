@@ -156,6 +156,10 @@ public class ClientAPI {
 
     }
 
+    public Call<ResponseBodyModel> getCourseDetails(Integer id){
+        return interfaceAPI.getCourseDetails(id);
+    }
+
     public Call<ResponseBodyModel> verify_email(String email, String code) {
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("email", email);

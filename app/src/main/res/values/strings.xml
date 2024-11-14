@@ -103,6 +103,7 @@
     <string name="Notifications">الإشعارات</string>
     <string name="evetdis">تفاصيل الفعالية</string>
     <string name="blogdis">تفاصيل المدونة</string>
+    <string name="Traindis">تفاصيل التدريب</string>
 
     <string name="search">ابحث عن دورة , مقالة أو مهارة </string>
     <string name="main">الرئيسية</string>

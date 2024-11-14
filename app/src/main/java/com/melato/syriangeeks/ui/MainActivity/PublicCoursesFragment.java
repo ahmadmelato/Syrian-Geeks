@@ -1,5 +1,6 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentPublicCoursesBinding;
+import com.melato.syriangeeks.model.CourseModel;
 
 public class PublicCoursesFragment extends Fragment implements View.OnClickListener {
 
@@ -47,6 +49,14 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
         viewModel.courseModelLiveData.observe(getViewLifecycleOwner(), courseModels -> {
             publicCourseViewAdapter.setCourseModels(courseModels);
         });
+
+        publicCourseViewAdapter.SetOnItemClickListener(position -> {
+            CourseModel.Datum  item =  publicCourseViewAdapter.CourseModels.get(position);
+            Intent intent = new Intent(requireContext(), PublicCourseDetailsActivity.class);
+            intent.putExtra("id",item.getId());
+            startActivity(intent);
+        });
+
         viewModel.getCourses(requireContext(), "");
 
     }

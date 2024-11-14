@@ -22,6 +22,7 @@ import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentMainBinding;
 import com.melato.syriangeeks.model.BlogModel;
+import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.EventModel;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -119,6 +120,13 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             BlogModel.Blog  item =  blogRecyclerViewAdapter.blogList.get(position);
             Intent intent = new Intent(requireContext(),PublicBlogDetailsActivity.class);
             intent.putExtra("id",item.id);
+            startActivity(intent);
+        });
+
+        courseRecyclerViewAdapter.SetOnItemClickListener(position -> {
+            CourseModel.Datum  item =  courseRecyclerViewAdapter.CourseModels.get(position);
+            Intent intent = new Intent(requireContext(), PublicCourseDetailsActivity.class);
+            intent.putExtra("id",item.getId());
             startActivity(intent);
         });
 

@@ -77,7 +77,7 @@ public class PublicBlogDetailsActivity extends AppCompatActivity  implements Vie
 
         });
 
-        findViewById(R.id.toolbar_back).setOnClickListener(this);
+        binding.toolbarBack.setOnClickListener(this);
         mainViewModel.getBlogsDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
     }
 

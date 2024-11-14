@@ -31,6 +31,9 @@ public interface InterfaceAPI {
     @GET("/api/v1/blogs/{blog_id}/details")
     Call<ResponseBodyModel> getBlogsDetails(@Path("blog_id") Integer integer);
 
+    @GET("/api/v1/course/{course_id}/details")
+    Call<ResponseBodyModel> getCourseDetails(@Path("course_id") Integer integer);
+
     @GET("/api/v1/events")
     Call<ResponseBodyModel> getEvents();
 

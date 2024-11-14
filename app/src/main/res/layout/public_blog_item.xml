@@ -41,7 +41,7 @@
                 android:layout_weight="1"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="تفاصيل"
-                android:textSize="14sp"/>
+                android:textSize="14sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -76,14 +76,16 @@
         </LinearLayout>
 
         <RelativeLayout
-            android:layout_width="100dp"
+            android:layout_width="130dp"
             android:layout_height="120dp"
             android:background="@color/light_blue">
 
             <ImageView
+                android:id="@+id/img"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
+                android:scaleType="fitXY"
                 android:contentDescription="@string/app_name"
                 android:src="@drawable/img_blog_logo" />
         </RelativeLayout>
