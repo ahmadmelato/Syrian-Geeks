@@ -127,4 +127,8 @@
     <string name="like">انا مهتم في الحضور</string>
     <string name="ilike">مهتم بالحضور</string>
 
+    <string name="tab_text_1">نظرة عامة</string>
+    <string name="tab_text_2">منهج التدريب</string>
+    <string name="tab_text_3">المتطلبات</string>
+
 </resources>

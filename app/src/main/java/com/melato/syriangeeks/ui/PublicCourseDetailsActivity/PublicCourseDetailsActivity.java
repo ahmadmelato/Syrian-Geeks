@@ -1,4 +1,4 @@
-package com.melato.syriangeeks.ui.MainActivity;
+package com.melato.syriangeeks.ui.PublicCourseDetailsActivity;
 
 import android.os.Bundle;
 import android.view.View;
@@ -10,21 +10,24 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.google.android.material.tabs.TabLayoutMediator;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.databinding.ActivityCourseDetailsBinding;
+import com.melato.syriangeeks.model.CourseDetalsModel;
+import com.melato.syriangeeks.ui.MainActivity.MainViewModel;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 import java.util.Objects;
 
 public class PublicCourseDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityCourseDetailsBinding binding;
     private MainViewModel mainViewModel;
+    private SliderMainAdapter sliderMainAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,10 +53,17 @@ public class PublicCourseDetailsActivity extends AppCompatActivity implements Vi
         mainViewModel.coursedetailsModelLiveData.observe(this, courseDetalsModel -> {
             binding.blogName.setText(courseDetalsModel.title);
             binding.teacherName.setText(courseDetalsModel.instructor_name);
-//            binding.blogDate.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(courseDetalsModel.created_at));
-//            binding.web.loadData("<html dir='rtl' lang='ar'><body>" + courseDetalsModel.description + "</body></html>", "text/html", "UTF-8");
+            binding.courseHour.setText(courseDetalsModel.time);
+            binding.courseDep.setText(courseDetalsModel.category.title);
+            binding.courseDays.setText(courseDetalsModel.lessonsCount + " درس");
+            binding.courseTeath.setText(courseDetalsModel.instructor_name);
             loadImage(ClientAPI.BASE_URL + "/storage/" + courseDetalsModel.thumbnail_image.original);
 
+            sliderMainAdapter = new SliderMainAdapter(PublicCourseDetailsActivity.this,courseDetalsModel);
+            binding.viewpager.setAdapter(sliderMainAdapter);
+            new TabLayoutMediator(binding.tabs, binding.viewpager, (tab, position) -> {
+                tab.setText(sliderMainAdapter.getItem(position));
+            }).attach();
         });
 
         binding.toolbarBack.setOnClickListener(this);

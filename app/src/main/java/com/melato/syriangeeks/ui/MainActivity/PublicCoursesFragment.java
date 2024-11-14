@@ -17,6 +17,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentPublicCoursesBinding;
 import com.melato.syriangeeks.model.CourseModel;
+import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsActivity;
 
 public class PublicCoursesFragment extends Fragment implements View.OnClickListener {
 

@@ -24,6 +24,7 @@ import com.melato.syriangeeks.databinding.FragmentMainBinding;
 import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.EventModel;
+import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsActivity;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 

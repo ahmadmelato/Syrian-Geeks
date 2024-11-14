@@ -2,6 +2,9 @@ package com.melato.syriangeeks.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -84,6 +87,13 @@ public class CourseDetalsModel {
     public ArrayList<Section> sections;
     public ThumbnailImage thumbnail_image;
     public Category category;
+
+    public String getContent() {
+        if(description == null)
+            return "";
+        Document document = Jsoup.parse(description);
+        return document.text();
+    }
 
     public class Section {
         public int id;

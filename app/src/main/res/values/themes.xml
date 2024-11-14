@@ -10,6 +10,10 @@
         <item name="android:textColor">@color/blue</item>
     </style>
 
+    <style name="tab_text" parent="@android:style/TextAppearance.Widget.TabWidget">
+        <item name="android:fontFamily">@font/dinnextltarabicregular</item>
+    </style>
+
     <style name="Theme.SyrianGeeks.Login.Button" parent="Base.Theme.SyrianGeeks">
         <!-- Customize your light theme here. -->
         <item name="colorPrimary">@color/blue</item>
