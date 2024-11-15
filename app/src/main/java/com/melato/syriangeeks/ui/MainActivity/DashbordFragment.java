@@ -13,7 +13,6 @@ import android.view.ViewGroup;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentDashbordBinding;
-import com.melato.syriangeeks.databinding.FragmentMainBinding;
 
 public class DashbordFragment extends Fragment implements View.OnClickListener {
 
@@ -42,7 +41,7 @@ public class DashbordFragment extends Fragment implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.toolbar_back:
                 MainActivity mainActivity = (MainActivity) getActivity();
-                mainActivity.openMain();
+                mainActivity.backPressed();
                 break;
         }
     }

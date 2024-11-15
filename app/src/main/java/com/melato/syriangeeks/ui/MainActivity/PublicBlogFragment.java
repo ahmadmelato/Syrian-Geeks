@@ -15,11 +15,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentPublicBlogBinding;
 import com.melato.syriangeeks.model.BlogModel;
-import com.melato.syriangeeks.model.EventModel;
 
 
 public class PublicBlogFragment extends Fragment implements View.OnClickListener {
@@ -63,7 +61,9 @@ public class PublicBlogFragment extends Fragment implements View.OnClickListener
 
         binding.nointernet.setOnClickListener(this);
 
-        viewModel.getBlogs(requireContext());
+        if (viewModel.blogModelLiveData.getValue() == null)
+            viewModel.getBlogs(requireContext());
+
     }
 
 
@@ -79,7 +79,7 @@ public class PublicBlogFragment extends Fragment implements View.OnClickListener
         if (v.getId() == R.id.toolbar_back) {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
-            mainActivity.openMain();
+            mainActivity.backPressed();
         } else if (v.getId() == R.id.nointernet) {
             viewModel.getBlogs(requireContext());
         }

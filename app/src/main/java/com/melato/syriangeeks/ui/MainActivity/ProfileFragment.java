@@ -6,7 +6,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -55,7 +54,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
         if (v.getId() == R.id.toolbar_back) {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
-            mainActivity.openMain();
+            mainActivity.backPressed();
         }
     }
 }

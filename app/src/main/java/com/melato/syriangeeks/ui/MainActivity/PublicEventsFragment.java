@@ -63,7 +63,8 @@ public class PublicEventsFragment extends Fragment implements View.OnClickListen
 
         binding.nointernet.setOnClickListener(this);
 
-        viewModel.getEvents(requireContext());
+        if (viewModel.eventModelLiveData.getValue() == null)
+            viewModel.getEvents(requireContext());
 
     }
 
@@ -73,7 +74,7 @@ public class PublicEventsFragment extends Fragment implements View.OnClickListen
         if (v.getId() == R.id.toolbar_back) {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
-            mainActivity.openMain();
+            mainActivity.backPressed();
         } else if (v.getId() == R.id.nointernet) {
             viewModel.getEvents(requireContext());
         }

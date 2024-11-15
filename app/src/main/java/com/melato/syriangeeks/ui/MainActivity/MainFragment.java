@@ -77,7 +77,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                         .placeholder(R.drawable.img)
                         .circleCrop()
                         .into(profile_image);
-            }else{
+            } else {
                 profile_image.setImageResource(R.drawable.img);
                 toolbar_name.setText("أهلا");
 
@@ -138,7 +138,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             startActivity(intent);
         });
 
-        if (savedInstanceState == null)
+        if (mainViewModel.eventModelLiveData.getValue() == null)
             mainViewModel.getIndexCourses(requireContext(), "");
     }
 

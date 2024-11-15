@@ -1,9 +1,7 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -20,7 +18,6 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.navigation.NavigationView;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityMainBinding;
-import com.melato.syriangeeks.ui.LoginActivity.LoginActivity;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -39,6 +36,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private PublicCoursesFragment publicCoursesFragment;
     private PublicBlogFragment publicBlogFragment;
     private PublicEventsFragment publicEventsFragment;
+    private OnBackPressedCallback onBackPressedCallback;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -70,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
-        OnBackPressedCallback onBackPressedCallback = new OnBackPressedCallback(true) {
+        onBackPressedCallback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 if (binding.drawerLayout.isOpen()) {
@@ -80,6 +78,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     if (fragmentManager.getBackStackEntryCount() == 1) {
                         fragmentManager.popBackStack();
                         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+                        binding.bottomnavigation.setSelectedItemId(R.id.item_main);
                     } else if (fragmentManager.getBackStackEntryCount() >= 1) {
                         fragmentManager.popBackStack();
                     } else {
@@ -89,16 +88,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         };
         getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
-        mainViewModel.working.observe(this, working -> {
-            if (working != null) {
-//                binding.mainprogress.setVisibility(working.isProgressing());
-//                binding.btuLogin.setVisibility(working.isFinish());
-//                binding.createAccount.setEnabled(working.isBooleanFinish());
-//                binding.btuLoginGuest.setEnabled(working.isBooleanFinish());
-                if (!working.isRunning())
-                    Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
-            }
-        });
+
+//        mainViewModel.working.observe(this, working -> {
+//            if (working != null) {
+////                binding.mainprogress.setVisibility(working.isProgressing());
+////                binding.btuLogin.setVisibility(working.isFinish());
+////                binding.createAccount.setEnabled(working.isBooleanFinish());
+////                binding.btuLoginGuest.setEnabled(working.isBooleanFinish());
+//                if (!working.isRunning())
+//                    Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
 
         MainViewModel.userLiveData.observe(this, userModel -> {
             if (userModel == null) {
@@ -120,10 +120,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.open();
     }
 
-    public void openMain() {
-        getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
-        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
+    public void backPressed() {
+            onBackPressedCallback.handleOnBackPressed();
     }
 
     public void openNotifications() {

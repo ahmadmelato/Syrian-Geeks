@@ -44,7 +44,7 @@ public class NotificationsFragment extends Fragment implements View.OnClickListe
         if (v.getId() == R.id.toolbar_back) {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
-            mainActivity.openMain();
+            mainActivity.backPressed();
         }
     }
 }

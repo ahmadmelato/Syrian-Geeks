@@ -17,14 +17,9 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.melato.syriangeeks.R;
-import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.databinding.FragmentCoursesBinding;
-import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.MyCourseModel;
 import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsActivity;
-
-import java.text.SimpleDateFormat;
-import java.util.Locale;
 
 public class MyCoursesFragment extends Fragment implements View.OnClickListener {
 
@@ -82,7 +77,8 @@ public class MyCoursesFragment extends Fragment implements View.OnClickListener 
 
         binding.nointernet.setOnClickListener(this);
         binding.toolbarSearch.setOnClickListener(this);
-        mainViewModel.getMyCourses(requireActivity(), "");
+        if(mainViewModel.myCourseModelLiveData.getValue() == null)
+            mainViewModel.getMyCourses(requireActivity(), "");
 
     }
 
@@ -91,7 +87,7 @@ public class MyCoursesFragment extends Fragment implements View.OnClickListener 
         if (v.getId() == R.id.toolbar_back) {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
-            mainActivity.openMain();
+            mainActivity.backPressed();
         } else if (v.getId() == R.id.nointernet) {
             mainViewModel.getMyCourses(requireActivity(), "");
         } else if (v.getId() == R.id.toolbar_search) {

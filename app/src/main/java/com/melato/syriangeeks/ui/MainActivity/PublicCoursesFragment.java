@@ -60,7 +60,10 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
             startActivity(intent);
         });
 
-        viewModel.getCourses(requireContext(), "");
+        if (viewModel.courseModelLiveData.getValue() == null)
+            viewModel.getCourses(requireContext(), "");
+
+
         binding.toolbarSearch.setOnClickListener(this);
         binding.nointernet.setOnClickListener(this);
 
@@ -79,7 +82,7 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
         if (v.getId() == R.id.toolbar_back) {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
-            mainActivity.openMain();
+            mainActivity.backPressed();
         } else if (v.getId() == R.id.nointernet) {
             viewModel.getCourses(requireContext(), "");
         } else if (v.getId() == R.id.toolbar_search) {

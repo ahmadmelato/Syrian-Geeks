@@ -43,7 +43,7 @@ public class CertificatesFragment extends Fragment implements View.OnClickListen
         if (v.getId() == R.id.toolbar_back) {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
-            mainActivity.openMain();
+            mainActivity.backPressed();
         }
     }
 }
