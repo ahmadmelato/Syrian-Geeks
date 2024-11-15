@@ -22,6 +22,7 @@ import com.melato.syriangeeks.model.MyCourseModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -77,6 +78,7 @@ public class MainViewModel extends ViewModel {
                     setProgressOK(response.body().getMessage());
                     userLiveData.setValue(null);
                     saveData(context, null);
+                    ClientAPI.setClientAPIToken("");
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -257,7 +259,6 @@ public class MainViewModel extends ViewModel {
 
     public void getCourseFullDetails(Context context, Integer id) {
         setProgressRun("");
-        System.out.println(id + " sss");
         Resources resources = context.getResources();
         ClientAPI.getClientAPI().getCourseFullDetails(id).enqueue(new Callback<ResponseBodyModel>() {
             @Override
@@ -267,6 +268,30 @@ public class MainViewModel extends ViewModel {
                     setProgressOK(response.body().getMessage());
                     CourseDetalsModel courseDetalsModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("details"), CourseDetalsModel.class);
                     coursedetailsModelLiveData.setValue(courseDetalsModel);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void course_lecture_progress(Context context, String lString_code, String video_code) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        List<String> strings = new ArrayList<>();
+        strings.add(video_code);
+        ClientAPI.getClientAPI().course_lecture_progress(lString_code, strings).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }

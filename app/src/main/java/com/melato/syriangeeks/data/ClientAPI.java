@@ -10,6 +10,7 @@ import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Locale;
 import java.util.Map;
 import java.util.logging.Level;
@@ -24,6 +25,7 @@ import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.Query;
 
 public class ClientAPI {
@@ -140,7 +142,7 @@ public class ClientAPI {
     }
 
 
-    public Call<ResponseBodyModel> join(String slug){
+    public Call<ResponseBodyModel> join(String slug) {
         return interfaceAPI.join(slug);
     }
 
@@ -156,6 +158,13 @@ public class ClientAPI {
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("email", email);
         return interfaceAPI.send_verification(queryMap);
+    }
+
+    public Call<ResponseBodyModel> course_lecture_progress(String lesson_id, List<String> completed_lessons) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("lesson_id", lesson_id);
+        queryMap.put("completed_lessons", completed_lessons);
+        return interfaceAPI.course_lecture_progress(queryMap);
     }
 
     public Call<ResponseBodyModel> getBlogsDetails(Integer id) {

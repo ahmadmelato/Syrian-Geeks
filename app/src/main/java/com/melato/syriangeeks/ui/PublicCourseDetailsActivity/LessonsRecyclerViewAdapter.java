@@ -5,6 +5,7 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -34,12 +35,13 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
     public static class CourseRecyclerViewAdapterViewHolder extends RecyclerView.ViewHolder {
         //add views
         TextView lessons_name;
+        CheckBox lessons_finish;
 
         public CourseRecyclerViewAdapterViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
             //initail views
             lessons_name = itemView.findViewById(R.id.lessons_name);
-
+            lessons_finish = itemView.findViewById(R.id.lessons_finish);
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     int position = getAdapterPosition();
@@ -76,6 +78,9 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
         ViewHolder.setIsRecyclable(false);
         //processing views
         ViewHolder.lessons_name.setText(blog.title);
+        if(blog.video_url!=null){
+            ViewHolder.lessons_finish.setVisibility(View.VISIBLE);
+        }
     }
 
 

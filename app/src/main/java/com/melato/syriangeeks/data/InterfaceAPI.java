@@ -41,6 +41,9 @@ public interface InterfaceAPI {
     @GET("api/v1/student/course/join")
     Call<ResponseBodyModel> join(@Query("slug") String slug);
 
+    @POST("api/v1/student/course-lecture-progress")
+    Call<ResponseBodyModel> course_lecture_progress(@Body Map<String, Object> queryMap);
+
     @GET("/api/v1/events")
     Call<ResponseBodyModel> getEvents();
 

@@ -11,6 +11,7 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
@@ -28,12 +29,14 @@ import java.util.Objects;
 public class PublicEventsDetailsActivity extends AppCompatActivity implements View.OnClickListener {
 
     private ActivityPublicEventsDetailsActivityBinding binding;
+    private MainViewModel viewModel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_public_events_details_activity);
+        viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
@@ -41,8 +44,14 @@ public class PublicEventsDetailsActivity extends AppCompatActivity implements Vi
         });
 
         binding.toolbarBack.setOnClickListener(this);
+        binding.btulike.setOnClickListener(this);
+
         String data = Objects.requireNonNull(getIntent().getExtras()).getString("data");
         EventModel.Item  item = new Gson().fromJson(data,EventModel.Item.class);
+
+        if(ClientAPI.getClientAPI().tokenInterceptor.getToken().isEmpty()){
+            binding.btulike.setVisibility(View.GONE);
+        }
 
         binding.eventName.setText(item.title);
 

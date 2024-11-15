@@ -97,6 +97,10 @@ public class PublicEventViewAdapter extends RecyclerView.Adapter<PublicEventView
         System.out.println(ClientAPI.BASE_URL+"/storage/"+item.image.original);
         loadImage(ClientAPI.BASE_URL+"/storage/"+item.image.original,ViewHolder.image);
 
+        if(!ClientAPI.getClientAPI().tokenInterceptor.getToken().isEmpty()){
+            ViewHolder.btulike.setVisibility(View.GONE);
+        }
+
     }
 
     private void loadImage(String url, ImageView img) {

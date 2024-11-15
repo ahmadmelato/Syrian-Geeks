@@ -59,6 +59,7 @@ public class PublicCourseDetailsActivity extends AppCompatActivity implements Vi
             binding.courseDays.setText(courseDetalsModel.lessonsCount + " درس");
             binding.courseTeath.setText(courseDetalsModel.instructor_name);
             binding.btuJouin.setEnabled(!courseDetalsModel.joined);
+
             loadImage(ClientAPI.BASE_URL + "/storage/" + courseDetalsModel.thumbnail_image.original);
 
             sliderMainAdapter = new SliderMainAdapter(PublicCourseDetailsActivity.this, courseDetalsModel);
@@ -70,6 +71,7 @@ public class PublicCourseDetailsActivity extends AppCompatActivity implements Vi
 
         binding.toolbarBack.setOnClickListener(this);
         binding.nointernet.setOnClickListener(this);
+        binding.btuJouin.setOnClickListener(this);
 
         if (Objects.requireNonNull(getIntent().getExtras()).getString("state").equals("MY")) {
             mainViewModel.getCourseFullDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
@@ -90,6 +92,8 @@ public class PublicCourseDetailsActivity extends AppCompatActivity implements Vi
             finish();
         } else if (v.getId() == R.id.nointernet) {
             mainViewModel.getCourseDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
+        } else if (v.getId() == R.id.btuJouin) {
+            mainViewModel.join(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"), Objects.requireNonNull(mainViewModel.coursedetailsModelLiveData.getValue()).slug);
         }
     }
 
