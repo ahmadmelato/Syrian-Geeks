@@ -37,6 +37,9 @@ public interface InterfaceAPI {
     @GET("/api/v1/events")
     Call<ResponseBodyModel> getEvents();
 
+    @GET("/api/v1/student/courses")
+    Call<ResponseBodyModel> getMyCourses(@Query("search") String sortTag);
+
     @POST("/api/v1/sign-up")
     Call<ResponseBodyModel> signup(@Body Map<String, Object> queryMap);
 

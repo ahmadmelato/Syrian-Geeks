@@ -18,6 +18,7 @@ import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.CourseDetalsModel;
 import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.EventModel;
+import com.melato.syriangeeks.model.MyCourseModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
 
@@ -38,6 +39,7 @@ public class MainViewModel extends ViewModel {
 
     public MutableLiveData<BlogDetalsModel> blogdetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<CourseDetalsModel> coursedetailsModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<MyCourseModel.Datum>> myCourseModelLiveData = new MutableLiveData<>();
 
 
     private void setProgressOK(String msg) {
@@ -99,6 +101,30 @@ public class MainViewModel extends ViewModel {
                     setProgressOK(response.body().getMessage());
                     CourseModel courseModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("courses"), CourseModel.class);
                     courseModelLiveData.setValue(courseModel.data);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getMyCourses(Context context, String sortTag) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getMyCourses(sortTag).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
+                    MyCourseModel courseModel = new Gson().fromJson(response.body().getData().getAsJsonObject(), MyCourseModel.class);
+                    myCourseModelLiveData.setValue(courseModel.enrolls.data);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }

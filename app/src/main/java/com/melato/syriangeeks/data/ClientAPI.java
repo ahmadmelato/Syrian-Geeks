@@ -24,8 +24,6 @@ import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.http.Body;
-import retrofit2.http.Path;
 
 public class ClientAPI {
     public static int OK = 200;
@@ -110,9 +108,8 @@ public class ClientAPI {
         return error;
     }
 
-    public static ClientAPI setClientAPIToken(String token_p) {
+    public static void setClientAPIToken(String token_p) {
         clientAPI = new ClientAPI(token_p);
-        return clientAPI;
     }
 
     public static ClientAPI getClientAPI() {
@@ -135,6 +132,10 @@ public class ClientAPI {
 
     public Call<ResponseBodyModel> getCourses(String sortTag) {
         return interfaceAPI.getCourses(sortTag);
+    }
+
+    public Call<ResponseBodyModel> getMyCourses(String sortTag) {
+        return interfaceAPI.getMyCourses(sortTag);
     }
 
     public Call<ResponseBodyModel> getBlogs() {
