@@ -91,20 +91,20 @@ public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecy
         innerAdapter.setLessonList(blog.lessons);
 
         innerAdapter.SetOnItemClickListener(position1 -> {
-            if(blog.lessons.get(position1).lesson_type != null ){//&&  blog.lessons.get(position1).lesson_type.equals("Youtube")
-                System.out.println(blog.lessons.get(position1).video_url);
-                //openYouTubeInBrowser(blog.lessons.get(position1).video_url);
-                openVedio(blog.lessons.get(position1).video_url);
+            if(blog.lessons.get(position1).lesson_type != null &&  blog.lessons.get(position1).lesson_type.equals("Youtube")){
+                openYouTuber(blog.lessons.get(position1).video_url);
+            }else {
+                openInBrowser(blog.lessons.get(position1).video_url);
             }
         });
     }
 
-    private void openYouTubeInBrowser(String url) {
+    private void openInBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
         context.startActivity(intent);
     }
 
-    private void openVedio(String url) {
+    private void openYouTuber(String url) {
         Intent intent = new Intent(context, PlayVedioActivity.class);
         intent.putExtra("URL",url);
         context.startActivity(intent);
