@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.model.CourseDetalsModel;
+import com.melato.syriangeeks.ui.PlayVedioActivity.PlayVedioActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -92,13 +93,20 @@ public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecy
         innerAdapter.SetOnItemClickListener(position1 -> {
             if(blog.lessons.get(position1).lesson_type != null ){//&&  blog.lessons.get(position1).lesson_type.equals("Youtube")
                 System.out.println(blog.lessons.get(position1).video_url);
-                openYouTubeInBrowser(blog.lessons.get(position1).video_url);
+                //openYouTubeInBrowser(blog.lessons.get(position1).video_url);
+                openVedio(blog.lessons.get(position1).video_url);
             }
         });
     }
 
     private void openYouTubeInBrowser(String url) {
         Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+        context.startActivity(intent);
+    }
+
+    private void openVedio(String url) {
+        Intent intent = new Intent(context, PlayVedioActivity.class);
+        intent.putExtra("URL",url);
         context.startActivity(intent);
     }
 
