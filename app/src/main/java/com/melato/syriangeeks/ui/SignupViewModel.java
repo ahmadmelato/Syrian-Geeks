@@ -152,7 +152,6 @@ public class SignupViewModel extends ViewModel {
         });
     }
 
-
     public void saveData(Context context, String mail) {
         SharedPreferences preferences = context.getSharedPreferences("MyPrefsSignupData", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = preferences.edit();

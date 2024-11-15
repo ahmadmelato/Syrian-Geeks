@@ -58,6 +58,7 @@ public class PublicCourseDetailsActivity extends AppCompatActivity implements Vi
             binding.courseDep.setText(courseDetalsModel.category.title);
             binding.courseDays.setText(courseDetalsModel.lessonsCount + " درس");
             binding.courseTeath.setText(courseDetalsModel.instructor_name);
+            binding.btuJouin.setEnabled(!courseDetalsModel.joined);
             loadImage(ClientAPI.BASE_URL + "/storage/" + courseDetalsModel.thumbnail_image.original);
 
             sliderMainAdapter = new SliderMainAdapter(PublicCourseDetailsActivity.this, courseDetalsModel);

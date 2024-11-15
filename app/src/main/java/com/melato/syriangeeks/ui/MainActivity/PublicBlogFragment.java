@@ -64,7 +64,6 @@ public class PublicBlogFragment extends Fragment implements View.OnClickListener
         binding.nointernet.setOnClickListener(this);
 
         viewModel.getBlogs(requireContext());
-
     }
 
 

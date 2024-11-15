@@ -8,11 +8,13 @@
     <item
         android:id="@+id/nav_divider"
         android:title="@string/pages"
+        android:visible="false"
         android:checkable="false">
         <menu>
             <item
                 android:id="@+id/item_dashbord"
                 android:icon="@drawable/dashbord"
+
                 android:title="@string/dashboard" />
 
             <item
@@ -57,7 +59,13 @@
             <item
                 android:id="@+id/signout"
                 android:icon="@drawable/signout"
+                android:visible="false"
                 android:title="@string/Signout" />
+
+            <item
+                android:id="@+id/exit"
+                android:icon="@drawable/signout"
+                android:title="@string/exit" />
 
         </menu>
 

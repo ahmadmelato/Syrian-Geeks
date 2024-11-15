@@ -49,6 +49,8 @@ public interface InterfaceAPI {
     @POST("/api/v1/student/verify-email")
     Call<ResponseBodyModel> verify_email(@Body Map<String, Object> queryMap);
 
+    @POST("/api/v1/student/forgot-password")
+    Call<ResponseBodyModel> forgot_password(@Body Map<String, Object> queryMap);
 
     
 }

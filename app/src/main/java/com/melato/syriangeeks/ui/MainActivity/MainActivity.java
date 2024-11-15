@@ -9,7 +9,6 @@ import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.app.AppCompatDelegate;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private MainFragment mainFragment;
     private DashbordFragment dashbordFragment;
     private CourseActivitiesFragment courseActivitiesFragment;
-    private CoursesFragment coursesFragment;
+    private MyCoursesFragment myCoursesFragment;
     private CertificatesFragment certificatesFragment;
     private ReferenceFragment referenceFragment;
     private LeaderboardFragment leaderboardFragment;
@@ -59,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         mainFragment = new MainFragment();
         dashbordFragment = new DashbordFragment();
         courseActivitiesFragment = new CourseActivitiesFragment();
-        coursesFragment = new CoursesFragment();
+        myCoursesFragment = new MyCoursesFragment();
         certificatesFragment = new CertificatesFragment();
         referenceFragment = new ReferenceFragment();
         leaderboardFragment = new LeaderboardFragment();
@@ -104,9 +103,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         MainViewModel.userLiveData.observe(this, userModel -> {
             if (userModel == null) {
-                Intent intent = new Intent(getApplicationContext(), LoginActivity.class);
-                startActivity(intent);
-                MainActivity.this.finish();
+                binding.navView.getMenu().findItem(R.id.nav_divider).setVisible(false);
+                binding.navView.getMenu().findItem(R.id.signout).setVisible(false);
+            }else{
+                binding.navView.getMenu().findItem(R.id.nav_divider).setVisible(true);
+                binding.navView.getMenu().findItem(R.id.signout).setVisible(true);
+
             }
         });
 
@@ -142,7 +144,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
         } else if (itemId == R.id.item_courses) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, coursesFragment).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myCoursesFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
         } else if (itemId == R.id.item_courseactivities) {
@@ -175,7 +177,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else if (itemId == R.id.item_society) {
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-        } else {
+        } else if (itemId == R.id.exit) {
+            finish();
+        }  else {
             return false;
         }
         return true;

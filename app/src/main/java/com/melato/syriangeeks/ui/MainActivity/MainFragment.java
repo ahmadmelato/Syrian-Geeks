@@ -77,6 +77,10 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                         .placeholder(R.drawable.img)
                         .circleCrop()
                         .into(profile_image);
+            }else{
+                profile_image.setImageResource(R.drawable.img);
+                toolbar_name.setText("أهلا");
+
             }
         });
 

@@ -169,6 +169,14 @@ public class ClientAPI {
         return interfaceAPI.verify_email(queryMap);
     }
 
+    public Call<ResponseBodyModel> forgot_password(String email) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("email", email);
+        System.out.println(new Gson().toJson(queryMap));
+        return interfaceAPI.forgot_password(queryMap);
+    }
+
+
     public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
                                           String work_field, String other_work_field, String experience_years, String freelancer, String freelancer_years, String cv_file,
                                           String country, String state, String location, String place, String disability, String email, String phone, String phone_dial,

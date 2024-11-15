@@ -41,6 +41,7 @@ public class MyCourseViewAdapter extends RecyclerView.Adapter<MyCourseViewAdapte
         ProgressBar courseProgressBar;
         Button btuStart;
         ImageView img;
+
         public CourseRecyclerViewAdapterViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
             //initail views
@@ -91,7 +92,7 @@ public class MyCourseViewAdapter extends RecyclerView.Adapter<MyCourseViewAdapte
         ViewHolder.course_name.setText(courseModel.course.title);
         ViewHolder.courseProgressBar.setProgress(courseModel.progress);
         //ViewHolder.course_time.setText(courseModel. + " ساعة");
-        if(courseModel.approved != 1){
+        if (courseModel.approved != 1) {
             ViewHolder.btuStart.setText("بانتظار الموافقة");
             ViewHolder.btuStart.setEnabled(false);
         }
