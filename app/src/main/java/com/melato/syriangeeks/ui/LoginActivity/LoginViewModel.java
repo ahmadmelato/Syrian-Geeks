@@ -69,6 +69,7 @@ public class LoginViewModel extends ViewModel {
                     UserModel userModel =  new Gson().fromJson(response.body().getData(), UserModel.class);
                     ClientAPI.setClientAPIToken(userModel.getToken());
                     userLiveData.setValue(userModel);
+                    System.out.println(userModel.getToken());
                     saveData(context, userModel);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());

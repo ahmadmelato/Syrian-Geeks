@@ -55,11 +55,13 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
         publicCourseViewAdapter.SetOnItemClickListener(position -> {
             CourseModel.Datum item = publicCourseViewAdapter.CourseModels.get(position);
             Intent intent = new Intent(requireContext(), PublicCourseDetailsActivity.class);
+            intent.putExtra("state", "PUK");
             intent.putExtra("id", item.getId());
             startActivity(intent);
         });
 
         viewModel.getCourses(requireContext(), "");
+        binding.toolbarSearch.setOnClickListener(this);
         binding.nointernet.setOnClickListener(this);
 
     }
@@ -80,7 +82,10 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
             mainActivity.openMain();
         } else if (v.getId() == R.id.nointernet) {
             viewModel.getCourses(requireContext(), "");
+        } else if (v.getId() == R.id.toolbar_search) {
+            viewModel.getCourses(requireActivity(), binding.editText.getText().toString());
         }
+
     }
 
 

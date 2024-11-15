@@ -2,7 +2,6 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginHorizontal="5dp"
     android:layout_marginVertical="5dp"
     android:gravity="center"
@@ -16,6 +15,12 @@
         android:layoutDirection="rtl"
         android:orientation="horizontal">
 
+        <ImageView
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/vedio"/>
+
         <TextView
             android:id="@+id/lessons_name"
             android:layout_width="0dp"
@@ -23,28 +28,11 @@
             android:layout_marginHorizontal="5dp"
             android:layout_weight="1"
             android:fontFamily="@font/dinnextltarabicregular"
-            android:text="المحاضرة الأولى"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/lessons_time"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/dinnextltarabicregular"
-            android:text="دقيقة"
-            android:textSize="16sp" />
+            android:text="المقطع الاول"
+            android:textSize="16sp"
+            android:textStyle="normal" />
 
     </LinearLayout>
 
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/lessian_list"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="15dp"
-        android:layoutDirection="rtl"
-        tools:listitem="@layout/lesson_item"
-        android:nestedScrollingEnabled="false"/>
 
 </LinearLayout>

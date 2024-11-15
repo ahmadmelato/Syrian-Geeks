@@ -1,5 +1,7 @@
 package com.melato.syriangeeks.model;
 
+import com.google.gson.annotations.SerializedName;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -55,6 +57,7 @@ public class CourseModel {
         private int status_id;
         private int visibility_id;
         private Object last_modified;
+        public ThumbnailImage thumbnail_image;
         private int rating;
         private int total_review;
         private int total_sales;
@@ -68,6 +71,26 @@ public class CourseModel {
         private Date created_at;
         private Date updated_at;
         private String cert_title;
+
+        public class Paths {
+            @SerializedName("100x100")
+            public String _100x100;
+            @SerializedName("300x300")
+            public String _300x300;
+            @SerializedName("600x600")
+            public String _600x600;
+        }
+
+        public class ThumbnailImage {
+            public int id;
+            public String original;
+            public String name;
+            public String type;
+            public Paths paths;
+            public Date created_at;
+            public Date updated_at;
+        }
+
 
         public int getId() {
             return id;

@@ -24,6 +24,7 @@ import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Query;
 
 public class ClientAPI {
     public static int OK = 200;
@@ -138,6 +139,11 @@ public class ClientAPI {
         return interfaceAPI.getMyCourses(sortTag);
     }
 
+
+    public Call<ResponseBodyModel> join(String slug){
+        return interfaceAPI.join(slug);
+    }
+
     public Call<ResponseBodyModel> getBlogs() {
         return interfaceAPI.getBlogs();
     }
@@ -152,14 +158,19 @@ public class ClientAPI {
         return interfaceAPI.send_verification(queryMap);
     }
 
-    public Call<ResponseBodyModel> getBlogsDetails(Integer id){
+    public Call<ResponseBodyModel> getBlogsDetails(Integer id) {
         return interfaceAPI.getBlogsDetails(id);
 
     }
 
-    public Call<ResponseBodyModel> getCourseDetails(Integer id){
+    public Call<ResponseBodyModel> getCourseDetails(Integer id) {
         return interfaceAPI.getCourseDetails(id);
     }
+
+    public Call<ResponseBodyModel> getCourseFullDetails(Integer id) {
+        return interfaceAPI.getCourseFullDetails(id);
+    }
+
 
     public Call<ResponseBodyModel> verify_email(String email, String code) {
         Map<String, Object> queryMap = new HashMap<>();

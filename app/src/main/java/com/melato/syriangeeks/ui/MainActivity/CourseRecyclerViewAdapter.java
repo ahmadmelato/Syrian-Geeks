@@ -90,7 +90,7 @@ public class CourseRecyclerViewAdapter extends RecyclerView.Adapter<CourseRecycl
         ViewHolder.course_name.setText(courseModel.getTitle());
         ViewHolder.teacher_name.setText(courseModel.getInstructor_name());
         ViewHolder.course_hour.setText(courseModel.getTotal_sales() + " ساعة");
-        //loadImage(ClientAPI.BASE_URL+"/storage/"+courseModel..original,ViewHolder.img);
+        loadImage(ClientAPI.BASE_URL+"/storage/"+courseModel.thumbnail_image.original,ViewHolder.img);
         //ViewHolder.course_hour.setText(courseModel.getTitle());
     }
 

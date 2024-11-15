@@ -71,7 +71,16 @@ public class PublicCourseDetailsActivity extends AppCompatActivity implements Vi
         binding.toolbarBack.setOnClickListener(this);
         binding.nointernet.setOnClickListener(this);
 
-        mainViewModel.getCourseDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
+        if (Objects.requireNonNull(getIntent().getExtras()).getString("state").equals("MY")) {
+            mainViewModel.getCourseFullDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
+            binding.btuJouin.setVisibility(View.GONE);
+        } else {
+            mainViewModel.getCourseDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
+            binding.btuJouin.setVisibility(View.VISIBLE);
+            if (ClientAPI.getClientAPI().tokenInterceptor.getToken().isEmpty())
+                binding.btuJouin.setVisibility(View.GONE);
+        }
+
 
     }
 

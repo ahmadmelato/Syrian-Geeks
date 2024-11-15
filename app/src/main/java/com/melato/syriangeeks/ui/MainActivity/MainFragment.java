@@ -133,6 +133,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         courseRecyclerViewAdapter.SetOnItemClickListener(position -> {
             CourseModel.Datum item = courseRecyclerViewAdapter.CourseModels.get(position);
             Intent intent = new Intent(requireContext(), PublicCourseDetailsActivity.class);
+            intent.putExtra("state", "PUK");
             intent.putExtra("id", item.getId());
             startActivity(intent);
         });

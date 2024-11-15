@@ -98,6 +98,7 @@ public class CourseDetalsModel {
     public class Section {
         public int id;
         public String title;
+        public ArrayList<Lesson> lessons;
         public int course_id;
         public int order;
         public int status_id;
@@ -108,6 +109,41 @@ public class CourseDetalsModel {
         public Date updated_at;
         public String time;
         public int lessonsCount;
+    }
+
+    public class Lesson{
+        public int id;
+        public String title;
+        public int is_quiz;
+        public int is_timer;
+        public String duration;
+        public int point;
+        public int section_id;
+        public int course_id;
+        public int is_free;
+        public String lesson_type;
+        public String video_url;
+        public Object video_type;
+        public Object video_file;
+        public int attachment_type;
+        public Object attachment;
+        public Object image_file;
+        public int is_online_view;
+        public int is_downloadable;
+        public Object iframe;
+        public Object lesson_text;
+        public String content;
+        public int order;
+        public int marks;
+        public int pass_marks;
+        public Object instruction;
+        public Object last_modified;
+        public int created_by;
+        public int updated_by;
+        public int status_id;
+        public Object deleted_at;
+        public Date created_at;
+        public Date updated_at;
     }
 
     public class ThumbnailImage {

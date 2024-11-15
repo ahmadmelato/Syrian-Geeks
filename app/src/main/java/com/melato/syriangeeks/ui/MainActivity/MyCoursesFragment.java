@@ -73,6 +73,7 @@ public class MyCoursesFragment extends Fragment implements View.OnClickListener 
         myCourseViewAdapter.SetOnItemClickListener(position -> {
             MyCourseModel.Datum item = myCourseViewAdapter.CourseModels.get(position);
             Intent intent = new Intent(requireContext(), PublicCourseDetailsActivity.class);
+            intent.putExtra("state", "MY");
             intent.putExtra("id", item.course_id);
             startActivity(intent);
         });

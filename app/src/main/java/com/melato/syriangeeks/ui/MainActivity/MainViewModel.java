@@ -212,7 +212,6 @@ public class MainViewModel extends ViewModel {
 
     public void getCourseDetails(Context context, Integer id) {
         setProgressRun("");
-        System.out.println(id+" sss");
         Resources resources = context.getResources();
         ClientAPI.getClientAPI().getCourseDetails(id).enqueue(new Callback<ResponseBodyModel>() {
             @Override
@@ -234,6 +233,53 @@ public class MainViewModel extends ViewModel {
             }
         });
     }
+
+    public void join(Context context, int id, String slag) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().join(slag).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getCourseDetails(context, id);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getCourseFullDetails(Context context, Integer id) {
+        setProgressRun("");
+        System.out.println(id + " sss");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getCourseFullDetails(id).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
+                    CourseDetalsModel courseDetalsModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("details"), CourseDetalsModel.class);
+                    coursedetailsModelLiveData.setValue(courseDetalsModel);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
 
     public void getBlogsDetails(Context context, Integer id) {
         setProgressRun("");
