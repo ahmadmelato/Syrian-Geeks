@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         };
         getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
-
         mainViewModel.working.observe(this, working -> {
             if (working != null) {
 //                binding.mainprogress.setVisibility(working.isProgressing());
@@ -173,7 +172,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
         } else if (itemId == R.id.item_Blog) {
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, publicBlogFragment).addToBackStack(null).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else if (itemId == R.id.item_Events) {
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, publicEventsFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else if (itemId == R.id.item_society) {
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
@@ -191,13 +194,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void openAllBlog() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, publicBlogFragment).addToBackStack(null).commit();
-        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+
+        binding.bottomnavigation.setSelectedItemId(R.id.item_Blog);
     }
 
     public void openAllEvents() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, publicEventsFragment).addToBackStack(null).commit();
-        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        binding.bottomnavigation.setSelectedItemId(R.id.item_Events);
     }
 
     public MainViewModel getMainViewModel() {

@@ -79,7 +79,7 @@ public class MyCoursesFragment extends Fragment implements View.OnClickListener 
 
         binding.nointernet.setOnClickListener(this);
         binding.toolbarSearch.setOnClickListener(this);
-        mainViewModel.getMyCourses(requireActivity(),"");
+        mainViewModel.getMyCourses(requireActivity(), "");
 
     }
 
@@ -89,12 +89,10 @@ public class MyCoursesFragment extends Fragment implements View.OnClickListener 
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.openMain();
-        }else if (v.getId() == R.id.nointernet) {
-            mainViewModel.getMyCourses(requireActivity(),"");
-        }else if(v.getId() == R.id.toolbar_search){
-            if(!binding.editTextSerch.getText().toString().isEmpty()){
-                mainViewModel.getMyCourses(requireActivity(),binding.editTextSerch.getText().toString());
-            }
+        } else if (v.getId() == R.id.nointernet) {
+            mainViewModel.getMyCourses(requireActivity(), "");
+        } else if (v.getId() == R.id.toolbar_search) {
+            mainViewModel.getMyCourses(requireActivity(), binding.editTextSerch.getText().toString());
         }
     }
 }
