@@ -185,6 +185,10 @@ public class ClientAPI {
         return interfaceAPI.getCourseFullDetails(id);
     }
 
+    public Call<ResponseBodyModel> getCertificate(){
+        return interfaceAPI.getCertificate();
+    }
+
 
     public Call<ResponseBodyModel> verify_email(String email, String code) {
         Map<String, Object> queryMap = new HashMap<>();

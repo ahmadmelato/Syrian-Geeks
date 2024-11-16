@@ -17,6 +17,7 @@ import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.data.Working;
 import com.melato.syriangeeks.model.BlogDetalsModel;
 import com.melato.syriangeeks.model.BlogModel;
+import com.melato.syriangeeks.model.CertificateModel;
 import com.melato.syriangeeks.model.CourseActivitiesModel;
 import com.melato.syriangeeks.model.CourseDetalsModel;
 import com.melato.syriangeeks.model.CourseModel;
@@ -228,6 +229,30 @@ public class MainViewModel extends ViewModel {
                     assert response.body() != null;
                     CourseActivitiesModel courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("enrolls"), CourseActivitiesModel.class);
                     courseActivitiesModelLiveData.setValue(courseActivitiesModel.data);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getCertificate(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getCertificate().enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getIndexEvents(context);
+                    assert response.body() != null;
+                    //CertificateModel courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("enrolls"), CertificateModel.class);
+                    //courseActivitiesModelLiveData.setValue(courseActivitiesModel.data);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }

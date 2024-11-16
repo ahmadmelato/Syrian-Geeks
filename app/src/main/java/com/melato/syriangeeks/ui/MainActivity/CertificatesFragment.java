@@ -6,10 +6,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentCertificatesBinding;
@@ -17,6 +21,8 @@ import com.melato.syriangeeks.databinding.FragmentCertificatesBinding;
 public class CertificatesFragment extends Fragment implements View.OnClickListener {
 
     private FragmentCertificatesBinding binding;
+    private MainViewModel mainViewModel;
+    private CourseActivityRecyclerViewAdapter courseActivityRecyclerViewAdapter;
 
     public CertificatesFragment() {
         // Required empty public constructor
@@ -36,6 +42,32 @@ public class CertificatesFragment extends Fragment implements View.OnClickListen
         super.onViewCreated(view, savedInstanceState);
         binding.toolbarBack.setOnClickListener(this);
 
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+
+        mainViewModel.working.observe(getViewLifecycleOwner(), working -> {
+            if (working != null) {
+                binding.mainprogress.setVisibility(working.isProgressing());
+                binding.main.setVisibility(working.isSuccessfulView());
+                binding.nointernet.setVisibility(working.isNotSuccessfulView());
+                if (!working.isRunning())
+                    Toast.makeText(requireActivity(), working.getsSmg(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.listRecyclerView.setHasFixedSize(true);
+        binding.listRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
+        courseActivityRecyclerViewAdapter = new CourseActivityRecyclerViewAdapter(requireContext());
+        binding.listRecyclerView.setAdapter(courseActivityRecyclerViewAdapter);
+
+        mainViewModel.courseActivitiesModelLiveData.observe(getViewLifecycleOwner(), datumList -> {
+            courseActivityRecyclerViewAdapter.setDatumList(datumList);
+        });
+
+        binding.nointernet.setOnClickListener(this);
+        binding.toolbarSearch.setOnClickListener(this);
+        if (mainViewModel.myCourseModelLiveData.getValue() == null)
+            mainViewModel.getCertificate(requireActivity());
+
     }
 
     @Override
@@ -44,6 +76,10 @@ public class CertificatesFragment extends Fragment implements View.OnClickListen
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.backPressed();
+        } else if (v.getId() == R.id.nointernet) {
+            mainViewModel.getCertificate(requireActivity());
+        } else if (v.getId() == R.id.toolbar_search) {
+            //mainViewModel.getCertificate(requireActivity(), binding.editTextSerch.getText().toString());
         }
     }
 }

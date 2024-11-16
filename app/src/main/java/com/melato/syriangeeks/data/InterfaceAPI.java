@@ -40,6 +40,9 @@ public interface InterfaceAPI {
     @GET("/api/v1/student/course-activities")
     Call<ResponseBodyModel> getCourseActivities();
 
+    @GET("/api/v1/student/certificate")
+    Call<ResponseBodyModel> getCertificate();
+
     @GET("api/v1/student/course/join")
     Call<ResponseBodyModel> join(@Query("slug") String slug);
 

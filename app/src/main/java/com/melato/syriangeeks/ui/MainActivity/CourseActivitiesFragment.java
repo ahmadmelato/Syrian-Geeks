@@ -79,7 +79,7 @@ public class CourseActivitiesFragment extends Fragment implements View.OnClickLi
         } else if (v.getId() == R.id.nointernet) {
             mainViewModel.getCourseActivities(requireActivity());
         } else if (v.getId() == R.id.toolbar_search) {
-            //mainViewModel.getMyCourses(requireActivity(), binding.editTextSerch.getText().toString());
+            //mainViewModel.getCourseActivities(requireActivity(), binding.editTextSerch.getText().toString());
         }
     }
 }
