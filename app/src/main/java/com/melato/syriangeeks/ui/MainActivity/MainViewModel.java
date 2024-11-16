@@ -41,7 +41,7 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<List<CourseModel.Datum>> courseModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<BlogModel.Blog>> blogModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<EventModel.Item>> eventModelLiveData = new MutableLiveData<>();
-    public MutableLiveData<List<CourseActivitiesModel.Datum>>courseActivitiesModelLiveDat1a = new MutableLiveData<>();
+    public MutableLiveData<List<CourseActivitiesModel.Datum>> courseActivitiesModelLiveData = new MutableLiveData<>();
 
     public MutableLiveData<BlogDetalsModel> blogdetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<CourseDetalsModel> coursedetailsModelLiveData = new MutableLiveData<>();
@@ -226,8 +226,8 @@ public class MainViewModel extends ViewModel {
                 if (response.code() == ClientAPI.OK) {
                     getIndexEvents(context);
                     assert response.body() != null;
-                    CourseActivitiesModel courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), CourseActivitiesModel.class);
-                    courseActivitiesModelLiveDat1a.setValue(courseActivitiesModel.data);
+                    CourseActivitiesModel courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("enrolls"), CourseActivitiesModel.class);
+                    courseActivitiesModelLiveData.setValue(courseActivitiesModel.data);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -332,15 +332,15 @@ public class MainViewModel extends ViewModel {
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
                     assert response.body() != null;
-                    Toast.makeText(context,response.body().getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, response.body().getMessage(), Toast.LENGTH_SHORT).show();
                 } else {
-                    Toast.makeText(context,ClientAPI.parseError(response).getMessage(),Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, ClientAPI.parseError(response).getMessage(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
-                Toast.makeText(context,resources.getString(R.string.FailedtoloaddataChecknetwork),Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, resources.getString(R.string.FailedtoloaddataChecknetwork), Toast.LENGTH_SHORT).show();
                 Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
             }
         });

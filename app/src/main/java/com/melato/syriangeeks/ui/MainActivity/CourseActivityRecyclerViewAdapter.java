@@ -2,6 +2,7 @@ package com.melato.syriangeeks.ui.MainActivity;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,20 +14,18 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.melato.syriangeeks.R;
-import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.model.BlogModel;
+import com.melato.syriangeeks.model.CourseActivitiesModel;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 
 public class CourseActivityRecyclerViewAdapter extends RecyclerView.Adapter<CourseActivityRecyclerViewAdapter.CourseRecyclerViewAdapterViewHolder> {
 
-    public List<BlogModel.Blog> blogList;
+    public List<CourseActivitiesModel.Datum> datumList;
     private onItemClickListener mlistener;
     public Context context;
 
@@ -40,12 +39,13 @@ public class CourseActivityRecyclerViewAdapter extends RecyclerView.Adapter<Cour
 
     public static class CourseRecyclerViewAdapterViewHolder extends RecyclerView.ViewHolder {
         //add views
-        TextView course_name, course_active_time, course_active_task, course_active_test, course_active_all_point, course_active_my_point, progressText;
+        TextView course_state, course_name, course_active_time, course_active_task, course_active_test, course_active_all_point, course_active_my_point, progressText;
         ProgressBar course_active_progrss;
 
         public CourseRecyclerViewAdapterViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
             //initail views
+            course_state = itemView.findViewById(R.id.course_state);
             course_name = itemView.findViewById(R.id.course_name);
             course_active_time = itemView.findViewById(R.id.course_active_time);
             course_active_task = itemView.findViewById(R.id.course_active_task);
@@ -68,13 +68,13 @@ public class CourseActivityRecyclerViewAdapter extends RecyclerView.Adapter<Cour
     }
 
     public CourseActivityRecyclerViewAdapter(Context context) {
-        this.blogList = new ArrayList<>();
+        this.datumList = new ArrayList<>();
         this.context = context;
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setBlogList(List<BlogModel.Blog> blogList) {
-        this.blogList = blogList;
+    public void setDatumList(List<CourseActivitiesModel.Datum> datumList) {
+        this.datumList = datumList;
         this.notifyDataSetChanged();
     }
 
@@ -89,10 +89,24 @@ public class CourseActivityRecyclerViewAdapter extends RecyclerView.Adapter<Cour
     @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
     @Override
     public void onBindViewHolder(@NonNull final CourseRecyclerViewAdapterViewHolder ViewHolder, int position) {
-        BlogModel.Blog blog = this.blogList.get(position);
+        CourseActivitiesModel.Datum item = this.datumList.get(position);
         ViewHolder.setIsRecyclable(false);
         //processing views
-//        ViewHolder.blog_name.setText(blog.title);
+        ViewHolder.course_name.setText(item.course.title);
+        ViewHolder.course_active_time.setText(item.course.course_duration + " ساعة");
+        ViewHolder.course_active_test.setText(item.quiz_point + " نقطة");
+        ViewHolder.course_active_all_point.setText(item.course.point + " نقطة");
+        ViewHolder.course_active_task.setText(item.assignment_point + " نقطة");
+        ViewHolder.course_active_progrss.setProgress(item.progress);
+        ViewHolder.progressText.setText(item.progress + " %");
+        if (item.is_completed == 0) {
+            ViewHolder.course_state.setText("قيد الانتظار");
+            ViewHolder.course_state.setBackgroundResource(R.drawable.reg_gray);
+        } else {
+            ViewHolder.course_state.setText("مكتمل");
+            ViewHolder.course_state.setBackgroundResource(R.drawable.reg_green);
+            ViewHolder.course_state.setTextColor(Color.parseColor("#34C14E"));
+        }
 //        ViewHolder.blog_date.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(blog.created_at));
 //        loadImage(ClientAPI.BASE_URL + "/storage/" + blog.icon_image.original, ViewHolder.img);
     }
@@ -116,7 +130,7 @@ public class CourseActivityRecyclerViewAdapter extends RecyclerView.Adapter<Cour
 
     @Override
     public int getItemCount() {
-        return blogList.size();
+        return datumList.size();
     }
 
 }
