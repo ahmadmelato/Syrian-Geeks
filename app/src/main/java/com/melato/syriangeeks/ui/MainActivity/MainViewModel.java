@@ -43,6 +43,7 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<List<BlogModel.Blog>> blogModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<EventModel.Item>> eventModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<CourseActivitiesModel.Datum>> courseActivitiesModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<CertificateModel>> certificateModelLiveData = new MutableLiveData<>();
 
     public MutableLiveData<BlogDetalsModel> blogdetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<CourseDetalsModel> coursedetailsModelLiveData = new MutableLiveData<>();
@@ -251,8 +252,10 @@ public class MainViewModel extends ViewModel {
                 if (response.code() == ClientAPI.OK) {
                     getIndexEvents(context);
                     assert response.body() != null;
-                    //CertificateModel courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("enrolls"), CertificateModel.class);
-                    //courseActivitiesModelLiveData.setValue(courseActivitiesModel.data);
+                    Type certificateListType = new TypeToken<List<CertificateModel>>() {
+                    }.getType();
+                    List<CertificateModel> courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("certificates"), certificateListType);
+                    certificateModelLiveData.setValue(courseActivitiesModel);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }

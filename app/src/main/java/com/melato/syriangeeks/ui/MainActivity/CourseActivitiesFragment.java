@@ -65,7 +65,7 @@ public class CourseActivitiesFragment extends Fragment implements View.OnClickLi
 
         binding.nointernet.setOnClickListener(this);
         binding.toolbarSearch.setOnClickListener(this);
-        if (mainViewModel.myCourseModelLiveData.getValue() == null)
+        if (mainViewModel.certificateModelLiveData.getValue() == null)
             mainViewModel.getCourseActivities(requireActivity());
 
     }

@@ -22,7 +22,7 @@ public class CertificatesFragment extends Fragment implements View.OnClickListen
 
     private FragmentCertificatesBinding binding;
     private MainViewModel mainViewModel;
-    private CourseActivityRecyclerViewAdapter courseActivityRecyclerViewAdapter;
+    private CertificateRecyclerViewAdapter certificateRecyclerViewAdapter;
 
     public CertificatesFragment() {
         // Required empty public constructor
@@ -56,16 +56,16 @@ public class CertificatesFragment extends Fragment implements View.OnClickListen
 
         binding.listRecyclerView.setHasFixedSize(true);
         binding.listRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-        courseActivityRecyclerViewAdapter = new CourseActivityRecyclerViewAdapter(requireContext());
-        binding.listRecyclerView.setAdapter(courseActivityRecyclerViewAdapter);
+        certificateRecyclerViewAdapter = new CertificateRecyclerViewAdapter(requireContext());
+        binding.listRecyclerView.setAdapter(certificateRecyclerViewAdapter);
 
-        mainViewModel.courseActivitiesModelLiveData.observe(getViewLifecycleOwner(), datumList -> {
-            courseActivityRecyclerViewAdapter.setDatumList(datumList);
+        mainViewModel.certificateModelLiveData.observe(getViewLifecycleOwner(), datumList -> {
+            certificateRecyclerViewAdapter.setDatumList(datumList);
         });
 
         binding.nointernet.setOnClickListener(this);
         binding.toolbarSearch.setOnClickListener(this);
-        if (mainViewModel.myCourseModelLiveData.getValue() == null)
+        if (mainViewModel.certificateModelLiveData.getValue() == null)
             mainViewModel.getCertificate(requireActivity());
 
     }

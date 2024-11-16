@@ -18,6 +18,9 @@
         android:theme="@style/Theme.SyrianGeeks"
         tools:targetApi="31">
         <activity
+            android:name=".ui.ShowCertificateActivity.ShowCertificateActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.PlayVedioActivity.PlayDriveVedioActivity"
             android:exported="false" />
         <activity
@@ -42,7 +45,6 @@
         <activity
             android:name=".ui.MainActivity.MainActivity"
             android:exported="false" />
-
         <activity
             android:name=".ui.SplashActivity.SplashActivity"
             android:exported="true">
@@ -52,7 +54,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
     </application>
 
 </manifest>
