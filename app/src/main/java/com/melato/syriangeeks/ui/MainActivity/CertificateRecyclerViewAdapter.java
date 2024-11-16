@@ -1,14 +1,20 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
 import android.annotation.SuppressLint;
+import android.app.DownloadManager;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Environment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +22,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.model.CertificateModel;
 import com.melato.syriangeeks.model.CourseActivitiesModel;
+import com.melato.syriangeeks.ui.ShowCertificateActivity.ShowCertificateActivity;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -40,8 +47,9 @@ public class CertificateRecyclerViewAdapter extends RecyclerView.Adapter<Certifi
 
     public static class CourseRecyclerViewAdapterViewHolder extends RecyclerView.ViewHolder {
         //add views
-        TextView course_state, course_name, course_active_all_point, course_active_my_point ,progressText;
+        TextView course_state, course_name, course_active_all_point, course_active_my_point, progressText;
         ProgressBar course_active_progrss;
+        Button btuShow,btuDown;
 
         public CourseRecyclerViewAdapterViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
@@ -50,7 +58,8 @@ public class CertificateRecyclerViewAdapter extends RecyclerView.Adapter<Certifi
             course_name = itemView.findViewById(R.id.course_name);
             course_active_all_point = itemView.findViewById(R.id.course_active_all_point);
             course_active_my_point = itemView.findViewById(R.id.course_active_my_point);
-
+            btuShow = itemView.findViewById(R.id.btuShow);
+            btuDown= itemView.findViewById(R.id.btuDown);
             course_active_progrss = itemView.findViewById(R.id.course_active_progrss);
             progressText = itemView.findViewById(R.id.progressText);
 
@@ -103,7 +112,36 @@ public class CertificateRecyclerViewAdapter extends RecyclerView.Adapter<Certifi
 //        }
 //        ViewHolder.blog_date.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(blog.created_at));
 //        loadImage(ClientAPI.BASE_URL + "/storage/" + blog.icon_image.original, ViewHolder.img);
+        ViewHolder.btuShow.setOnClickListener(v -> {
+            Intent intent = new Intent(context, ShowCertificateActivity.class);
+            intent.putExtra("image", item.image);
+            context.startActivity(intent);
+        });
+
+        ViewHolder.btuDown.setOnClickListener(v -> {
+            downloadFile(item.image, item.title+".jpeg");
+        });
     }
+
+
+    public void downloadFile(String fileUrl, String fileName) {
+        DownloadManager.Request request = new DownloadManager.Request(Uri.parse(fileUrl));
+
+        // Set the title and description of the download notification
+        request.setTitle("File Download");
+        request.setDescription("Downloading " + fileName);
+
+        // Set the destination for the downloaded file
+        request.setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, fileName);
+
+        // Set other options
+        request.setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED);
+
+        // Get the DownloadManager and enqueue the request
+        DownloadManager downloadManager = (DownloadManager) context.getSystemService(Context.DOWNLOAD_SERVICE);
+        downloadManager.enqueue(request);
+    }
+
 
     private void loadImage(String url, ImageView img) {
         Picasso.get()
