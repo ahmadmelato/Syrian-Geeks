@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.model.CourseDetalsModel;
-import com.melato.syriangeeks.ui.PlayVedioActivity.PlayVedioActivity;
+import com.melato.syriangeeks.ui.PlayVedioActivity.PlayDriveVedioActivity;
+import com.melato.syriangeeks.ui.PlayVedioActivity.PlayYouTubeVedioActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -91,9 +92,12 @@ public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecy
         innerAdapter.setLessonList(blog.lessons);
 
         innerAdapter.SetOnItemClickListener(position1 -> {
+            System.out.println(blog.lessons.get(position1).lesson_type);
             if(blog.lessons.get(position1).lesson_type != null &&  blog.lessons.get(position1).lesson_type.equals("Youtube")){
                 openYouTuber(blog.lessons.get(position1).video_url);
-            }else {
+            }else if(blog.lessons.get(position1).lesson_type != null &&  blog.lessons.get(position1).lesson_type.equals("GoogleDrive")){
+                openDrive(blog.lessons.get(position1).video_url);
+            }else{
                 openInBrowser(blog.lessons.get(position1).video_url);
             }
         });
@@ -105,7 +109,13 @@ public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecy
     }
 
     private void openYouTuber(String url) {
-        Intent intent = new Intent(context, PlayVedioActivity.class);
+        Intent intent = new Intent(context, PlayYouTubeVedioActivity.class);
+        intent.putExtra("URL",url);
+        context.startActivity(intent);
+    }
+
+    private void openDrive(String url) {
+        Intent intent = new Intent(context, PlayDriveVedioActivity.class);
         intent.putExtra("URL",url);
         context.startActivity(intent);
     }

@@ -164,7 +164,12 @@ public class ClientAPI {
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("lesson_id", lesson_id);
         queryMap.put("completed_lessons", completed_lessons);
+        System.out.println(new Gson().toJson(queryMap));
         return interfaceAPI.course_lecture_progress(queryMap);
+    }
+
+    public Call<ResponseBodyModel> getCourseActivities() {
+        return interfaceAPI.getCourseActivities();
     }
 
     public Call<ResponseBodyModel> getBlogsDetails(Integer id) {

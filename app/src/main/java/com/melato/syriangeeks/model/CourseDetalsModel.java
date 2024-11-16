@@ -116,6 +116,7 @@ public class CourseDetalsModel {
         public String title;
         public int is_quiz;
         public int is_timer;
+        public boolean is_completed;
         public String duration;
         public int point;
         public int section_id;
@@ -144,6 +145,7 @@ public class CourseDetalsModel {
         public Object deleted_at;
         public Date created_at;
         public Date updated_at;
+        public String code;
     }
 
     public class ThumbnailImage {

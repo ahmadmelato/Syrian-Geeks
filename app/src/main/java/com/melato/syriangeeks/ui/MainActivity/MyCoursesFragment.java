@@ -19,7 +19,7 @@ import android.widget.Toast;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentCoursesBinding;
 import com.melato.syriangeeks.model.MyCourseModel;
-import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsActivity;
+import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
 
 public class MyCoursesFragment extends Fragment implements View.OnClickListener {
 
@@ -68,10 +68,9 @@ public class MyCoursesFragment extends Fragment implements View.OnClickListener 
         myCourseViewAdapter.SetOnItemClickListener(position -> {
             MyCourseModel.Datum item = myCourseViewAdapter.CourseModels.get(position);
             if(item.approved == 1) {
-                Intent intent = new Intent(requireContext(), PublicCourseDetailsActivity.class);
-                intent.putExtra("state", "MY");
-                intent.putExtra("id", item.course_id);
-                startActivity(intent);
+                MainActivity mainActivity = (MainActivity) getActivity();
+                assert mainActivity != null;
+                mainActivity.openPublicCourseDetailsFragment("MY",item.course_id);
             }
         });
 

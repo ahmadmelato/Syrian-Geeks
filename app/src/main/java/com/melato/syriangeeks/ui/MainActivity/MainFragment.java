@@ -24,7 +24,7 @@ import com.melato.syriangeeks.databinding.FragmentMainBinding;
 import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.EventModel;
-import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsActivity;
+import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -118,24 +118,23 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
         eventRecyclerViewAdapter.SetOnItemClickListener(position -> {
             EventModel.Item item = eventRecyclerViewAdapter.itemList.get(position);
-            Intent intent = new Intent(requireContext(), PublicEventsDetailsActivity.class);
-            intent.putExtra("data", new Gson().toJson(item));
-            startActivity(intent);
+            MainActivity mainActivity = (MainActivity) getActivity();
+            assert mainActivity != null;
+            mainActivity.openPublicEventsDetailsFragment(new Gson().toJson(item));
         });
 
         blogRecyclerViewAdapter.SetOnItemClickListener(position -> {
             BlogModel.Blog item = blogRecyclerViewAdapter.blogList.get(position);
-            Intent intent = new Intent(requireContext(), PublicBlogDetailsActivity.class);
-            intent.putExtra("id", item.id);
-            startActivity(intent);
+            MainActivity mainActivity = (MainActivity) getActivity();
+            assert mainActivity != null;
+            mainActivity.openPublicBlogDetailsFragment(item.id);
         });
 
         courseRecyclerViewAdapter.SetOnItemClickListener(position -> {
             CourseModel.Datum item = courseRecyclerViewAdapter.CourseModels.get(position);
-            Intent intent = new Intent(requireContext(), PublicCourseDetailsActivity.class);
-            intent.putExtra("state", "PUK");
-            intent.putExtra("id", item.getId());
-            startActivity(intent);
+            MainActivity mainActivity = (MainActivity) getActivity();
+            assert mainActivity != null;
+            mainActivity.openPublicCourseDetailsFragment("PUK",item.getId());
         });
 
         if (mainViewModel.eventModelLiveData.getValue() == null)

@@ -4,17 +4,20 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
 import android.util.Log;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.data.Working;
 import com.melato.syriangeeks.model.BlogDetalsModel;
 import com.melato.syriangeeks.model.BlogModel;
+import com.melato.syriangeeks.model.CourseActivitiesModel;
 import com.melato.syriangeeks.model.CourseDetalsModel;
 import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.EventModel;
@@ -22,6 +25,7 @@ import com.melato.syriangeeks.model.MyCourseModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
 
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -37,6 +41,7 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<List<CourseModel.Datum>> courseModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<BlogModel.Blog>> blogModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<EventModel.Item>> eventModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<CourseActivitiesModel.Datum>>courseActivitiesModelLiveDat1a = new MutableLiveData<>();
 
     public MutableLiveData<BlogDetalsModel> blogdetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<CourseDetalsModel> coursedetailsModelLiveData = new MutableLiveData<>();
@@ -212,6 +217,30 @@ public class MainViewModel extends ViewModel {
         });
     }
 
+    public void getCourseActivities(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getCourseActivities().enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getIndexEvents(context);
+                    assert response.body() != null;
+                    CourseActivitiesModel courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), CourseActivitiesModel.class);
+                    courseActivitiesModelLiveDat1a.setValue(courseActivitiesModel.data);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
     public void getCourseDetails(Context context, Integer id) {
         setProgressRun("");
         Resources resources = context.getResources();
@@ -265,9 +294,24 @@ public class MainViewModel extends ViewModel {
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
                     assert response.body() != null;
-                    setProgressOK(response.body().getMessage());
                     CourseDetalsModel courseDetalsModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("details"), CourseDetalsModel.class);
+                    Type listType = new TypeToken<ArrayList<String>>() {
+                    }.getType();
+                    ArrayList<String> completed_lessons = new Gson().fromJson(response.body().getData().getAsJsonObject().get("enroll").getAsJsonObject().get("completed_lessons"), listType);
+                    if (completed_lessons != null) {
+                        for (String s_id : completed_lessons) {
+                            for (CourseDetalsModel.Section section : courseDetalsModel.sections) {
+                                for (CourseDetalsModel.Lesson lesson : section.lessons) {
+                                    if (lesson.id == Integer.parseInt(s_id)) {
+                                        lesson.is_completed = true;
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                    }
                     coursedetailsModelLiveData.setValue(courseDetalsModel);
+                    setProgressOK(response.body().getMessage());
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -281,25 +325,22 @@ public class MainViewModel extends ViewModel {
         });
     }
 
-    public void course_lecture_progress(Context context, String lString_code, String video_code) {
-        setProgressRun("");
+    public static void course_lecture_progress(Context context, String lString_code, List<String> strings) {
         Resources resources = context.getResources();
-        List<String> strings = new ArrayList<>();
-        strings.add(video_code);
         ClientAPI.getClientAPI().course_lecture_progress(lString_code, strings).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
                     assert response.body() != null;
-                    setProgressOK(response.body().getMessage());
+                    Toast.makeText(context,response.body().getMessage(),Toast.LENGTH_SHORT).show();
                 } else {
-                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                    Toast.makeText(context,ClientAPI.parseError(response).getMessage(),Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
-                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Toast.makeText(context,resources.getString(R.string.FailedtoloaddataChecknetwork),Toast.LENGTH_SHORT).show();
                 Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
             }
         });

@@ -15,20 +15,20 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.databinding.DataBindingUtil;
 
 import com.melato.syriangeeks.R;
-import com.melato.syriangeeks.databinding.ActivityPlayVedioBinding;
+import com.melato.syriangeeks.databinding.ActivityPlayYoutubeVedioBinding;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class PlayVedioActivity extends AppCompatActivity {
+public class PlayYouTubeVedioActivity extends AppCompatActivity {
 
-    private ActivityPlayVedioBinding binding;
+    private ActivityPlayYoutubeVedioBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_play_vedio);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_play_youtube_vedio);
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);

@@ -56,9 +56,9 @@ public class PublicEventsFragment extends Fragment implements View.OnClickListen
 
         publicEventViewAdapter.SetOnItemClickListener(position -> {
             EventModel.Item item = publicEventViewAdapter.itemList.get(position);
-            Intent intent = new Intent(requireContext(), PublicEventsDetailsActivity.class);
-            intent.putExtra("data", new Gson().toJson(item));
-            startActivity(intent);
+            MainActivity mainActivity = (MainActivity) getActivity();
+            assert mainActivity != null;
+            mainActivity.openPublicEventsDetailsFragment(new Gson().toJson(item));
         });
 
         binding.nointernet.setOnClickListener(this);

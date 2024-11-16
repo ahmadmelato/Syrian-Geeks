@@ -18,17 +18,10 @@
         android:theme="@style/Theme.SyrianGeeks"
         tools:targetApi="31">
         <activity
-            android:name=".ui.PlayVedioActivity.PlayVedioActivity"
-            android:exported="false"
-            android:screenOrientation="landscape"/>
-        <activity
-            android:name=".ui.PublicCourseDetailsActivity.PublicCourseDetailsActivity"
+            android:name=".ui.PlayVedioActivity.PlayDriveVedioActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.MainActivity.PublicBlogDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MainActivity.PublicEventsDetailsActivity"
+            android:name=".ui.PlayVedioActivity.PlayYouTubeVedioActivity"
             android:exported="false" />
         <activity
             android:name=".ui.NewPasswordActivity.NewPasswordActivity"
@@ -44,6 +37,13 @@
             android:exported="false"
             android:windowSoftInputMode="stateVisible|adjustResize" />
         <activity
+            android:name=".ui.LoginActivity.LoginActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.MainActivity.MainActivity"
+            android:exported="false" />
+
+        <activity
             android:name=".ui.SplashActivity.SplashActivity"
             android:exported="true">
             <intent-filter>
@@ -52,12 +52,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.LoginActivity.LoginActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.MainActivity.MainActivity"
-            android:exported="false" />
+
     </application>
 
 </manifest>

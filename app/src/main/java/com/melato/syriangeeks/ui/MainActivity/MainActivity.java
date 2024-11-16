@@ -18,6 +18,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.navigation.NavigationView;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityMainBinding;
+import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -104,7 +105,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             if (userModel == null) {
                 binding.navView.getMenu().findItem(R.id.nav_divider).setVisible(false);
                 binding.navView.getMenu().findItem(R.id.signout).setVisible(false);
-            }else{
+            } else {
                 binding.navView.getMenu().findItem(R.id.nav_divider).setVisible(true);
                 binding.navView.getMenu().findItem(R.id.signout).setVisible(true);
 
@@ -120,8 +121,27 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.open();
     }
 
+
+    public void openPublicEventsDetailsFragment(String data) {
+        PublicEventsDetailsFragment fragment = PublicEventsDetailsFragment.newInstance(data);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    public void openPublicCourseDetailsFragment(String state,int id) {
+        PublicCourseDetailsFragment fragment = PublicCourseDetailsFragment.newInstance(state,id);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    public void openPublicBlogDetailsFragment(int id) {
+        PublicBlogDetailsFragment fragment = PublicBlogDetailsFragment.newInstance(id);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
     public void backPressed() {
-            onBackPressedCallback.handleOnBackPressed();
+        onBackPressedCallback.handleOnBackPressed();
     }
 
     public void openNotifications() {
@@ -180,7 +200,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else if (itemId == R.id.exit) {
             finish();
-        }  else {
+        } else {
             return false;
         }
         return true;

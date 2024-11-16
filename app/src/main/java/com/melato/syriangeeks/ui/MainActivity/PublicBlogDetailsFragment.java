@@ -1,73 +1,73 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.webkit.WebSettings;
-import android.webkit.WebView;
-import android.webkit.WebViewClient;
 import android.widget.Toast;
 
-import androidx.activity.EdgeToEdge;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
-import androidx.lifecycle.Observer;
+import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
-import com.melato.syriangeeks.databinding.ActivityPublicBlogDetailsBinding;
-import com.melato.syriangeeks.databinding.ActivityPublicEventsDetailsActivityBinding;
-import com.melato.syriangeeks.model.BlogDetalsModel;
+import com.melato.syriangeeks.databinding.FragmentPublicBlogDetailsBinding;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Locale;
-import java.util.Objects;
 
-public class PublicBlogDetailsActivity extends AppCompatActivity implements View.OnClickListener {
+public class PublicBlogDetailsFragment extends Fragment implements View.OnClickListener {
 
-    private ActivityPublicBlogDetailsBinding binding;
+    private FragmentPublicBlogDetailsBinding binding;
     private MainViewModel mainViewModel;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_public_blog_details);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+    private static final String ARG_PARAM1 = "id";
 
+    // TODO: Rename and change types of parameters
+    private int id;
+
+    public PublicBlogDetailsFragment() {
+        // Required empty public constructor
+    }
+
+
+    public static PublicBlogDetailsFragment newInstance(Integer param1) {
+        PublicBlogDetailsFragment fragment = new PublicBlogDetailsFragment();
+        Bundle args = new Bundle();
+        args.putInt(ARG_PARAM1, param1);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
-        mainViewModel.working.observe(this, working -> {
+        mainViewModel.working.observe(getViewLifecycleOwner(), working -> {
             if (working != null) {
                 binding.mainprogress.setVisibility(working.isProgressing());
                 binding.main.setVisibility(working.isSuccessfulView());
                 binding.nointernet.setVisibility(working.isNotSuccessfulView());
                 if (!working.isRunning())
-                    Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
+                    Toast.makeText(requireContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
             }
         });
 
         WebSettings webSettings = binding.web.getSettings();
-
-        // تمكين JavaScript إذا لزم الأمر
         webSettings.setJavaScriptEnabled(true);
-
-        // إعدادات العرض
-        webSettings.setLoadWithOverviewMode(true); // تحميل الصفحة بمقياس مناسب
+        webSettings.setLoadWithOverviewMode(true);
         webSettings.setUseWideViewPort(false);
-        webSettings.setBuiltInZoomControls(true); // تمكين أدوات التكبير
+        webSettings.setBuiltInZoomControls(true);
         webSettings.setDisplayZoomControls(false);
 
-        mainViewModel.blogdetailsModelLiveData.observe(this, blogDetalsModel -> {
+        mainViewModel.blogdetailsModelLiveData.observe(getViewLifecycleOwner(), blogDetalsModel -> {
             binding.blogName.setText(blogDetalsModel.title);
             binding.blogDate.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(blogDetalsModel.created_at));
             binding.web.loadData("<html dir='rtl' lang='ar'><body>" + blogDetalsModel.description + "</body></html>", "text/html", "UTF-8");
@@ -80,15 +80,34 @@ public class PublicBlogDetailsActivity extends AppCompatActivity implements View
 
         binding.toolbarBack.setOnClickListener(this);
         binding.nointernet.setOnClickListener(this);
-        mainViewModel.getBlogsDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
+        mainViewModel.getBlogsDetails(requireContext(), id);
     }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_public_blog_details, container, false);
+        return binding.getRoot();
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            id = getArguments().getInt(ARG_PARAM1);
+        }
+    }
+
 
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.toolbar_back) {
-            finish();
+            MainActivity mainActivity = (MainActivity) getActivity();
+            assert mainActivity != null;
+            mainActivity.backPressed();
         } else if (v.getId() == R.id.nointernet) {
-            mainViewModel.getBlogsDetails(getApplicationContext(), Objects.requireNonNull(getIntent().getExtras()).getInt("id"));
+            mainViewModel.getBlogsDetails(requireContext(), id);
         }
     }
 

@@ -54,9 +54,9 @@ public class PublicBlogFragment extends Fragment implements View.OnClickListener
 
         publicBlogViewAdapter.SetOnItemClickListener(position -> {
             BlogModel.Blog item = publicBlogViewAdapter.blogList.get(position);
-            Intent intent = new Intent(requireContext(), PublicBlogDetailsActivity.class);
-            intent.putExtra("id", item.id);
-            startActivity(intent);
+            MainActivity mainActivity = (MainActivity) getActivity();
+            assert mainActivity != null;
+            mainActivity.openPublicBlogDetailsFragment(item.id);
         });
 
         binding.nointernet.setOnClickListener(this);

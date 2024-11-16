@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.model.CourseDetalsModel;
+import com.melato.syriangeeks.ui.MainActivity.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -74,12 +75,26 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
     @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
     @Override
     public void onBindViewHolder(@NonNull final CourseRecyclerViewAdapterViewHolder ViewHolder, int position) {
-        CourseDetalsModel.Lesson blog = this.lessonList.get(position);
+        CourseDetalsModel.Lesson lesson = this.lessonList.get(position);
         ViewHolder.setIsRecyclable(false);
         //processing views
-        ViewHolder.lessons_name.setText(blog.title);
-        if(blog.video_url!=null){
+        ViewHolder.lessons_name.setText(lesson.title);
+        if (lesson.video_url != null) {
             ViewHolder.lessons_finish.setVisibility(View.VISIBLE);
+            ViewHolder.lessons_finish.setChecked(lesson.is_completed);
+            System.out.println(lesson.is_completed);
+            ViewHolder.lessons_finish.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    lesson.is_completed = !lesson.is_completed;
+                    List<String> strings = new ArrayList<>();
+                    for (CourseDetalsModel.Lesson less : lessonList) {
+                        if (less.is_completed)
+                            strings.add(less.code);
+                    }
+                    MainViewModel.course_lecture_progress(context, lesson.code, strings);
+                }
+            });
         }
     }
 

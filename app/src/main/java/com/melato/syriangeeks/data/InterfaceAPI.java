@@ -37,6 +37,8 @@ public interface InterfaceAPI {
     @GET("/api/v1/student/course/{course_id}/full-details")
     Call<ResponseBodyModel> getCourseFullDetails(@Path("course_id") Integer integer);
 
+    @GET("/api/v1/student/course-activities")
+    Call<ResponseBodyModel> getCourseActivities();
 
     @GET("api/v1/student/course/join")
     Call<ResponseBodyModel> join(@Query("slug") String slug);
