@@ -80,25 +80,27 @@ public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecy
     @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
     @Override
     public void onBindViewHolder(@NonNull final CourseRecyclerViewAdapterViewHolder ViewHolder, int position) {
-        CourseDetalsModel.Section blog = this.sectionList.get(position);
+        CourseDetalsModel.Section section = this.sectionList.get(position);
         ViewHolder.setIsRecyclable(false);
         //processing views
-        ViewHolder.lessons_name.setText(blog.title);
-        ViewHolder.lessons_time.setText( blog.lessonsCount + " درس" + " - " + blog.time);
+        ViewHolder.lessons_name.setText(section.title);
+        ViewHolder.lessons_time.setText(section.lessonsCount + " درس" + " - " + section.time);
 
-        LessonsRecyclerViewAdapter innerAdapter = new LessonsRecyclerViewAdapter(context);
+        LessonsRecyclerViewAdapter innerAdapter = new LessonsRecyclerViewAdapter(context,sectionList);
         ViewHolder.lessian_list.setLayoutManager(new LinearLayoutManager(context));
         ViewHolder.lessian_list.setAdapter(innerAdapter);
-        innerAdapter.setLessonList(blog.lessons);
+        innerAdapter.setLessonList(section.lessons);
 
         innerAdapter.SetOnItemClickListener(position1 -> {
-            System.out.println(blog.lessons.get(position1).lesson_type);
-            if(blog.lessons.get(position1).lesson_type != null &&  blog.lessons.get(position1).lesson_type.equals("Youtube")){
-                openYouTuber(blog.lessons.get(position1).video_url);
-            }else if(blog.lessons.get(position1).lesson_type != null &&  blog.lessons.get(position1).lesson_type.equals("GoogleDrive")){
-                openDrive(blog.lessons.get(position1).video_url);
-            }else{
-                openInBrowser(blog.lessons.get(position1).video_url);
+            System.out.println(section.lessons.get(position1).lesson_type);
+            if (section.lessons.get(position1).video_url != null) {
+                if (section.lessons.get(position1).lesson_type != null && section.lessons.get(position1).lesson_type.equals("Youtube")) {
+                    openYouTuber(section.lessons.get(position1).video_url);
+                } else if (section.lessons.get(position1).lesson_type != null && section.lessons.get(position1).lesson_type.equals("GoogleDrive")) {
+                    openDrive(section.lessons.get(position1).video_url);
+                } else {
+                    openInBrowser(section.lessons.get(position1).video_url);
+                }
             }
         });
     }
@@ -110,13 +112,13 @@ public class SectionRecyclerViewAdapter extends RecyclerView.Adapter<SectionRecy
 
     private void openYouTuber(String url) {
         Intent intent = new Intent(context, PlayYouTubeVedioActivity.class);
-        intent.putExtra("URL",url);
+        intent.putExtra("URL", url);
         context.startActivity(intent);
     }
 
     private void openDrive(String url) {
         Intent intent = new Intent(context, PlayDriveVedioActivity.class);
-        intent.putExtra("URL",url);
+        intent.putExtra("URL", url);
         context.startActivity(intent);
     }
 

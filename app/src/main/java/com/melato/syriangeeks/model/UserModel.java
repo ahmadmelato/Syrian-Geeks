@@ -18,6 +18,7 @@ public class UserModel {
     public class User {
         private Integer userId;
         private String name;
+        private String name_ar;
         private String email;
         private String mobile;
         private String avatar;

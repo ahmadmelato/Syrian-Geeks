@@ -99,19 +99,19 @@ public class CertificateRecyclerViewAdapter extends RecyclerView.Adapter<Certifi
         ViewHolder.setIsRecyclable(false);
         //processing views
         ViewHolder.course_name.setText(item.title);
-        //ViewHolder.course_active_all_point.setText(item.course.point + " نقطة");
-        //ViewHolder.course_active_progrss.setProgress(item.progress);
-        //ViewHolder.progressText.setText(item.progress + " %");
-//        if (item.is_completed == 0) {
-//            ViewHolder.course_state.setText("قيد الانتظار");
-//            ViewHolder.course_state.setBackgroundResource(R.drawable.reg_gray);
-//        } else {
-//            ViewHolder.course_state.setText("مكتمل");
-//            ViewHolder.course_state.setBackgroundResource(R.drawable.reg_green);
-//            ViewHolder.course_state.setTextColor(Color.parseColor("#34C14E"));
-//        }
-//        ViewHolder.blog_date.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(blog.created_at));
-//        loadImage(ClientAPI.BASE_URL + "/storage/" + blog.icon_image.original, ViewHolder.img);
+        ViewHolder.course_active_my_point.setText((item.enroll.quiz_point+item.enroll.lesson_point+item.enroll.assignment_point)+" نقطة");
+        ViewHolder.course_active_all_point.setText(item.enroll.course.point + " نقطة");
+        ViewHolder.course_active_progrss.setProgress(item.enroll.progress);
+        ViewHolder.progressText.setText(item.enroll.progress + " %");
+        if (item.enroll.is_completed == 0) {
+            ViewHolder.course_state.setText("قيد الانتظار");
+            ViewHolder.course_state.setBackgroundResource(R.drawable.reg_gray);
+        } else {
+            ViewHolder.course_state.setText("مكتمل");
+            ViewHolder.course_state.setBackgroundResource(R.drawable.reg_green);
+            ViewHolder.course_state.setTextColor(Color.parseColor("#34C14E"));
+        }
+
         ViewHolder.btuShow.setOnClickListener(v -> {
             Intent intent = new Intent(context, ShowCertificateActivity.class);
             intent.putExtra("image", item.image);

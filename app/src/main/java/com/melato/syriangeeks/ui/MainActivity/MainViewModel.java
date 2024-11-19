@@ -17,11 +17,13 @@ import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.data.Working;
 import com.melato.syriangeeks.model.BlogDetalsModel;
 import com.melato.syriangeeks.model.BlogModel;
+import com.melato.syriangeeks.model.BookMarkModel;
 import com.melato.syriangeeks.model.CertificateModel;
 import com.melato.syriangeeks.model.CourseActivitiesModel;
 import com.melato.syriangeeks.model.CourseDetalsModel;
 import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.EventModel;
+import com.melato.syriangeeks.model.LeaderBoardModel;
 import com.melato.syriangeeks.model.MyCourseModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
@@ -44,6 +46,8 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<List<EventModel.Item>> eventModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<CourseActivitiesModel.Datum>> courseActivitiesModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<CertificateModel>> certificateModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<LeaderBoardModel.Datum>> leaderBoardModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<BookMarkModel>> bookMarkModelModelLiveData = new MutableLiveData<>();
 
     public MutableLiveData<BlogDetalsModel> blogdetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<CourseDetalsModel> coursedetailsModelLiveData = new MutableLiveData<>();
@@ -268,6 +272,57 @@ public class MainViewModel extends ViewModel {
             }
         });
     }
+
+    public void getLeaderBoard(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getLeaderBoard().enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getIndexEvents(context);
+                    assert response.body() != null;
+                    LeaderBoardModel leaderBoardModel = new Gson().fromJson(response.body().getData().getAsJsonObject(), LeaderBoardModel.class);
+                    leaderBoardModelLiveData.setValue(leaderBoardModel.students.data);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getBooMark(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getBooMark().enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getIndexEvents(context);
+                    assert response.body() != null;
+                    Type certificateListType = new TypeToken<List<BookMarkModel>>() {
+                    }.getType();
+                    List<BookMarkModel> courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("bookmarks"), certificateListType);
+                    bookMarkModelModelLiveData.setValue(courseActivitiesModel);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
 
     public void getCourseDetails(Context context, Integer id) {
         setProgressRun("");

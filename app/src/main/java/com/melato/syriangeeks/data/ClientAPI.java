@@ -185,7 +185,7 @@ public class ClientAPI {
         return interfaceAPI.getCourseFullDetails(id);
     }
 
-    public Call<ResponseBodyModel> getCertificate(){
+    public Call<ResponseBodyModel> getCertificate() {
         return interfaceAPI.getCertificate();
     }
 
@@ -203,6 +203,14 @@ public class ClientAPI {
         queryMap.put("email", email);
         System.out.println(new Gson().toJson(queryMap));
         return interfaceAPI.forgot_password(queryMap);
+    }
+
+    public Call<ResponseBodyModel> getLeaderBoard() {
+        return interfaceAPI.getLeaderBoard();
+    }
+
+    public Call<ResponseBodyModel> getBooMark() {
+        return interfaceAPI.getBooMark();
     }
 
 

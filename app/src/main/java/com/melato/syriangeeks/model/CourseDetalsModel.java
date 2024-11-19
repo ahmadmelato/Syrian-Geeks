@@ -39,7 +39,7 @@ public class CourseDetalsModel {
     public String short_description;
     public String description;
     public int course_category_id;
-    public Object requirements;
+    public String requirements;
     public Object outcomes;
     public Object faq;
     public Object tags;

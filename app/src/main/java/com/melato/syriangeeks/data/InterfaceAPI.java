@@ -43,6 +43,12 @@ public interface InterfaceAPI {
     @GET("/api/v1/student/certificate")
     Call<ResponseBodyModel> getCertificate();
 
+    @GET("/api/v1/student/leader-board")
+    Call<ResponseBodyModel> getLeaderBoard();
+
+    @GET("/api/v1/student/bookmark")
+    Call<ResponseBodyModel> getBooMark();
+
     @GET("api/v1/student/course/join")
     Call<ResponseBodyModel> join(@Query("slug") String slug);
 
@@ -67,5 +73,5 @@ public interface InterfaceAPI {
     @POST("/api/v1/student/forgot-password")
     Call<ResponseBodyModel> forgot_password(@Body Map<String, Object> queryMap);
 
-    
+
 }

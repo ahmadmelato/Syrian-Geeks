@@ -39,11 +39,75 @@
 
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/list_recycler_view"
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent">
 
+            <LinearLayout
+                android:id="@+id/main"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_centerInParent="true"
+                android:orientation="vertical">
 
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="5dp"
+                    android:layout_marginVertical="5dp">
+
+                    <EditText
+                        android:id="@+id/editText"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:autofillHints="@string/Typewhatyouwantsearchfor"
+                        android:background="@drawable/ic_path_2480"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:hint="@string/Typewhatyouwantsearchfor"
+                        android:inputType="text"
+                        android:paddingHorizontal="50dp"
+                        android:textColorHint="@color/textColorHint" />
+
+                    <ImageButton
+                        android:id="@+id/toolbar_search"
+                        android:layout_width="50dp"
+                        android:layout_height="wrap_content"
+                        android:layout_alignTop="@+id/editText"
+                        android:layout_alignBottom="@+id/editText"
+                        android:layout_alignParentEnd="@+id/editText"
+                        android:background="@android:color/transparent"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/search" />
+
+                </RelativeLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/list_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    tools:listitem="@layout/leaderboard_item" />
+
+            </LinearLayout>
+
+            <ImageView
+                android:id="@+id/nointernet"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:contentDescription="@string/app_name"
+                android:src="@drawable/wifi"
+                android:visibility="gone" />
+
+            <ProgressBar
+                android:id="@+id/mainprogress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:layout_marginVertical="5dp"
+                android:indeterminateDrawable="@drawable/cpb_2"
+                android:indeterminateDuration="@android:integer/config_longAnimTime"
+                android:visibility="gone" />
+        </RelativeLayout>
     </LinearLayout>
 </layout>

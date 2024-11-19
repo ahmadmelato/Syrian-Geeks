@@ -22,6 +22,7 @@ import java.util.List;
 public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecyclerViewAdapter.CourseRecyclerViewAdapterViewHolder> {
 
     public List<CourseDetalsModel.Lesson> lessonList;
+    public List<CourseDetalsModel.Section> sectionList;
     private onItemClickListener mlistener;
     public Context context;
 
@@ -54,8 +55,9 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
         }
     }
 
-    public LessonsRecyclerViewAdapter(Context context) {
+    public LessonsRecyclerViewAdapter(Context context, List<CourseDetalsModel.Section> sectionList) {
         this.lessonList = new ArrayList<>();
+        this.sectionList = sectionList;
         this.context = context;
     }
 
@@ -83,17 +85,16 @@ public class LessonsRecyclerViewAdapter extends RecyclerView.Adapter<LessonsRecy
             ViewHolder.lessons_finish.setVisibility(View.VISIBLE);
             ViewHolder.lessons_finish.setChecked(lesson.is_completed);
             System.out.println(lesson.is_completed);
-            ViewHolder.lessons_finish.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    lesson.is_completed = !lesson.is_completed;
-                    List<String> strings = new ArrayList<>();
-                    for (CourseDetalsModel.Lesson less : lessonList) {
+            ViewHolder.lessons_finish.setOnClickListener(v -> {
+                lesson.is_completed = !lesson.is_completed;
+                List<String> strings = new ArrayList<>();
+                for (CourseDetalsModel.Section section : sectionList) {
+                    for (CourseDetalsModel.Lesson less : section.lessons) {
                         if (less.is_completed)
                             strings.add(less.code);
                     }
-                    MainViewModel.course_lecture_progress(context, lesson.code, strings);
                 }
+                MainViewModel.course_lecture_progress(context, lesson.code, strings);
             });
         }
     }
