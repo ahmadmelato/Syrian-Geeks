@@ -19,6 +19,10 @@ import com.melato.syriangeeks.databinding.FragmentPublicCoursesBinding;
 import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
 public class PublicCoursesFragment extends Fragment implements View.OnClickListener {
 
     private FragmentPublicCoursesBinding binding;
@@ -43,13 +47,24 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
                 binding.nointernet.setVisibility(working.isNotSuccessfulView());
             }
         });
+
+        viewModel.workingLoadMore.observe(getViewLifecycleOwner(), working -> {
+            if (working != null) {
+                binding.moreprogress.setVisibility(working.isProgressing());
+            }
+        });
+
         binding.listRecyclerView.setHasFixedSize(true);
         binding.listRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
         publicCourseViewAdapter = new PublicCourseViewAdapter(requireContext());
         binding.listRecyclerView.setAdapter(publicCourseViewAdapter);
 
         viewModel.courseModelLiveData.observe(getViewLifecycleOwner(), courseModels -> {
-            publicCourseViewAdapter.setCourseModels(courseModels);
+            List<CourseModel.Datum> datum = new ArrayList<>();
+            for (CourseModel item : courseModels) {
+                datum.addAll(item.data);
+            }
+            publicCourseViewAdapter.setCourseModels(datum);
         });
 
         publicCourseViewAdapter.SetOnItemClickListener(position -> {
@@ -65,6 +80,27 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
 
         binding.toolbarSearch.setOnClickListener(this);
         binding.nointernet.setOnClickListener(this);
+
+        binding.listRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) binding.listRecyclerView.getLayoutManager();
+                assert linearLayoutManager != null;
+                int currentItem = linearLayoutManager.getChildCount();
+                int totalItem = linearLayoutManager.getItemCount();
+                int secrollOutItem = linearLayoutManager.findFirstVisibleItemPosition();
+
+                if (!Objects.requireNonNull(viewModel.workingLoadMore.getValue()).isRunning() && currentItem + secrollOutItem == totalItem) {
+                    viewModel.getCoursesMore(requireContext(),"");
+                }
+            }
+
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
     }
 

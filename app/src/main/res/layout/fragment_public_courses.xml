@@ -72,7 +72,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/list_recycler_view"
@@ -100,6 +101,14 @@
                 android:visibility="visible" />
         </RelativeLayout>
 
+        <ProgressBar
+            android:id="@+id/moreprogress"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:indeterminateDrawable="@drawable/cpb_2"
+            android:indeterminateDuration="@android:integer/config_longAnimTime"
+            android:layout_gravity="center"
+            android:visibility="gone" />
 
     </LinearLayout>
 </layout>

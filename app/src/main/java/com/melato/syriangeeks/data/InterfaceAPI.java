@@ -23,7 +23,7 @@ public interface InterfaceAPI {
     Call<ResponseBodyModel> logout();
 
     @GET("/api/v1/courses")
-    Call<ResponseBodyModel> getCourses(@Query("sortTag") String sortTag);
+    Call<ResponseBodyModel> getCourses(@Query("sortTag") String sortTag,@Query("page") int page);
 
     @GET("/api/v1/blogs")
     Call<ResponseBodyModel> getBlogs();
@@ -44,7 +44,7 @@ public interface InterfaceAPI {
     Call<ResponseBodyModel> getCertificate();
 
     @GET("/api/v1/student/leader-board")
-    Call<ResponseBodyModel> getLeaderBoard();
+    Call<ResponseBodyModel> getLeaderBoard(@Query("page") Integer page);
 
     @GET("/api/v1/student/bookmark")
     Call<ResponseBodyModel> getBooMark();

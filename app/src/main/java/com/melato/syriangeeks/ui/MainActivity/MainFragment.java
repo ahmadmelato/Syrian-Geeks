@@ -24,7 +24,11 @@ import com.melato.syriangeeks.databinding.FragmentMainBinding;
 import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.EventModel;
+import com.melato.syriangeeks.model.LeaderBoardModel;
 import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -105,7 +109,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
 
 
         mainViewModel.courseModelLiveData.observe(getViewLifecycleOwner(), courseModels -> {
-            courseRecyclerViewAdapter.setCourseModels(courseModels);
+            List<CourseModel.Datum> datum = new ArrayList<>();
+            for (CourseModel item : courseModels) {
+                datum.addAll(item.data);
+            }
+            courseRecyclerViewAdapter.setCourseModels(datum);
         });
 
         mainViewModel.blogModelLiveData.observe(getViewLifecycleOwner(), blogs -> {

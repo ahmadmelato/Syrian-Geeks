@@ -77,7 +77,7 @@ public class ReferenceFragment extends Fragment implements View.OnClickListener{
             assert mainActivity != null;
             mainActivity.backPressed();
         } else if (v.getId() == R.id.nointernet) {
-            mainViewModel.getLeaderBoard(requireActivity());
+            mainViewModel.getBooMark(requireActivity());
         } else if (v.getId() == R.id.toolbar_search) {
             //mainViewModel.getCertificate(requireActivity(), binding.editTextSerch.getText().toString());
         }

@@ -40,19 +40,24 @@ import retrofit2.Response;
 public class MainViewModel extends ViewModel {
 
     public MutableLiveData<Working> working = new MutableLiveData<>();
+    public MutableLiveData<Working> workingLoadMore = new MutableLiveData<>();
     public static MutableLiveData<UserModel> userLiveData = new MutableLiveData<>();
-    public MutableLiveData<List<CourseModel.Datum>> courseModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<CourseModel>> courseModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<BlogModel.Blog>> blogModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<EventModel.Item>> eventModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<CourseActivitiesModel.Datum>> courseActivitiesModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<CertificateModel>> certificateModelLiveData = new MutableLiveData<>();
-    public MutableLiveData<List<LeaderBoardModel.Datum>> leaderBoardModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<LeaderBoardModel>> leaderBoardModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<BookMarkModel>> bookMarkModelModelLiveData = new MutableLiveData<>();
 
     public MutableLiveData<BlogDetalsModel> blogdetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<CourseDetalsModel> coursedetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<MyCourseModel.Datum>> myCourseModelLiveData = new MutableLiveData<>();
 
+    public MainViewModel() {
+        setProgressOK("");
+        workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+    }
 
     private void setProgressOK(String msg) {
         synchronized (working) {
@@ -106,14 +111,18 @@ public class MainViewModel extends ViewModel {
     public void getCourses(Context context, String sortTag) {
         setProgressRun("");
         Resources resources = context.getResources();
-        ClientAPI.getClientAPI().getCourses(sortTag).enqueue(new Callback<ResponseBodyModel>() {
+        ClientAPI.getClientAPI().getCourses(sortTag,1).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
                     assert response.body() != null;
                     setProgressOK(response.body().getMessage());
                     CourseModel courseModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("courses"), CourseModel.class);
-                    courseModelLiveData.setValue(courseModel.data);
+                    if (courseModelLiveData.getValue() == null)
+                        courseModelLiveData.setValue(new ArrayList<>());
+                    List<CourseModel> courseModelList = courseModelLiveData.getValue();
+                    courseModelList.add(courseModel);
+                    courseModelLiveData.setValue(courseModelList);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -122,6 +131,38 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
                 setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getCoursesMore(Context context, String sortTag) {
+        Resources resources = context.getResources();
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        int page=1;
+        if (courseModelLiveData.getValue() != null) {
+            page = courseModelLiveData.getValue().get(courseModelLiveData.getValue().size() - 1).current_page + 1;
+        }
+        ClientAPI.getClientAPI().getCourses(sortTag,page).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    CourseModel courseModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("courses"), CourseModel.class);
+                    if (courseModelLiveData.getValue() == null)
+                        courseModelLiveData.setValue(new ArrayList<>());
+                    List<CourseModel> courseModelList = courseModelLiveData.getValue();
+                    courseModelList.add(courseModel);
+                    courseModelLiveData.setValue(courseModelList);
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
                 Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
             }
         });
@@ -154,14 +195,18 @@ public class MainViewModel extends ViewModel {
     public void getIndexCourses(Context context, String sortTag) {
         setProgressRun("");
         Resources resources = context.getResources();
-        ClientAPI.getClientAPI().getCourses(sortTag).enqueue(new Callback<ResponseBodyModel>() {
+        ClientAPI.getClientAPI().getCourses(sortTag,1).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
                     getIndexBlogs(context);
                     assert response.body() != null;
                     CourseModel courseModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("courses"), CourseModel.class);
-                    courseModelLiveData.setValue(courseModel.data);
+                    if (courseModelLiveData.getValue() == null)
+                        courseModelLiveData.setValue(new ArrayList<>());
+                    List<CourseModel> courseModelList = courseModelLiveData.getValue();
+                    courseModelList.add(courseModel);
+                    courseModelLiveData.setValue(courseModelList);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -230,8 +275,8 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
-                    getIndexEvents(context);
                     assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
                     CourseActivitiesModel courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("enrolls"), CourseActivitiesModel.class);
                     courseActivitiesModelLiveData.setValue(courseActivitiesModel.data);
                 } else {
@@ -254,8 +299,8 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
-                    getIndexEvents(context);
                     assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
                     Type certificateListType = new TypeToken<List<CertificateModel>>() {
                     }.getType();
                     List<CertificateModel> courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("certificates"), certificateListType);
@@ -276,14 +321,18 @@ public class MainViewModel extends ViewModel {
     public void getLeaderBoard(Context context) {
         setProgressRun("");
         Resources resources = context.getResources();
-        ClientAPI.getClientAPI().getLeaderBoard().enqueue(new Callback<ResponseBodyModel>() {
+        ClientAPI.getClientAPI().getLeaderBoard(1).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
-                    getIndexEvents(context);
                     assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
                     LeaderBoardModel leaderBoardModel = new Gson().fromJson(response.body().getData().getAsJsonObject(), LeaderBoardModel.class);
-                    leaderBoardModelLiveData.setValue(leaderBoardModel.students.data);
+                    if (leaderBoardModelLiveData.getValue() == null)
+                        leaderBoardModelLiveData.setValue(new ArrayList<>());
+                    List<LeaderBoardModel> leaderBoardModels = leaderBoardModelLiveData.getValue();
+                    leaderBoardModels.add(leaderBoardModel);
+                    leaderBoardModelLiveData.setValue(leaderBoardModels);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -293,6 +342,38 @@ public class MainViewModel extends ViewModel {
             public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
                 setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
                 Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getLeaderBoardMore(Context context) {
+        Resources resources = context.getResources();
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        int page=1;
+        if (leaderBoardModelLiveData.getValue() != null) {
+            page = leaderBoardModelLiveData.getValue().get(leaderBoardModelLiveData.getValue().size() - 1).students.current_page + 1;
+        }
+        ClientAPI.getClientAPI().getLeaderBoard(page).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
+                    LeaderBoardModel leaderBoardModel = new Gson().fromJson(response.body().getData().getAsJsonObject(), LeaderBoardModel.class);
+                    if (leaderBoardModelLiveData.getValue() == null)
+                        leaderBoardModelLiveData.setValue(new ArrayList<>());
+                    List<LeaderBoardModel> leaderBoardModels = leaderBoardModelLiveData.getValue();
+                    leaderBoardModels.add(leaderBoardModel);
+                    leaderBoardModelLiveData.setValue(leaderBoardModels);
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, "msg"));
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
             }
         });
     }
@@ -408,7 +489,8 @@ public class MainViewModel extends ViewModel {
         });
     }
 
-    public static void course_lecture_progress(Context context, String lString_code, List<String> strings) {
+    public static void course_lecture_progress(Context context, String
+            lString_code, List<String> strings) {
         Resources resources = context.getResources();
         ClientAPI.getClientAPI().course_lecture_progress(lString_code, strings).enqueue(new Callback<ResponseBodyModel>() {
             @Override

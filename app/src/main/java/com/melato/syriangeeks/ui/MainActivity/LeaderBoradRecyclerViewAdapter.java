@@ -90,10 +90,12 @@ public class LeaderBoradRecyclerViewAdapter extends RecyclerView.Adapter<LeaderB
         LeaderBoardModel.Datum item = this.datumList.get(position);
         ViewHolder.setIsRecyclable(false);
         //processing views
-        ViewHolder.student_name.setText(item.user.name_ar);
-        ViewHolder.student_country.setText(item.user.country);
-        ViewHolder.student_point.setText(item.points+" نقطة");
-        //ViewHolder.student_postion.setText(item.points);
+        if(item.user != null) {
+            ViewHolder.student_name.setText(item.user.name_ar);
+             ViewHolder.student_country.setText(item.user.country);
+            ViewHolder.student_point.setText(item.points+" نقطة");
+            ViewHolder.student_postion.setText(String.valueOf(position + 1));
+        }
 
     }
 

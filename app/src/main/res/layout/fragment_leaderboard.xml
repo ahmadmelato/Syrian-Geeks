@@ -41,7 +41,8 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_weight="1">
 
             <LinearLayout
                 android:id="@+id/main"
@@ -109,5 +110,14 @@
                 android:indeterminateDuration="@android:integer/config_longAnimTime"
                 android:visibility="gone" />
         </RelativeLayout>
+
+        <ProgressBar
+            android:id="@+id/moreprogress"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:indeterminateDrawable="@drawable/cpb_2"
+            android:indeterminateDuration="@android:integer/config_longAnimTime"
+            android:layout_gravity="center"
+            android:visibility="gone" />
     </LinearLayout>
 </layout>
