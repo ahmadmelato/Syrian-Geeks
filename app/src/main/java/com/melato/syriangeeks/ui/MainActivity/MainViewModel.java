@@ -678,4 +678,36 @@ public class MainViewModel extends ViewModel {
             }
         });
     }
+
+    public void getMoreQuestions(Context context) {
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        Resources resources = context.getResources();
+        int page = 1;
+        if (questionliveData.getValue() != null) {
+            page = questionliveData.getValue().get(questionliveData.getValue().size() - 1).questions.current_page + 1;
+        }
+        ClientAPI.getClientAPI().getQuestions(page).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    QuestionModel questionModel = new Gson().fromJson(response.body().getData().getAsJsonObject(), QuestionModel.class);
+                    if (questionliveData.getValue() == null)
+                        questionliveData.setValue(new ArrayList<>());
+                    List<QuestionModel> questionModels = questionliveData.getValue();
+                    questionModels.add(questionModel);
+                    questionliveData.setValue(questionModels);
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
 }

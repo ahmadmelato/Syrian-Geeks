@@ -12,12 +12,13 @@
         android:layout_height="wrap_content"
         android:layout_margin="5dp"
         android:layoutDirection="rtl"
+        android:gravity="center"
         android:orientation="horizontal">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/profile_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
             android:src="@mipmap/ic_launcher"
             app:civ_border_color="@color/my_light_primary"
             app:civ_border_width="1dp" />
@@ -36,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:lines="1"
+                android:layout_marginHorizontal="5dp"
                 android:text="كيف نقوم بتسعير الخدمات"
                 android:textSize="18sp"
                 android:textStyle="bold" />
