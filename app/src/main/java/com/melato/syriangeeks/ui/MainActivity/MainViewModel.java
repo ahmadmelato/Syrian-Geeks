@@ -25,6 +25,7 @@ import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.EventModel;
 import com.melato.syriangeeks.model.LeaderBoardModel;
 import com.melato.syriangeeks.model.MyCourseModel;
+import com.melato.syriangeeks.model.QuestionModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
 
@@ -49,6 +50,7 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<List<CertificateModel>> certificateModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<LeaderBoardModel>> leaderBoardModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<BookMarkModel>> bookMarkModelModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<QuestionModel>> questionliveData = new MutableLiveData<>();
 
     public MutableLiveData<BlogDetalsModel> blogdetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<CourseDetalsModel> coursedetailsModelLiveData = new MutableLiveData<>();
@@ -111,7 +113,7 @@ public class MainViewModel extends ViewModel {
     public void getCourses(Context context, String sortTag) {
         setProgressRun("");
         Resources resources = context.getResources();
-        ClientAPI.getClientAPI().getCourses(sortTag,1).enqueue(new Callback<ResponseBodyModel>() {
+        ClientAPI.getClientAPI().getCourses(sortTag, 1).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
@@ -139,11 +141,11 @@ public class MainViewModel extends ViewModel {
     public void getCoursesMore(Context context, String sortTag) {
         Resources resources = context.getResources();
         workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
-        int page=1;
+        int page = 1;
         if (courseModelLiveData.getValue() != null) {
             page = courseModelLiveData.getValue().get(courseModelLiveData.getValue().size() - 1).current_page + 1;
         }
-        ClientAPI.getClientAPI().getCourses(sortTag,page).enqueue(new Callback<ResponseBodyModel>() {
+        ClientAPI.getClientAPI().getCourses(sortTag, page).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
@@ -171,7 +173,7 @@ public class MainViewModel extends ViewModel {
     public void getMoreBlogs(Context context) {
         workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
         Resources resources = context.getResources();
-        int page=1;
+        int page = 1;
         if (blogModelLiveData.getValue() != null) {
             page = blogModelLiveData.getValue().get(blogModelLiveData.getValue().size() - 1).current_page + 1;
         }
@@ -204,7 +206,7 @@ public class MainViewModel extends ViewModel {
     public void getBlogs(Context context) {
         setProgressRun("");
         Resources resources = context.getResources();
-        int page=1;
+        int page = 1;
         ClientAPI.getClientAPI().getBlogs(page).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
@@ -258,7 +260,7 @@ public class MainViewModel extends ViewModel {
     public void getIndexCourses(Context context, String sortTag) {
         setProgressRun("");
         Resources resources = context.getResources();
-        ClientAPI.getClientAPI().getCourses(sortTag,1).enqueue(new Callback<ResponseBodyModel>() {
+        ClientAPI.getClientAPI().getCourses(sortTag, 1).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
@@ -282,7 +284,6 @@ public class MainViewModel extends ViewModel {
             }
         });
     }
-
 
 
     public void getIndexBlogs(Context context) {
@@ -394,7 +395,7 @@ public class MainViewModel extends ViewModel {
     public void getLeaderBoardMore(Context context) {
         Resources resources = context.getResources();
         workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
-        int page=1;
+        int page = 1;
         if (leaderBoardModelLiveData.getValue() != null) {
             page = leaderBoardModelLiveData.getValue().get(leaderBoardModelLiveData.getValue().size() - 1).students.current_page + 1;
         }
@@ -644,5 +645,37 @@ public class MainViewModel extends ViewModel {
         if (userModel != null) {
             userLiveData.setValue(userModel);
         }
+    }
+
+    public void getQuestions(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        int page = 1;
+        if (questionliveData.getValue() != null) {
+            page = questionliveData.getValue().get(questionliveData.getValue().size() - 1).questions.current_page + 1;
+        }
+        ClientAPI.getClientAPI().getQuestions(page).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    QuestionModel questionModel = new Gson().fromJson(response.body().getData().getAsJsonObject(), QuestionModel.class);
+                    if (questionliveData.getValue() == null)
+                        questionliveData.setValue(new ArrayList<>());
+                    List<QuestionModel> questionModels = questionliveData.getValue();
+                    questionModels.add(questionModel);
+                    questionliveData.setValue(questionModels);
+                    setProgressOK(response.body().getMessage());
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
     }
 }

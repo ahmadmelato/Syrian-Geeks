@@ -40,7 +40,6 @@ public class CertificatesFragment extends Fragment implements View.OnClickListen
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.toolbarBack.setOnClickListener(this);
 
         mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
@@ -65,6 +64,7 @@ public class CertificatesFragment extends Fragment implements View.OnClickListen
 
         binding.nointernet.setOnClickListener(this);
         binding.toolbarSearch.setOnClickListener(this);
+        binding.toolbarBack.setOnClickListener(this);
         if (mainViewModel.certificateModelLiveData.getValue() == null)
             mainViewModel.getCertificate(requireActivity());
 

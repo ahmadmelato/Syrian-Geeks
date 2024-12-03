@@ -133,8 +133,8 @@ public class ClientAPI {
         return interfaceAPI.logout();
     }
 
-    public Call<ResponseBodyModel> getCourses(String sortTag,int page) {
-        return interfaceAPI.getCourses(sortTag,page);
+    public Call<ResponseBodyModel> getCourses(String sortTag, int page) {
+        return interfaceAPI.getCourses(sortTag, page);
     }
 
     public Call<ResponseBodyModel> getMyCourses(String sortTag) {
@@ -211,6 +211,10 @@ public class ClientAPI {
 
     public Call<ResponseBodyModel> getBooMark() {
         return interfaceAPI.getBooMark();
+    }
+
+    public Call<ResponseBodyModel> getQuestions(int page) {
+        return interfaceAPI.getQuestions(page);
     }
 
 

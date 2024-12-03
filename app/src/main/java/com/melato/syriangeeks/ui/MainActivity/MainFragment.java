@@ -78,11 +78,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 toolbar_name.setText("أهلا " + userModel.getUser().getName());
                 Glide.with(this)
                         .load(userModel.getUser().getAvatar())
-                        .placeholder(R.drawable.img)
+                        .placeholder(R.mipmap.ic_launcher)
                         .circleCrop()
                         .into(profile_image);
             } else {
-                profile_image.setImageResource(R.drawable.img);
+                profile_image.setImageResource(R.mipmap.ic_launcher);
                 toolbar_name.setText("أهلا");
 
             }
@@ -146,7 +146,7 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             CourseModel.Datum item = courseRecyclerViewAdapter.CourseModels.get(position);
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
-            mainActivity.openPublicCourseDetailsFragment("PUK",item.getId());
+            mainActivity.openPublicCourseDetailsFragment("PUK", item.getId());
         });
 
         if (mainViewModel.eventModelLiveData.getValue() == null)

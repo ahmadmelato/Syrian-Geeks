@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private PublicCoursesFragment publicCoursesFragment;
     private PublicBlogFragment publicBlogFragment;
     private PublicEventsFragment publicEventsFragment;
+    private PeopleFragment peopleFragment;
     private OnBackPressedCallback onBackPressedCallback;
 
     @Override
@@ -66,6 +67,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         publicCoursesFragment = new PublicCoursesFragment();
         publicBlogFragment = new PublicBlogFragment();
         publicEventsFragment = new PublicEventsFragment();
+        peopleFragment = new PeopleFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
@@ -128,8 +130,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
-    public void openPublicCourseDetailsFragment(String state,int id) {
-        PublicCourseDetailsFragment fragment = PublicCourseDetailsFragment.newInstance(state,id);
+    public void openPublicCourseDetailsFragment(String state, int id) {
+        PublicCourseDetailsFragment fragment = PublicCourseDetailsFragment.newInstance(state, id);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
@@ -197,6 +199,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, publicEventsFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else if (itemId == R.id.item_society) {
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, peopleFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
         } else if (itemId == R.id.exit) {
             finish();

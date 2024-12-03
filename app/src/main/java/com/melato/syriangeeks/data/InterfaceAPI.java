@@ -73,5 +73,7 @@ public interface InterfaceAPI {
     @POST("/api/v1/student/forgot-password")
     Call<ResponseBodyModel> forgot_password(@Body Map<String, Object> queryMap);
 
+    @GET("/api/v1/forum/questions")
+    Call<ResponseBodyModel> getQuestions(@Query("page") Integer page);
 
 }
