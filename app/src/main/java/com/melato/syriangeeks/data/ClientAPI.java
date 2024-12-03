@@ -146,8 +146,8 @@ public class ClientAPI {
         return interfaceAPI.join(slug);
     }
 
-    public Call<ResponseBodyModel> getBlogs() {
-        return interfaceAPI.getBlogs();
+    public Call<ResponseBodyModel> getBlogs(int page) {
+        return interfaceAPI.getBlogs(page);
     }
 
     public Call<ResponseBodyModel> getEvents() {

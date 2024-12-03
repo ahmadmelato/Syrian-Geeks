@@ -80,17 +80,6 @@
 
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btulike"
-            android:layout_width="100dp"
-            android:layout_height="35dp"
-            android:layout_gravity="right"
-            android:background="@drawable/ic_rectangle_142"
-            android:fontFamily="@font/dinnextltarabicregular"
-            android:text="@string/ilike"
-            android:clickable="false"
-            android:textSize="8sp" />
-
     </LinearLayout>
 
 

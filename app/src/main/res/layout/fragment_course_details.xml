@@ -87,6 +87,7 @@
                     android:layout_marginHorizontal="5dp"
                     android:gravity="center_vertical"
                     android:layoutDirection="ltr"
+                    android:visibility="gone"
                     android:orientation="horizontal">
 
                     <LinearLayout

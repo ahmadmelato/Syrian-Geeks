@@ -1,6 +1,5 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +17,11 @@ import android.view.ViewGroup;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentPublicBlogBinding;
 import com.melato.syriangeeks.model.BlogModel;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+import java.util.concurrent.atomic.AtomicInteger;
 
 
 public class PublicBlogFragment extends Fragment implements View.OnClickListener {
@@ -43,13 +47,24 @@ public class PublicBlogFragment extends Fragment implements View.OnClickListener
                 binding.nointernet.setVisibility(working.isNotSuccessfulView());
             }
         });
+
         binding.listRecyclerView.setHasFixedSize(true);
         binding.listRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
         publicBlogViewAdapter = new PublicBlogViewAdapter(requireContext());
         binding.listRecyclerView.setAdapter(publicBlogViewAdapter);
 
-        viewModel.blogModelLiveData.observe(getViewLifecycleOwner(), courseModels -> {
-            publicBlogViewAdapter.setBlogList(courseModels);
+        viewModel.workingLoadMore.observe(getViewLifecycleOwner(), working -> {
+            if (working != null) {
+                binding.moreprogress.setVisibility(working.isProgressing());
+            }
+        });
+
+        viewModel.blogModelLiveData.observe(getViewLifecycleOwner(), blogs -> {
+            List<BlogModel.Blog> datum = new ArrayList<>();
+            for (BlogModel item : blogs) {
+                datum.addAll(item.data);
+            }
+            publicBlogViewAdapter.setBlogList(datum);
         });
 
         publicBlogViewAdapter.SetOnItemClickListener(position -> {
@@ -63,6 +78,28 @@ public class PublicBlogFragment extends Fragment implements View.OnClickListener
 
         if (viewModel.blogModelLiveData.getValue() == null)
             viewModel.getBlogs(requireContext());
+
+
+        binding.listRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                super.onScrollStateChanged(recyclerView, newState);
+                LinearLayoutManager linearLayoutManager = (LinearLayoutManager) binding.listRecyclerView.getLayoutManager();
+                assert linearLayoutManager != null;
+                int currentItem = linearLayoutManager.getChildCount();
+                int totalItem = linearLayoutManager.getItemCount();
+                AtomicInteger secrollOutItem = new AtomicInteger(linearLayoutManager.findFirstVisibleItemPosition());
+
+                if (!Objects.requireNonNull(viewModel.workingLoadMore.getValue()).isRunning() && currentItem + secrollOutItem.get() == totalItem) {
+                    viewModel.getMoreBlogs(requireContext());
+                }
+            }
+
+            @Override
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
+                super.onScrolled(recyclerView, dx, dy);
+            }
+        });
 
     }
 

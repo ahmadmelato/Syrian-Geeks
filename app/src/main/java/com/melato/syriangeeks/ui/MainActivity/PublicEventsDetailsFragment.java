@@ -68,13 +68,8 @@ public class PublicEventsDetailsFragment extends Fragment implements View.OnClic
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
         binding.toolbarBack.setOnClickListener(this);
-        binding.btulike.setOnClickListener(this);
 
         EventModel.Item item = new Gson().fromJson(data, EventModel.Item.class);
-
-        if (ClientAPI.getClientAPI().tokenInterceptor.getToken().isEmpty()) {
-            binding.btulike.setVisibility(View.GONE);
-        }
 
         binding.eventName.setText(item.title);
 
@@ -109,8 +104,6 @@ public class PublicEventsDetailsFragment extends Fragment implements View.OnClic
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.backPressed();
-        } else if (v.getId() == R.id.btulike) {
-
         }
     }
 }

@@ -39,36 +39,36 @@
 
         </LinearLayout>
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="5dp">
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginHorizontal="5dp">-->
 
-            <EditText
-                android:id="@+id/editText"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:autofillHints="@string/search"
-                android:background="@drawable/ic_path_2480"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:hint="@string/Typewhatyouwantsearchfor"
-                android:inputType="text"
-                android:paddingHorizontal="50dp"
-                android:textColorHint="@color/textColorHint" />
+<!--            <EditText-->
+<!--                android:id="@+id/editText"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_centerInParent="true"-->
+<!--                android:autofillHints="@string/search"-->
+<!--                android:background="@drawable/ic_path_2480"-->
+<!--                android:fontFamily="@font/dinnextltarabicregular"-->
+<!--                android:hint="@string/Typewhatyouwantsearchfor"-->
+<!--                android:inputType="text"-->
+<!--                android:paddingHorizontal="50dp"-->
+<!--                android:textColorHint="@color/textColorHint" />-->
 
-            <ImageButton
-                android:id="@+id/toolbar_search"
-                android:layout_width="50dp"
-                android:layout_height="wrap_content"
-                android:layout_alignTop="@+id/editText"
-                android:layout_alignBottom="@+id/editText"
-                android:layout_alignParentEnd="@+id/editText"
-                android:background="@android:color/transparent"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/search" />
+<!--            <ImageButton-->
+<!--                android:id="@+id/toolbar_search"-->
+<!--                android:layout_width="50dp"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_alignTop="@+id/editText"-->
+<!--                android:layout_alignBottom="@+id/editText"-->
+<!--                android:layout_alignParentEnd="@+id/editText"-->
+<!--                android:background="@android:color/transparent"-->
+<!--                android:contentDescription="@string/app_name"-->
+<!--                android:src="@drawable/search" />-->
 
-        </RelativeLayout>
+<!--        </RelativeLayout>-->
 
         <RelativeLayout
             android:layout_width="match_parent"

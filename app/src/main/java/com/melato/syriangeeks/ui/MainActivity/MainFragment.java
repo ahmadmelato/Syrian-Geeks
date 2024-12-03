@@ -117,7 +117,11 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         });
 
         mainViewModel.blogModelLiveData.observe(getViewLifecycleOwner(), blogs -> {
-            blogRecyclerViewAdapter.setBlogList(blogs);
+            List<BlogModel.Blog> datum = new ArrayList<>();
+            for (BlogModel item : blogs) {
+                datum.addAll(item.data);
+            }
+            blogRecyclerViewAdapter.setBlogList(datum);
         });
 
         mainViewModel.eventModelLiveData.observe(getViewLifecycleOwner(), events -> {

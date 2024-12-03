@@ -65,6 +65,7 @@
             <item
                 android:id="@+id/exit"
                 android:icon="@drawable/signout"
+                android:visible="false"
                 android:title="@string/exit" />
 
         </menu>

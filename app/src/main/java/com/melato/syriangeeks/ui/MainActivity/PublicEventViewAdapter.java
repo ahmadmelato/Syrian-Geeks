@@ -42,7 +42,7 @@ public class PublicEventViewAdapter extends RecyclerView.Adapter<PublicEventView
         //add views
         TextView event_name, event_dis, event_location, event_date;
         ImageView image;
-        Button btulike;
+      
 
         public CourseRecyclerViewAdapterViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
@@ -52,7 +52,7 @@ public class PublicEventViewAdapter extends RecyclerView.Adapter<PublicEventView
             event_location = itemView.findViewById(R.id.event_location);
             event_date = itemView.findViewById(R.id.event_date);
             image = itemView.findViewById(R.id.image);
-            btulike = itemView.findViewById(R.id.btulike);
+
 
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
@@ -97,9 +97,7 @@ public class PublicEventViewAdapter extends RecyclerView.Adapter<PublicEventView
         System.out.println(ClientAPI.BASE_URL+"/storage/"+item.image.original);
         loadImage(ClientAPI.BASE_URL+"/storage/"+item.image.original,ViewHolder.image);
 
-        if(!ClientAPI.getClientAPI().tokenInterceptor.getToken().isEmpty()){
-            ViewHolder.btulike.setVisibility(View.GONE);
-        }
+
 
     }
 

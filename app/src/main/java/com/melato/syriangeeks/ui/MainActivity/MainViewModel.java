@@ -43,7 +43,7 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<Working> workingLoadMore = new MutableLiveData<>();
     public static MutableLiveData<UserModel> userLiveData = new MutableLiveData<>();
     public MutableLiveData<List<CourseModel>> courseModelLiveData = new MutableLiveData<>();
-    public MutableLiveData<List<BlogModel.Blog>> blogModelLiveData = new MutableLiveData<>();
+    public MutableLiveData<List<BlogModel>> blogModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<EventModel.Item>> eventModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<CourseActivitiesModel.Datum>> courseActivitiesModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<CertificateModel>> certificateModelLiveData = new MutableLiveData<>();
@@ -168,6 +168,69 @@ public class MainViewModel extends ViewModel {
         });
     }
 
+    public void getMoreBlogs(Context context) {
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        Resources resources = context.getResources();
+        int page=1;
+        if (blogModelLiveData.getValue() != null) {
+            page = blogModelLiveData.getValue().get(blogModelLiveData.getValue().size() - 1).current_page + 1;
+        }
+        ClientAPI.getClientAPI().getBlogs(page).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
+                    BlogModel blogModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), BlogModel.class);
+                    if (blogModelLiveData.getValue() == null)
+                        blogModelLiveData.setValue(new ArrayList<>());
+                    List<BlogModel> blogModels = blogModelLiveData.getValue();
+                    blogModels.add(blogModel);
+                    blogModelLiveData.setValue(blogModels);
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getBlogs(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        int page=1;
+        ClientAPI.getClientAPI().getBlogs(page).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    setProgressOK(response.body().getMessage());
+                    BlogModel blogModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), BlogModel.class);
+                    if (blogModelLiveData.getValue() == null)
+                        blogModelLiveData.setValue(new ArrayList<>());
+                    List<BlogModel> blogModels = blogModelLiveData.getValue();
+                    blogModels.add(blogModel);
+                    blogModelLiveData.setValue(blogModels);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+
     public void getMyCourses(Context context, String sortTag) {
         setProgressRun("");
         Resources resources = context.getResources();
@@ -220,41 +283,23 @@ public class MainViewModel extends ViewModel {
         });
     }
 
-    public void getBlogs(Context context) {
-        setProgressRun("");
-        Resources resources = context.getResources();
-        ClientAPI.getClientAPI().getBlogs().enqueue(new Callback<ResponseBodyModel>() {
-            @Override
-            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
-                if (response.code() == ClientAPI.OK) {
-                    assert response.body() != null;
-                    setProgressOK(response.body().getMessage());
-                    BlogModel blogModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), BlogModel.class);
-                    blogModelLiveData.setValue(blogModel.data);
-                } else {
-                    setProgressDeny(ClientAPI.parseError(response).getMessage());
-                }
-            }
 
-            @Override
-            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
-                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
-                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
-            }
-        });
-    }
 
     public void getIndexBlogs(Context context) {
         setProgressRun("");
         Resources resources = context.getResources();
-        ClientAPI.getClientAPI().getBlogs().enqueue(new Callback<ResponseBodyModel>() {
+        ClientAPI.getClientAPI().getBlogs(1).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
                     getIndexEvents(context);
                     assert response.body() != null;
                     BlogModel blogModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), BlogModel.class);
-                    blogModelLiveData.setValue(blogModel.data);
+                    if (blogModelLiveData.getValue() == null)
+                        blogModelLiveData.setValue(new ArrayList<>());
+                    List<BlogModel> blogModels = blogModelLiveData.getValue();
+                    blogModels.add(blogModel);
+                    blogModelLiveData.setValue(blogModels);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }

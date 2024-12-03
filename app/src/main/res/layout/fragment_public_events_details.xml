@@ -121,35 +121,6 @@
 
                 </LinearLayout>
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="10dp">
-
-                    <ProgressBar
-                        android:id="@+id/mainprogress"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:layout_marginVertical="5dp"
-                        android:background="@drawable/shap_1"
-                        android:indeterminateDrawable="@drawable/cpb_1"
-                        android:indeterminateDuration="@android:integer/config_longAnimTime"
-                        android:visibility="gone" />
-
-                    <Button
-                        android:id="@+id/btulike"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_centerInParent="true"
-                        android:background="@drawable/ic_rectangle_142"
-                        android:fontFamily="@font/dinnextltarabicregular"
-                        android:minWidth="350dp"
-                        android:text="@string/like" />
-
-                </RelativeLayout>
-
             </LinearLayout>
 
         </ScrollView>

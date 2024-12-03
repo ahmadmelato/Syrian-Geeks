@@ -26,7 +26,7 @@ public interface InterfaceAPI {
     Call<ResponseBodyModel> getCourses(@Query("sortTag") String sortTag,@Query("page") int page);
 
     @GET("/api/v1/blogs")
-    Call<ResponseBodyModel> getBlogs();
+    Call<ResponseBodyModel> getBlogs(@Query("page") int page);
 
     @GET("/api/v1/blogs/{blog_id}/details")
     Call<ResponseBodyModel> getBlogsDetails(@Path("blog_id") Integer integer);
