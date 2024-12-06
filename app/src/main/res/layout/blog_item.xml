@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="150dp"
+    android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:layoutDirection="ltr"
     android:layout_margin="2dp"
@@ -18,7 +18,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="130dp"
             android:background="@color/light_blue">
 
             <ImageView
@@ -39,7 +39,7 @@
             android:text="المدونة"
             android:lines="1"
             android:textAlignment="center"
-            android:textSize="12sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -60,12 +60,12 @@
                 android:text="التاريخ"
                 android:lines="1"
                 android:textStyle="bold"
-                android:textSize="10sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/section_icon"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/img_blog" />

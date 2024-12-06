@@ -2,7 +2,7 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="150dp"
+    android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:layoutDirection="ltr"
     android:layout_margin="2dp"
@@ -18,7 +18,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="80dp"
+            android:layout_height="130dp"
             android:background="@color/light_blue">
 
             <ImageView
@@ -39,7 +39,7 @@
             android:text="دورة"
             android:lines="1"
             android:textAlignment="center"
-            android:textSize="14sp"
+            android:textSize="18sp"
             android:textStyle="bold" />
 
         <LinearLayout
@@ -59,12 +59,12 @@
                 android:text="المدرب"
                 android:lines="1"
                 android:textStyle="bold"
-                android:textSize="11sp" />
+                android:textSize="14sp" />
 
             <ImageView
                 android:id="@+id/section_icon"
-                android:layout_width="15dp"
-                android:layout_height="15dp"
+                android:layout_width="25dp"
+                android:layout_height="25dp"
                 android:contentDescription="@string/app_name"
                 android:scaleType="centerInside"
                 android:src="@drawable/img_course_user" />
@@ -87,7 +87,7 @@
                 android:text="30 ساعة"
                 android:lines="1"
                 android:textAlignment="textEnd"
-                android:textSize="10sp" />
+                android:textSize="14sp" />
 
             <TextView
                 android:id="@+id/course_days"
@@ -97,7 +97,7 @@
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="20 درس"
                 android:lines="1"
-                android:textSize="10sp" />
+                android:textSize="14sp" />
 
         </LinearLayout>
 
