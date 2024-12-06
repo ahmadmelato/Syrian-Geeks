@@ -20,6 +20,8 @@ import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityMainBinding;
 import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
 
+import java.util.Objects;
+
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     private ActivityMainBinding binding;
@@ -136,6 +138,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
+    public void openPeopleQuationFragment(String data) {
+        PeopleQuationFragment fragment = PeopleQuationFragment.newInstance(data);
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
     public void openPublicBlogDetailsFragment(int id) {
         PublicBlogDetailsFragment fragment = PublicBlogDetailsFragment.newInstance(id);
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, fragment).addToBackStack(null).commit();
@@ -183,8 +191,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
         } else if (itemId == R.id.signout) {
+            if (Objects.requireNonNull(mainViewModel.working.getValue()).isRunning()) {
+                mainViewModel.logout(getApplicationContext());
+            }
             binding.drawerLayout.close();
-            mainViewModel.logout(getApplicationContext());
             //--------------------------------------------------------------------------------------------------------------
         } else if (itemId == R.id.item_main) {
             getSupportFragmentManager().popBackStackImmediate(null, FragmentManager.POP_BACK_STACK_INCLUSIVE);

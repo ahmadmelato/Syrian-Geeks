@@ -2,6 +2,9 @@ package com.melato.syriangeeks.model;
 
 import com.google.gson.annotations.SerializedName;
 
+import org.jsoup.Jsoup;
+import org.jsoup.nodes.Document;
+
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -24,7 +27,7 @@ public class QuestionModel {
         public int id;
         public String title;
         public String slug;
-        public String question;
+        private String question;
         public int forum_category_id;
         public int created_by;
         public Object updated_by;
@@ -34,6 +37,11 @@ public class QuestionModel {
         public Date updated_at;
         public int answers_count;
         public User user;
+
+        public String getQuestion() {
+            Document document = Jsoup.parse(question);
+            return document.text();
+        }
     }
 
     public class Link{

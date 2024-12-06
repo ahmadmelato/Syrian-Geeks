@@ -76,4 +76,16 @@ public interface InterfaceAPI {
     @GET("/api/v1/forum/questions")
     Call<ResponseBodyModel> getQuestions(@Query("page") Integer page);
 
+    @GET("/api/v1/forum/questions/details/{id}")
+    Call<ResponseBodyModel> getQuestionsDetails(@Path("id") Integer id,@Query("page") Integer page);
+
+    @POST("/api/v1/forum/comment/store/{id}")
+    Call<ResponseBodyModel> comment(@Path("id") Integer id,@Body Map<String, Object> queryMap);
+
+    @POST("/api/v1/forum/question/store")
+    Call<ResponseBodyModel> question_store(@Body Map<String, Object> queryMap);
+
+    @POST("/api/v1/forum/answer/store")
+    Call<ResponseBodyModel> answer_store(@Body Map<String, Object> queryMap);
+
 }

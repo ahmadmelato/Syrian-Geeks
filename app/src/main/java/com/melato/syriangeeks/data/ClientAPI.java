@@ -26,6 +26,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public class ClientAPI {
@@ -215,6 +216,31 @@ public class ClientAPI {
 
     public Call<ResponseBodyModel> getQuestions(int page) {
         return interfaceAPI.getQuestions(page);
+    }
+
+    public Call<ResponseBodyModel> getQuestionsDetails(Integer id, Integer page) {
+        return interfaceAPI.getQuestionsDetails(id, page);
+    }
+
+    public Call<ResponseBodyModel> comment(Integer id, String comment) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("comment", comment);
+        return interfaceAPI.comment(id, queryMap);
+    }
+
+    public Call<ResponseBodyModel> question_store(Integer category,String title,String question) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("category", category);
+        queryMap.put("title", title);
+        queryMap.put("question", question);
+        return interfaceAPI.question_store(queryMap);
+    }
+
+    public Call<ResponseBodyModel> answer_store(Integer quesion_id,String answer){
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("quesion_id", quesion_id);
+        queryMap.put("answer", answer);
+        return interfaceAPI.answer_store(queryMap);
     }
 
 

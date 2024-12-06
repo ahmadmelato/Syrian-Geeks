@@ -28,7 +28,7 @@
             android:layout_marginStart="?actionBarSize"
             android:fontFamily="@font/dinnextltarabicregular"
             android:paddingHorizontal="10dp"
-            android:text="أهلا "
+            android:text="مرحباً بك"
             android:textSize="18sp" />
 
         <de.hdodenhof.circleimageview.CircleImageView
@@ -36,6 +36,7 @@
             android:layout_width="40dp"
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
+            android:visibility="gone"
             app:civ_border_color="@color/my_light_primary"
             app:civ_border_width="1dp" />
 
@@ -45,7 +46,7 @@
             android:layout_height="?actionBarSize"
             android:background="@android:color/transparent"
             android:contentDescription="@string/app_name"
-
+            android:visibility="gone"
             android:src="@drawable/notify" />
 
         <ImageButton

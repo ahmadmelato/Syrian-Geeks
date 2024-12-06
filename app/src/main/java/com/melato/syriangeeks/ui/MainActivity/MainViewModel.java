@@ -7,6 +7,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -15,6 +16,7 @@ import com.google.gson.reflect.TypeToken;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.data.Working;
+import com.melato.syriangeeks.model.AnswerModel;
 import com.melato.syriangeeks.model.BlogDetalsModel;
 import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.BookMarkModel;
@@ -51,6 +53,8 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<List<LeaderBoardModel>> leaderBoardModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<BookMarkModel>> bookMarkModelModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<QuestionModel>> questionliveData = new MutableLiveData<>();
+    public MutableLiveData<List<QuestionModel.Category>> categoryliveData = new MediatorLiveData<>();
+    public MutableLiveData<List<AnswerModel>> answerliveData = new MutableLiveData<>();
 
     public MutableLiveData<BlogDetalsModel> blogdetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<CourseDetalsModel> coursedetailsModelLiveData = new MutableLiveData<>();
@@ -264,7 +268,6 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
-                    getIndexBlogs(context);
                     assert response.body() != null;
                     CourseModel courseModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("courses"), CourseModel.class);
                     if (courseModelLiveData.getValue() == null)
@@ -272,6 +275,7 @@ public class MainViewModel extends ViewModel {
                     List<CourseModel> courseModelList = courseModelLiveData.getValue();
                     courseModelList.add(courseModel);
                     courseModelLiveData.setValue(courseModelList);
+                    getIndexBlogs(context);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -293,7 +297,6 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
-                    getIndexEvents(context);
                     assert response.body() != null;
                     BlogModel blogModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("blogs"), BlogModel.class);
                     if (blogModelLiveData.getValue() == null)
@@ -301,6 +304,7 @@ public class MainViewModel extends ViewModel {
                     List<BlogModel> blogModels = blogModelLiveData.getValue();
                     blogModels.add(blogModel);
                     blogModelLiveData.setValue(blogModels);
+                    getIndexEvents(context);
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -614,9 +618,9 @@ public class MainViewModel extends ViewModel {
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
                     assert response.body() != null;
-                    setProgressOK(response.body().getMessage());
                     EventModel eventModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("events"), EventModel.class);
                     eventModelLiveData.setValue(eventModel.data);
+                    setProgressOK(response.body().getMessage());
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -651,7 +655,7 @@ public class MainViewModel extends ViewModel {
         setProgressRun("");
         Resources resources = context.getResources();
         int page = 1;
-        if (questionliveData.getValue() != null) {
+        if (questionliveData.getValue() != null && !questionliveData.getValue().isEmpty()) {
             page = questionliveData.getValue().get(questionliveData.getValue().size() - 1).questions.current_page + 1;
         }
         ClientAPI.getClientAPI().getQuestions(page).enqueue(new Callback<ResponseBodyModel>() {
@@ -665,6 +669,7 @@ public class MainViewModel extends ViewModel {
                     List<QuestionModel> questionModels = questionliveData.getValue();
                     questionModels.add(questionModel);
                     questionliveData.setValue(questionModels);
+                    categoryliveData.setValue(questionModel.categories);
                     setProgressOK(response.body().getMessage());
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
@@ -710,4 +715,152 @@ public class MainViewModel extends ViewModel {
             }
         });
     }
+
+
+    public void getQuestionsDetails(Context context, Integer id) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        int page = 1;
+        if (answerliveData.getValue() != null && !answerliveData.getValue().isEmpty()) {
+            page = answerliveData.getValue().get(answerliveData.getValue().size() - 1).current_page + 1;
+        }
+        ClientAPI.getClientAPI().getQuestionsDetails(id, page).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    AnswerModel questionModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("answers"), AnswerModel.class);
+                    if (answerliveData.getValue() == null)
+                        answerliveData.setValue(new ArrayList<>());
+                    List<AnswerModel> questionModels = answerliveData.getValue();
+                    questionModels.add(questionModel);
+                    answerliveData.setValue(questionModels);
+                    setProgressOK(response.body().getMessage());
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getMoreQuestionsDetails(Context context, Integer id) {
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        Resources resources = context.getResources();
+        int page = 1;
+        if (answerliveData.getValue() != null) {
+            page = answerliveData.getValue().get(answerliveData.getValue().size() - 1).current_page + 1;
+        }
+        ClientAPI.getClientAPI().getQuestionsDetails(id, page).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    AnswerModel questionModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("answers"), AnswerModel.class);
+                    if (answerliveData.getValue() == null)
+                        answerliveData.setValue(new ArrayList<>());
+                    List<AnswerModel> questionModels = answerliveData.getValue();
+                    questionModels.add(questionModel);
+                    answerliveData.setValue(questionModels);
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void comment(Context context, Integer id, String comment) {
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().comment(id, comment).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+
+                    if (answerliveData.getValue() == null)
+                        answerliveData.setValue(new ArrayList<>());
+                    List<AnswerModel> questionModels = answerliveData.getValue();
+
+                    for (AnswerModel answerModel : questionModels) {
+                        for (AnswerModel.Datum item : answerModel.data) {
+
+                        }
+                    }
+                    answerliveData.setValue(questionModels);
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void question_store(Context context, Integer category, String title, String question) {
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().question_store(category, title, question).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    questionliveData.setValue(new ArrayList<>());
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                    getQuestions(context);
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void question_store(Context context, Integer quesion_id, String answer) {
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().answer_store(quesion_id, answer).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    answerliveData.setValue(new ArrayList<>());
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                    getQuestionsDetails(context, quesion_id);
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+
 }

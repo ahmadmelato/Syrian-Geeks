@@ -23,22 +23,36 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
-import com.melato.syriangeeks.databinding.FragmentPeopleBinding;
-import com.melato.syriangeeks.model.CourseModel;
+import com.melato.syriangeeks.databinding.FragmentPeopleQuationBinding;
+import com.melato.syriangeeks.model.AnswerModel;
 import com.melato.syriangeeks.model.QuestionModel;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
-public class PeopleFragment extends Fragment implements View.OnClickListener {
+public class PeopleQuationFragment extends Fragment implements View.OnClickListener {
 
-    private FragmentPeopleBinding binding;
+    private FragmentPeopleQuationBinding binding;
     private MainViewModel viewModel;
-    private PeopleRecyclerViewAdapter peopleRecyclerViewAdapter;
+    private AnswerRecyclerViewAdapter answerRecyclerViewAdapter;
 
-    public PeopleFragment() {
+
+    private QuestionModel.Datum datum;
+
+    public PeopleQuationFragment() {
         // Required empty public constructor
+    }
+
+    public static PeopleQuationFragment newInstance(String param1) {
+        PeopleQuationFragment fragment = new PeopleQuationFragment();
+        Bundle args = new Bundle();
+        args.putString("data", param1);
+
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -49,6 +63,7 @@ public class PeopleFragment extends Fragment implements View.OnClickListener {
         viewModel.working.observe(getViewLifecycleOwner(), working -> {
             if (working != null) {
                 binding.mainprogress.setVisibility(working.isProgressing());
+                binding.btuReplay.setVisibility(working.isSuccessfulView());
                 binding.listRecyclerView.setVisibility(working.isSuccessfulView());
                 binding.nointernet.setVisibility(working.isNotSuccessfulView());
             }
@@ -60,31 +75,37 @@ public class PeopleFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+
+        binding.toolbarBack.setOnClickListener(this);
+        binding.nointernet.setOnClickListener(this);
+
+        binding.contentItem.setText(datum.user.name_ar);
+        binding.contentTitle.setText(datum.title);
+        binding.contentDisc.setText(datum.getQuestion());
+        binding.dateItem.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(datum.created_at));
+
+
+
         binding.listRecyclerView.setHasFixedSize(true);
         binding.listRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-        peopleRecyclerViewAdapter = new PeopleRecyclerViewAdapter(requireContext());
-        binding.listRecyclerView.setAdapter(peopleRecyclerViewAdapter);
+        answerRecyclerViewAdapter = new AnswerRecyclerViewAdapter(requireContext());
+        binding.listRecyclerView.setAdapter(answerRecyclerViewAdapter);
 
-        peopleRecyclerViewAdapter.SetOnItemClickListener(position -> {
-            QuestionModel.Datum item = peopleRecyclerViewAdapter.datumList.get(position);
-            MainActivity mainActivity = (MainActivity) getActivity();
-            assert mainActivity != null;
-            mainActivity.openPeopleQuationFragment(new Gson().toJson(item));
-        });
 
-        viewModel.questionliveData.observe(getViewLifecycleOwner(), datumList -> {
-            List<QuestionModel.Datum> datum = new ArrayList<>();
-            for (QuestionModel item : datumList) {
-                datum.addAll(item.questions.data);
+        viewModel.answerliveData.observe(getViewLifecycleOwner(), datumList -> {
+            List<AnswerModel.Datum> datum = new ArrayList<>();
+            for (AnswerModel item : datumList) {
+                datum.addAll(item.data);
             }
-            peopleRecyclerViewAdapter.setDatumList(datum);
+            answerRecyclerViewAdapter.setDatumList(datum);
         });
 
         binding.nointernet.setOnClickListener(this);
         binding.toolbarBack.setOnClickListener(this);
-        binding.btuAdd.setOnClickListener(this);
-        if (viewModel.questionliveData.getValue() == null)
-            viewModel.getQuestions(requireActivity());
+        binding.btuReplay.setOnClickListener(this);
+
+        if (viewModel.answerliveData.getValue() == null)
+            viewModel.getQuestionsDetails(requireActivity(),datum.id);
 
         binding.listRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -97,7 +118,7 @@ public class PeopleFragment extends Fragment implements View.OnClickListener {
                 int secrollOutItem = linearLayoutManager.findFirstVisibleItemPosition();
 
                 if (!Objects.requireNonNull(viewModel.workingLoadMore.getValue()).isRunning() && currentItem + secrollOutItem == totalItem) {
-                    viewModel.getMoreQuestions(requireContext());
+                    viewModel.getMoreQuestionsDetails(requireContext(),datum.id);
                 }
             }
 
@@ -116,10 +137,10 @@ public class PeopleFragment extends Fragment implements View.OnClickListener {
             assert mainActivity != null;
             mainActivity.backPressed();
         } else if (v.getId() == R.id.nointernet) {
-            viewModel.getQuestions(requireActivity());
-        } else if (v.getId() == R.id.btuAdd) {
+            viewModel.getQuestionsDetails(requireActivity(),datum.id);
+        }else if (v.getId() == R.id.btuReplay){
             if (!ClientAPI.getClientAPI().tokenInterceptor.getToken().isEmpty()) {
-                showCreateTopicDialog();
+                showCreateAnwserDialog();
             } else {
                 Toast.makeText(requireContext(), "الرجاء تسجيل الدخول الى حسابك", Toast.LENGTH_SHORT).show();
             }
@@ -127,40 +148,15 @@ public class PeopleFragment extends Fragment implements View.OnClickListener {
         }
     }
 
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_people, container, false);
-        return binding.getRoot();
-    }
 
-
-    private void showCreateTopicDialog() {
+    private void showCreateAnwserDialog() {
         // Inflate the custom layout
         LayoutInflater inflater = LayoutInflater.from(requireActivity());
-        View dialogView = inflater.inflate(R.layout.dialog_create_topic, null);
+        View dialogView = inflater.inflate(R.layout.dialog_create_anwser, null);
 
-        // Initialize views inside the dialog
-        Spinner categorySpinner = dialogView.findViewById(R.id.category_spinner);
-        EditText topicTitle = dialogView.findViewById(R.id.topic_title);
         EditText topic_content = dialogView.findViewById(R.id.topic_content);
         Button cancelButton = dialogView.findViewById(R.id.cancel_button);
         Button submitButton = dialogView.findViewById(R.id.submit_button);
-        List<String> categories = new ArrayList<>();
-        if (viewModel.categoryliveData.getValue() == null || viewModel.categoryliveData.getValue().isEmpty())
-            return;
-        for (QuestionModel.Category category : Objects.requireNonNull(viewModel.categoryliveData.getValue())) {
-            categories.add(category.title);
-        }
-
-        ArrayAdapter<String> spinnerAdapter = new ArrayAdapter<>(
-                requireContext(),
-                android.R.layout.simple_spinner_item,
-                categories
-        );
-        spinnerAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        categorySpinner.setAdapter(spinnerAdapter);
 
         AlertDialog dialog = new AlertDialog.Builder(requireContext())
                 .setView(dialogView)
@@ -174,15 +170,13 @@ public class PeopleFragment extends Fragment implements View.OnClickListener {
         cancelButton.setOnClickListener(v -> dialog.dismiss());
 
         submitButton.setOnClickListener(v -> {
-            Integer selectedCategory = viewModel.categoryliveData.getValue().get(categorySpinner.getSelectedItemPosition()).id;
-            String title = topicTitle.getText().toString().trim();
             String content = topic_content.getText().toString().trim();
 
-            if (title.isEmpty() || content.isEmpty()) {
+            if (content.isEmpty()) {
                 Toast.makeText(requireContext(), "يرجى ملء جميع الحقول", Toast.LENGTH_SHORT).show();
             } else {
                 // Handle submission
-                viewModel.question_store(requireContext(),selectedCategory,title,content);
+                viewModel.question_store(requireContext(),datum.id,content);
                 dialog.dismiss();
             }
         });
@@ -190,4 +184,19 @@ public class PeopleFragment extends Fragment implements View.OnClickListener {
         dialog.show();
     }
 
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            datum = new Gson().fromJson(getArguments().getString("data"), QuestionModel.Datum.class);
+        }
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_people_quation, container, false);
+        return binding.getRoot();
+    }
 }

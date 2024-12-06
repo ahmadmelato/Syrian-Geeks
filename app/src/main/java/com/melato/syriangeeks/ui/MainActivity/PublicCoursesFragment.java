@@ -37,7 +37,6 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        binding.toolbarBack.setOnClickListener(this);
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
         viewModel.working.observe(getViewLifecycleOwner(), working -> {
@@ -71,13 +70,13 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
             CourseModel.Datum item = publicCourseViewAdapter.CourseModels.get(position);
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
-            mainActivity.openPublicCourseDetailsFragment("PUK",item.getId());
+            mainActivity.openPublicCourseDetailsFragment("PUK", item.getId());
         });
 
         if (viewModel.courseModelLiveData.getValue() == null)
             viewModel.getCourses(requireContext(), "");
 
-
+        binding.toolbarBack.setOnClickListener(this);
         binding.toolbarSearch.setOnClickListener(this);
         binding.nointernet.setOnClickListener(this);
 
@@ -92,7 +91,7 @@ public class PublicCoursesFragment extends Fragment implements View.OnClickListe
                 int secrollOutItem = linearLayoutManager.findFirstVisibleItemPosition();
 
                 if (!Objects.requireNonNull(viewModel.workingLoadMore.getValue()).isRunning() && currentItem + secrollOutItem == totalItem) {
-                    viewModel.getCoursesMore(requireContext(),"");
+                    viewModel.getCoursesMore(requireContext(), "");
                 }
             }
 

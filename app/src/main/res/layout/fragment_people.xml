@@ -71,7 +71,7 @@
                     android:textSize="15sp" />
 
                 <Button
-                    android:id="@+id/btuNext"
+                    android:id="@+id/btuAdd"
                     style="@style/Theme.SyrianGeeks"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -133,6 +133,8 @@
             android:indeterminateDuration="@android:integer/config_longAnimTime"
             android:layout_gravity="center"
             android:visibility="gone" />
+
+
 
     </LinearLayout>
 </layout>

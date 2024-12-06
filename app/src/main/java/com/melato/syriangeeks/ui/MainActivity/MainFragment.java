@@ -76,6 +76,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         MainViewModel.userLiveData.observe(getViewLifecycleOwner(), userModel -> {
             if (userModel != null) {
                 toolbar_name.setText("أهلا " + userModel.getUser().getName());
+                toolbar_notify.setVisibility(View.VISIBLE);
+                profile_image.setVisibility(View.VISIBLE);
                 Glide.with(this)
                         .load(userModel.getUser().getAvatar())
                         .placeholder(R.mipmap.ic_launcher)
@@ -83,7 +85,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                         .into(profile_image);
             } else {
                 profile_image.setImageResource(R.mipmap.ic_launcher);
-                toolbar_name.setText("أهلا");
+                toolbar_name.setText("مرحباً بك");
+                toolbar_notify.setVisibility(View.GONE);
+                profile_image.setVisibility(View.GONE);
 
             }
         });
