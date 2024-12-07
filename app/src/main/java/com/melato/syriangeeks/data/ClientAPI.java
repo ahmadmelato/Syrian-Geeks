@@ -35,7 +35,7 @@ public class ClientAPI {
     public static int Filed = 0;
     public static int Run = -1;
 
-    public static final String BASE_URL = "https://sygeeks.net";
+    public static final String BASE_URL = "http://sygeeks.net";
     private InterfaceAPI interfaceAPI;
     public static ClientAPI clientAPI;
     public TokenInterceptor tokenInterceptor;
