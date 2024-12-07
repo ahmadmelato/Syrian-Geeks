@@ -16,6 +16,9 @@ import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
+
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import okhttp3.OkHttpClient;
@@ -35,7 +38,7 @@ public class ClientAPI {
     public static int Filed = 0;
     public static int Run = -1;
 
-    public static final String BASE_URL = "http://sygeeks.net";
+    public static final String BASE_URL = "https://sygeeks.net";
     private InterfaceAPI interfaceAPI;
     public static ClientAPI clientAPI;
     public TokenInterceptor tokenInterceptor;
@@ -44,7 +47,7 @@ public class ClientAPI {
     public ClientAPI() {
         tokenInterceptor = new TokenInterceptor();
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(tokenInterceptor)
+                .addInterceptor(tokenInterceptor).hostnameVerifier((hostname, session) -> true)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder().client(client)
@@ -56,7 +59,7 @@ public class ClientAPI {
     public ClientAPI(String token_p) {
 
         tokenInterceptor = new TokenInterceptor(token_p);
-        OkHttpClient client = new OkHttpClient.Builder()
+        OkHttpClient client = new OkHttpClient.Builder().hostnameVerifier((hostname, session) -> true)
                 .addInterceptor(tokenInterceptor)
                 .build();
 
