@@ -150,6 +150,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
+    public void openMyCoursesFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myCoursesFragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    public void openCourseActivitiesFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, courseActivitiesFragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
     public void backPressed() {
         onBackPressedCallback.handleOnBackPressed();
     }
@@ -226,7 +237,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void openAllBlog() {
-
         binding.bottomnavigation.setSelectedItemId(R.id.item_Blog);
     }
 
