@@ -202,7 +202,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
         } else if (itemId == R.id.signout) {
-            if (Objects.requireNonNull(mainViewModel.working.getValue()).isRunning()) {
+            if (!Objects.requireNonNull(mainViewModel.working.getValue()).isRunning()) {
                 mainViewModel.logout(getApplicationContext());
             }
             binding.drawerLayout.close();

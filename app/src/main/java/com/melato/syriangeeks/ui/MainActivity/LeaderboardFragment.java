@@ -55,8 +55,7 @@ public class LeaderboardFragment extends Fragment implements View.OnClickListene
                 binding.mainprogress.setVisibility(working.isProgressing());
                 binding.main.setVisibility(working.isSuccessfulView());
                 binding.nointernet.setVisibility(working.isNotSuccessfulView());
-                if (!working.isRunning())
-                    Toast.makeText(requireActivity(), working.getsSmg(), Toast.LENGTH_SHORT).show();
+
             }
         });
 

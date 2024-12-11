@@ -118,6 +118,13 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 datum.addAll(item.data);
             }
             courseRecyclerViewAdapter.setCourseModels(datum);
+            if(datum.isEmpty()){
+                binding.HeaderRecyclerView1.setVisibility(View.GONE);
+                binding.RecyclerView1.setVisibility(View.GONE);
+            }else {
+                binding.HeaderRecyclerView1.setVisibility(View.VISIBLE);
+                binding.RecyclerView1.setVisibility(View.VISIBLE);
+            }
         });
 
         mainViewModel.blogModelLiveData.observe(getViewLifecycleOwner(), blogs -> {
@@ -126,10 +133,24 @@ public class MainFragment extends Fragment implements View.OnClickListener {
                 datum.addAll(item.data);
             }
             blogRecyclerViewAdapter.setBlogList(datum);
+            if(datum.isEmpty()){
+                binding.HeaderRecyclerView2.setVisibility(View.GONE);
+                binding.RecyclerView2.setVisibility(View.GONE);
+            }else {
+                binding.HeaderRecyclerView2.setVisibility(View.VISIBLE);
+                binding.RecyclerView2.setVisibility(View.VISIBLE);
+            }
         });
 
         mainViewModel.eventModelLiveData.observe(getViewLifecycleOwner(), events -> {
             eventRecyclerViewAdapter.setEventList(events);
+            if(events.isEmpty()){
+                binding.HeaderRecyclerView3.setVisibility(View.GONE);
+                binding.RecyclerView3.setVisibility(View.GONE);
+            }else {
+                binding.HeaderRecyclerView3.setVisibility(View.VISIBLE);
+                binding.RecyclerView3.setVisibility(View.VISIBLE);
+            }
         });
 
         eventRecyclerViewAdapter.SetOnItemClickListener(position -> {

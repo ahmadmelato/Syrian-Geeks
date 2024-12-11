@@ -160,13 +160,14 @@
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="30 درس"
+                                android:maxWidth="100dp"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
 
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="5dp"
+                                android:layout_marginHorizontal="1dp"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="عدد الدورس"
@@ -200,6 +201,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
+                                android:maxWidth="100dp"
                                 android:text="5 ساعة"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -207,7 +209,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="5dp"
+                                android:layout_marginHorizontal="1dp"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="عدد الساعات"
@@ -248,7 +250,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="5dp"
+                                android:layout_marginHorizontal="1dp"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="الوصول"
@@ -289,7 +291,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="5dp"
+                                android:layout_marginHorizontal="1dp"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="المدة"
@@ -323,6 +325,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
+                                android:maxWidth="100dp"
                                 android:text="محمد الاحمد"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -330,7 +333,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="5dp"
+                                android:layout_marginHorizontal="1dp"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="المدرب"
@@ -365,6 +368,7 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
+                                android:maxWidth="100dp"
                                 android:text="برمجة"
                                 android:textSize="14sp"
                                 android:textStyle="bold" />
@@ -372,7 +376,7 @@
                             <TextView
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="5dp"
+                                android:layout_marginHorizontal="1dp"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="القسم"

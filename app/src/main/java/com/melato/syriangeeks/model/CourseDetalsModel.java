@@ -73,7 +73,7 @@ public class CourseDetalsModel {
     public int total_sales;
     public int course_duration;
     public int point;
-    public String instructor_name;
+    private String instructor_name;
     public int created_by;
     public int updated_by;
     public Object deleted_by;
@@ -87,6 +87,12 @@ public class CourseDetalsModel {
     public ArrayList<Section> sections;
     public ThumbnailImage thumbnail_image;
     public Category category;
+
+    public String getInstructor_name() {
+        instructor_name = instructor_name.replace("المدرب:", "").replaceAll("\\s+", " ").trim();
+        instructor_name = instructor_name.replace("المدرب", "").replaceAll("\\s+", " ").trim();
+        return instructor_name;
+    }
 
     public String getContent() {
         if(description == null)

@@ -82,11 +82,11 @@ public class PublicCourseDetailsFragment extends Fragment implements View.OnClic
 
         mainViewModel.coursedetailsModelLiveData.observe(getViewLifecycleOwner(), courseDetalsModel -> {
             binding.blogName.setText(courseDetalsModel.title);
-            binding.teacherName.setText(courseDetalsModel.instructor_name);
+            binding.teacherName.setText(courseDetalsModel.getInstructor_name());
             binding.courseHour.setText(courseDetalsModel.time);
             binding.courseDep.setText(courseDetalsModel.category.title);
             binding.courseDays.setText(courseDetalsModel.lessonsCount + " درس");
-            binding.courseTeath.setText(courseDetalsModel.instructor_name);
+            binding.courseTeath.setText(courseDetalsModel.getInstructor_name());
             binding.btuJouin.setEnabled(!courseDetalsModel.joined);
 
             loadImage(ClientAPI.BASE_URL + "/storage/" + courseDetalsModel.thumbnail_image.original);
