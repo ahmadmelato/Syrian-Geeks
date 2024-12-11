@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.VideoView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -33,6 +34,7 @@ public class AnswerRecyclerViewAdapter extends RecyclerView.Adapter<AnswerRecycl
     public List<AnswerModel.Datum> datumList;
     private onItemClickListener mlistener;
     public Context context;
+    private PeopleQuationFragment peopleQuationFragment;
 
     public interface onItemClickListener {
         void OnItemClick(int position);
@@ -71,9 +73,10 @@ public class AnswerRecyclerViewAdapter extends RecyclerView.Adapter<AnswerRecycl
         }
     }
 
-    public AnswerRecyclerViewAdapter(Context context) {
+    public AnswerRecyclerViewAdapter(Context context,PeopleQuationFragment peopleQuationFragment) {
         this.datumList = new ArrayList<>();
         this.context = context;
+        this.peopleQuationFragment = peopleQuationFragment;
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -121,6 +124,8 @@ public class AnswerRecyclerViewAdapter extends RecyclerView.Adapter<AnswerRecycl
             }
 
         });
+
+        ViewHolder.edtReplay.setOnClickListener(v -> peopleQuationFragment.showCreateCommanitDialog(item.id));
         //ViewHolder.member_item.setText(blog.title);
         //loadImage(ClientAPI.BASE_URL + "/storage/" + blog.icon_image.original, ViewHolder.img);
     }

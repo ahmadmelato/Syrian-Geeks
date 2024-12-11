@@ -88,7 +88,7 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
 
         binding.listRecyclerView.setHasFixedSize(true);
         binding.listRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-        answerRecyclerViewAdapter = new AnswerRecyclerViewAdapter(requireContext());
+        answerRecyclerViewAdapter = new AnswerRecyclerViewAdapter(requireContext(),this);
         binding.listRecyclerView.setAdapter(answerRecyclerViewAdapter);
 
 
@@ -177,6 +177,41 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
             } else {
                 // Handle submission
                 viewModel.question_store(requireContext(),datum.id,content);
+                dialog.dismiss();
+            }
+        });
+
+        dialog.show();
+    }
+
+    public void showCreateCommanitDialog(int id) {
+        // Inflate the custom layout
+        LayoutInflater inflater = LayoutInflater.from(requireActivity());
+        View dialogView = inflater.inflate(R.layout.dialog_create_anwser, null);
+
+        EditText topic_content = dialogView.findViewById(R.id.topic_content);
+        Button cancelButton = dialogView.findViewById(R.id.cancel_button);
+        Button submitButton = dialogView.findViewById(R.id.submit_button);
+
+        AlertDialog dialog = new AlertDialog.Builder(requireContext())
+                .setView(dialogView)
+                .setCancelable(false)
+                .create();
+
+        if (dialog.getWindow() != null) {
+            dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
+        }
+
+        cancelButton.setOnClickListener(v -> dialog.dismiss());
+
+        submitButton.setOnClickListener(v -> {
+            String content = topic_content.getText().toString().trim();
+
+            if (content.isEmpty()) {
+                Toast.makeText(requireContext(), "يرجى ملء جميع الحقول", Toast.LENGTH_SHORT).show();
+            } else {
+                // Handle submission
+                viewModel.comment(requireContext(),id,content);
                 dialog.dismiss();
             }
         });
