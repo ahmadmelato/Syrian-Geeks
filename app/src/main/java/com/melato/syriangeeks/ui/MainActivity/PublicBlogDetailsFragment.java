@@ -67,7 +67,7 @@ public class PublicBlogDetailsFragment extends Fragment implements View.OnClickL
         webSettings.setAllowFileAccess(true);
         webSettings.setAllowContentAccess(true);
         webSettings.setDomStorageEnabled(true);
-        webSettings.setFixedFontFamily();
+        webSettings.setFixedFontFamily("monospace");
         mainViewModel.blogdetailsModelLiveData.observe(getViewLifecycleOwner(), blogDetalsModel -> {
             binding.blogName.setText(blogDetalsModel.title);
             binding.blogDate.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(blogDetalsModel.created_at));
