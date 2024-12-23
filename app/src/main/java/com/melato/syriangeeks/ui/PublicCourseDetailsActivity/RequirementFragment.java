@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentRequirementBinding;
 import com.melato.syriangeeks.databinding.FragmentTrainingMethodologyBinding;
@@ -18,6 +19,7 @@ import com.melato.syriangeeks.model.CourseDetalsModel;
 
 
 public class RequirementFragment extends Fragment {
+    private static final String ARG_PARAM1 = "model";
     private FragmentRequirementBinding binding;
     private CourseDetalsModel model;
 
@@ -25,8 +27,20 @@ public class RequirementFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public RequirementFragment(CourseDetalsModel model) {
-        this.model = model;
+    public static RequirementFragment newInstance(String param1) {
+        RequirementFragment fragment = new RequirementFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            model = new Gson().fromJson(getArguments().getString(ARG_PARAM1), CourseDetalsModel.class);
+        }
     }
 
     @Override

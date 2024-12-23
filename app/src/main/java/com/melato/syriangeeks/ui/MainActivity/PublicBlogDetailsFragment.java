@@ -92,7 +92,8 @@ public class PublicBlogDetailsFragment extends Fragment implements View.OnClickL
 
         binding.toolbarBack.setOnClickListener(this);
         binding.nointernet.setOnClickListener(this);
-        mainViewModel.getBlogsDetails(requireContext(), id);
+        if (mainViewModel.blogdetailsModelLiveData.getValue() == null)
+            mainViewModel.getBlogsDetails(requireContext(), id);
     }
 
     @Override

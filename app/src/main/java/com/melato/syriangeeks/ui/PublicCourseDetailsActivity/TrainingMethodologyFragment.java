@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentTrainingMethodologyBinding;
 import com.melato.syriangeeks.model.CourseDetalsModel;
@@ -20,6 +21,7 @@ import com.melato.syriangeeks.model.CourseDetalsModel;
 
 public class TrainingMethodologyFragment extends Fragment {
 
+    private static final String ARG_PARAM1 = "model";
     private FragmentTrainingMethodologyBinding binding;
     private CourseDetalsModel model;
     private SectionRecyclerViewAdapter sectionRecyclerViewAdapter;
@@ -28,8 +30,20 @@ public class TrainingMethodologyFragment extends Fragment {
         // Required empty public constructor
     }
 
-    public TrainingMethodologyFragment(CourseDetalsModel model) {
-        this.model = model;
+    public static TrainingMethodologyFragment newInstance(String param1) {
+        TrainingMethodologyFragment fragment = new TrainingMethodologyFragment();
+        Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            model = new Gson().fromJson(getArguments().getString(ARG_PARAM1),CourseDetalsModel.class) ;
+        }
     }
 
 
