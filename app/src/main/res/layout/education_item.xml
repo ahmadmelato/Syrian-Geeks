@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="2dp"
+    android:layoutDirection="ltr"
+    app:cardCornerRadius="10dp">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="جامعة دمشق"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="بكالوريوس- هندسة برمجيات و نظم معلومات"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="2/Sep/2022 - 3/June/2024"
+                android:textSize="16sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="تخرجت من كلية الهندسة المعلوماتية بدمشق اختصاص هندسة برمجيات و نظم معلومات"
+                android:textSize="16sp" />
+
+        </LinearLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/baseline_edit_20"
+            android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+            app:fabCustomSize="35dp"
+            app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+            app:tint="@color/white" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

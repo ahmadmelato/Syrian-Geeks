@@ -64,11 +64,25 @@ public class PublicBlogDetailsFragment extends Fragment implements View.OnClickL
         webSettings.setUseWideViewPort(false);
         webSettings.setBuiltInZoomControls(true);
         webSettings.setDisplayZoomControls(false);
-
+        webSettings.setAllowFileAccess(true);
+        webSettings.setAllowContentAccess(true);
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setFixedFontFamily();
         mainViewModel.blogdetailsModelLiveData.observe(getViewLifecycleOwner(), blogDetalsModel -> {
             binding.blogName.setText(blogDetalsModel.title);
             binding.blogDate.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(blogDetalsModel.created_at));
-            binding.web.loadData("<html dir='rtl' lang='ar'><body>" + blogDetalsModel.description + "</body></html>", "text/html", "UTF-8");
+
+            String htmlContent = "<html dir='rtl' lang='ar'>" +
+                    "<head>" +
+                    "<style type='text/css'>" +
+                    "@font-face { font-family: 'Bahji'; src: url('https://sygeeks.net/frontend/assets/fonts/bahji/bahji.ttf'); }" +
+                    "body { font-family: 'Bahji'; font-size: 16px; }" +
+                    "</style>" +
+                    "</head>" +
+                    "<body>" + blogDetalsModel.description + "</body>" +
+                    "</html>";
+
+            binding.web.loadData(htmlContent, "text/html; charset=UTF-8", null);
             System.out.println(ClientAPI.BASE_URL + "/storage" + blogDetalsModel.meta_image.original);
             loadImage(ClientAPI.BASE_URL + "/storage/" + blogDetalsModel.meta_image.original);
             binding.web.setLayoutDirection(View.LAYOUT_DIRECTION_RTL);

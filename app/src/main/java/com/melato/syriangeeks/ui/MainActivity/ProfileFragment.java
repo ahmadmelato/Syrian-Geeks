@@ -36,17 +36,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.toolbarBack.setOnClickListener(this);
-        binding.sectionsRecyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        List<Section> sections = new ArrayList<>();
-        sections.add(new Section("حول", R.drawable.book));
-        sections.add(new Section("الخبرات", R.drawable.book));
-        sections.add(new Section("التعليم", R.drawable.book));
-        sections.add(new Section("المهارات", R.drawable.book));
-        sections.add(new Section("روابط التواصل الاجتماعي", R.drawable.book));
-        sections.add(new Section("السيرة الذاتية", R.drawable.book));
-        sections.add(new Section("رقم الهاتف", R.drawable.book));
-        binding.sectionsRecyclerView.setAdapter(new ProfileSectionAdapter(getContext(),sections));
+        binding.expan1.setOnClickListener(this);
+        binding.expan2.setOnClickListener(this);
+        binding.expan3.setOnClickListener(this);
     }
 
     @Override
@@ -55,6 +47,27 @@ public class ProfileFragment extends Fragment implements View.OnClickListener{
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.backPressed();
+        }
+       else if (v.getId() == R.id.expan_1) {
+            if(binding.about.getVisibility()== View.GONE){
+                binding.about.setVisibility(View.VISIBLE);
+            }else{
+                binding.about.setVisibility(View.GONE);
+            }
+        }
+        else if (v.getId() == R.id.expan_2) {
+            if(binding.education.getVisibility()== View.GONE){
+                binding.education.setVisibility(View.VISIBLE);
+            }else{
+                binding.education.setVisibility(View.GONE);
+            }
+        }
+        else if (v.getId() == R.id.expan_3) {
+            if(binding.skill.getVisibility()== View.GONE){
+                binding.skill.setVisibility(View.VISIBLE);
+            }else{
+                binding.skill.setVisibility(View.GONE);
+            }
         }
     }
 }

@@ -2,11 +2,15 @@ package com.melato.syriangeeks.ui.MainActivity;
 
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.CompoundButton;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatDelegate;
+import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
@@ -22,10 +26,11 @@ import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetails
 
 import java.util.Objects;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
 
     private ActivityMainBinding binding;
     private MainViewModel mainViewModel;
+    private androidx.appcompat.widget.SwitchCompat SwitchCompat;
 
     private MainFragment mainFragment;
     private DashbordFragment dashbordFragment;
@@ -57,6 +62,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         binding.navView.setNavigationItemSelectedListener(this);
         binding.bottomnavigation.setOnItemSelectedListener(this::onNavigationItemSelected);
+        SwitchCompat = binding.navView.getHeaderView(0).findViewById(R.id.main_activity_sw_simulate);
         mainFragment = new MainFragment();
         dashbordFragment = new DashbordFragment();
         courseActivitiesFragment = new CourseActivitiesFragment();
@@ -93,17 +99,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         };
         getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
+        SwitchCompat.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked){
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
+            }else{
+                AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
+            }
+        });
 
-//        mainViewModel.working.observe(this, working -> {
-//            if (working != null) {
-////                binding.mainprogress.setVisibility(working.isProgressing());
-////                binding.btuLogin.setVisibility(working.isFinish());
-////                binding.createAccount.setEnabled(working.isBooleanFinish());
-////                binding.btuLoginGuest.setEnabled(working.isBooleanFinish());
-//                if (!working.isRunning())
-//                    Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
 
         MainViewModel.userLiveData.observe(this, userModel -> {
             if (userModel == null) {
@@ -117,6 +120,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
         mainViewModel.getData(getApplicationContext());
+
+        binding.addfbtu.setOnClickListener(this);
 
     }
 
@@ -246,5 +251,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public MainViewModel getMainViewModel() {
         return mainViewModel;
+    }
+
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.addfbtu &&  !myCoursesFragment.isVisible()){
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myCoursesFragment).addToBackStack(null).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.drawerLayout.close();
+        }
     }
 }

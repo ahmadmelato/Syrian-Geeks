@@ -47,7 +47,7 @@ public class ClientAPI {
     public ClientAPI() {
         tokenInterceptor = new TokenInterceptor();
         OkHttpClient client = new OkHttpClient.Builder()
-                .addInterceptor(tokenInterceptor).hostnameVerifier((hostname, session) -> true)
+                .addInterceptor(tokenInterceptor)
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder().client(client)
@@ -59,7 +59,7 @@ public class ClientAPI {
     public ClientAPI(String token_p) {
 
         tokenInterceptor = new TokenInterceptor(token_p);
-        OkHttpClient client = new OkHttpClient.Builder().hostnameVerifier((hostname, session) -> true)
+        OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(tokenInterceptor)
                 .build();
 
