@@ -107,12 +107,12 @@ public class ClientAPI {
         ErrorAPI error;
 
         try {
+            assert response.errorBody() != null;
             error = converter.convert(response.errorBody());
+            return error;
         } catch (IOException e) {
             return new ErrorAPI();
         }
-
-        return error;
     }
 
     public static void setClientAPIToken(String token_p) {
@@ -244,6 +244,10 @@ public class ClientAPI {
         queryMap.put("quesion_id", quesion_id);
         queryMap.put("answer", answer);
         return interfaceAPI.answer_store(queryMap);
+    }
+
+    public Call<ResponseBodyModel> getProfile(){
+        return interfaceAPI.getProfile();
     }
 
 

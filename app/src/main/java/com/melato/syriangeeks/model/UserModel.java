@@ -32,7 +32,7 @@ public class UserModel {
         }
 
         public String getName() {
-            return name;
+            return name_ar;
         }
 
         public String getEmail() {

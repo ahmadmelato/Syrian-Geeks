@@ -27,6 +27,7 @@ import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.EventModel;
 import com.melato.syriangeeks.model.LeaderBoardModel;
 import com.melato.syriangeeks.model.MyCourseModel;
+import com.melato.syriangeeks.model.ProfileModel;
 import com.melato.syriangeeks.model.QuestionModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
@@ -55,7 +56,7 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<List<QuestionModel>> questionliveData = new MutableLiveData<>();
     public MutableLiveData<List<QuestionModel.Category>> categoryliveData = new MediatorLiveData<>();
     public MutableLiveData<List<AnswerModel>> answerliveData = new MutableLiveData<>();
-
+    public MutableLiveData<ProfileModel> profileModelModelLiveData = new MutableLiveData<>();
     public MutableLiveData<BlogDetalsModel> blogdetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<CourseDetalsModel> coursedetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<MyCourseModel.Datum>> myCourseModelLiveData = new MutableLiveData<>();
@@ -857,6 +858,30 @@ public class MainViewModel extends ViewModel {
             @Override
             public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
                 workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void getProfile(Context context) {
+        setProgressRun("");
+        Resources resources = context.getResources();
+        ClientAPI.getClientAPI().getProfile().enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    assert response.body() != null;
+                    ProfileModel profileModel = new Gson().fromJson(response.body().getData().getAsJsonObject(), ProfileModel.class);
+                    profileModelModelLiveData.setValue(profileModel);
+                    setProgressOK(response.body().getMessage());
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
                 Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
             }
         });

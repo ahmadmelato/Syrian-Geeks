@@ -88,4 +88,7 @@ public interface InterfaceAPI {
     @POST("/api/v1/forum/answer/store")
     Call<ResponseBodyModel> answer_store(@Body Map<String, Object> queryMap);
 
+    @GET("/api/v1/student/setting/profile")
+    Call<ResponseBodyModel> getProfile();
+
 }
