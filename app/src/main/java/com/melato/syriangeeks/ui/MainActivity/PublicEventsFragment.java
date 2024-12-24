@@ -1,6 +1,5 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,6 +18,7 @@ import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentPublicEventsBinding;
 import com.melato.syriangeeks.model.EventModel;
+import com.melato.syriangeeks.ui.MainViewModel;
 
 public class PublicEventsFragment extends Fragment implements View.OnClickListener {
 

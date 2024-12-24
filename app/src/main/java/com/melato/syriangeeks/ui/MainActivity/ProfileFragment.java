@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -19,13 +18,8 @@ import android.widget.ImageView;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentProfileBinding;
-import com.melato.syriangeeks.model.ProfileModel;
-import com.melato.syriangeeks.model.Section;
-import com.squareup.picasso.Callback;
+import com.melato.syriangeeks.ui.MainViewModel;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
@@ -34,6 +28,9 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private MainViewModel viewModel;
     private SkillsViewAdapter skillsViewAdapter;
     private SkillsViewAdapter linksViewAdapter;
+
+    private DialogUpdateProfile dialogUpdateProfile;
+
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -48,13 +45,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         super.onViewCreated(view, savedInstanceState);
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-
+        dialogUpdateProfile = new DialogUpdateProfile(requireContext(), viewModel);
         binding.toolbarBack.setOnClickListener(this);
         binding.expan1.setOnClickListener(this);
         binding.expan2.setOnClickListener(this);
         binding.expan3.setOnClickListener(this);
         binding.expan4.setOnClickListener(this);
         binding.expan5.setOnClickListener(this);
+        binding.editaboutfbtu.setOnClickListener(this);
 
         binding.skillList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, true));
         skillsViewAdapter = new SkillsViewAdapter(requireContext());
@@ -84,13 +82,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             if (profileModel != null) {
                 binding.fullName.setText((profileModel.name_ar != null ? profileModel.name_ar : "") + " - " + profileModel.name);
                 binding.genderBirthday.setText(profileModel.getGender() + " - " + profileModel.date_of_birth + " - " + (profileModel.getNationality() != null ? profileModel.getNationality() : ""));
-                binding.edctionsWorks.setText((profileModel.getEducation() != null ? profileModel.getEducation() : "") + " - " + (profileModel.work_field != null ? profileModel.work_field : ""));
-                binding.experniceWay.setText(profileModel.getDesignation()+ " ");
+                binding.edctionsWorks.setText((profileModel.getEducation() != null ? profileModel.getEducation() : "") + " - " + (profileModel.getWork_field() != null ? profileModel.getWork_field() : ""));
+                binding.experniceWay.setText(profileModel.getDesignation() + " ");
                 binding.phone.setText(profileModel.mobile != null ? profileModel.mobile : "");
                 binding.aboutMe.setText(profileModel.about_me != null ? profileModel.about_me : "");
                 skillsViewAdapter.setSkillList(profileModel.skills);
                 linksViewAdapter.setSkillList(profileModel.social_media_links);
-                loadImage(profileModel.avatar,binding.profileImage);
+                loadImage(profileModel.avatar, binding.profileImage);
             }
         });
 
@@ -140,12 +138,15 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             } else {
                 binding.experiences.setVisibility(View.GONE);
             }
-        }else if (v.getId() == R.id.expan_5) {
+        } else if (v.getId() == R.id.expan_5) {
             if (binding.links.getVisibility() == View.GONE) {
                 binding.links.setVisibility(View.VISIBLE);
             } else {
                 binding.links.setVisibility(View.GONE);
             }
+        } else if (v.getId() == R.id.editaboutfbtu) {
+
+            dialogUpdateProfile.show();
         }
     }
 }

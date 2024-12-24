@@ -17,6 +17,7 @@ import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.databinding.FragmentPublicEventsDetailsBinding;
 import com.melato.syriangeeks.model.EventModel;
+import com.melato.syriangeeks.ui.MainViewModel;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 

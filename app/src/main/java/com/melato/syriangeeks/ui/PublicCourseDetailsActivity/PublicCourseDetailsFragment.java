@@ -15,7 +15,7 @@ import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.databinding.FragmentCourseDetailsBinding;
 import com.melato.syriangeeks.ui.MainActivity.MainActivity;
-import com.melato.syriangeeks.ui.MainActivity.MainViewModel;
+import com.melato.syriangeeks.ui.MainViewModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.Objects;

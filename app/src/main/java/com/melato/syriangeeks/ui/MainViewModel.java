@@ -1,5 +1,6 @@
-package com.melato.syriangeeks.ui.MainActivity;
+package com.melato.syriangeeks.ui;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -7,6 +8,7 @@ import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.databinding.ObservableField;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -21,6 +23,7 @@ import com.melato.syriangeeks.model.BlogDetalsModel;
 import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.BookMarkModel;
 import com.melato.syriangeeks.model.CertificateModel;
+import com.melato.syriangeeks.model.CountriesModel;
 import com.melato.syriangeeks.model.CourseActivitiesModel;
 import com.melato.syriangeeks.model.CourseDetalsModel;
 import com.melato.syriangeeks.model.CourseModel;
@@ -32,8 +35,12 @@ import com.melato.syriangeeks.model.QuestionModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
 
+import java.io.InputStream;
 import java.lang.reflect.Type;
+import java.nio.charset.StandardCharsets;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -60,10 +67,70 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<BlogDetalsModel> blogdetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<CourseDetalsModel> coursedetailsModelLiveData = new MutableLiveData<>();
     public MutableLiveData<List<MyCourseModel.Datum>> myCourseModelLiveData = new MutableLiveData<>();
+    public List<CountriesModel> countriesModels;
+
+    @SuppressLint("SimpleDateFormat")
+    public ObservableField<String> name = new ObservableField<>(""),
+            name_ar = new ObservableField<>(""),
+            date_of_birth = new ObservableField<>(new SimpleDateFormat("yyyy-MM-dd").format(new Date())),
+            nationality = new ObservableField<>(""),
+            education = new ObservableField<>(""),
+            work_field = new ObservableField<>(""),
+            other_work_field = new ObservableField<>(""),
+            experience_years = new ObservableField<>(""),
+            freelancer = new ObservableField<>(""),
+            freelancer_years = new ObservableField<>("");
+
+    public ObservableField<Integer> gender = new ObservableField<>(1),newsletter = new ObservableField<>(0);
+
+    public ObservableField<String> cv_file = new ObservableField<>(""),
+            country = new ObservableField<>(""),
+            state = new ObservableField<>(""),
+            location = new ObservableField<>(""),
+            place = new ObservableField<>(""),
+            disability = new ObservableField<>(""),
+            email = new ObservableField<>(""),
+            phone = new ObservableField<>(""),
+            phone_dial = new ObservableField<>("00963"),
+            password = new ObservableField<>(""),
+            password_confirmation = new ObservableField<>("");
 
     public MainViewModel() {
         setProgressOK("");
         workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+    }
+
+    public List<CountriesModel> getCountriesModels(Context context) {
+        if (countriesModels == null) {
+            Type listType = new TypeToken<List<CountriesModel>>() {
+            }.getType();
+            countriesModels = new Gson().fromJson(loadJSONFromRaw(context, R.raw.countriesstates), listType);
+        }
+        return countriesModels;
+    }
+
+    public List<CountriesModel.State> getCountriesCityModels(Context context, int index) {
+        if (countriesModels == null) {
+            Type listType = new TypeToken<List<CountriesModel>>() {
+            }.getType();
+            countriesModels = new Gson().fromJson(loadJSONFromRaw(context, R.raw.countriesstates), listType);
+        }
+        return countriesModels.get(index).states;
+    }
+
+    private String loadJSONFromRaw(Context context, int resourceId) {
+        String json = null;
+        try {
+            InputStream is = context.getResources().openRawResource(resourceId);
+            int size = is.available();
+            byte[] buffer = new byte[size];
+            is.read(buffer);
+            is.close();
+            json = new String(buffer, StandardCharsets.UTF_8);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return json;
     }
 
     private void setProgressOK(String msg) {
@@ -872,6 +939,21 @@ public class MainViewModel extends ViewModel {
                 if (response.code() == ClientAPI.OK) {
                     assert response.body() != null;
                     ProfileModel profileModel = new Gson().fromJson(response.body().getData().getAsJsonObject(), ProfileModel.class);
+                    name.set(profileModel.name);
+                    name_ar.set(profileModel.name_ar);
+                    date_of_birth.set(profileModel.date_of_birth);
+                    phone.set(profileModel.mobile);
+                    email.set(profileModel.email);
+                    gender.set(profileModel.gender);
+                    newsletter.set(profileModel.newsletter);
+                    nationality.set(profileModel.nationality);
+                    education.set(profileModel.education);
+                    work_field.set(profileModel.work_field);
+
+//                    name.set(profileModel.);
+//                    name.set(profileModel.);
+//                    name.set(profileModel.);
+
                     profileModelModelLiveData.setValue(profileModel);
                     setProgressOK(response.body().getMessage());
                 } else {

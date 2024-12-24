@@ -11,11 +11,10 @@ import androidx.lifecycle.ViewModelProviders;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentDashbordBinding;
+import com.melato.syriangeeks.ui.MainViewModel;
 
 public class DashbordFragment extends Fragment implements View.OnClickListener {
 

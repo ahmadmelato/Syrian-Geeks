@@ -1,6 +1,5 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentPublicCoursesBinding;
 import com.melato.syriangeeks.model.CourseModel;
-import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
+import com.melato.syriangeeks.ui.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

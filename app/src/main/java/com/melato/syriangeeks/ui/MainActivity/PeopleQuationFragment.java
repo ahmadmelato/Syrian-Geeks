@@ -14,10 +14,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -26,6 +24,7 @@ import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.databinding.FragmentPeopleQuationBinding;
 import com.melato.syriangeeks.model.AnswerModel;
 import com.melato.syriangeeks.model.QuestionModel;
+import com.melato.syriangeeks.ui.MainViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;

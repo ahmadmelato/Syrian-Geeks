@@ -24,8 +24,8 @@ import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.databinding.FragmentPeopleBinding;
-import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.QuestionModel;
+import com.melato.syriangeeks.ui.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

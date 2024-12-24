@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.model.CourseDetalsModel;
-import com.melato.syriangeeks.ui.MainActivity.MainViewModel;
+import com.melato.syriangeeks.ui.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -35,7 +35,6 @@ import retrofit2.Response;
 public class SignupViewModel extends ViewModel {
 
     public MutableLiveData<Working> working = new MutableLiveData<>();
-    public MutableLiveData<UserModel> userLiveData = new MutableLiveData<>();
     public List<CountriesModel> countriesModels;
 
     @SuppressLint("SimpleDateFormat")

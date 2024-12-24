@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentReferenceBinding;
+import com.melato.syriangeeks.ui.MainViewModel;
 
 public class ReferenceFragment extends Fragment implements View.OnClickListener{
 

@@ -1,6 +1,5 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -14,12 +13,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentCoursesBinding;
 import com.melato.syriangeeks.model.MyCourseModel;
-import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
+import com.melato.syriangeeks.ui.MainViewModel;
 
 public class MyCoursesFragment extends Fragment implements View.OnClickListener {
 

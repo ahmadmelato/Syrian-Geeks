@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentPublicBlogBinding;
 import com.melato.syriangeeks.model.BlogModel;
+import com.melato.syriangeeks.ui.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

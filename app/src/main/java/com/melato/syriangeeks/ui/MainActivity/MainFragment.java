@@ -1,7 +1,6 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,8 +23,7 @@ import com.melato.syriangeeks.databinding.FragmentMainBinding;
 import com.melato.syriangeeks.model.BlogModel;
 import com.melato.syriangeeks.model.CourseModel;
 import com.melato.syriangeeks.model.EventModel;
-import com.melato.syriangeeks.model.LeaderBoardModel;
-import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
+import com.melato.syriangeeks.ui.MainViewModel;
 
 import java.util.ArrayList;
 import java.util.List;

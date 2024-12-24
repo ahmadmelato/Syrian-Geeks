@@ -36,24 +36,18 @@ public class ForthFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
         signupViewModel = ((SignupActivity)requireActivity()).getSignupViewModel();
         binding.setViewmodel(signupViewModel);
-        binding.ch1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                    signupViewModel.newsletter.set("1");
-                else
-                    signupViewModel.newsletter.set("");
-            }
+        binding.ch1.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked)
+                signupViewModel.newsletter.set("1");
+            else
+                signupViewModel.newsletter.set("");
         });
 
-        binding.ch2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked)
-                    signupViewModel.agree.set("programming");
-                else
-                    signupViewModel.agree.set("");
-            }
+        binding.ch2.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            if (isChecked)
+                signupViewModel.agree.set("programming");
+            else
+                signupViewModel.agree.set("");
         });
     }
 
