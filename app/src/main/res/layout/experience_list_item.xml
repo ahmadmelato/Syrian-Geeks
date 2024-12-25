@@ -3,13 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="2dp"
-    android:layoutDirection="ltr"
+    android:layout_marginHorizontal="5dp"
+    android:layout_marginVertical="5dp"
     app:cardCornerRadius="10dp">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -20,37 +20,50 @@
             android:padding="5dp">
 
             <TextView
-                android:layout_width="match_parent"
+                android:id="@+id/name_job"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dinnextltarabicregular"
-                android:text="جامعة دمشق"
+                android:text="مصمم واجهة المستخدم"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
             <TextView
+                android:id="@+id/name_type"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dinnextltarabicregular"
-                android:text="بكالوريوس- هندسة برمجيات و نظم معلومات"
+                android:text="آفاق الغد- دوام كامل"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dinnextltarabicregular"
-                android:text="2/Sep/2022 - 3/June/2024"
+                android:text="تركيا"
                 android:textSize="16sp" />
 
             <TextView
+                android:id="@+id/date_start_end"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/dinnextltarabicregular"
-                android:text="تخرجت من كلية الهندسة المعلوماتية بدمشق اختصاص هندسة برمجيات و نظم معلومات"
+                android:text="2/Sep/2022 - 3/June/2024 "
+                android:textSize="16sp" />
+
+            <TextView
+                android:id="@+id/about"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:text="مصمم واجهة مستخدم في شركة آفاق الغد منذ 2022 لدي مهارات في تصميم تجربة مستخدم سلسة و ممتعة"
                 android:textSize="16sp" />
 
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/editfbtu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"

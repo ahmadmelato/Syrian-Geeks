@@ -32,6 +32,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private MainViewModel viewModel;
     private SkillsViewAdapter skillsViewAdapter;
     private SkillsViewAdapter linksViewAdapter;
+    private EducationRecyclerViewAdapter educationRecyclerViewAdapter;
+
 
     private DialogUpdateProfile dialogUpdateProfile;
     private DialogUpdatePassword dialogUpdatePassword;
@@ -83,6 +85,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         linksViewAdapter = new SkillsViewAdapter(requireContext());
         binding.linksList.setAdapter(linksViewAdapter);
 
+        binding.educationList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
+        educationRecyclerViewAdapter = new EducationRecyclerViewAdapter(requireContext());
+        binding.educationList.setAdapter(educationRecyclerViewAdapter);
+
 
         viewModel.working.observe(getViewLifecycleOwner(), working -> {
             if (working != null) {
@@ -110,6 +116,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 binding.aboutMe.setText(profileModel.about_me != null ? profileModel.about_me : "");
                 skillsViewAdapter.setSkillList(profileModel.skills);
                 linksViewAdapter.setSkillList(profileModel.social_media_links);
+                educationRecyclerViewAdapter.setDatumList(profileModel.institutes);
                 loadImage(profileModel.avatar, binding.profileImage);
             }
         });

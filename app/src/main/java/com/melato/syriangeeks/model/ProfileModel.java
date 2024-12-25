@@ -32,6 +32,19 @@ public class ProfileModel {
         public String description;
     }
 
+
+    public class Experience{
+        public String title;
+        public String name;
+        public String employee_type;
+        public String location;
+        public String location_type;
+        public int current;
+        public String start_date;
+        public Object end_date;
+        public String description;
+    }
+
     public int id;
     public String about_me;
     public String designation;
@@ -39,7 +52,7 @@ public class ProfileModel {
     public int gender;
     public String date_of_birth;
     public Object badges;
-    public Object experience;
+    public ArrayList<Experience> experience;
     public ArrayList<Skill> skills;
     public ArrayList<Skill> social_media_links;
     public int points;

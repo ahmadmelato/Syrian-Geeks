@@ -89,8 +89,7 @@
                             android:id="@+id/typeofemployment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/spinner"
-                            android:textAlignment="textEnd" />
+                            android:background="@drawable/spinner"/>
 
                     </LinearLayout>
 
@@ -170,7 +169,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:background="@drawable/spinner"
-                            android:textAlignment="textEnd" />
+                            />
 
                     </LinearLayout>
 

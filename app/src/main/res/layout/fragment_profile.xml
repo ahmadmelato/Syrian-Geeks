@@ -165,7 +165,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_margin="2dp"
                                 android:layoutDirection="ltr"
-                                android:visibility="gone"
+                                android:visibility="visible"
                                 app:cardCornerRadius="10dp">
 
                                 <RelativeLayout
@@ -309,9 +309,10 @@
                                 android:visibility="gone">
 
                                 <androidx.recyclerview.widget.RecyclerView
+                                    android:id="@+id/education_list"
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
-                                    tools:listitem="@layout/education_item" />
+                                    tools:listitem="@layout/education_list_item" />
 
                                 <Button
                                     android:id="@+id/addInstitutes"
@@ -390,8 +391,7 @@
 
                                 <androidx.recyclerview.widget.RecyclerView
                                     android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    tools:listitem="@layout/education_item" />
+                                    android:layout_height="wrap_content"/>
 
                                 <Button
                                     android:id="@+id/addExperie"
