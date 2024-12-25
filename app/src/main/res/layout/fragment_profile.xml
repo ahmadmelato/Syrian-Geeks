@@ -216,8 +216,10 @@
                                             android:layout_width="wrap_content"
                                             android:layout_height="wrap_content"
                                             android:fontFamily="@font/dinnextltarabicregular"
-                                            android:text="00963954298241"
-                                            android:textSize="16sp" />
+                                            android:text="+963 954298241"
+                                            android:textAlignment="textStart"
+                                            android:textSize="16sp"
+                                            android:textDirection="ltr"/>
 
                                         <TextView
                                             android:id="@+id/about_me"

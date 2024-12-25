@@ -84,7 +84,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 binding.genderBirthday.setText(profileModel.getGender() + " - " + profileModel.date_of_birth + " - " + (profileModel.getNationality() != null ? profileModel.getNationality() : ""));
                 binding.edctionsWorks.setText((profileModel.getEducation() != null ? profileModel.getEducation() : "") + " - " + (profileModel.getWork_field() != null ? profileModel.getWork_field() : ""));
                 binding.experniceWay.setText(profileModel.getDesignation() + " ");
-                binding.phone.setText(profileModel.mobile != null ? profileModel.mobile : "");
+                binding.phone.setText((profileModel.phone_dial != null ? profileModel.phone_dial : "")+ " "+ (profileModel.mobile != null ? profileModel.mobile : ""));
                 binding.aboutMe.setText(profileModel.about_me != null ? profileModel.about_me : "");
                 skillsViewAdapter.setSkillList(profileModel.skills);
                 linksViewAdapter.setSkillList(profileModel.social_media_links);

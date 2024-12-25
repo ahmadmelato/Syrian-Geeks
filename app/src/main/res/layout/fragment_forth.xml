@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingHorizontal="10dp"
+        android:layoutDirection="rtl"
         tools:context=".ui.SignActivity.ForthFragment">
 
         <LinearLayout
@@ -23,8 +24,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/star"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="@string/mail" />
@@ -48,8 +50,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/star"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="@string/phone" />
@@ -99,8 +102,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/star"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="@string/password" />
@@ -136,8 +140,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/star"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="@string/repassword" />

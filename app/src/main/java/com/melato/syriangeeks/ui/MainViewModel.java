@@ -90,8 +90,10 @@ public class MainViewModel extends ViewModel {
             place = new ObservableField<>(""),
             disability = new ObservableField<>(""),
             email = new ObservableField<>(""),
+            about_me = new ObservableField<>(""),
+            address = new ObservableField<>(""),
             phone = new ObservableField<>(""),
-            phone_dial = new ObservableField<>("00963"),
+            phone_dial = new ObservableField<>("+963"),
             password = new ObservableField<>(""),
             password_confirmation = new ObservableField<>("");
 
@@ -421,8 +423,10 @@ public class MainViewModel extends ViewModel {
                     setProgressOK(response.body().getMessage());
                     Type certificateListType = new TypeToken<List<CertificateModel>>() {
                     }.getType();
-                    List<CertificateModel> courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("certificates"), certificateListType);
-                    certificateModelLiveData.setValue(courseActivitiesModel);
+                    if(response.body().getData()!=null) {
+                        List<CertificateModel> courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("certificates"), certificateListType);
+                        certificateModelLiveData.setValue(courseActivitiesModel);
+                    }
                 } else {
                     setProgressDeny(ClientAPI.parseError(response).getMessage());
                 }
@@ -949,10 +953,10 @@ public class MainViewModel extends ViewModel {
                     nationality.set(profileModel.nationality);
                     education.set(profileModel.education);
                     work_field.set(profileModel.work_field);
-
-//                    name.set(profileModel.);
-//                    name.set(profileModel.);
-//                    name.set(profileModel.);
+                    phone_dial.set(profileModel.phone_dial);
+                    experience_years.set(profileModel.experience_years+"");
+                    about_me.set(profileModel.about_me);
+                    address.set(profileModel.address);
 
                     profileModelModelLiveData.setValue(profileModel);
                     setProgressOK(response.body().getMessage());

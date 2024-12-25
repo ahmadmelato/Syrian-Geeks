@@ -118,6 +118,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
+        if(MainViewModel.userLiveData.getValue() == null)
         mainViewModel.getData(getApplicationContext());
 
         binding.addfbtu.setOnClickListener(this);

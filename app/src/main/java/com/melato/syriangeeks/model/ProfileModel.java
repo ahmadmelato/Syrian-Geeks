@@ -22,9 +22,19 @@ public class ProfileModel {
         public int female;
     }
 
+    public class Institute{
+        public String name;
+        public String program;
+        public String degree;
+        public int current;
+        public String start_date;
+        public String end_date;
+        public String description;
+    }
+
     public int id;
     public String about_me;
-    private String designation;
+    public String designation;
     public String address;
     public int gender;
     public String date_of_birth;
@@ -41,14 +51,20 @@ public class ProfileModel {
     public String name_ar;
     public String nationality;
     public String education;
-    public String work_field;
     public String email;
+    public String phone_dial;
     public String mobile;
     public String avatar;
     public int status_id;
     public String status;
     public int newsletter;
+    public int freelancer;
+    public int freelancer_years;
+    public String work_field;
+    public int experience_years;
     public String joinDate;
+    public String public_profile;
+    public ArrayList<Institute> institutes;
     public GenderEnum genderEnum;
     public WorkFieldEnum workFieldEnum;
     public EducationEnum educationEnum;

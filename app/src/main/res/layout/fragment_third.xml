@@ -13,6 +13,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:paddingHorizontal="10dp"
+        android:layoutDirection="rtl"
         tools:context=".ui.SignActivity.ThirdFragment">
 
         <LinearLayout
@@ -22,8 +23,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/star"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="@string/country" />
@@ -43,8 +45,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/star"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="@string/city" />
@@ -64,8 +67,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/star"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="@string/palce" />
@@ -88,8 +92,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/star"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="@string/state" />
@@ -108,8 +113,9 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:drawableLeft="@drawable/star"
                 android:layout_marginVertical="5dp"
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:text="@string/nationality" />

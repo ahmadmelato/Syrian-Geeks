@@ -17,6 +17,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
+            android:layoutDirection="rtl"
             android:paddingHorizontal="10dp">
 
 
@@ -24,11 +25,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
+
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/star"
                     android:layout_marginVertical="5dp"
                     android:fontFamily="@font/dinnextltarabicregular"
                     android:text="@string/study" />
@@ -47,8 +50,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/star"
                     android:layout_marginVertical="5dp"
                     android:fontFamily="@font/dinnextltarabicregular"
                     android:text="@string/work" />
@@ -67,8 +71,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/star"
                     android:layout_marginVertical="5dp"
                     android:fontFamily="@font/dinnextltarabicregular"
                     android:text="@string/numberofexp" />
@@ -92,8 +97,9 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/star"
                     android:layout_marginVertical="5dp"
                     android:fontFamily="@font/dinnextltarabicregular"
                     android:text="@string/freework" />
