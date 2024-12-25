@@ -3,6 +3,7 @@
     <string name="entro">من هنا يبدأ المستقلون رحلتهم</string>
 
     <string name="mail">البريد الالكتروني</string>
+    <string name="old_password">كلمة السر القديمة</string>
     <string name="password">كلمة السر</string>
     <string name="Login">تسجيل دخول</string>
     <string name="Forgotyourpassword">نسيت كلمة السر ?</string>

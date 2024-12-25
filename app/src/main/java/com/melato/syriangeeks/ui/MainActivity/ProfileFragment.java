@@ -1,6 +1,9 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
 import android.annotation.SuppressLint;
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -15,6 +18,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentProfileBinding;
@@ -30,7 +34,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     private SkillsViewAdapter linksViewAdapter;
 
     private DialogUpdateProfile dialogUpdateProfile;
-
+    private DialogUpdatePassword dialogUpdatePassword;
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -46,13 +50,18 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         dialogUpdateProfile = new DialogUpdateProfile(requireContext(), viewModel);
+        dialogUpdatePassword = new DialogUpdatePassword(requireContext(), viewModel);
+
         binding.toolbarBack.setOnClickListener(this);
+        binding.nointernet.setOnClickListener(this);
         binding.expan1.setOnClickListener(this);
         binding.expan2.setOnClickListener(this);
         binding.expan3.setOnClickListener(this);
         binding.expan4.setOnClickListener(this);
         binding.expan5.setOnClickListener(this);
         binding.editaboutfbtu.setOnClickListener(this);
+        binding.copyProfileLink.setOnClickListener(this);
+        binding.changepassword.setOnClickListener(this);
 
         binding.skillList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, true));
         skillsViewAdapter = new SkillsViewAdapter(requireContext());
@@ -114,7 +123,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.backPressed();
-        } else if (v.getId() == R.id.expan_1) {
+        } else  if (v.getId() == R.id.expan_1) {
             if (binding.about.getVisibility() == View.GONE) {
                 binding.about.setVisibility(View.VISIBLE);
             } else {
@@ -145,8 +154,22 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 binding.links.setVisibility(View.GONE);
             }
         } else if (v.getId() == R.id.editaboutfbtu) {
-
             dialogUpdateProfile.show();
+        } else if (v.getId() == R.id.copy_profile_link && viewModel.profileModelModelLiveData.getValue()!= null) {
+            copyToClipboard(requireContext(),viewModel.profileModelModelLiveData.getValue().public_profile);
+        } else if (v.getId() == R.id.changepassword) {
+            dialogUpdatePassword.show();
+        } else if (v.getId() == R.id.nointernet) {
+            viewModel.getProfile(requireContext());
+        }
+    }
+
+    public void copyToClipboard(Context context, String text) {
+        ClipboardManager clipboard = (ClipboardManager) context.getSystemService(Context.CLIPBOARD_SERVICE);
+        ClipData clip = ClipData.newPlainText("Syrian Geeks", text);
+        if (clipboard != null) {
+            clipboard.setPrimaryClip(clip);
+            Toast.makeText(context,"Copied",Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -66,6 +66,7 @@
                     android:textStyle="bold" />
 
                 <TextView
+                    android:id="@+id/copy_profile_link"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/copy"
@@ -74,6 +75,7 @@
                     android:textSize="15sp" />
 
                 <TextView
+                    android:id="@+id/changepassword"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:drawableRight="@drawable/lock"

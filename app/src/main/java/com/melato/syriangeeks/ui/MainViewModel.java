@@ -94,6 +94,7 @@ public class MainViewModel extends ViewModel {
             address = new ObservableField<>(""),
             phone = new ObservableField<>(""),
             phone_dial = new ObservableField<>("+963"),
+            old_password = new ObservableField<>(""),
             password = new ObservableField<>(""),
             password_confirmation = new ObservableField<>("");
 
@@ -943,6 +944,7 @@ public class MainViewModel extends ViewModel {
                 if (response.code() == ClientAPI.OK) {
                     assert response.body() != null;
                     ProfileModel profileModel = new Gson().fromJson(response.body().getData().getAsJsonObject(), ProfileModel.class);
+
                     name.set(profileModel.name);
                     name_ar.set(profileModel.name_ar);
                     date_of_birth.set(profileModel.date_of_birth);
