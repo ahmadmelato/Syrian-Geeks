@@ -37,11 +37,20 @@
     <string name="palce">المنطقة</string>
     <string name="state">حالة الاقامة</string>
 
+    <string name="institute">المعهد</string>
+    <string name="program">البرنامج</string>
+    <string name="dgree">الدرجة</string>
+    <string name="startDate">تاريخ البدء</string>
+    <string name="endDate">تاريخ الانتهاء</string>
+    <string name="descp">الوصف</string>
+
     <string name="phone">رقم الهاتف</string>
     <string name="repassword">تأكيد كلمة السر</string>
     <string name="Subscribetoournewsletter">الاشتراك في نشرتنا البريدية</string>
     <string name="Iagreeto">أوافق على</string>
     <string name="privacypolicy">سياسة الخصوصية</string>
+
+    <string name="currentlystudyinghere">أدرس حاليًا هنا</string>
 
 
     <string-array name="nationality_options">
@@ -136,8 +145,17 @@
     <string name="tab_text_3">المتطلبات</string>
     <string name="Askquestion">اطرح سؤالاً</string>
     <string name="Replytothediscussion">رد على المناقشة</string>
-
-
+    <string name="institutestilte">تفاصيل تعليم</string>
+    <string name="expertise">تفاصيل خبرة</string>
+    <string name="typeofemployment">نوع التوظيف</string>
+    <string name="Companyname">اسم الشركة</string>
+    <string name="thesite">الموقع</string>
+    <string name="sitetype">نوع الموقع</string>
+    <string name="currentlyworkrole">أعمل حاليًا في هذا الدور</string>
+    <string name="addskill">اضافة مهارة</string>
+    <string name="skill">مهارة</string>
+    <string name="addlink">اضافة روابط التواصل</string>
+    <string name="link">روابط التواصل الاجتماعي</string>
 
 
 </resources>

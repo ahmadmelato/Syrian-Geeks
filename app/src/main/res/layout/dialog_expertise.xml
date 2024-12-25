@@ -1,0 +1,304 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="viewmodel"
+            type="com.melato.syriangeeks.ui.MainViewModel" />
+    </data>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layoutDirection="rtl"
+            android:orientation="vertical"
+            android:padding="10dp">
+
+            <TextView
+                android:id="@+id/dialog_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:gravity="center"
+                android:paddingBottom="5dp"
+                android:text="@string/expertise"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <ScrollView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layoutDirection="rtl">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingHorizontal="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="@string/address" />
+
+                        <EditText
+                            android:id="@+id/institute"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:autofillHints=""
+                            android:background="@drawable/ic_path_2480"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:hint="@string/address"
+                            android:inputType="text"
+                            android:paddingHorizontal="20dp"
+                            android:text="@={viewmodel.name}" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="@string/typeofemployment" />
+
+                        <Spinner
+                            android:id="@+id/typeofemployment"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner"
+                            android:textAlignment="textEnd" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="@string/Companyname" />
+
+                        <EditText
+                            android:id="@+id/Companyname"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:autofillHints=""
+                            android:background="@drawable/ic_path_2480"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:hint="@string/Companyname"
+                            android:inputType="text"
+                            android:paddingHorizontal="20dp"
+                            android:text="@={viewmodel.name}" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="@string/thesite" />
+
+                        <EditText
+                            android:id="@+id/thesite"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:autofillHints=""
+                            android:background="@drawable/ic_path_2480"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:hint="@string/thesite"
+                            android:inputType="text"
+                            android:paddingHorizontal="20dp"
+                            android:text="@={viewmodel.name}" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="@string/sitetype" />
+
+                        <Spinner
+                            android:id="@+id/sitetype"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/spinner"
+                            android:textAlignment="textEnd" />
+
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="@string/startDate" />
+
+                        <EditText
+                            android:id="@+id/startDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:autofillHints=""
+                            android:background="@drawable/ic_path_2480"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:hint="@string/startDate"
+                            android:inputType="text"
+                            android:paddingHorizontal="20dp"
+                            android:text="@={viewmodel.name}" />
+                    </LinearLayout>
+
+
+                    <CheckBox
+                        android:id="@+id/ch1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="right"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:layoutDirection="rtl"
+                        android:text="@string/currentlyworkrole" />
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="@string/endDate" />
+
+                        <EditText
+                            android:id="@+id/endDate"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:autofillHints=""
+                            android:background="@drawable/ic_path_2480"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:hint="@string/endDate"
+                            android:inputType="text"
+                            android:paddingHorizontal="20dp"
+                            android:text="@={viewmodel.name}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="@string/descp" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:autofillHints=""
+                            android:background="@drawable/ic_path_2480"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:hint="@string/descp"
+                            android:inputType="textMultiLine"
+                            android:paddingHorizontal="20dp"
+                            android:text="@={viewmodel.about_me}" />
+                    </LinearLayout>
+
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:layoutDirection="rtl"
+                        android:orientation="horizontal">
+
+                        <Button
+                            android:id="@+id/submit_button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_rectangle_142"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="حفظ" />
+
+                        <Button
+                            android:id="@+id/cancel_button"
+                            style="@style/Theme.SyrianGeeks.Button"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="5dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/ic_path_2480"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="تجاهل" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </ScrollView>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>

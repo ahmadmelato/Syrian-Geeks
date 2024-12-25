@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewmodel"
             type="com.melato.syriangeeks.ui.MainViewModel" />
@@ -27,10 +28,37 @@
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:gravity="center"
                 android:paddingBottom="5dp"
-                android:text="@string/changepassword"
+                android:text="@string/institutestilte"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:drawableLeft="@drawable/star"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/institute" />
+
+                <EditText
+                    android:id="@+id/institute"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/ic_path_2480"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:hint="@string/institute"
+                    android:inputType="text"
+                    android:paddingHorizontal="20dp"
+                    android:text="@={viewmodel.name}" />
+            </LinearLayout>
+
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -44,30 +72,112 @@
                     android:layout_marginVertical="5dp"
                     android:drawableLeft="@drawable/star"
                     android:fontFamily="@font/dinnextltarabicregular"
-                    android:text="@string/old_password" />
+                    android:text="@string/program" />
 
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layout_old_password"
+                <EditText
+                    android:id="@+id/program"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layoutDirection="rtl"
-                    app:hintEnabled="false"
-                    app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="@color/my_light_primary">
+                    android:layout_height="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/ic_path_2480"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:hint="@string/program"
+                    android:inputType="text"
+                    android:paddingHorizontal="20dp"
+                    android:text="@={viewmodel.name}" />
+            </LinearLayout>
 
-                    <EditText
-                        android:id="@+id/old_password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_path_2480"
-                        android:fontFamily="@font/dinnextltarabicregular"
-                        android:hint="@string/old_password"
-                        android:inputType="textPassword"
-                        android:maxLength="30"
-                        android:paddingHorizontal="20dp"
-                        android:text="@={viewmodel.old_password}"
-                        android:textAlignment="viewStart" />
-                </com.google.android.material.textfield.TextInputLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:drawableLeft="@drawable/star"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/dgree" />
+
+                <EditText
+                    android:id="@+id/dgree"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/ic_path_2480"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:hint="@string/dgree"
+                    android:inputType="text"
+                    android:paddingHorizontal="20dp"
+                    android:text="@={viewmodel.name}" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:drawableLeft="@drawable/star"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/startDate" />
+
+                <EditText
+                    android:id="@+id/startDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/ic_path_2480"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:hint="@string/startDate"
+                    android:inputType="text"
+                    android:paddingHorizontal="20dp"
+                    android:text="@={viewmodel.name}" />
+            </LinearLayout>
+
+
+            <CheckBox
+                android:id="@+id/ch1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/dinnextltarabicregular"
+                android:layoutDirection="rtl"
+                android:layout_gravity="right"
+                android:text="@string/currentlystudyinghere" />
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/endDate" />
+
+                <EditText
+                    android:id="@+id/endDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/ic_path_2480"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:hint="@string/endDate"
+                    android:inputType="text"
+                    android:paddingHorizontal="20dp"
+                    android:text="@={viewmodel.name}" />
             </LinearLayout>
 
             <LinearLayout
@@ -77,71 +187,22 @@
                 android:orientation="vertical">
 
                 <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginVertical="5dp"
-                    android:drawableLeft="@drawable/star"
-                    android:fontFamily="@font/dinnextltarabicregular"
-                    android:text="@string/password" />
-
-                <com.google.android.material.textfield.TextInputLayout
-                    android:id="@+id/layout_password"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layoutDirection="rtl"
-                    app:hintEnabled="false"
-                    app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="@color/my_light_primary">
-
-                    <EditText
-                        android:id="@+id/password"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_path_2480"
-                        android:fontFamily="@font/dinnextltarabicregular"
-                        android:hint="@string/password"
-                        android:inputType="textPassword"
-                        android:maxLength="30"
-                        android:paddingHorizontal="20dp"
-                        android:text="@={viewmodel.password}"
-                        android:textAlignment="viewStart" />
-                </com.google.android.material.textfield.TextInputLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:orientation="vertical">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:layout_marginVertical="5dp"
-                    android:drawableLeft="@drawable/star"
                     android:fontFamily="@font/dinnextltarabicregular"
-                    android:text="@string/repassword" />
+                    android:text="@string/descp" />
 
-                <com.google.android.material.textfield.TextInputLayout
+                <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layoutDirection="rtl"
-                    app:hintEnabled="false"
-                    app:passwordToggleEnabled="true"
-                    app:passwordToggleTint="@color/my_light_primary">
-
-                    <EditText
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/ic_path_2480"
-                        android:fontFamily="@font/dinnextltarabicregular"
-                        android:hint="@string/repassword"
-                        android:inputType="textPassword"
-                        android:maxLength="30"
-                        android:paddingHorizontal="20dp"
-                        android:text="@={viewmodel.password_confirmation}"
-                        android:textAlignment="viewStart" />
-                </com.google.android.material.textfield.TextInputLayout>
+                    android:layout_height="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/ic_path_2480"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:hint="@string/descp"
+                    android:inputType="textMultiLine"
+                    android:text="@={viewmodel.about_me}"
+                    android:paddingHorizontal="20dp" />
             </LinearLayout>
 
 

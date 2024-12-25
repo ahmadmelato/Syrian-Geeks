@@ -35,6 +35,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
 
     private DialogUpdateProfile dialogUpdateProfile;
     private DialogUpdatePassword dialogUpdatePassword;
+    private DialogInstitutes dialogInstitutes;
+    private DialogExpertise dialogExpertise;
+    private DialogAddSkill dialogAddSkill;
+    private DialogAddLink dialogAddLink;
+
     @NonNull
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -51,6 +56,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         dialogUpdateProfile = new DialogUpdateProfile(requireContext(), viewModel);
         dialogUpdatePassword = new DialogUpdatePassword(requireContext(), viewModel);
+        dialogInstitutes = new DialogInstitutes(requireContext(), viewModel);
+        dialogExpertise = new DialogExpertise(requireContext(),viewModel);
+        dialogAddSkill =  new DialogAddSkill(requireContext(),viewModel);
+        dialogAddLink =  new DialogAddLink(requireContext(),viewModel);
 
         binding.toolbarBack.setOnClickListener(this);
         binding.nointernet.setOnClickListener(this);
@@ -62,6 +71,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         binding.editaboutfbtu.setOnClickListener(this);
         binding.copyProfileLink.setOnClickListener(this);
         binding.changepassword.setOnClickListener(this);
+        binding.addInstitutes.setOnClickListener(this);
+        binding.addExperie.setOnClickListener(this);
+        binding.addSkill.setOnClickListener(this);
+        binding.addlink.setOnClickListener(this);
 
         binding.skillList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, true));
         skillsViewAdapter = new SkillsViewAdapter(requireContext());
@@ -161,6 +174,14 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             dialogUpdatePassword.show();
         } else if (v.getId() == R.id.nointernet) {
             viewModel.getProfile(requireContext());
+        } else if (v.getId() == R.id.addInstitutes) {
+            dialogInstitutes.show();
+        }else if (v.getId() == R.id.addExperie) {
+            dialogExpertise.show();
+        }else if (v.getId() == R.id.addSkill) {
+            dialogAddSkill.show();
+        }else if (v.getId() == R.id.addlink) {
+            dialogAddLink.show();
         }
     }
 

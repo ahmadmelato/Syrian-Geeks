@@ -314,7 +314,7 @@
                                     tools:listitem="@layout/education_item" />
 
                                 <Button
-                                    android:id="@+id/btuAdd"
+                                    android:id="@+id/addInstitutes"
                                     style="@style/Theme.SyrianGeeks"
                                     android:layout_width="130dp"
                                     android:layout_height="40dp"
@@ -394,6 +394,7 @@
                                     tools:listitem="@layout/education_item" />
 
                                 <Button
+                                    android:id="@+id/addExperie"
                                     style="@style/Theme.SyrianGeeks"
                                     android:layout_width="130dp"
                                     android:layout_height="40dp"
@@ -487,7 +488,7 @@
 
 
                                 <Button
-                                    android:id="@+id/btuskillAdd"
+                                    android:id="@+id/addSkill"
                                     style="@style/Theme.SyrianGeeks"
                                     android:layout_width="130dp"
                                     android:layout_height="40dp"
@@ -580,7 +581,7 @@
 
 
                                 <Button
-                                    android:id="@+id/btulinksAdd"
+                                    android:id="@+id/addlink"
                                     style="@style/Theme.SyrianGeeks"
                                     android:layout_width="130dp"
                                     android:layout_height="40dp"
