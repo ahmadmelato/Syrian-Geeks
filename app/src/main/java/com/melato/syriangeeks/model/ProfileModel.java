@@ -36,13 +36,27 @@ public class ProfileModel {
     public class Experience{
         public String title;
         public String name;
-        public String employee_type;
+        private String employee_type;
         public String location;
         public String location_type;
         public int current;
         public String start_date;
         public Object end_date;
         public String description;
+
+        public String getEmployee_type() {
+            switch (employee_type) {
+                case "full_time": return "وقت كامل";
+                case "part_time": return "وقت جزئي";
+                case "internship": return "تدريب";
+                case "volunteer": return "تطوع";
+                case "contract": return "عقد";
+                case "temporary": return "مؤقت";
+
+            }
+            return employee_type;
+        }
+
     }
 
     public int id;
