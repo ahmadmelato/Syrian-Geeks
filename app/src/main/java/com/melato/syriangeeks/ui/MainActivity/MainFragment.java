@@ -94,6 +94,8 @@ public class MainFragment extends Fragment implements View.OnClickListener {
         binding.RecyclerView2.setHasFixedSize(true);
         binding.RecyclerView3.setHasFixedSize(true);
         binding.nointernet.setOnClickListener(this);
+        profile_image.setOnClickListener(this);
+        toolbar_name.setOnClickListener(this);
         binding.RecyclerView1.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
         binding.RecyclerView2.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
         binding.RecyclerView3.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
@@ -198,6 +200,9 @@ public class MainFragment extends Fragment implements View.OnClickListener {
             mainActivity.openAllEvents();
         } else if (id == R.id.nointernet) {
             mainViewModel.getIndexCourses(requireContext(), "");
+        }else if ((id == R.id.profile_image || id == R.id.toolbar_name) && MainViewModel.userLiveData.getValue() != null) {
+            assert mainActivity != null;
+            mainActivity.openProfileFragment();
         }
     }
 

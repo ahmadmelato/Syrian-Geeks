@@ -48,6 +48,9 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
                 binding.btuLogin.setVisibility(working.isFinish());
                 binding.createAccount.setEnabled(working.isBooleanFinish());
                 binding.btuLoginGuest.setEnabled(working.isBooleanFinish());
+                if (!working.isRunning() && !working.isSuccessful()) {
+                    Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

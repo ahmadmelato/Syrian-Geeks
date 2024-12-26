@@ -250,6 +250,14 @@ public class ClientAPI {
         return interfaceAPI.getProfile();
     }
 
+    public Call<ResponseBodyModel> update_password(String old_password,String password,String password_confirmation){
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("old_password", old_password);
+        queryMap.put("password", password);
+        queryMap.put("password_confirmation", password_confirmation);
+        return interfaceAPI.update_password(queryMap);
+    }
+
 
     public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
                                           String work_field, String other_work_field, String experience_years, String freelancer, String freelancer_years, String cv_file,

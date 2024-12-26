@@ -26,6 +26,7 @@ public class ExperienceRecyclerViewAdapter extends RecyclerView.Adapter<Experien
     public List<ProfileModel.Experience> datumList;
     private onItemClickListener mlistener;
     public Context context;
+    private DialogExpertise dialogExpertise;
 
     public interface onItemClickListener {
         void OnItemClick(int position);
@@ -61,9 +62,10 @@ public class ExperienceRecyclerViewAdapter extends RecyclerView.Adapter<Experien
         }
     }
 
-    public ExperienceRecyclerViewAdapter(Context context) {
+    public ExperienceRecyclerViewAdapter(Context context,DialogExpertise dialogExpertise) {
         this.datumList = new ArrayList<>();
         this.context = context;
+        this.dialogExpertise = dialogExpertise;
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -88,11 +90,11 @@ public class ExperienceRecyclerViewAdapter extends RecyclerView.Adapter<Experien
         ViewHolder.name_job.setText(item.title);
         ViewHolder.name_type.setText(item.name + " - " + item.getEmployee_type());
         ViewHolder.location.setText(item.location);
-        ViewHolder.date_start_end.setText((item.start_date != null ? item.start_date : "") + " - " + (item.end_date != null ? item.end_date : ""));
+        ViewHolder.date_start_end.setText((item.start_date != null ? item.start_date : "") + " - " + (item.end_date != null ? item.end_date : "حاضر"));
         ViewHolder.about.setText((item.description != null ? item.description : ""));
 
         ViewHolder.editfbtu.setOnClickListener(v -> {
-
+            dialogExpertise.show(item);
         });
     }
 

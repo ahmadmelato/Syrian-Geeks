@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 public class ProfileModel {
 
-    public class EducationEnum {
+    public static class EducationEnum {
         public String primary_school;
         public String middle_school;
         public String high_school;
@@ -17,12 +17,12 @@ public class ProfileModel {
         public String higher_education;
     }
 
-    public class GenderEnum {
+    public static class GenderEnum {
         public int male;
         public int female;
     }
 
-    public class Institute{
+    public static class Institute{
         public String name;
         public String program;
         public String degree;
@@ -33,7 +33,7 @@ public class ProfileModel {
     }
 
 
-    public class Experience{
+    public static class Experience{
         public String title;
         public String name;
         private String employee_type;
@@ -41,8 +41,9 @@ public class ProfileModel {
         public String location_type;
         public int current;
         public String start_date;
-        public Object end_date;
+        public String end_date;
         public String description;
+
 
         public String getEmployee_type() {
             switch (employee_type) {
@@ -55,6 +56,26 @@ public class ProfileModel {
 
             }
             return employee_type;
+        }
+
+        public int getEmployee_typeIndex() {
+            switch (employee_type) {
+                case "full_time": return 0;
+                case "part_time": return 1;
+                case "internship": return 2;
+                case "volunteer": return 3;
+                case "contract": return 4;
+                case "temporary": return 5;
+
+            }
+            return 0;
+        }
+
+        public int getLocation_typeIndex() {
+            if (location_type.equals("hybrid")) {
+                return 1;
+            }
+            return 0;
         }
 
     }

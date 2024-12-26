@@ -211,7 +211,7 @@ public class DialogUpdateProfile {
         binding.ch1.setChecked(viewModel.newsletter.get()==1);
         binding.nationalityspinner.setSelection(Objects.equals(viewModel.nationality.get(), "syrian") ?0:1);
         binding.edSpinner.setSelection(getEducationPostions(Objects.requireNonNull(viewModel.education.get())));
-        binding.workSpinner.setSelection(getWork_fieldPostions(Objects.requireNonNull(viewModel.work_field.get())));
+        binding.workSpinner.setSelection(getWork_fieldPostions(Objects.requireNonNull(Objects.requireNonNull(viewModel.profileModelModelLiveData.getValue()).work_field)));
         binding.freelancerspinner.setSelection(Objects.requireNonNull(viewModel.profileModelModelLiveData.getValue()).freelancer);
         binding.conutery.setSelection(
                 (Objects.requireNonNull(viewModel.profileModelModelLiveData.getValue())).country_id!=null?viewModel.profileModelModelLiveData.getValue().country_id - 1:214);

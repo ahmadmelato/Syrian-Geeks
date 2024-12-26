@@ -35,6 +35,7 @@ public class EducationRecyclerViewAdapter extends RecyclerView.Adapter<Education
     public List<ProfileModel.Institute> datumList;
     private onItemClickListener mlistener;
     public Context context;
+    private DialogInstitutes dialogInstitutes;
 
     public interface onItemClickListener {
         void OnItemClick(int position);
@@ -68,9 +69,10 @@ public class EducationRecyclerViewAdapter extends RecyclerView.Adapter<Education
         }
     }
 
-    public EducationRecyclerViewAdapter(Context context) {
+    public EducationRecyclerViewAdapter(Context context,DialogInstitutes dialogInstitutes) {
         this.datumList = new ArrayList<>();
         this.context = context;
+        this.dialogInstitutes = dialogInstitutes;
     }
 
     @SuppressLint("NotifyDataSetChanged")
@@ -93,11 +95,11 @@ public class EducationRecyclerViewAdapter extends RecyclerView.Adapter<Education
         ViewHolder.setIsRecyclable(false);
         //processing views
         ViewHolder.name.setText(item.name);
-        ViewHolder.date_start_end.setText((item.start_date != null ? item.start_date : "") + " - " + (item.end_date != null ? item.end_date : "") );
+        ViewHolder.date_start_end.setText((item.start_date != null ? item.start_date : "") + " - " + (item.end_date != null ? item.end_date : "حاضر") );
         ViewHolder.about.setText((item.description != null ? item.description : "") );
 
         ViewHolder.editfbtu.setOnClickListener(v -> {
-
+            dialogInstitutes.show(item);
         });
     }
 

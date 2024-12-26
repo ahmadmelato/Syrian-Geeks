@@ -99,9 +99,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         };
         getOnBackPressedDispatcher().addCallback(this, onBackPressedCallback);
         SwitchCompat.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked){
+            if (isChecked) {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
-            }else{
+            } else {
                 AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
             }
         });
@@ -118,8 +118,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        if(MainViewModel.userLiveData.getValue() == null)
-        mainViewModel.getData(getApplicationContext());
+        if (MainViewModel.userLiveData.getValue() == null)
+            mainViewModel.getData(getApplicationContext());
 
         binding.addfbtu.setOnClickListener(this);
 
@@ -163,6 +163,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void openCourseActivitiesFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, courseActivitiesFragment).addToBackStack(null).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    public void openProfileFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, profileFragment).addToBackStack(null).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
@@ -255,7 +259,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public void onClick(View v) {
-        if(v.getId() == R.id.addfbtu &&  !myCoursesFragment.isVisible()){
+        if (v.getId() == R.id.addfbtu && !myCoursesFragment.isVisible()) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myCoursesFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();

@@ -6,7 +6,7 @@
 
         <variable
             name="viewmodel"
-            type="com.melato.syriangeeks.ui.MainViewModel" />
+            type="com.melato.syriangeeks.model.ProfileModel.Institute" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -84,7 +84,7 @@
                     android:hint="@string/program"
                     android:inputType="text"
                     android:paddingHorizontal="20dp"
-                    android:text="@={viewmodel.name}" />
+                    android:text="@={viewmodel.program}" />
             </LinearLayout>
 
 
@@ -112,7 +112,7 @@
                     android:hint="@string/dgree"
                     android:inputType="text"
                     android:paddingHorizontal="20dp"
-                    android:text="@={viewmodel.name}" />
+                    android:text="@={viewmodel.degree}" />
             </LinearLayout>
 
 
@@ -140,7 +140,7 @@
                     android:hint="@string/startDate"
                     android:inputType="text"
                     android:paddingHorizontal="20dp"
-                    android:text="@={viewmodel.name}" />
+                    android:text="@={viewmodel.start_date}" />
             </LinearLayout>
 
 
@@ -151,10 +151,12 @@
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:layoutDirection="rtl"
                 android:layout_gravity="right"
+                android:checked="@{viewmodel.current==1}"
                 android:text="@string/currentlystudyinghere" />
 
 
             <LinearLayout
+                android:id="@+id/endDate_layout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginVertical="5dp"
@@ -177,7 +179,7 @@
                     android:hint="@string/endDate"
                     android:inputType="text"
                     android:paddingHorizontal="20dp"
-                    android:text="@={viewmodel.name}" />
+                    android:text="@={viewmodel.end_date}" />
             </LinearLayout>
 
             <LinearLayout
@@ -201,7 +203,7 @@
                     android:fontFamily="@font/dinnextltarabicregular"
                     android:hint="@string/descp"
                     android:inputType="textMultiLine"
-                    android:text="@={viewmodel.about_me}"
+                    android:text="@={viewmodel.description}"
                     android:paddingHorizontal="20dp" />
             </LinearLayout>
 

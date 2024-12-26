@@ -87,11 +87,11 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         binding.linksList.setAdapter(linksViewAdapter);
 
         binding.educationList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-        educationRecyclerViewAdapter = new EducationRecyclerViewAdapter(requireContext());
+        educationRecyclerViewAdapter = new EducationRecyclerViewAdapter(requireContext(),dialogInstitutes);
         binding.educationList.setAdapter(educationRecyclerViewAdapter);
 
         binding.experiencesList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-        experienceRecyclerViewAdapter = new ExperienceRecyclerViewAdapter(requireContext());
+        experienceRecyclerViewAdapter = new ExperienceRecyclerViewAdapter(requireContext(),dialogExpertise);
         binding.experiencesList.setAdapter(experienceRecyclerViewAdapter);
 
 

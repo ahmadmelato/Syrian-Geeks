@@ -720,6 +720,7 @@ public class MainViewModel extends ViewModel {
         String loginInfo = preferences.getString("loginInfo", null);
         UserModel userModel = new Gson().fromJson(loginInfo, UserModel.class);
         if (userModel != null) {
+            System.out.println(userModel.getToken());
             userLiveData.setValue(userModel);
         }
     }
@@ -974,6 +975,30 @@ public class MainViewModel extends ViewModel {
             }
         });
     }
+
+    public void update_password(Context context,String old_password,String password,String password_confirmation) {
+        Resources resources = context.getResources();
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        ClientAPI.getClientAPI().update_password(old_password,password,password_confirmation).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                    System.out.println("OK");
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                    System.out.println("Deny");
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
 
 
 }
