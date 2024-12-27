@@ -3,6 +3,7 @@ package com.melato.syriangeeks.ui.MainActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.activity.OnBackPressedCallback;
@@ -19,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.google.android.material.navigation.NavigationView;
 import com.melato.syriangeeks.R;
+import com.melato.syriangeeks.data.ClientAPI;
 import com.melato.syriangeeks.databinding.ActivityMainBinding;
 import com.melato.syriangeeks.ui.AboutUsFragment.AboutUsFragment;
 import com.melato.syriangeeks.ui.MainViewModel;
@@ -267,9 +269,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     public void onClick(View v) {
         if (v.getId() == R.id.addfbtu && !myCoursesFragment.isVisible()) {
-            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myCoursesFragment).addToBackStack(null).commit();
-            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
-            binding.drawerLayout.close();
+            if (!ClientAPI.getClientAPI().tokenInterceptor.getToken().isEmpty()) {
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, myCoursesFragment).addToBackStack(null).commit();
+                binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+                binding.drawerLayout.close();
+            } else {
+                Toast.makeText(getApplicationContext(), "الرجاء تسجيل الدخول الى حسابك", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 }

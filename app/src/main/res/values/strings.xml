@@ -21,6 +21,7 @@
     <string name="next">التالي</string>
     <string name="back">السابق</string>
 
+    <string name="name">الاسم</string>
     <string name="nameinenglish">الاسم باللغة الانكليزية</string>
     <string name="nameinarabic">الاسم باللغة العربية</string>
     <string name="brithday">تاريخ الميلاد</string>
@@ -181,6 +182,9 @@
     <string name="tabus_text_1">Syrian Geeks</string>
     <string name="tabus_text_2">تواصل معنا</string>
     <string name="tabus_text_3">سياسة الخصوصية</string>
+
+    <string name="message">الرسالة</string>
+    <string name="subject">الموضوع</string>
 
     <string name="privacy_policy">
         1- قد نقوم بجمع معلومات شخصية معينة من المستخدمين من أجل توفير تجربة تعليمية محسنة. تشمل أنواع المعلومات التي قد نجمعها ما يلي:\n

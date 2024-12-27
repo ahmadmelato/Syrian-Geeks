@@ -101,7 +101,7 @@ public class DashbordFragment extends Fragment implements View.OnClickListener {
                 if (certificate != null) {
                     binding.certificatesName.setText(certificate.title);
                     binding.progress.setProgress(certificate.enroll.progress);
-                    binding.progressText.setText(certificate.enroll.progress + "");
+                    binding.progressText.setText(certificate.enroll.progress + " %");
                     binding.HeaderView2.setVisibility(View.VISIBLE);
                 } else {
                     binding.HeaderView2.setVisibility(View.GONE);

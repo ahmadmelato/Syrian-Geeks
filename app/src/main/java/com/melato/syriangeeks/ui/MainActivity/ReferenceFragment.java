@@ -50,7 +50,7 @@ public class ReferenceFragment extends Fragment implements View.OnClickListener{
                 binding.mainprogress.setVisibility(working.isProgressing());
                 binding.main.setVisibility(working.isSuccessfulView());
                 binding.nointernet.setVisibility(working.isNotSuccessfulView());
-                if (!working.isRunning())
+                if (!working.isRunning() && !working.isSuccessful())
                     Toast.makeText(requireActivity(), working.getsSmg(), Toast.LENGTH_SHORT).show();
             }
         });
