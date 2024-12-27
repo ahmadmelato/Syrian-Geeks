@@ -1,5 +1,7 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
+import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -8,6 +10,8 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,7 +21,9 @@ import android.widget.ImageView;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentDashbordBinding;
 import com.melato.syriangeeks.model.DashbordModel;
+import com.melato.syriangeeks.model.MyCourseModel;
 import com.melato.syriangeeks.ui.MainViewModel;
+import com.melato.syriangeeks.ui.ShowCertificateActivity.ShowCertificateActivity;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -27,6 +33,7 @@ public class DashbordFragment extends Fragment implements View.OnClickListener {
 
     private FragmentDashbordBinding binding;
     private MainViewModel viewModel;
+    private DashbordCourseRecyclerViewAdapter dashbordCourseRecyclerViewAdapter;
 
     public DashbordFragment() {
         // Required empty public constructor
@@ -39,12 +46,18 @@ public class DashbordFragment extends Fragment implements View.OnClickListener {
         return binding.getRoot();
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         binding.toolbarBack.setOnClickListener(this);
         binding.btuMycourse.setOnClickListener(this);
         binding.btuActive.setOnClickListener(this);
+        binding.showCertificate.setOnClickListener(this);
+
+        binding.RecyclerView1.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, false));
+        dashbordCourseRecyclerViewAdapter = new DashbordCourseRecyclerViewAdapter(requireContext());
+        binding.RecyclerView1.setAdapter(dashbordCourseRecyclerViewAdapter);
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
 
@@ -67,15 +80,40 @@ public class DashbordFragment extends Fragment implements View.OnClickListener {
         viewModel.dashbordModelLiveData.observe(getViewLifecycleOwner(), dashbordModel -> {
             if (dashbordModel != null) {
                 binding.stdState.setText(dashbordModel.getState());
+                if (dashbordModel.enrolls != null && dashbordModel.enrolls.courses != null && !dashbordModel.enrolls.courses.isEmpty()) {
+                    dashbordCourseRecyclerViewAdapter.setCourseModels(dashbordModel.enrolls.courses);
+                    binding.HeaderRecyclerView2.setVisibility(View.VISIBLE);
+                    binding.RecyclerView1.setVisibility(View.VISIBLE);
+                } else {
+                    binding.HeaderRecyclerView2.setVisibility(View.GONE);
+                    binding.RecyclerView1.setVisibility(View.GONE);
+                }
                 DashbordModel.Course course = dashbordModel.getLastVisitCourse();
                 if (course != null) {
                     binding.courseName.setText(course.title);
                     binding.HeaderView1.setVisibility(View.VISIBLE);
-                    loadImage(course.image,binding.img);
-                }else {
+                    loadImage(course.image, binding.img);
+                } else {
                     binding.HeaderView1.setVisibility(View.GONE);
                 }
+
+                DashbordModel.Certificate certificate = dashbordModel.getLastCertificate();
+                if (certificate != null) {
+                    binding.certificatesName.setText(certificate.title);
+                    binding.progress.setProgress(certificate.enroll.progress);
+                    binding.progressText.setText(certificate.enroll.progress + "");
+                    binding.HeaderView2.setVisibility(View.VISIBLE);
+                } else {
+                    binding.HeaderView2.setVisibility(View.GONE);
+                }
             }
+        });
+
+        dashbordCourseRecyclerViewAdapter.SetOnItemClickListener(position -> {
+            DashbordModel.Course item = dashbordCourseRecyclerViewAdapter.CourseModels.get(position);
+            MainActivity mainActivity = (MainActivity) getActivity();
+            assert mainActivity != null;
+            mainActivity.openPublicCourseDetailsFragment("MY", item.id);
         });
 
         binding.btuStart.setOnClickListener(this);
@@ -118,14 +156,19 @@ public class DashbordFragment extends Fragment implements View.OnClickListener {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.openCourseActivitiesFragment();
-        }else if (v.getId() == R.id.btuStart){
+        } else if (v.getId() == R.id.btuStart) {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.openPublicCourseDetailsFragment("MY", Objects.requireNonNull(viewModel.dashbordModelLiveData.getValue()).getLastVisitCourse().id);
-        }else if (v.getId() == R.id.show_more1 || v.getId() == R.id.show_more2){
+        } else if (v.getId() == R.id.show_more1 || v.getId() == R.id.show_more2) {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.openMyCoursesFragment();
+        } else if (v.getId() == R.id.show_certificate) {
+            Intent intent = new Intent(requireContext(), ShowCertificateActivity.class);
+            intent.putExtra("image", Objects.requireNonNull(viewModel.dashbordModelLiveData.getValue()).getLastCertificate().image);
+            startActivity(intent);
         }
+
     }
 }

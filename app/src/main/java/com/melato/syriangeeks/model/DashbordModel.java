@@ -23,6 +23,13 @@ public class DashbordModel {
         return null;
     }
 
+    public Certificate getLastCertificate(){
+        if(certificates!=null && !certificates.isEmpty()){
+            return certificates.get(certificates.size()-1);
+        }
+        return null;
+    }
+
     public static class Certificate {
         public int id;
         public String title;
@@ -49,7 +56,7 @@ public class DashbordModel {
         public boolean is_purchased;
     }
 
-    public static class Course2 {
+    public static class CourseInfo {
         public int id;
         public String title;
         public String slug;

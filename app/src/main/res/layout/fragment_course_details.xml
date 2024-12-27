@@ -58,7 +58,7 @@
 
                 <RelativeLayout
                     android:layout_width="match_parent"
-                    android:layout_height="170dp"
+                    android:layout_height="160dp"
                     android:layout_marginHorizontal="5dp">
 
                     <ImageView
@@ -87,8 +87,8 @@
                     android:layout_marginHorizontal="5dp"
                     android:gravity="center_vertical"
                     android:layoutDirection="ltr"
-                    android:visibility="gone"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:visibility="gone">
 
                     <LinearLayout
                         android:layout_width="0dp"
@@ -134,12 +134,13 @@
                     android:layoutDirection="ltr"
                     app:cardCornerRadius="10dp">
 
+
                     <GridLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:columnCount="2"
                         android:layoutDirection="ltr"
-                        android:padding="1dp"
+                        android:paddingVertical="5dp"
                         android:rowCount="3">
 
                         <LinearLayout
@@ -159,9 +160,9 @@
                                 android:layout_weight="1"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
-                                android:text="30 درس"
                                 android:maxWidth="100dp"
-                                android:textSize="14sp"
+                                android:text="30 درس"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -171,7 +172,7 @@
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="عدد الدورس"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
 
                             <ImageView
@@ -203,7 +204,7 @@
                                 android:lines="1"
                                 android:maxWidth="100dp"
                                 android:text="5 ساعة"
-                                android:textSize="14sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -213,7 +214,7 @@
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="عدد الساعات"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
 
                             <ImageView
@@ -238,13 +239,13 @@
 
                             <TextView
                                 android:id="@+id/course_access"
-                                android:layout_width="0dp"
+                                android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="موبايل-لابتوب"
-                                android:textSize="14sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -254,7 +255,7 @@
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="الوصول"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
 
                             <ImageView
@@ -285,7 +286,7 @@
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="كامل مدى حياة"
-                                android:textSize="14sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -295,7 +296,7 @@
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="المدة"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
 
                             <ImageView
@@ -327,7 +328,7 @@
                                 android:lines="1"
                                 android:maxWidth="100dp"
                                 android:text="محمد الاحمد"
-                                android:textSize="14sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -337,7 +338,7 @@
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="المدرب"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
 
                             <ImageView
@@ -370,7 +371,7 @@
                                 android:lines="1"
                                 android:maxWidth="100dp"
                                 android:text="برمجة"
-                                android:textSize="14sp"
+                                android:textSize="17sp"
                                 android:textStyle="bold" />
 
                             <TextView
@@ -380,7 +381,7 @@
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:lines="1"
                                 android:text="القسم"
-                                android:textSize="14sp" />
+                                android:textSize="16sp" />
 
 
                             <ImageView

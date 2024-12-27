@@ -61,7 +61,6 @@ public class CertificatesFragment extends Fragment implements View.OnClickListen
         });
 
         binding.nointernet.setOnClickListener(this);
-        binding.toolbarSearch.setOnClickListener(this);
         binding.toolbarBack.setOnClickListener(this);
         if (mainViewModel.certificateModelLiveData.getValue() == null)
             mainViewModel.getCertificate(requireActivity());
@@ -76,8 +75,6 @@ public class CertificatesFragment extends Fragment implements View.OnClickListen
             mainActivity.backPressed();
         } else if (v.getId() == R.id.nointernet) {
             mainViewModel.getCertificate(requireActivity());
-        } else if (v.getId() == R.id.toolbar_search) {
-            //mainViewModel.getCertificate(requireActivity(), binding.editTextSerch.getText().toString());
         }
     }
 }
