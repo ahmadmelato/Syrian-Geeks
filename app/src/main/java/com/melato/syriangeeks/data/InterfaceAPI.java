@@ -94,4 +94,7 @@ public interface InterfaceAPI {
     @POST("/api/v1/student/setting/update-password")
     Call<ResponseBodyModel> update_password(@Body Map<String, Object> queryMap);
 
+    @GET("/api/v1/student/my-profile")
+    Call<ResponseBodyModel> getMyProfile();
+
 }

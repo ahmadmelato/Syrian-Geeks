@@ -258,6 +258,9 @@ public class ClientAPI {
         return interfaceAPI.update_password(queryMap);
     }
 
+    public Call<ResponseBodyModel> getMyProfile(){
+       return interfaceAPI.getMyProfile();
+    }
 
     public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
                                           String work_field, String other_work_field, String experience_years, String freelancer, String freelancer_years, String cv_file,

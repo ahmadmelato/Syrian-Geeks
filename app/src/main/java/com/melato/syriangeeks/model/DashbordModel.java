@@ -4,11 +4,26 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class DashbordModel {
-    // import com.fasterxml.jackson.databind.ObjectMapper; // version 2.11.1
-// import com.fasterxml.jackson.annotation.JsonProperty; // version 2.11.1
-/* ObjectMapper om = new ObjectMapper();
-Root root = om.readValue(myJsonString, Root.class); */
-    public class Certificate {
+
+    public String title;
+    public Student student;
+    public Enrolls enrolls;
+    public ArrayList<Certificate> certificates;
+    public ArrayList<Object> assignment;
+
+
+    public String getState(){
+        return  "لقد انتهيت من " + certificates.size() + " دورات اكتشف المزيد";
+    }
+
+    public Course getLastVisitCourse(){
+        if(enrolls!=null && enrolls.courses!=null && !enrolls.courses.isEmpty()){
+            return enrolls.courses.get(enrolls.courses.size()-1);
+        }
+        return null;
+    }
+
+    public static class Certificate {
         public int id;
         public String title;
         public String description;
@@ -16,7 +31,7 @@ Root root = om.readValue(myJsonString, Root.class); */
         public Enroll enroll;
     }
 
-    public class Course {
+    public static class Course {
         public int id;
         public String title;
         public int price;
@@ -34,7 +49,7 @@ Root root = om.readValue(myJsonString, Root.class); */
         public boolean is_purchased;
     }
 
-    public class Course2 {
+    public static class Course2 {
         public int id;
         public String title;
         public String slug;
@@ -85,7 +100,7 @@ Root root = om.readValue(myJsonString, Root.class); */
         public String cert_title;
     }
 
-    public class Enroll {
+    public static class Enroll {
         public int id;
         public int order_item_id;
         public int course_id;
@@ -107,12 +122,12 @@ Root root = om.readValue(myJsonString, Root.class); */
         public Course course;
     }
 
-    public class Enrolls {
+    public static class Enrolls {
         public ArrayList<Course> courses;
         public Pagination pagination;
     }
 
-    public class Pagination {
+    public static class Pagination {
         public int total;
         public int count;
         public int per_page;
@@ -120,13 +135,9 @@ Root root = om.readValue(myJsonString, Root.class); */
         public int total_pages;
     }
 
-    public String title;
-    public Student student;
-    public Enrolls enrolls;
-    public ArrayList<Certificate> certificates;
-    public ArrayList<Object> assignment;
 
-    public class Student {
+
+    public static class Student {
         public int userId;
         public String name;
         public String name_ar;
