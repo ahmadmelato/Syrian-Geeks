@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 import com.google.android.material.navigation.NavigationView;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.ActivityMainBinding;
+import com.melato.syriangeeks.ui.AboutUsFragment.AboutUsFragment;
 import com.melato.syriangeeks.ui.MainViewModel;
 import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
 
@@ -44,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private PublicBlogFragment publicBlogFragment;
     private PublicEventsFragment publicEventsFragment;
     private PeopleFragment peopleFragment;
+    private AboutUsFragment aboutUsFragment;
     private OnBackPressedCallback onBackPressedCallback;
 
     @Override
@@ -75,6 +77,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         publicBlogFragment = new PublicBlogFragment();
         publicEventsFragment = new PublicEventsFragment();
         peopleFragment = new PeopleFragment();
+        aboutUsFragment = new AboutUsFragment();
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 
@@ -208,6 +211,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             binding.drawerLayout.close();
         } else if (itemId == R.id.item_leaderboard) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, leaderboardFragment).addToBackStack(null).commit();
+            binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+            binding.drawerLayout.close();
+        } else if (itemId == R.id.item_aboutus) {
+            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, aboutUsFragment).addToBackStack(null).commit();
             binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
             binding.drawerLayout.close();
         } else if (itemId == R.id.signout) {

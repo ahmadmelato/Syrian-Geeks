@@ -117,6 +117,7 @@
     <string name="blogdis">تفاصيل المدونة</string>
     <string name="Traindis">تفاصيل التدريب</string>
     <string name="people">المجتمع</string>
+    <string name="Whoare">من نحن</string>
 
     <string name="search">ابحث عن دورة , مقالة أو مهارة </string>
     <string name="main">الرئيسية</string>
@@ -176,5 +177,13 @@
         <item>هجين</item>
         <item>عن بُعد</item>
     </string-array>
+
+    <string name="tabus_text_1">Syrian Geeks</string>
+    <string name="tabus_text_2">تواصل معنا</string>
+    <string name="tabus_text_3">سياسة الخصوصية</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 
 </resources>

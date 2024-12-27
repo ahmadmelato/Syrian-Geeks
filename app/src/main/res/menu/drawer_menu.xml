@@ -53,6 +53,7 @@
     <item android:title="@string/vision">
         <menu>
             <item
+                android:id="@+id/item_aboutus"
                 android:icon="@drawable/whoweare"
                 android:title="@string/Whoweare" />
 
