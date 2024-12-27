@@ -1,14 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layoutDirection="rtl"
     tools:context=".ui.AboutUsFragment.PrivacyPolicyFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
 
-</FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layoutDirection="rtl"
+        android:layout_marginHorizontal="5dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="مقدمة"
+            android:textSize="20sp"
+            android:layout_marginTop="10dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="في منصة SyrianGeeks الخاصة بنا، نحن ملتزمون بحماية خصوصية وأمن المعلومات الشخصية لمستخدمينا. توضح سياسة الخصوصية هذه كيفية جمع المعلومات المقدمة لنا واستخدامها والكشف عنها وحمايتها. من خلال الوصول إلى منصة (SyrianGeeks) الخاصة بنا أو استخدامها، فإنك توافق على الشروط والممارسات الموضحة في سياسة الخصوصية هذه."
+            android:textSize="18sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="المعلومات التي نجمعها"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="@string/privacy_policy"
+            android:textSize="18sp"/>
+    </LinearLayout>
+
+</ScrollView>
