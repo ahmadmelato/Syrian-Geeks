@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/dinnextltarabicregular"
             android:text="ما هي"
             android:textAlignment="center"
@@ -90,6 +90,18 @@
                 android:layoutDirection="ltr"
                 android:orientation="vertical">
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/person"
+                    android:layout_margin="10dp"
+                    android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:tint="@color/white" />
+
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -125,6 +137,17 @@
                 android:layout_marginVertical="10dp"
                 android:layoutDirection="ltr"
                 android:orientation="vertical">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/note"
+                    android:layout_margin="10dp"
+                    android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -162,6 +185,17 @@
                 android:layoutDirection="ltr"
                 android:orientation="vertical">
 
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/microscope"
+                    android:layout_margin="10dp"
+                    android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:tint="@color/white" />
+
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -197,6 +231,17 @@
                 android:layout_marginVertical="10dp"
                 android:layoutDirection="ltr"
                 android:orientation="vertical">
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/clipboard"
+                    android:layout_margin="10dp"
+                    android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:tint="@color/white" />
 
                 <TextView
                     android:layout_width="match_parent"
