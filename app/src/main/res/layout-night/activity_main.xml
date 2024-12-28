@@ -16,7 +16,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:openDrawer="start">
+        tools:openDrawer="e">
 
         <LinearLayout
             android:id="@+id/main"
@@ -36,7 +36,8 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:background="@color/blue">
 
                 <com.google.android.material.bottomnavigation.BottomNavigationView
                     android:id="@+id/bottomnavigation"
@@ -44,9 +45,9 @@
                     android:layout_height="wrap_content"
                     android:layoutDirection="rtl"
                     android:theme="@style/Base.Theme.SyrianGeeks.ButtonNavigationView"
-                    app:itemIconTint="@color/bottom_nav_item_color"
+                    app:itemIconTint="@color/bottom_night_nav_item_color"
                     app:itemTextAppearance="@style/Base.Theme.SyrianGeeks.ButtonNavigationView"
-                    app:itemTextColor="@color/bottom_nav_item_color"
+                    app:itemTextColor="@color/bottom_night_nav_item_color"
                     app:labelVisibilityMode="labeled"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"

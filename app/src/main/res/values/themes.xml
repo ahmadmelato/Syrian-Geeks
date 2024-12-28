@@ -29,18 +29,21 @@
     </style>
 
     <style name="Base.Theme.SyrianGeeks.Fab_4_rounded" parent="Base.Theme.SyrianGeeks">
+        <item name="android:fontFamily">@font/dinnextltarabicregular</item>
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
         <item name="android:backgroundTint">@color/blue</item>
     </style>
 
     <style name="Base.Theme.SyrianGeeks.Fab_5_rounded" parent="Base.Theme.SyrianGeeks">
+        <item name="android:fontFamily">@font/dinnextltarabicregular</item>
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
         <item name="android:backgroundTint">@color/red</item>
     </style>
 
     <style name="Base.Theme.SyrianGeeks.Fab_6_rounded" parent="Base.Theme.SyrianGeeks">
+        <item name="android:fontFamily">@font/dinnextltarabicregular</item>
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">50%</item>
         <item name="android:backgroundTint">@color/green</item>
