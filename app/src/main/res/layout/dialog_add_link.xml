@@ -44,7 +44,7 @@
                     android:text="@string/link" />
 
                 <EditText
-                    android:id="@+id/institute"
+                    android:id="@+id/value"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:autofillHints=""
@@ -56,35 +56,54 @@
             </LinearLayout>
 
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
-                android:gravity="center"
-                android:layoutDirection="rtl"
-                android:orientation="horizontal">
+                android:paddingVertical="10dp">
 
-                <Button
-                    android:id="@+id/submit_button"
+                <ProgressBar
+                    android:id="@+id/mainprogress"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ic_rectangle_142"
-                    android:fontFamily="@font/dinnextltarabicregular"
-                    android:text="حفظ" />
+                    android:layout_centerInParent="true"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/shap_1"
+                    android:indeterminateDrawable="@drawable/cpb_1"
+                    android:indeterminateDuration="@android:integer/config_longAnimTime"
+                    android:visibility="gone" />
 
-                <Button
-                    android:id="@+id/cancel_button"
-                    style="@style/Theme.SyrianGeeks.Button"
-                    android:layout_width="wrap_content"
+
+                <LinearLayout
+                    android:id="@+id/buttonPanel"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/ic_path_2480"
-                    android:fontFamily="@font/dinnextltarabicregular"
-                    android:text="تجاهل" />
-            </LinearLayout>
+                    android:layout_centerInParent="true"
+                    android:gravity="center"
+                    android:layoutDirection="rtl"
+                    android:orientation="horizontal">
+
+                    <Button
+                        android:id="@+id/submit_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/ic_rectangle_142"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:text="حفظ" />
+
+                    <Button
+                        android:id="@+id/cancel_button"
+                        style="@style/Theme.SyrianGeeks.Button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/ic_path_2480"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:text="تجاهل" />
+                </LinearLayout>
+            </RelativeLayout>
 
         </LinearLayout>
 

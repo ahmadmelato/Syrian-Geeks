@@ -3,8 +3,11 @@ package com.melato.syriangeeks.ui.MainActivity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Toast;
 
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.LifecycleOwner;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.DialogAddSkillBinding;
@@ -37,6 +40,24 @@ public class DialogAddSkill {
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
+
+        viewModel.workingLoadMore.observe((LifecycleOwner) context, working -> {
+            if (working != null) {
+                binding.mainprogress.setVisibility(working.isProgressing());
+                binding.buttonPanel.setVisibility(working.isFinish());
+                if (working.isSuccessful()) {
+                    dialog.dismiss();
+                } else if (!working.isRunning() && !working.isSuccessful())
+                    Toast.makeText(context, working.getsSmg(), Toast.LENGTH_SHORT).show();
+            }
+        });
+
+        binding.submitButton.setOnClickListener(v -> {
+            String item = binding.value.getText().toString();
+            if(!item.isEmpty()) {
+                viewModel.store_add_skills(context, item);
+            }
+        });
 
         binding.cancelButton.setOnClickListener(v -> dialog.dismiss());
     }
