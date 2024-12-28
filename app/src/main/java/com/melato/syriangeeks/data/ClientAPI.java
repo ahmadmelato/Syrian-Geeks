@@ -3,6 +3,7 @@ package com.melato.syriangeeks.data;
 
 import com.google.gson.Gson;
 import com.melato.syriangeeks.model.ErrorAPI;
+import com.melato.syriangeeks.model.ProfileModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 
 import java.io.IOException;
@@ -260,6 +261,11 @@ public class ClientAPI {
 
     public Call<ResponseBodyModel> getMyProfile(){
        return interfaceAPI.getMyProfile();
+    }
+
+    public Call<ResponseBodyModel> update_profile(@Body ProfileModel model){
+        System.out.println(new Gson().toJson(model));
+        return interfaceAPI.update_profile(model);
     }
 
     public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,

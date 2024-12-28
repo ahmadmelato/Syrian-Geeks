@@ -114,9 +114,13 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         viewModel.profileModelModelLiveData.observe(getViewLifecycleOwner(), profileModel -> {
             if (profileModel != null) {
                 binding.fullName.setText((profileModel.name_ar != null ? profileModel.name_ar : "") + " - " + profileModel.name);
-                binding.genderBirthday.setText(profileModel.getGender() + " - " + profileModel.date_of_birth + " - " + (profileModel.getNationality() != null ? profileModel.getNationality() : ""));
-                binding.edctionsWorks.setText((profileModel.getEducation() != null ? profileModel.getEducation() : "") + " - " + (profileModel.getWork_field() != null ? profileModel.getWork_field() : ""));
-                binding.experniceWay.setText(profileModel.getDesignation() + " ");
+                binding.genderBirthday.setText(profileModel.getPublicGender() + " - " + profileModel.date_of_birth + " - " + (profileModel.getPublicNationality() != null ? profileModel.getPublicNationality() : ""));
+                binding.edctionsWorks.setText((profileModel.getPublicEducation() != null ? profileModel.getPublicEducation() : "") + " - " + (profileModel.getPublicWork_field() != null ? profileModel.getPublicWork_field() : ""));
+                binding.experniceWay.setVisibility(View.GONE);
+                if(!profileModel.getPublicDesignation().isEmpty()) {
+                    binding.experniceWay.setText(profileModel.getPublicDesignation() + " ");
+                    binding.experniceWay.setVisibility(View.VISIBLE);
+                }
                 binding.phone.setText((profileModel.phone_dial != null ? profileModel.phone_dial : "")+ " "+ (profileModel.mobile != null ? profileModel.mobile : ""));
                 binding.aboutMe.setText(profileModel.about_me != null ? profileModel.about_me : "");
                 skillsViewAdapter.setSkillList(profileModel.skills);
@@ -180,7 +184,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 binding.links.setVisibility(View.GONE);
             }
         } else if (v.getId() == R.id.editaboutfbtu) {
-            dialogUpdateProfile.show();
+            dialogUpdateProfile.show(viewModel.profileModelModelLiveData.getValue());
         } else if (v.getId() == R.id.copy_profile_link && viewModel.profileModelModelLiveData.getValue()!= null) {
             copyToClipboard(requireContext(),viewModel.profileModelModelLiveData.getValue().public_profile);
         } else if (v.getId() == R.id.changepassword) {

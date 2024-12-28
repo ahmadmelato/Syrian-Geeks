@@ -71,36 +71,11 @@ public class MainViewModel extends ViewModel {
     public MutableLiveData<DashbordModel> dashbordModelLiveData = new MutableLiveData<>();
     public List<CountriesModel> countriesModels;
 
-    @SuppressLint("SimpleDateFormat")
-    public ObservableField<String> name = new ObservableField<>(""),
-            name_ar = new ObservableField<>(""),
-            date_of_birth = new ObservableField<>(new SimpleDateFormat("yyyy-MM-dd").format(new Date())),
-            nationality = new ObservableField<>(""),
-            education = new ObservableField<>(""),
-            work_field = new ObservableField<>(""),
-            other_work_field = new ObservableField<>(""),
-            experience_years = new ObservableField<>(""),
-            freelancer = new ObservableField<>(""),
-            freelancer_years = new ObservableField<>("");
-
-    public ObservableField<Integer> gender = new ObservableField<>(1),newsletter = new ObservableField<>(0);
-
-    public ObservableField<String> cv_file = new ObservableField<>(""),
-            country = new ObservableField<>(""),
-            state = new ObservableField<>(""),
-            location = new ObservableField<>(""),
-            place = new ObservableField<>(""),
-            disability = new ObservableField<>(""),
-            email = new ObservableField<>(""),
-            about_me = new ObservableField<>(""),
-            address = new ObservableField<>(""),
-            phone = new ObservableField<>(""),
-            phone_dial = new ObservableField<>("+963"),
+    public ObservableField<String>
             old_password = new ObservableField<>(""),
             password = new ObservableField<>(""),
             password_confirmation = new ObservableField<>("");
 
-    public ObservableField<Date> datePicker = new ObservableField<>(new Date());
 
     public MainViewModel() {
         setProgressOK("");
@@ -973,22 +948,6 @@ public class MainViewModel extends ViewModel {
                 if (response.code() == ClientAPI.OK) {
                     assert response.body() != null;
                     ProfileModel profileModel = new Gson().fromJson(response.body().getData().getAsJsonObject(), ProfileModel.class);
-
-                    name.set(profileModel.name);
-                    name_ar.set(profileModel.name_ar);
-                    date_of_birth.set(profileModel.date_of_birth);
-                    phone.set(profileModel.mobile);
-                    email.set(profileModel.email);
-                    gender.set(profileModel.gender);
-                    newsletter.set(profileModel.newsletter);
-                    nationality.set(profileModel.nationality);
-                    education.set(profileModel.education);
-                    work_field.set(profileModel.work_field);
-                    phone_dial.set(profileModel.phone_dial);
-                    experience_years.set(profileModel.experience_years+"");
-                    about_me.set(profileModel.about_me);
-                    address.set(profileModel.address);
-
                     profileModelModelLiveData.setValue(profileModel);
                     setProgressOK(response.body().getMessage());
                 } else {
@@ -1012,10 +971,30 @@ public class MainViewModel extends ViewModel {
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
                     workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
-                    System.out.println("OK");
                 } else {
                     workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
-                    System.out.println("Deny");
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void update_profile(Context context,ProfileModel model) {
+        Resources resources = context.getResources();
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        ClientAPI.getClientAPI().update_profile(model).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                    getProfile(context);
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
                 }
             }
 

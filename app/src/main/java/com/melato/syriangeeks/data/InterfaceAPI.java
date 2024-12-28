@@ -1,6 +1,7 @@
 package com.melato.syriangeeks.data;
 
 
+import com.melato.syriangeeks.model.ProfileModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
 
@@ -96,5 +97,8 @@ public interface InterfaceAPI {
 
     @GET("/api/v1/student/my-profile")
     Call<ResponseBodyModel> getMyProfile();
+
+    @POST("/api/v1/student/setting/update-profile")
+    Call<ResponseBodyModel> update_profile(@Body ProfileModel model);
 
 }

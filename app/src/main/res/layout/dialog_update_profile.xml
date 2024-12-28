@@ -3,9 +3,10 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
+
         <variable
             name="viewmodel"
-            type="com.melato.syriangeeks.ui.MainViewModel" />
+            type="com.melato.syriangeeks.model.ProfileModel" />
     </data>
 
     <androidx.cardview.widget.CardView
@@ -51,9 +52,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
-                            android:text="@string/nameinenglish"
-                            android:drawableLeft="@drawable/star"/>
+                            android:text="@string/nameinenglish" />
 
                         <EditText
                             android:id="@+id/name"
@@ -77,8 +78,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/nameinarabic" />
 
@@ -104,8 +105,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/brithday" />
 
@@ -116,9 +117,9 @@
                             android:autofillHints=""
                             android:background="@drawable/ic_path_2480"
                             android:drawableLeft="@drawable/calede"
+                            android:focusable="false"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:hint="YYYY-MM-dd"
-                            android:focusable="false"
                             android:inputType="date"
                             android:paddingHorizontal="20dp"
                             android:paddingStart="10dp"
@@ -134,8 +135,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/gender" />
 
@@ -155,8 +156,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/study" />
 
@@ -176,8 +177,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/work" />
 
@@ -197,10 +198,9 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
                             android:fontFamily="@font/dinnextltarabicregular"
-                            android:text="@string/numberofexp" />
+                            android:text="@string/JobTitle" />
 
                         <EditText
                             android:layout_width="match_parent"
@@ -208,10 +208,10 @@
                             android:autofillHints=""
                             android:background="@drawable/ic_path_2480"
                             android:fontFamily="@font/dinnextltarabicregular"
-                            android:hint="@string/numberofexp"
-                            android:inputType="number"
-                            android:text="@={viewmodel.experience_years}"
-                            android:paddingHorizontal="20dp" />
+                            android:hint="@string/JobTitle"
+                            android:inputType="text"
+                            android:text="@={viewmodel.designation}"
+                            android:paddingHorizontal="20dp"/>
                     </LinearLayout>
 
                     <LinearLayout
@@ -223,8 +223,34 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:text="@string/numberofexp" />
+
+                        <EditText
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:autofillHints=""
+                            android:background="@drawable/ic_path_2480"
+                            android:fontFamily="@font/dinnextltarabicregular"
+                            android:hint="@string/numberofexp"
+                            android:inputType="number"
+                            android:paddingHorizontal="20dp"
+                            android:text="@={viewmodel.experience_years}" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="5dp"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/freework" />
 
@@ -253,10 +279,10 @@
                             android:layout_height="wrap_content"
                             android:autofillHints=""
                             android:background="@drawable/ic_path_2480"
+                            android:enabled="false"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:hint="@string/file"
                             android:inputType="text"
-                            android:enabled="false"
                             android:paddingHorizontal="20dp" />
                     </LinearLayout>
 
@@ -269,8 +295,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/country" />
 
@@ -278,8 +304,8 @@
                             android:id="@+id/conutery"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAlignment="textEnd"
-                            android:background="@drawable/spinner" />
+                            android:background="@drawable/spinner"
+                            android:textAlignment="textEnd" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -291,8 +317,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/city" />
 
@@ -300,8 +326,8 @@
                             android:id="@+id/city"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:textAlignment="textEnd"
-                            android:background="@drawable/spinner" />
+                            android:background="@drawable/spinner"
+                            android:textAlignment="textEnd" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -325,8 +351,8 @@
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:hint="@string/address"
                             android:inputType="text"
-                            android:text="@={viewmodel.address}"
-                            android:paddingHorizontal="20dp" />
+                            android:paddingHorizontal="20dp"
+                            android:text="@={viewmodel.address}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -338,8 +364,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/nationality" />
 
@@ -359,8 +385,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/mail" />
 
@@ -369,12 +395,12 @@
                             android:layout_height="match_parent"
                             android:autofillHints=""
                             android:background="@drawable/ic_path_2480"
+                            android:enabled="false"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:hint="@string/mail"
-                            android:enabled="false"
                             android:inputType="textEmailAddress"
-                            android:text="@={viewmodel.email}"
-                            android:paddingHorizontal="20dp" />
+                            android:paddingHorizontal="20dp"
+                            android:text="@={viewmodel.email}" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -386,8 +412,8 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:drawableLeft="@drawable/star"
                             android:layout_marginVertical="5dp"
+                            android:drawableLeft="@drawable/star"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:text="@string/phone" />
 
@@ -403,28 +429,28 @@
                                 android:layout_marginEnd="10dp"
                                 android:layout_weight="2"
                                 android:autofillHints=""
-                                android:hint="00XXX"
-                                android:maxLength="5"
                                 android:background="@drawable/ic_path_2480"
                                 android:fontFamily="@font/dinnextltarabicregular"
-                                android:text="@={viewmodel.phone_dial}"
-                                android:textAlignment="center"
+                                android:hint="00XXX"
                                 android:inputType="phone"
-                                android:paddingHorizontal="20dp" />
+                                android:maxLength="5"
+                                android:paddingHorizontal="20dp"
+                                android:text="@={viewmodel.phone_dial}"
+                                android:textAlignment="center" />
 
                             <EditText
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_weight="1"
                                 android:autofillHints=""
-                                android:maxLength="12"
                                 android:background="@drawable/ic_path_2480"
                                 android:fontFamily="@font/dinnextltarabicregular"
                                 android:hint="@string/phone"
-                                android:textAlignment="center"
                                 android:inputType="phone"
+                                android:maxLength="12"
+                                android:paddingHorizontal="20dp"
                                 android:text="@={viewmodel.phone}"
-                                android:paddingHorizontal="20dp" />
+                                android:textAlignment="center" />
                         </LinearLayout>
 
                     </LinearLayout>
@@ -450,8 +476,8 @@
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:hint="@string/about"
                             android:inputType="textMultiLine"
-                            android:text="@={viewmodel.about_me}"
-                            android:paddingHorizontal="20dp" />
+                            android:paddingHorizontal="20dp"
+                            android:text="@={viewmodel.about_me}" />
                     </LinearLayout>
 
 
@@ -459,40 +485,59 @@
                         android:id="@+id/ch1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_gravity="right"
                         android:fontFamily="@font/dinnextltarabicregular"
                         android:layoutDirection="rtl"
-                        android:layout_gravity="right"
                         android:text="@string/Subscribetoournewsletter" />
 
-                    <LinearLayout
+                    <RelativeLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:gravity="center"
-                        android:layoutDirection="rtl"
-                        android:orientation="horizontal">
+                        android:paddingVertical="10dp">
 
-                        <Button
-                            android:id="@+id/submit_button"
+                        <ProgressBar
+                            android:id="@+id/mainprogress"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/ic_rectangle_142"
-                            android:fontFamily="@font/dinnextltarabicregular"
-                            android:text="حفظ" />
+                            android:layout_centerInParent="true"
+                            android:layout_marginVertical="5dp"
+                            android:background="@drawable/shap_1"
+                            android:indeterminateDrawable="@drawable/cpb_1"
+                            android:indeterminateDuration="@android:integer/config_longAnimTime"
+                            android:visibility="gone" />
 
-                        <Button
-                            android:id="@+id/cancel_button"
-                            style="@style/Theme.SyrianGeeks.Button"
-                            android:layout_width="wrap_content"
+
+                        <LinearLayout
+                            android:id="@+id/buttonPanel"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginHorizontal="5dp"
-                            android:layout_weight="1"
-                            android:background="@drawable/ic_path_2480"
-                            android:fontFamily="@font/dinnextltarabicregular"
-                            android:text="تجاهل" />
-                    </LinearLayout>
+                            android:layout_centerInParent="true"
+                            android:gravity="center"
+                            android:layoutDirection="rtl"
+                            android:orientation="horizontal">
+
+                            <Button
+                                android:id="@+id/submit_button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/ic_rectangle_142"
+                                android:fontFamily="@font/dinnextltarabicregular"
+                                android:text="حفظ" />
+
+                            <Button
+                                android:id="@+id/cancel_button"
+                                style="@style/Theme.SyrianGeeks.Button"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginHorizontal="5dp"
+                                android:layout_weight="1"
+                                android:background="@drawable/ic_path_2480"
+                                android:fontFamily="@font/dinnextltarabicregular"
+                                android:text="تجاهل" />
+                        </LinearLayout>
+                    </RelativeLayout>
                 </LinearLayout>
             </ScrollView>
         </LinearLayout>

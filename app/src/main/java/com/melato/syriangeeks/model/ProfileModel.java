@@ -1,7 +1,5 @@
 package com.melato.syriangeeks.model;
 
-import android.os.Parcelable;
-
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
@@ -22,7 +20,7 @@ public class ProfileModel {
         public int female;
     }
 
-    public static class Institute{
+    public static class Institute {
         public String name;
         public String program;
         public String degree;
@@ -33,7 +31,7 @@ public class ProfileModel {
     }
 
 
-    public static class Experience{
+    public static class Experience {
         public String title;
         public String name;
         private String employee_type;
@@ -47,12 +45,18 @@ public class ProfileModel {
 
         public String getEmployee_type() {
             switch (employee_type) {
-                case "full_time": return "وقت كامل";
-                case "part_time": return "وقت جزئي";
-                case "internship": return "تدريب";
-                case "volunteer": return "تطوع";
-                case "contract": return "عقد";
-                case "temporary": return "مؤقت";
+                case "full_time":
+                    return "وقت كامل";
+                case "part_time":
+                    return "وقت جزئي";
+                case "internship":
+                    return "تدريب";
+                case "volunteer":
+                    return "تطوع";
+                case "contract":
+                    return "عقد";
+                case "temporary":
+                    return "مؤقت";
 
             }
             return employee_type;
@@ -60,12 +64,18 @@ public class ProfileModel {
 
         public int getEmployee_typeIndex() {
             switch (employee_type) {
-                case "full_time": return 0;
-                case "part_time": return 1;
-                case "internship": return 2;
-                case "volunteer": return 3;
-                case "contract": return 4;
-                case "temporary": return 5;
+                case "full_time":
+                    return 0;
+                case "part_time":
+                    return 1;
+                case "internship":
+                    return 2;
+                case "volunteer":
+                    return 3;
+                case "contract":
+                    return 4;
+                case "temporary":
+                    return 5;
 
             }
             return 0;
@@ -80,6 +90,7 @@ public class ProfileModel {
 
     }
 
+
     public int id;
     public String about_me;
     public String designation;
@@ -92,6 +103,8 @@ public class ProfileModel {
     public ArrayList<Skill> social_media_links;
     public int points;
     public Integer country_id;
+    public String country;
+    public String state;
     public int user_id;
     public Object cv_file_id;
     public String cv_file;
@@ -102,6 +115,7 @@ public class ProfileModel {
     public String email;
     public String phone_dial;
     public String mobile;
+    public String phone;
     public String avatar;
     public int status_id;
     public String status;
@@ -109,7 +123,7 @@ public class ProfileModel {
     public int freelancer;
     public int freelancer_years;
     public String work_field;
-    public int experience_years;
+    public String experience_years;
     public String joinDate;
     public String public_profile;
     public ArrayList<Institute> institutes;
@@ -117,65 +131,118 @@ public class ProfileModel {
     public WorkFieldEnum workFieldEnum;
     public EducationEnum educationEnum;
 
-
-    public String getDesignation() {
-        return designation;
+    public String getWork_fieldByIndex(int index) {
+        switch (index) {
+            case 0:
+                return workFieldEnum.contentCreator;
+            case 1:
+                return workFieldEnum.webProgramming;
+            case 2:
+                return workFieldEnum.graphicDesign;
+            case 3:
+                return workFieldEnum.other;
+        }
+        return workFieldEnum.other;
     }
 
-    public String getNationality() {
+    public String getEducationByIbdex(int index) {
+        switch (index) {
+            case 0:
+                return educationEnum.primary_school;
+            case 1:
+                return educationEnum.middle_school;
+            case 2:
+                return educationEnum.high_school;
+            case 3:
+                return educationEnum.institute;
+            case 4:
+                return educationEnum.university;
+            case 5:
+                return educationEnum.higher_education;
+        }
+        return educationEnum.primary_school;
+    }
+
+
+    public String getPublicDesignation() {
+        return designation != null?designation:"";
+    }
+
+    public String getPublicNationality() {
         switch (nationality) {
-            case "syrian": return "سوري";
+            case "syrian":
+                return "سوري";
         }
         return nationality;
     }
 
-    public String getEducation() {
+    public String getPublicEducation() {
         switch (education) {
-            case "primary_school": return "ابتدائي";
-            case "middle_school": return "اعدادي";
-            case "high_school": return "ثانوي";
-            case "institute": return "المعهد";
-            case "university": return "جامعي";
-            case "higher_education": return "دراسات عليا";
+            case "primary_school":
+                return "ابتدائي";
+            case "middle_school":
+                return "اعدادي";
+            case "high_school":
+                return "ثانوي";
+            case "institute":
+                return "المعهد";
+            case "university":
+                return "جامعي";
+            case "higher_education":
+                return "دراسات عليا";
 
         }
         return education;
     }
 
-    public String getWork_field() {
+    public String getPublicWork_field() {
         switch (work_field) {
-            case "Content Creator": return "صانع محتوى";
-            case "Web Programming": return "مبرمج ويب";
-            case "Graphic Design": return "مصمم جرافيكي";
-            case "other": return "غير ذلك";
+            case "Content Creator":
+                return "صانع محتوى";
+            case "Web Programming":
+                return "مبرمج ويب";
+            case "Graphic Design":
+                return "مصمم جرافيكي";
+            case "other":
+                return "غير ذلك";
         }
         return work_field;
     }
 
-    public int getWork_fieldPostions() {
+    public int getPublicWork_fieldPostions() {
         switch (work_field) {
-            case "Content Creator": return 0;
-            case "Web Programming": return 1;
-            case "Graphic Design": return 2;
-            case "other": return 3;
+            case "Content Creator":
+                return 0;
+            case "Web Programming":
+                return 1;
+            case "Graphic Design":
+                return 2;
+            case "other":
+                return 3;
         }
         return 3;
     }
 
-    public int getEducationPostions() {
+    public int getPublicEducationPostions() {
         switch (education) {
-            case "primary_school": return 0;
-            case "middle_school": return 1;
-            case "high_school": return 2;
-            case "institute": return 3;
-            case "university": return 4;
-            case "higher_education": return 5;
+            case "primary_school":
+                return 0;
+            case "middle_school":
+                return 1;
+            case "high_school":
+                return 2;
+            case "institute":
+                return 3;
+            case "university":
+                return 4;
+            case "higher_education":
+                return 5;
         }
         return 0;
     }
 
-    public String getGender() {
-        if(gender == 2)
+    public String getPublicGender() {
+        if (gender == 2)
             return "انثى";
         return "ذكر";
     }
@@ -191,7 +258,7 @@ public class ProfileModel {
         public String other;
     }
 
-    public class Skill{
+    public class Skill {
         public String value;
     }
 

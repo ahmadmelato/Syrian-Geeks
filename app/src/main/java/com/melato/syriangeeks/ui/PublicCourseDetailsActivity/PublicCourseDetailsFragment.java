@@ -1,5 +1,6 @@
 package com.melato.syriangeeks.ui.PublicCourseDetailsActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -64,6 +65,7 @@ public class PublicCourseDetailsFragment extends Fragment implements View.OnClic
         }
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
