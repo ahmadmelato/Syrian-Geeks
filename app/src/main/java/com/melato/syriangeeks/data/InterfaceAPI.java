@@ -107,7 +107,22 @@ public interface InterfaceAPI {
     @POST("/api/v1/student/setting/store-institute")
     Call<ResponseBodyModel> store_institute(@Body ProfileModel.Institute model);
 
-    @POST("{{BASE_URL}}/api/v1/student/setting/delete-institute/{id}")
+    @POST("/api/v1/student/setting/delete-institute/{id}")
     Call<ResponseBodyModel> delete_institute(@Path("id") Integer id);
+
+    @POST("/api/v1/student/setting/update-experience/{id}")
+    Call<ResponseBodyModel> update_experience(@Path("id") Integer id,@Body ProfileModel.Experience model);
+
+    @POST("/api/v1/student/setting/store-experience")
+    Call<ResponseBodyModel> store_experience(@Body ProfileModel.Experience model);
+
+    @POST("/api/v1/student/setting/delete-experience/{id}")
+    Call<ResponseBodyModel> delete_experience(@Path("id") Integer id);
+
+    @POST("/api/v1/student/setting/store-skills")
+    Call<ResponseBodyModel> store_skills(@Body Map<String, Object> queryMap);
+
+    @POST("/api/v1/student/setting/store-social")
+    Call<ResponseBodyModel> store_social(@Body Map<String, Object> queryMap);
 
 }

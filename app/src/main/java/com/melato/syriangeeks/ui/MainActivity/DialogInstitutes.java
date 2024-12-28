@@ -81,6 +81,7 @@ public class DialogInstitutes {
     }
 
     public void show() {
+        index = null;
         institute = new ProfileModel.Institute();
         binding.setViewmodel(institute);
         dialog.show();
@@ -94,7 +95,6 @@ public class DialogInstitutes {
     }
 
     public void delete(int index) {
-        this.index=index;
         viewModel.delete_institute(context,index);
     }
 

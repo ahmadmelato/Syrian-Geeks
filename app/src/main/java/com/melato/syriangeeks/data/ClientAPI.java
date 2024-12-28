@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Locale;
@@ -278,6 +279,31 @@ public class ClientAPI {
 
     public Call<ResponseBodyModel> delete_institute(int id){
         return interfaceAPI.delete_institute(id);
+    }
+
+
+    public Call<ResponseBodyModel> store_experience(ProfileModel.Experience model){
+        return interfaceAPI.store_experience(model);
+    }
+
+    public Call<ResponseBodyModel> update_experience(int id,ProfileModel.Experience model){
+        return interfaceAPI.update_experience(id,model);
+    }
+
+    public Call<ResponseBodyModel> delete_experience(int id){
+        return interfaceAPI.delete_experience(id);
+    }
+    //;
+    public Call<ResponseBodyModel> store_skills(List<ProfileModel.Skill> skills){
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("skills", skills);
+        return interfaceAPI.store_skills(queryMap);
+    }
+
+    public Call<ResponseBodyModel> store_social(List<ProfileModel.Skill> social_media_links){
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("social_media_links", social_media_links);
+        return interfaceAPI.store_social(queryMap);
     }
 
     public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,

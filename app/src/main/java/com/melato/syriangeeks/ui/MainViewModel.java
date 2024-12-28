@@ -1,6 +1,5 @@
 package com.melato.syriangeeks.ui;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.content.res.Resources;
@@ -35,13 +34,12 @@ import com.melato.syriangeeks.model.ProfileModel;
 import com.melato.syriangeeks.model.QuestionModel;
 import com.melato.syriangeeks.model.ResponseBodyModel;
 import com.melato.syriangeeks.model.UserModel;
+import com.melato.syriangeeks.ui.MainActivity.ProfileFragment;
 
 import java.io.InputStream;
 import java.lang.reflect.Type;
 import java.nio.charset.StandardCharsets;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -1070,6 +1068,162 @@ public class MainViewModel extends ViewModel {
             }
         });
     }
+
+    public void store_experience(Context context, ProfileModel.Experience model) {
+        Resources resources = context.getResources();
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        ClientAPI.getClientAPI().store_experience(model).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                    getProfile(context);
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void update_experience(Context context, int index, ProfileModel.Experience model) {
+        Resources resources = context.getResources();
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        ClientAPI.getClientAPI().update_experience(index, model).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                    getProfile(context);
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void delete_experience(Context context, int index) {
+        Resources resources = context.getResources();
+        setProgressRun("");
+        ClientAPI.getClientAPI().delete_experience(index).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getProfile(context);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void store_skills(Context context, List<ProfileModel.Skill> skills) {
+        Resources resources = context.getResources();
+        setProgressRun("");
+        ClientAPI.getClientAPI().store_skills(skills).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getProfile(context);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void store_add_skills(Context context, String item) {
+        Resources resources = context.getResources();
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        List<ProfileModel.Skill> skills= Objects.requireNonNull(profileModelModelLiveData.getValue()).skills;
+        skills.add(new ProfileModel.Skill(item));
+        ClientAPI.getClientAPI().store_skills(skills).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                    getProfile(context);
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void store_social(Context context, List<ProfileModel.Skill> social_media_links) {
+        Resources resources = context.getResources();
+        setProgressRun("");
+        ClientAPI.getClientAPI().store_social(social_media_links).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getProfile(context);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void store_add_social(Context context, String item) {
+        Resources resources = context.getResources();
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        List<ProfileModel.Skill> social_media_links= Objects.requireNonNull(profileModelModelLiveData.getValue()).social_media_links;
+        social_media_links.add(new ProfileModel.Skill(item));
+        ClientAPI.getClientAPI().store_social(social_media_links).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                    getProfile(context);
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
 
 
 }

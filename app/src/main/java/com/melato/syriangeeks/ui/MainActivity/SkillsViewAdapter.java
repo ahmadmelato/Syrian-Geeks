@@ -28,7 +28,7 @@ public class SkillsViewAdapter extends RecyclerView.Adapter<SkillsViewAdapter.Co
 
     public List<ProfileModel.Skill> skillList;
     private onItemClickListener mlistener;
-    public Context context;
+    public ProfileFragment context;
 
     public interface onItemClickListener {
         void OnItemClick(int position);
@@ -59,7 +59,7 @@ public class SkillsViewAdapter extends RecyclerView.Adapter<SkillsViewAdapter.Co
         }
     }
 
-    public SkillsViewAdapter(Context context) {
+    public SkillsViewAdapter(ProfileFragment context) {
         this.skillList = new ArrayList<>();
         this.context = context;
     }
@@ -77,13 +77,17 @@ public class SkillsViewAdapter extends RecyclerView.Adapter<SkillsViewAdapter.Co
         return new CourseRecyclerViewAdapterViewHolder(v, mlistener);
     }
 
-    @SuppressLint("SetTextI18n")
+    @SuppressLint({"SetTextI18n", "RecyclerView"})
     @Override
     public void onBindViewHolder(@NonNull final CourseRecyclerViewAdapterViewHolder ViewHolder, int position) {
         ProfileModel.Skill skill = this.skillList.get(position);
         ViewHolder.setIsRecyclable(false);
         //processing views
         ViewHolder.value.setText(skill.value);
+        ViewHolder.cancel.setOnClickListener(v -> {
+            skillList.remove(position);
+            context.viewModel.store_skills(context.requireContext(),skillList);
+        });
         ViewHolder.value.setOnClickListener(v -> {
             String url =  ViewHolder.value.getText().toString();
             if (URLUtil.isValidUrl(url)) {

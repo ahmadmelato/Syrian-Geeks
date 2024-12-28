@@ -34,7 +34,7 @@ public class ProfileModel {
     public static class Experience {
         public String title;
         public String name;
-        private String employee_type;
+        public String employee_type;
         public String location;
         public String location_type;
         public int current;
@@ -42,6 +42,24 @@ public class ProfileModel {
         public String end_date;
         public String description;
 
+        public String getEmployee_typeByIndex(int postion) {
+            switch (postion) {
+                case 0:
+                    return "full_time";
+                case 1:
+                    return "part_time";
+                case 2:
+                    return "internship";
+                case 3:
+                    return "volunteer";
+                case 4:
+                    return "contract";
+                case 5:
+                    return "temporary";
+
+            }
+            return "full_time";
+        }
 
         public String getEmployee_type() {
             switch (employee_type) {
@@ -76,7 +94,6 @@ public class ProfileModel {
                     return 4;
                 case "temporary":
                     return 5;
-
             }
             return 0;
         }
@@ -86,6 +103,13 @@ public class ProfileModel {
                 return 1;
             }
             return 0;
+        }
+
+        public String getLocation_typeByIndex(int position) {
+            if (position==1) {
+                return "hybrid";
+            }
+            return "onsite";
         }
 
     }
@@ -258,8 +282,15 @@ public class ProfileModel {
         public String other;
     }
 
-    public class Skill {
+    public static class Skill {
         public String value;
+
+        public Skill() {
+        }
+
+        public Skill(String value) {
+            this.value = value;
+        }
     }
 
 

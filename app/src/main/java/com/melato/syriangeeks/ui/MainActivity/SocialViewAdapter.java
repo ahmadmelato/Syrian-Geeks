@@ -1,17 +1,19 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.URLUtil;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.model.ProfileModel;
 import com.squareup.picasso.Callback;
@@ -21,12 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class ExperienceRecyclerViewAdapter extends RecyclerView.Adapter<ExperienceRecyclerViewAdapter.CourseRecyclerViewAdapterViewHolder> {
+public class SocialViewAdapter extends RecyclerView.Adapter<SocialViewAdapter.CourseRecyclerViewAdapterViewHolder> {
 
-    public List<ProfileModel.Experience> datumList;
+    public List<ProfileModel.Skill> skillList;
     private onItemClickListener mlistener;
-    public Context context;
-    private DialogExpertise dialogExpertise;
+    public ProfileFragment context;
 
     public interface onItemClickListener {
         void OnItemClick(int position);
@@ -38,20 +39,14 @@ public class ExperienceRecyclerViewAdapter extends RecyclerView.Adapter<Experien
 
     public static class CourseRecyclerViewAdapterViewHolder extends RecyclerView.ViewHolder {
         //add views
-        TextView name_job, date_start_end, about, name_type, location;
-        FloatingActionButton editfbtu,delfbtu;
+        private TextView value;
+        private ImageButton cancel;
 
         public CourseRecyclerViewAdapterViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
             //initail views
-            name_job = itemView.findViewById(R.id.name_job);
-            date_start_end = itemView.findViewById(R.id.date_start_end);
-            about = itemView.findViewById(R.id.about);
-            name_type = itemView.findViewById(R.id.name_type);
-            location = itemView.findViewById(R.id.location);
-            editfbtu = itemView.findViewById(R.id.editfbtu);
-            delfbtu = itemView.findViewById(R.id.delfbtu);
-
+            value = itemView.findViewById(R.id.value);
+            cancel = itemView.findViewById(R.id.cancel);
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
                     int position = getAdapterPosition();
@@ -63,46 +58,46 @@ public class ExperienceRecyclerViewAdapter extends RecyclerView.Adapter<Experien
         }
     }
 
-    public ExperienceRecyclerViewAdapter(Context context,DialogExpertise dialogExpertise) {
-        this.datumList = new ArrayList<>();
+    public SocialViewAdapter(ProfileFragment context) {
+        this.skillList = new ArrayList<>();
         this.context = context;
-        this.dialogExpertise = dialogExpertise;
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void setDatumList(List<ProfileModel.Experience> datumList) {
-        this.datumList = datumList;
+    public void setSkillList(List<ProfileModel.Skill> skillList) {
+        this.skillList = skillList;
         this.notifyDataSetChanged();
     }
 
     @NonNull
     @Override
     public CourseRecyclerViewAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.experience_list_item, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.skill_list_item, parent, false);
         return new CourseRecyclerViewAdapterViewHolder(v, mlistener);
     }
 
-    @SuppressLint({"SetTextI18n", "SimpleDateFormat"})
+    @SuppressLint({"SetTextI18n", "RecyclerView"})
     @Override
     public void onBindViewHolder(@NonNull final CourseRecyclerViewAdapterViewHolder ViewHolder, int position) {
-        ProfileModel.Experience item = this.datumList.get(position);
+        ProfileModel.Skill skill = this.skillList.get(position);
         ViewHolder.setIsRecyclable(false);
         //processing views
-        ViewHolder.name_job.setText(item.title);
-        ViewHolder.name_type.setText(item.name + " - " + item.getEmployee_type());
-        ViewHolder.location.setText(item.location);
-        ViewHolder.date_start_end.setText((item.start_date != null ? item.start_date : "") + " - " + (item.end_date != null ? item.end_date : "حاضر"));
-        ViewHolder.about.setText((item.description != null ? item.description : ""));
-
-        ViewHolder.editfbtu.setOnClickListener(v -> {
-            dialogExpertise.show(position,item);
+        ViewHolder.value.setText(skill.value);
+        ViewHolder.cancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                skillList.remove(position);
+                context.viewModel.store_social(context.requireContext(),skillList);
+            }
         });
-
-        ViewHolder.delfbtu.setOnClickListener(v -> {
-            dialogExpertise.delete(position);
+        ViewHolder.value.setOnClickListener(v -> {
+            String url =  ViewHolder.value.getText().toString();
+            if (URLUtil.isValidUrl(url)) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                context.startActivity(browserIntent);
+            }
         });
     }
-
 
     private void loadImage(String url, ImageView img) {
         Picasso.get()
@@ -123,7 +118,7 @@ public class ExperienceRecyclerViewAdapter extends RecyclerView.Adapter<Experien
 
     @Override
     public int getItemCount() {
-        return datumList.size();
+        return skillList.size();
     }
 
 }

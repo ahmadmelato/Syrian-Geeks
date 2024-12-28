@@ -38,7 +38,7 @@ public class DialogDatePicker {
         }
         traverseViewsAndSetEnglishFormat(binding.datePicker);
         binding.submitButton.setOnClickListener(v -> {
-            String selectedDate = binding.datePicker.getYear() + "-" + (binding.datePicker.getMonth()+1 > 9 ? binding.datePicker.getMonth()+1 : "0" + (binding.datePicker.getMonth()+1)) + "-" + (binding.datePicker.getDayOfMonth() > 9 ? binding.datePicker.getDayOfMonth() : "0" + binding.datePicker.getDayOfMonth()); // Format and display the date
+            String selectedDate = (binding.datePicker.getDayOfMonth() > 9 ? binding.datePicker.getDayOfMonth() : "0" + binding.datePicker.getDayOfMonth()) + "/" + (binding.datePicker.getMonth()+1 > 9 ? binding.datePicker.getMonth()+1 : "0" + (binding.datePicker.getMonth()+1)) + "/" + binding.datePicker.getYear(); // Format and display the date
             editText.setText(selectedDate);
             dialog.dismiss();
         });

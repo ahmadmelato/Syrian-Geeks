@@ -25,13 +25,15 @@ import com.melato.syriangeeks.databinding.FragmentProfileBinding;
 import com.melato.syriangeeks.ui.MainViewModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.Objects;
+
 public class ProfileFragment extends Fragment implements View.OnClickListener {
 
 
     private FragmentProfileBinding binding;
-    private MainViewModel viewModel;
+    public MainViewModel viewModel;
     private SkillsViewAdapter skillsViewAdapter;
-    private SkillsViewAdapter linksViewAdapter;
+    private SocialViewAdapter linksViewAdapter;
     private EducationRecyclerViewAdapter educationRecyclerViewAdapter;
     private ExperienceRecyclerViewAdapter experienceRecyclerViewAdapter;
 
@@ -80,10 +82,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         binding.addlink.setOnClickListener(this);
 
         binding.skillList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.HORIZONTAL, true));
-        skillsViewAdapter = new SkillsViewAdapter(requireContext());
+        skillsViewAdapter = new SkillsViewAdapter(this);
         binding.skillList.setAdapter(skillsViewAdapter);
         binding.linksList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-        linksViewAdapter = new SkillsViewAdapter(requireContext());
+        linksViewAdapter = new SocialViewAdapter(this);
         binding.linksList.setAdapter(linksViewAdapter);
 
         binding.educationList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
@@ -184,7 +186,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 binding.links.setVisibility(View.GONE);
             }
         } else if (v.getId() == R.id.editaboutfbtu) {
-            dialogUpdateProfile.show(viewModel.profileModelModelLiveData.getValue());
+            dialogUpdateProfile.show(Objects.requireNonNull(viewModel.profileModelModelLiveData.getValue()));
         } else if (v.getId() == R.id.copy_profile_link && viewModel.profileModelModelLiveData.getValue()!= null) {
             copyToClipboard(requireContext(),viewModel.profileModelModelLiveData.getValue().public_profile);
         } else if (v.getId() == R.id.changepassword) {
