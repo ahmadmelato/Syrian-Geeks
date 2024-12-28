@@ -48,7 +48,7 @@ public class EducationRecyclerViewAdapter extends RecyclerView.Adapter<Education
     public static class CourseRecyclerViewAdapterViewHolder extends RecyclerView.ViewHolder {
         //add views
         TextView name, date_start_end, about;
-        FloatingActionButton editfbtu;
+        FloatingActionButton editfbtu, delfbtu;
 
         public CourseRecyclerViewAdapterViewHolder(View itemView, final onItemClickListener listener) {
             super(itemView);
@@ -57,6 +57,7 @@ public class EducationRecyclerViewAdapter extends RecyclerView.Adapter<Education
             date_start_end = itemView.findViewById(R.id.date_start_end);
             about = itemView.findViewById(R.id.about);
             editfbtu = itemView.findViewById(R.id.editfbtu);
+            delfbtu = itemView.findViewById(R.id.delfbtu);
 
             itemView.setOnClickListener(v -> {
                 if (listener != null) {
@@ -69,7 +70,7 @@ public class EducationRecyclerViewAdapter extends RecyclerView.Adapter<Education
         }
     }
 
-    public EducationRecyclerViewAdapter(Context context,DialogInstitutes dialogInstitutes) {
+    public EducationRecyclerViewAdapter(Context context, DialogInstitutes dialogInstitutes) {
         this.datumList = new ArrayList<>();
         this.context = context;
         this.dialogInstitutes = dialogInstitutes;
@@ -95,14 +96,17 @@ public class EducationRecyclerViewAdapter extends RecyclerView.Adapter<Education
         ViewHolder.setIsRecyclable(false);
         //processing views
         ViewHolder.name.setText(item.name);
-        ViewHolder.date_start_end.setText((item.start_date != null ? item.start_date : "") + " - " + (item.end_date != null ? item.end_date : "حاضر") );
-        ViewHolder.about.setText((item.description != null ? item.description : "") );
+        ViewHolder.date_start_end.setText((item.start_date != null ? item.start_date : "") + " - " + (item.end_date != null ? item.end_date : "حاضر"));
+        ViewHolder.about.setText((item.description != null ? item.description : ""));
 
         ViewHolder.editfbtu.setOnClickListener(v -> {
-            dialogInstitutes.show(item);
+            dialogInstitutes.show(position, item);
+        });
+
+        ViewHolder.delfbtu.setOnClickListener(v -> {
+            dialogInstitutes.delete(position);
         });
     }
-
 
 
     private void loadImage(String url, ImageView img) {

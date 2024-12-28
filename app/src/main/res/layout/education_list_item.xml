@@ -47,11 +47,25 @@
         </LinearLayout>
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/editfbtu"
+            android:id="@+id/delfbtu"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
+            android:contentDescription="@string/app_name"
+            android:src="@drawable/baseline_delete_forever_24"
+            android:theme="@style/Base.Theme.SyrianGeeks.Fab_5_rounded"
+
+            app:fabCustomSize="35dp"
+            app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+            app:tint="@color/white" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/editfbtu"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/delfbtu"
             android:contentDescription="@string/app_name"
             android:src="@drawable/baseline_edit_20"
             android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"

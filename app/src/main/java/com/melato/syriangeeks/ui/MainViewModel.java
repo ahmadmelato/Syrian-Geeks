@@ -403,7 +403,7 @@ public class MainViewModel extends ViewModel {
                     setProgressOK(response.body().getMessage());
                     Type certificateListType = new TypeToken<List<CertificateModel>>() {
                     }.getType();
-                    if(response.body().getData()!=null) {
+                    if (response.body().getData() != null) {
                         List<CertificateModel> courseActivitiesModel = new Gson().fromJson(response.body().getData().getAsJsonObject().get("certificates"), certificateListType);
                         certificateModelLiveData.setValue(courseActivitiesModel);
                     }
@@ -963,10 +963,10 @@ public class MainViewModel extends ViewModel {
         });
     }
 
-    public void update_password(Context context,String old_password,String password,String password_confirmation) {
+    public void update_password(Context context, String old_password, String password, String password_confirmation) {
         Resources resources = context.getResources();
         workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
-        ClientAPI.getClientAPI().update_password(old_password,password,password_confirmation).enqueue(new Callback<ResponseBodyModel>() {
+        ClientAPI.getClientAPI().update_password(old_password, password, password_confirmation).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
@@ -984,7 +984,7 @@ public class MainViewModel extends ViewModel {
         });
     }
 
-    public void update_profile(Context context,ProfileModel model) {
+    public void update_profile(Context context, ProfileModel model) {
         Resources resources = context.getResources();
         workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
         ClientAPI.getClientAPI().update_profile(model).enqueue(new Callback<ResponseBodyModel>() {
@@ -1006,6 +1006,70 @@ public class MainViewModel extends ViewModel {
         });
     }
 
+    public void store_institute(Context context, ProfileModel.Institute model) {
+        Resources resources = context.getResources();
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        ClientAPI.getClientAPI().store_institute(model).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                    getProfile(context);
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void update_institute(Context context, int index, ProfileModel.Institute model) {
+        Resources resources = context.getResources();
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
+        ClientAPI.getClientAPI().update_institute(index, model).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
+                    getProfile(context);
+                } else {
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
+
+    public void delete_institute(Context context, int index) {
+        Resources resources = context.getResources();
+        setProgressRun("");
+        ClientAPI.getClientAPI().delete_institute(index).enqueue(new Callback<ResponseBodyModel>() {
+            @Override
+            public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
+                if (response.code() == ClientAPI.OK) {
+                    getProfile(context);
+                } else {
+                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                }
+            }
+
+            @Override
+            public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
+                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
+            }
+        });
+    }
 
 
 }

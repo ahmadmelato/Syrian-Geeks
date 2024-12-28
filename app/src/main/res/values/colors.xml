@@ -4,6 +4,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="my_light_primary">#231F20</color>
     <color name="blue">#7BC3EC</color>
+    <color name="red">#C82739</color>
     <color name="light_blue">#7BC3EC</color>
     <color name="textColorHint">#78909C</color>
 </resources>

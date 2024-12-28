@@ -34,6 +34,12 @@
         <item name="android:backgroundTint">@color/blue</item>
     </style>
 
+    <style name="Base.Theme.SyrianGeeks.Fab_5_rounded" parent="Base.Theme.SyrianGeeks">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">50%</item>
+        <item name="android:backgroundTint">@color/red</item>
+    </style>
+
 
     <style name="Theme.SyrianGeeks.Button" parent="Base.Theme.SyrianGeeks">
         <!-- Customize your light theme here. -->

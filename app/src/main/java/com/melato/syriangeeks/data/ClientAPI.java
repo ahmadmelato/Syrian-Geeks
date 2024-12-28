@@ -268,6 +268,18 @@ public class ClientAPI {
         return interfaceAPI.update_profile(model);
     }
 
+    public Call<ResponseBodyModel> store_institute(ProfileModel.Institute model){
+        return interfaceAPI.store_institute(model);
+    }
+
+    public Call<ResponseBodyModel> update_institute(int id,ProfileModel.Institute model){
+        return interfaceAPI.update_institute(id,model);
+    }
+
+    public Call<ResponseBodyModel> delete_institute(int id){
+        return interfaceAPI.delete_institute(id);
+    }
+
     public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
                                           String work_field, String other_work_field, String experience_years, String freelancer, String freelancer_years, String cv_file,
                                           String country, String state, String location, String place, String disability, String email, String phone, String phone_dial,

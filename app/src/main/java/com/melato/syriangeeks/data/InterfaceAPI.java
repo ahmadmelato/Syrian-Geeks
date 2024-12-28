@@ -101,4 +101,13 @@ public interface InterfaceAPI {
     @POST("/api/v1/student/setting/update-profile")
     Call<ResponseBodyModel> update_profile(@Body ProfileModel model);
 
+    @POST("/api/v1/student/setting/update-institute/{id}")
+    Call<ResponseBodyModel> update_institute(@Path("id") Integer id,@Body ProfileModel.Institute model);
+
+    @POST("/api/v1/student/setting/store-institute")
+    Call<ResponseBodyModel> store_institute(@Body ProfileModel.Institute model);
+
+    @POST("{{BASE_URL}}/api/v1/student/setting/delete-institute/{id}")
+    Call<ResponseBodyModel> delete_institute(@Path("id") Integer id);
+
 }
