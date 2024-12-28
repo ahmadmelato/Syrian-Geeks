@@ -36,7 +36,7 @@
             android:layout_height="wrap_content"
             android:src="@mipmap/ic_launcher"
             android:visibility="gone"
-            app:civ_border_color="@color/my_light_primary"
+            app:civ_border_color="@color/brown"
             app:civ_border_width="1dp" />
 
         <ImageButton
