@@ -16,9 +16,10 @@ import android.widget.ArrayAdapter;
 
 import com.melato.syriangeeks.R;
 import com.melato.syriangeeks.databinding.FragmentFirstBinding;
+import com.melato.syriangeeks.ui.MainActivity.DialogDatePicker;
 import com.melato.syriangeeks.ui.SignupViewModel;
 
-public class FirstFragment extends Fragment{
+public class FirstFragment extends Fragment implements View.OnClickListener {
 
     private FragmentFirstBinding binding;
     private SignupViewModel signupViewModel;
@@ -76,6 +77,7 @@ public class FirstFragment extends Fragment{
         );
         adapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.yesnospinner.setAdapter(adapter2);
+        binding.brithday.setOnClickListener(this);
 
 
     }
@@ -87,4 +89,10 @@ public class FirstFragment extends Fragment{
         return binding.getRoot();
     }
 
+    @Override
+    public void onClick(View v) {
+        if(v.getId() == R.id.brithday){
+            new DialogDatePicker(requireContext(),binding.brithday).show();
+        }
+    }
 }

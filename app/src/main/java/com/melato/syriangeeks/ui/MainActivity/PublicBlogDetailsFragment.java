@@ -1,5 +1,6 @@
 package com.melato.syriangeeks.ui.MainActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -29,7 +30,6 @@ public class PublicBlogDetailsFragment extends Fragment implements View.OnClickL
 
     private static final String ARG_PARAM1 = "id";
 
-    // TODO: Rename and change types of parameters
     private int id;
 
     public PublicBlogDetailsFragment() {
@@ -45,6 +45,7 @@ public class PublicBlogDetailsFragment extends Fragment implements View.OnClickL
         return fragment;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -70,7 +71,10 @@ public class PublicBlogDetailsFragment extends Fragment implements View.OnClickL
         webSettings.setFixedFontFamily("monospace");
         mainViewModel.blogdetailsModelLiveData.observe(getViewLifecycleOwner(), blogDetalsModel -> {
             binding.blogName.setText(blogDetalsModel.title);
-            binding.blogDate.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(blogDetalsModel.created_at));
+            String dayString=new SimpleDateFormat("dd", Locale.US).format(blogDetalsModel.created_at);
+            String monthString=new SimpleDateFormat(" MMMM ", new Locale("ar")).format(blogDetalsModel.created_at);
+            String yearString=new SimpleDateFormat("yyyy", Locale.US).format(blogDetalsModel.created_at);
+            binding.blogDate.setText(dayString + monthString + yearString);
 
             String htmlContent = "<html dir='rtl' lang='ar'>" +
                     "<head>" +

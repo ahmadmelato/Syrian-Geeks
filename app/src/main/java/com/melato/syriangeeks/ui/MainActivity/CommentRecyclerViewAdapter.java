@@ -90,7 +90,10 @@ public class CommentRecyclerViewAdapter extends RecyclerView.Adapter<CommentRecy
         if(item.user != null) {
             ViewHolder.content_item.setText(item.user.name_ar);
         }
-        ViewHolder.date_item.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(item.created_at));
+        String dayString=new SimpleDateFormat("dd", Locale.US).format(item.created_at);
+        String monthString=new SimpleDateFormat(" MMMM ", new Locale("ar")).format(item.created_at);
+        String yearString=new SimpleDateFormat("yyyy", Locale.US).format(item.created_at);
+        ViewHolder.date_item.setText(dayString + monthString + yearString);
         ViewHolder.comment_item.setText(item.getComment());
         //ViewHolder.member_item.setText(blog.title);
         //loadImage(ClientAPI.BASE_URL + "/storage/" + blog.icon_image.original, ViewHolder.img);

@@ -89,7 +89,10 @@ public class EventRecyclerViewAdapter extends RecyclerView.Adapter<EventRecycler
         ViewHolder.event_name.setText(item.title);
         ViewHolder.event_dis.setText(item.getContent());
         ViewHolder.event_location.setText(item.address);
-        ViewHolder.event_date.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(item.start_date));
+        String dayString=new SimpleDateFormat("dd", Locale.US).format(item.start_date);
+        String monthString=new SimpleDateFormat(" MMMM ", new Locale("ar")).format(item.start_date);
+        String yearString=new SimpleDateFormat("yyyy", Locale.US).format(item.start_date);
+        ViewHolder.event_date.setText(dayString + monthString + yearString);
         loadImage(ClientAPI.BASE_URL + "/storage/" + item.image.original, ViewHolder.img);
     }
 

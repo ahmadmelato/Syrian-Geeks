@@ -108,8 +108,11 @@ public class AnswerRecyclerViewAdapter extends RecyclerView.Adapter<AnswerRecycl
         ViewHolder.list_recycler_view.setAdapter(innerAdapter);
         innerAdapter.setDatumList(item.reply);
 
+        String dayString=new SimpleDateFormat("dd", Locale.US).format(item.created_at);
+        String monthString=new SimpleDateFormat(" MMMM ", new Locale("ar")).format(item.created_at);
+        String yearString=new SimpleDateFormat("yyyy", Locale.US).format(item.created_at);
+        ViewHolder.date_item.setText(dayString + monthString + yearString);
 
-        ViewHolder.date_item.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(item.created_at));
         ViewHolder.answer_item.setText(item.getAnswer());
         if(item.reply.isEmpty()){
            ViewHolder.btuShowReplay.setVisibility(View.GONE);

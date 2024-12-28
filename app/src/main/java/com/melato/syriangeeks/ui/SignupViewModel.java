@@ -26,6 +26,7 @@ import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.Objects;
 
 import retrofit2.Call;
@@ -40,7 +41,7 @@ public class SignupViewModel extends ViewModel {
     @SuppressLint("SimpleDateFormat")
     public ObservableField<String> name = new ObservableField<>(""),
             name_ar = new ObservableField<>(""),
-            date_of_birth = new ObservableField<>(new SimpleDateFormat("yyyy-MM-dd").format(new Date())),
+            date_of_birth = new ObservableField<>(new SimpleDateFormat("yyyy-MM-dd", Locale.US).format(new Date())),
             gender = new ObservableField<>(""),
             nationality = new ObservableField<>(""),
             education = new ObservableField<>(""),

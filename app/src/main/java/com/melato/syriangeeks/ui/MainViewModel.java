@@ -100,6 +100,8 @@ public class MainViewModel extends ViewModel {
             password = new ObservableField<>(""),
             password_confirmation = new ObservableField<>("");
 
+    public ObservableField<Date> datePicker = new ObservableField<>(new Date());
+
     public MainViewModel() {
         setProgressOK("");
         workingLoadMore.setValue(new Working(ClientAPI.OK, ""));

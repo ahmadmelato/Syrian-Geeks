@@ -33,7 +33,7 @@ public class DialogInstitutes {
 
         dialog = new AlertDialog.Builder(context)
                 .setView(binding.getRoot())
-                .setCancelable(false)
+                .setCancelable(true)
                 .create();
 
 
@@ -50,6 +50,8 @@ public class DialogInstitutes {
             }
         });
 
+        binding.startDate.setOnClickListener(v -> new DialogDatePicker(context,binding.startDate).show());
+        binding.endDate.setOnClickListener(v -> new DialogDatePicker(context,binding.endDate).show());
 
         binding.cancelButton.setOnClickListener(v -> dialog.dismiss());
     }

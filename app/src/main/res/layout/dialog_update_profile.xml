@@ -118,6 +118,7 @@
                             android:drawableLeft="@drawable/calede"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:hint="YYYY-MM-dd"
+                            android:focusable="false"
                             android:inputType="date"
                             android:paddingHorizontal="20dp"
                             android:paddingStart="10dp"

@@ -47,6 +47,8 @@ public class DialogUpdateProfile {
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
 
+        binding.brithday.setOnClickListener(v -> new DialogDatePicker(context,binding.brithday).show());
+
         binding.genderspinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {

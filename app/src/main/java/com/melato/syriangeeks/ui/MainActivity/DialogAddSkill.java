@@ -13,7 +13,7 @@ import com.melato.syriangeeks.ui.MainViewModel;
 
 public class DialogAddSkill {
 
-    private Context context;
+    private final Context context;
     private MainViewModel viewModel;
     private AlertDialog dialog;
     private DialogAddSkillBinding binding;// Replace with your actual ViewModel type

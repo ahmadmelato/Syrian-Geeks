@@ -86,7 +86,10 @@ public class BlogRecyclerViewAdapter extends RecyclerView.Adapter<BlogRecyclerVi
         ViewHolder.setIsRecyclable(false);
         //processing views
         ViewHolder.blog_name.setText(blog.title);
-        ViewHolder.blog_date.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(blog.created_at));
+        String dayString=new SimpleDateFormat("dd", Locale.US).format(blog.created_at);
+        String monthString=new SimpleDateFormat(" MMMM ", new Locale("ar")).format(blog.created_at);
+        String yearString=new SimpleDateFormat("yyyy", Locale.US).format(blog.created_at);
+        ViewHolder.blog_date.setText(dayString + monthString + yearString);
         loadImage(ClientAPI.BASE_URL+"/storage/"+blog.icon_image.original,ViewHolder.img);
     }
 

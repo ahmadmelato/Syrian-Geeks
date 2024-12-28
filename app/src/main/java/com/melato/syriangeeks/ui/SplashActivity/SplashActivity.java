@@ -23,6 +23,8 @@ import com.melato.syriangeeks.ui.ActiveCodeActivity.ActiveCodeActivity;
 import com.melato.syriangeeks.ui.LoginActivity.LoginActivity;
 import com.melato.syriangeeks.ui.MainActivity.MainActivity;
 
+import java.util.Locale;
+
 @SuppressLint("CustomSplashScreen")
 public class SplashActivity extends AppCompatActivity {
 
@@ -43,6 +45,8 @@ public class SplashActivity extends AppCompatActivity {
 //            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
 //            return insets;
 //        });
+
+
 
         splashActivityViewModel.txt.observe(this, s -> {
             if (s.length() > text.length() && splashActivityViewModel.getDataVerfiy_Code(getApplicationContext()) != null) {

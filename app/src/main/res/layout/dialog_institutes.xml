@@ -138,7 +138,9 @@
                     android:background="@drawable/ic_path_2480"
                     android:fontFamily="@font/dinnextltarabicregular"
                     android:hint="@string/startDate"
-                    android:inputType="text"
+                    android:inputType="date"
+                    android:focusable="false"
+                    android:drawableLeft="@drawable/calede"
                     android:paddingHorizontal="20dp"
                     android:text="@={viewmodel.start_date}" />
             </LinearLayout>
@@ -151,6 +153,7 @@
                 android:fontFamily="@font/dinnextltarabicregular"
                 android:layoutDirection="rtl"
                 android:layout_gravity="right"
+
                 android:checked="@{viewmodel.current==1}"
                 android:text="@string/currentlystudyinghere" />
 
@@ -177,7 +180,9 @@
                     android:background="@drawable/ic_path_2480"
                     android:fontFamily="@font/dinnextltarabicregular"
                     android:hint="@string/endDate"
-                    android:inputType="text"
+                    android:inputType="date"
+                    android:focusable="false"
+                    android:drawableLeft="@drawable/calede"
                     android:paddingHorizontal="20dp"
                     android:text="@={viewmodel.end_date}" />
             </LinearLayout>

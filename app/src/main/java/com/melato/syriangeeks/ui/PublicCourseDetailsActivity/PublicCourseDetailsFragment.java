@@ -75,7 +75,7 @@ public class PublicCourseDetailsFragment extends Fragment implements View.OnClic
                 binding.mainprogress.setVisibility(working.isProgressing());
                 binding.main1.setVisibility(working.isSuccessfulView());
                 binding.nointernet.setVisibility(working.isNotSuccessfulView());
-                if (!working.isRunning())
+                if (!working.isRunning() && !working.isSuccessful())
                     Toast.makeText(requireContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
             }
         });

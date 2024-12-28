@@ -80,6 +80,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         publicEventsFragment = new PublicEventsFragment();
         peopleFragment = new PeopleFragment();
         aboutUsFragment = new AboutUsFragment();
+
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
 

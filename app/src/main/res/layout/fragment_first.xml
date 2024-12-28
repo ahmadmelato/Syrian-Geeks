@@ -99,7 +99,7 @@
                     android:drawableLeft="@drawable/calede"
                     android:fontFamily="@font/dinnextltarabicregular"
                     android:hint="YYYY-MM-dd"
-                    android:inputType="date"
+                    android:focusable="false"
                     android:paddingHorizontal="20dp"
                     android:paddingStart="10dp"
                     android:text="@={viewmodel.date_of_birth}" />

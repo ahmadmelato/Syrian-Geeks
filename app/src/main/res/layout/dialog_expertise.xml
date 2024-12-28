@@ -89,7 +89,7 @@
                             android:id="@+id/typeofemployment"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/spinner"/>
+                            android:background="@drawable/spinner" />
 
                     </LinearLayout>
 
@@ -168,8 +168,7 @@
                             android:id="@+id/sitetype"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:background="@drawable/spinner"
-                            />
+                            android:background="@drawable/spinner" />
 
                     </LinearLayout>
 
@@ -194,9 +193,11 @@
                             android:layout_height="match_parent"
                             android:autofillHints=""
                             android:background="@drawable/ic_path_2480"
+                            android:drawableLeft="@drawable/calede"
+                            android:focusable="false"
+                            android:inputType="date"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:hint="@string/startDate"
-                            android:inputType="text"
                             android:paddingHorizontal="20dp"
                             android:text="@={viewmodel.start_date}" />
                     </LinearLayout>
@@ -207,9 +208,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="right"
+                        android:checked="@{viewmodel.current==1}"
                         android:fontFamily="@font/dinnextltarabicregular"
                         android:layoutDirection="rtl"
-                        android:checked="@{viewmodel.current==1}"
                         android:text="@string/currentlyworkrole" />
 
 
@@ -233,9 +234,11 @@
                             android:layout_height="match_parent"
                             android:autofillHints=""
                             android:background="@drawable/ic_path_2480"
+                            android:drawableLeft="@drawable/calede"
+                            android:focusable="false"
                             android:fontFamily="@font/dinnextltarabicregular"
                             android:hint="@string/endDate"
-                            android:inputType="text"
+                            android:inputType="date"
                             android:paddingHorizontal="20dp"
                             android:text="@={viewmodel.end_date}" />
                     </LinearLayout>
