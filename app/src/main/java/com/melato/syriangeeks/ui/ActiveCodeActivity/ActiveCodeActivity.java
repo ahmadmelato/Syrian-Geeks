@@ -39,7 +39,7 @@ public class ActiveCodeActivity extends AppCompatActivity implements View.OnClic
                 binding.mainprogress.setVisibility(working.isProgressing());
                 binding.btuSure.setVisibility(working.isFinish());
                 binding.btuResend.setVisibility(working.isFinish());
-                if (!working.isRunning())
+                if (!working.isRunning() && !working.isSuccessful())
                     Toast.makeText(getApplicationContext(), working.getsSmg(), Toast.LENGTH_SHORT).show();
             }
         });

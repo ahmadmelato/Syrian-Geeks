@@ -311,6 +311,16 @@ public class ClientAPI {
         return interfaceAPI.getPublicProfile(id);
     }
 
+    public Call<ResponseBodyModel> contact(String name, String email, String phone, String subject, String message) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("name", name);
+        queryMap.put("email", email);
+        queryMap.put("phone", phone);
+        queryMap.put("subject", subject);
+        queryMap.put("message", message);
+        return interfaceAPI.contact(queryMap);
+    }
+
     public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
                                           String work_field, String other_work_field, String experience_years, String freelancer, String freelancer_years, String cv_file,
                                           String country, String state, String location, String place, String disability, String email, String phone, String phone_dial,

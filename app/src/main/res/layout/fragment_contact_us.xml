@@ -1,397 +1,433 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.AboutUsFragment.ContactUsFragment">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <LinearLayout
+    <data>
+
+    </data>
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layoutDirection="ltr"
-        android:orientation="vertical">
+        android:layout_height="match_parent"
+        android:layoutDirection="rtl"
+        tools:context=".ui.AboutUsFragment.ContactUsFragment">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_marginHorizontal="5dp"
+            android:layoutDirection="ltr"
+            android:orientation="vertical">
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginHorizontal="3dp"
-                android:layout_marginVertical="5dp"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="10dp"
+                android:gravity="center"
                 android:layout_weight="1"
-                android:layoutDirection="ltr"
-                app:cardCornerRadius="10dp">
+                android:orientation="horizontal">
 
-                <LinearLayout
-                    android:layout_width="match_parent"
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
                     android:layout_height="match_parent"
-                    android:layout_marginHorizontal="2dp"
-                    android:layout_marginVertical="2dp"
-                    android:gravity="center"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_weight="1"
                     android:layoutDirection="ltr"
-                    android:orientation="horizontal">
-
+                    app:cardCornerRadius="10dp">
 
                     <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:layoutDirection="rtl"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/dinnextltarabicregular"
-                            android:text="راسلنا بالبريد الإلكتروني"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:fontFamily="@font/dinnextltarabicregular"
-                            android:layoutDirection="ltr"
-                            android:text="sygeeks@gmail.com"
-                            android:textSize="13sp" />
-                    </LinearLayout>
-
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="right|center"
-                        android:contentDescription="@string/app_name"
-                        android:src="@drawable/sms"
-                        android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                        app:fabCustomSize="35dp"
-                        app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                        app:tint="@color/white" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginHorizontal="2dp"
+                        android:layout_marginVertical="2dp"
+                        android:gravity="center"
+                        android:layoutDirection="ltr"
+                        android:orientation="horizontal">
 
 
-            <androidx.cardview.widget.CardView
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="3dp"
-                android:layout_marginVertical="5dp"
-                android:layout_weight="1"
-                android:layoutDirection="ltr"
-                app:cardCornerRadius="10dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="2dp"
-                    android:layout_marginVertical="2dp"
-                    android:gravity="center"
-                    android:layoutDirection="ltr"
-                    android:orientation="horizontal">
-
-
-                    <LinearLayout
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:layout_weight="1"
-                        android:layoutDirection="rtl"
-                        android:orientation="vertical">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:fontFamily="@font/dinnextltarabicregular"
-                            android:text="اتصل بنا"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
+                        <LinearLayout
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center"
                             android:layout_weight="1"
-                            android:fontFamily="@font/dinnextltarabicregular"
-                            android:layoutDirection="ltr"
-                            android:text="+12017482990 | +4915217679732"
-                            android:textSize="10.4sp" />
+                            android:layoutDirection="rtl"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/dinnextltarabicregular"
+                                android:text="راسلنا بالبريد الإلكتروني"
+                                android:lines="1"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/dinnextltarabicregular"
+                                android:layoutDirection="ltr"
+                                android:text="sygeeks@gmail.com"
+                                android:textSize="13sp" />
+                        </LinearLayout>
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/sms"
+                            android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                            app:fabCustomSize="35dp"
+                            app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                            app:tint="@color/white" />
 
                     </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                    <com.google.android.material.floatingactionbutton.FloatingActionButton
-                        android:layout_width="wrap_content"
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="3dp"
+                    android:layout_marginVertical="5dp"
+                    android:layout_weight="1"
+                    android:layoutDirection="ltr"
+                    app:cardCornerRadius="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="right|center"
-                        android:contentDescription="@string/app_name"
-                        android:src="@drawable/call"
-                        android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                        app:fabCustomSize="35dp"
-                        app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                        app:tint="@color/white" />
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-        </LinearLayout>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="10dp"
-            android:fontFamily="@font/dinnextltarabicregular"
-            android:text="أرسل لنا"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:theme="@style/Theme.SyrianGeeks.Text" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/dinnextltarabicregular"
-            android:text="رسالة في أي وقت"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
+                        android:layout_marginHorizontal="2dp"
+                        android:layout_marginVertical="2dp"
+                        android:gravity="center"
+                        android:layoutDirection="ltr"
+                        android:orientation="horizontal">
 
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:layoutDirection="rtl"
-            android:orientation="vertical">
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:layoutDirection="rtl"
+                            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:drawableLeft="@drawable/star"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/name" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="1"
+                                android:lines="1"
+                                android:fontFamily="@font/dinnextltarabicregular"
+                                android:text="اتصل بنا"
+                                android:textSize="14sp"
+                                android:textStyle="bold" />
 
-            <EditText
-                android:id="@+id/name"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints=""
-                android:background="@drawable/ic_path_2480"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:hint="@string/name"
-                android:inputType="text"
-                android:paddingHorizontal="20dp" />
-        </LinearLayout>
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_weight="1"
+                                android:fontFamily="@font/dinnextltarabicregular"
+                                android:layoutDirection="ltr"
+                                android:text="+12017482990 | +4915217679732"
+                                android:textSize="10.4sp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:layoutDirection="rtl"
-            android:orientation="vertical">
+                        </LinearLayout>
+
+                        <com.google.android.material.floatingactionbutton.FloatingActionButton
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="right|center"
+                            android:contentDescription="@string/app_name"
+                            android:src="@drawable/call"
+                            android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                            app:fabCustomSize="35dp"
+                            app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                            app:tint="@color/white" />
+
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:drawableLeft="@drawable/star"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
                 android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/mail" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints=""
-                android:background="@drawable/ic_path_2480"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:hint="@string/mail"
-                android:inputType="textEmailAddress"
-                android:paddingHorizontal="20dp"
-                android:text="" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:layoutDirection="rtl"
-            android:orientation="vertical">
+                android:text="أرسل لنا"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:theme="@style/Theme.SyrianGeeks.Text" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:drawableLeft="@drawable/star"
+                android:layout_gravity="center"
                 android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/phone" />
+                android:text="رسالة في أي وقت"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layoutDirection="ltr"
-                android:orientation="horizontal">
+                android:layout_marginVertical="5dp"
+                android:layoutDirection="rtl"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:drawableLeft="@drawable/star"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/name" />
 
                 <EditText
+                    android:id="@+id/name"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginEnd="10dp"
-                    android:layout_weight="2"
                     android:autofillHints=""
                     android:background="@drawable/ic_path_2480"
                     android:fontFamily="@font/dinnextltarabicregular"
-                    android:hint="00XXX"
-                    android:inputType="phone"
-                    android:maxLength="5"
-                    android:paddingHorizontal="20dp"
-                    android:textAlignment="center" />
-
-                <EditText
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:autofillHints=""
-                    android:background="@drawable/ic_path_2480"
-                    android:fontFamily="@font/dinnextltarabicregular"
-                    android:hint="@string/phone"
-                    android:inputType="phone"
-                    android:maxLength="12"
-                    android:paddingHorizontal="20dp"
-                    android:textAlignment="center" />
+                    android:hint="@string/name"
+                    android:inputType="text"
+                    android:paddingHorizontal="20dp" />
             </LinearLayout>
 
-        </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layoutDirection="rtl"
+                android:orientation="vertical">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:layoutDirection="rtl"
-            android:orientation="vertical">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:drawableLeft="@drawable/star"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/mail" />
+
+                <EditText
+                    android:id="@+id/mail"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/ic_path_2480"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:hint="@string/mail"
+                    android:inputType="textEmailAddress"
+                    android:paddingHorizontal="20dp"
+                    android:text="" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layoutDirection="rtl"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:drawableLeft="@drawable/star"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/phone" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layoutDirection="ltr"
+                    android:orientation="horizontal">
+
+                    <EditText
+                        android:id="@+id/phone_dail"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginEnd="10dp"
+                        android:layout_weight="2"
+                        android:autofillHints=""
+                        android:background="@drawable/ic_path_2480"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:hint="00XXX"
+                        android:inputType="phone"
+                        android:maxLength="5"
+                        android:paddingHorizontal="20dp"
+                        android:textAlignment="center" />
+
+                    <EditText
+                        android:id="@+id/phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:autofillHints=""
+                        android:background="@drawable/ic_path_2480"
+                        android:fontFamily="@font/dinnextltarabicregular"
+                        android:hint="@string/phone"
+                        android:inputType="phone"
+                        android:maxLength="12"
+                        android:paddingHorizontal="20dp"
+                        android:textAlignment="center" />
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layoutDirection="rtl"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:drawableLeft="@drawable/star"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/subject" />
+
+                <EditText
+                    android:id="@+id/subject"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/ic_path_2480"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:hint="@string/subject"
+                    android:inputType="text"
+                    android:paddingHorizontal="20dp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="5dp"
+                android:layoutDirection="rtl"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="5dp"
+                    android:drawableLeft="@drawable/star"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:text="@string/message" />
+
+                <EditText
+                    android:id="@+id/message"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:autofillHints=""
+                    android:background="@drawable/ic_path_2480"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:hint="@string/message"
+                    android:inputType="textMultiLine"
+                    android:paddingHorizontal="20dp" />
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="50dp">
+
+                <ProgressBar
+                    android:id="@+id/mainprogress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:layout_marginVertical="5dp"
+                    android:background="@drawable/shap_1"
+                    android:indeterminateDrawable="@drawable/cpb_1"
+                    android:indeterminateDuration="@android:integer/config_longAnimTime"
+                    android:visibility="gone" />
+
+                <Button
+                    android:id="@+id/btuSend"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="10dp"
+                    android:layout_centerInParent="true"
+                    android:background="@drawable/ic_rectangle_145"
+                    android:fontFamily="@font/dinnextltarabicregular"
+                    android:minWidth="200dp"
+                    android:text="إرسال" />
+
+            </RelativeLayout>
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:drawableLeft="@drawable/star"
+                android:layout_gravity="center"
                 android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/subject" />
-
-            <EditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints=""
-                android:background="@drawable/ic_path_2480"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:hint="@string/subject"
-                android:inputType="text"
-                android:paddingHorizontal="20dp" />
-        </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="5dp"
-            android:layoutDirection="rtl"
-            android:orientation="vertical">
+                android:text="تابعنا الآن"
+                android:textAlignment="center"
+                android:textSize="18sp"
+                android:theme="@style/Theme.SyrianGeeks.Text" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginVertical="5dp"
-                android:drawableLeft="@drawable/star"
+                android:layout_gravity="center"
                 android:fontFamily="@font/dinnextltarabicregular"
-                android:text="@string/message" />
+                android:text="على منصات التواصل الإجتماعي"
+                android:textAlignment="center"
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
-            <EditText
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:autofillHints=""
-                android:background="@drawable/ic_path_2480"
-                android:fontFamily="@font/dinnextltarabicregular"
-                android:hint="@string/message"
-                android:inputType="textMultiLine"
-                android:paddingHorizontal="20dp" />
-        </LinearLayout>
-
-        <Button
-            android:id="@+id/btuSend"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginVertical="10dp"
-            android:background="@drawable/ic_rectangle_145"
-            android:fontFamily="@font/dinnextltarabicregular"
-            android:minWidth="200dp"
-            android:text="إرسال" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/dinnextltarabicregular"
-            android:text="تابعنا الآن"
-            android:textAlignment="center"
-            android:textSize="18sp"
-            android:theme="@style/Theme.SyrianGeeks.Text" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:fontFamily="@font/dinnextltarabicregular"
-            android:text="على منصات التواصل الإجتماعي"
-            android:textAlignment="center"
-            android:textSize="20sp"
-            android:textStyle="bold" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:gravity="center"
-            android:minHeight="80dp"
-            android:orientation="horizontal">
-
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/linkedin"
-                android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                app:tint="@color/white" />
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:minHeight="80dp"
+                android:orientation="horizontal">
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginHorizontal="40dp"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/instagram"
-                android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                app:tint="@color/white" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/linkedin"
+                    android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:tint="@color/white" />
 
-            <com.google.android.material.floatingactionbutton.FloatingActionButton
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:contentDescription="@string/app_name"
-                android:src="@drawable/facebook"
-                android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
-                app:tint="@color/white" />
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="40dp"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/instagram"
+                    android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:tint="@color/white" />
+
+                <com.google.android.material.floatingactionbutton.FloatingActionButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/app_name"
+                    android:src="@drawable/facebook"
+                    android:theme="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:shapeAppearanceOverlay="@style/Base.Theme.SyrianGeeks.Fab_4_rounded"
+                    app:tint="@color/white" />
+            </LinearLayout>
+
+
         </LinearLayout>
 
 
-    </LinearLayout>
-
-
-</ScrollView>
+    </ScrollView>
+</layout>

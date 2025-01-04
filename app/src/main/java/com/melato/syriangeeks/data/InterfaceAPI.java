@@ -24,7 +24,7 @@ public interface InterfaceAPI {
     Call<ResponseBodyModel> logout();
 
     @GET("/api/v1/courses")
-    Call<ResponseBodyModel> getCourses(@Query("sortTag") String sortTag,@Query("page") int page);
+    Call<ResponseBodyModel> getCourses(@Query("sortTag") String sortTag, @Query("page") int page);
 
     @GET("/api/v1/blogs")
     Call<ResponseBodyModel> getBlogs(@Query("page") int page);
@@ -78,10 +78,10 @@ public interface InterfaceAPI {
     Call<ResponseBodyModel> getQuestions(@Query("page") Integer page);
 
     @GET("/api/v1/forum/questions/details/{id}")
-    Call<ResponseBodyModel> getQuestionsDetails(@Path("id") Integer id,@Query("page") Integer page);
+    Call<ResponseBodyModel> getQuestionsDetails(@Path("id") Integer id, @Query("page") Integer page);
 
     @POST("/api/v1/forum/comment/store/{id}")
-    Call<ResponseBodyModel> comment(@Path("id") Integer id,@Body Map<String, Object> queryMap);
+    Call<ResponseBodyModel> comment(@Path("id") Integer id, @Body Map<String, Object> queryMap);
 
     @POST("/api/v1/forum/question/store")
     Call<ResponseBodyModel> question_store(@Body Map<String, Object> queryMap);
@@ -102,7 +102,7 @@ public interface InterfaceAPI {
     Call<ResponseBodyModel> update_profile(@Body ProfileModel model);
 
     @POST("/api/v1/student/setting/update-institute/{id}")
-    Call<ResponseBodyModel> update_institute(@Path("id") Integer id,@Body ProfileModel.Institute model);
+    Call<ResponseBodyModel> update_institute(@Path("id") Integer id, @Body ProfileModel.Institute model);
 
     @POST("/api/v1/student/setting/store-institute")
     Call<ResponseBodyModel> store_institute(@Body ProfileModel.Institute model);
@@ -111,7 +111,7 @@ public interface InterfaceAPI {
     Call<ResponseBodyModel> delete_institute(@Path("id") Integer id);
 
     @POST("/api/v1/student/setting/update-experience/{id}")
-    Call<ResponseBodyModel> update_experience(@Path("id") Integer id,@Body ProfileModel.Experience model);
+    Call<ResponseBodyModel> update_experience(@Path("id") Integer id, @Body ProfileModel.Experience model);
 
     @POST("/api/v1/student/setting/store-experience")
     Call<ResponseBodyModel> store_experience(@Body ProfileModel.Experience model);
@@ -127,5 +127,14 @@ public interface InterfaceAPI {
 
     @GET("/api/v1/student/public-profile/{user_id}")
     Call<ResponseBodyModel> getPublicProfile(@Path("user_id") Integer id);
+
+    @POST("/api/v1/contact")
+    Call<ResponseBodyModel> contact(@Body Map<String, Object> queryMap);
+
+    @GET("/api/v1/student/event/notifications")
+    Call<ResponseBodyModel> getNotifications();
+
+    @POST("/api/v1/student/event/read-all-notification")
+    Call<ResponseBodyModel> readAllNotification();
 
 }
