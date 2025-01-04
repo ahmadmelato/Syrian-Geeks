@@ -46,7 +46,7 @@ public class AnswerRecyclerViewAdapter extends RecyclerView.Adapter<AnswerRecycl
 
     public static class CourseRecyclerViewAdapterViewHolder extends RecyclerView.ViewHolder {
         //add views
-        TextView content_item, member_item, date_item,answer_item,btuShowReplay;
+        TextView content_item, member_item, date_item, answer_item, btuShowReplay;
         CircleImageView profile_image;
         RecyclerView list_recycler_view;
         TextView edtReplay;
@@ -73,7 +73,7 @@ public class AnswerRecyclerViewAdapter extends RecyclerView.Adapter<AnswerRecycl
         }
     }
 
-    public AnswerRecyclerViewAdapter(Context context,PeopleQuationFragment peopleQuationFragment) {
+    public AnswerRecyclerViewAdapter(Context context, PeopleQuationFragment peopleQuationFragment) {
         this.datumList = new ArrayList<>();
         this.context = context;
         this.peopleQuationFragment = peopleQuationFragment;
@@ -98,7 +98,7 @@ public class AnswerRecyclerViewAdapter extends RecyclerView.Adapter<AnswerRecycl
         AnswerModel.Datum item = this.datumList.get(position);
         ViewHolder.setIsRecyclable(false);
         //processing views
-        if(item.user != null) {
+        if (item.user != null) {
             ViewHolder.content_item.setText(item.user.name_ar);
         }
 
@@ -108,20 +108,20 @@ public class AnswerRecyclerViewAdapter extends RecyclerView.Adapter<AnswerRecycl
         ViewHolder.list_recycler_view.setAdapter(innerAdapter);
         innerAdapter.setDatumList(item.reply);
 
-        String dayString=new SimpleDateFormat("dd", Locale.US).format(item.created_at);
-        String monthString=new SimpleDateFormat(" MMMM ", new Locale("ar")).format(item.created_at);
-        String yearString=new SimpleDateFormat("yyyy", Locale.US).format(item.created_at);
+        String dayString = new SimpleDateFormat("dd", Locale.US).format(item.created_at);
+        String monthString = new SimpleDateFormat(" MMMM ", new Locale("ar")).format(item.created_at);
+        String yearString = new SimpleDateFormat("yyyy", Locale.US).format(item.created_at);
         ViewHolder.date_item.setText(dayString + monthString + yearString);
 
         ViewHolder.answer_item.setText(item.getAnswer());
-        if(item.reply.isEmpty()){
-           ViewHolder.btuShowReplay.setVisibility(View.GONE);
+        if (item.reply.isEmpty()) {
+            ViewHolder.btuShowReplay.setVisibility(View.GONE);
         }
         ViewHolder.btuShowReplay.setOnClickListener(v -> {
-            if(ViewHolder.list_recycler_view.getVisibility() == View.VISIBLE) {
+            if (ViewHolder.list_recycler_view.getVisibility() == View.VISIBLE) {
                 ViewHolder.list_recycler_view.setVisibility(View.GONE);
                 ViewHolder.btuShowReplay.setText("عرض الردود");
-            }else{
+            } else {
                 ViewHolder.list_recycler_view.setVisibility(View.VISIBLE);
                 ViewHolder.btuShowReplay.setText("اخفاء الردود");
             }
@@ -129,6 +129,13 @@ public class AnswerRecyclerViewAdapter extends RecyclerView.Adapter<AnswerRecycl
         });
 
         ViewHolder.edtReplay.setOnClickListener(v -> peopleQuationFragment.showCreateCommanitDialog(item.id));
+
+        innerAdapter.SetOnItemClickListener(position1 -> {
+            if (item.reply.get(position1).user != null) {
+                peopleQuationFragment.openPublicProfileFragment(item.reply.get(position1).user.id);
+            }
+        });
+
         //ViewHolder.member_item.setText(blog.title);
         //loadImage(ClientAPI.BASE_URL + "/storage/" + blog.icon_image.original, ViewHolder.img);
     }

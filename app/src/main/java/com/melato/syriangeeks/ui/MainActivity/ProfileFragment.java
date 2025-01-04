@@ -25,6 +25,7 @@ import com.melato.syriangeeks.databinding.FragmentProfileBinding;
 import com.melato.syriangeeks.ui.MainViewModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -125,10 +126,10 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
                 }
                 binding.phone.setText((profileModel.phone_dial != null ? profileModel.phone_dial : "")+ " "+ (profileModel.mobile != null ? profileModel.mobile : ""));
                 binding.aboutMe.setText(profileModel.about_me != null ? profileModel.about_me : "");
-                skillsViewAdapter.setSkillList(profileModel.skills);
-                linksViewAdapter.setSkillList(profileModel.social_media_links);
-                educationRecyclerViewAdapter.setDatumList(profileModel.institutes);
-                experienceRecyclerViewAdapter.setDatumList(profileModel.experience);
+                skillsViewAdapter.setSkillList(profileModel.skills != null ? profileModel.skills : new ArrayList<>());
+                linksViewAdapter.setSkillList(profileModel.social_media_links != null ? profileModel.skills : new ArrayList<>());
+                educationRecyclerViewAdapter.setDatumList(profileModel.institutes != null ? profileModel.institutes : new ArrayList<>());
+                experienceRecyclerViewAdapter.setDatumList(profileModel.experience != null ? profileModel.experience : new ArrayList<>());
                 loadImage(profileModel.avatar, binding.profileImage);
             }
         });

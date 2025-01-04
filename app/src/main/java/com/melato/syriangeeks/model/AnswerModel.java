@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class AnswerModel {
 
-    public class Datum {
+    public static class Datum {
         public int id;
         public int forum_question_id;
         private String answer;
@@ -28,13 +28,13 @@ public class AnswerModel {
         }
     }
 
-    public class Link {
+    public static class Link {
         public String url;
         public String label;
         public boolean active;
     }
 
-    public class Reply {
+    public static class Reply {
         public int id;
         public int forum_answer_id;
         private String comment;
@@ -66,7 +66,7 @@ public class AnswerModel {
     public int total;
 
 
-    public class User {
+    public static class User {
         public int id;
         public String name;
         public String name_ar;

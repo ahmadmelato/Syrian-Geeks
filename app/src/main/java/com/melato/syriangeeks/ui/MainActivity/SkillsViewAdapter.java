@@ -29,6 +29,7 @@ public class SkillsViewAdapter extends RecyclerView.Adapter<SkillsViewAdapter.Co
     public List<ProfileModel.Skill> skillList;
     private onItemClickListener mlistener;
     public ProfileFragment context;
+    public Context pucontext;
 
     public interface onItemClickListener {
         void OnItemClick(int position);
@@ -64,6 +65,11 @@ public class SkillsViewAdapter extends RecyclerView.Adapter<SkillsViewAdapter.Co
         this.context = context;
     }
 
+    public SkillsViewAdapter(Context context) {
+        this.skillList = new ArrayList<>();
+        this.pucontext = context;
+    }
+
     @SuppressLint("NotifyDataSetChanged")
     public void setSkillList(List<ProfileModel.Skill> skillList) {
         this.skillList = skillList;
@@ -84,17 +90,30 @@ public class SkillsViewAdapter extends RecyclerView.Adapter<SkillsViewAdapter.Co
         ViewHolder.setIsRecyclable(false);
         //processing views
         ViewHolder.value.setText(skill.value);
-        ViewHolder.cancel.setOnClickListener(v -> {
-            skillList.remove(position);
-            context.viewModel.store_skills(context.requireContext(),skillList);
-        });
-        ViewHolder.value.setOnClickListener(v -> {
-            String url =  ViewHolder.value.getText().toString();
-            if (URLUtil.isValidUrl(url)) {
-                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                context.startActivity(browserIntent);
-            }
-        });
+
+        ViewHolder.cancel.setVisibility(View.GONE);
+        if (context != null) {
+            ViewHolder.cancel.setVisibility(View.VISIBLE);
+            ViewHolder.cancel.setOnClickListener(v -> {
+                skillList.remove(position);
+                context.viewModel.store_skills(context.requireContext(), skillList);
+            });
+            ViewHolder.value.setOnClickListener(v -> {
+                String url = ViewHolder.value.getText().toString();
+                if (URLUtil.isValidUrl(url)) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    context.startActivity(browserIntent);
+                }
+            });
+        } else {
+            ViewHolder.value.setOnClickListener(v -> {
+                String url = ViewHolder.value.getText().toString();
+                if (URLUtil.isValidUrl(url)) {
+                    Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+                    pucontext.startActivity(browserIntent);
+                }
+            });
+        }
     }
 
     private void loadImage(String url, ImageView img) {

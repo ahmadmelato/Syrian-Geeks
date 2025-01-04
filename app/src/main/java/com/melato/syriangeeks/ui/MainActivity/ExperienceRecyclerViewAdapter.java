@@ -93,14 +93,18 @@ public class ExperienceRecyclerViewAdapter extends RecyclerView.Adapter<Experien
         ViewHolder.location.setText(item.location);
         ViewHolder.date_start_end.setText((item.start_date != null ? item.start_date : "") + " - " + (item.end_date != null ? item.end_date : "حاضر"));
         ViewHolder.about.setText((item.description != null ? item.description : ""));
+        if(dialogExpertise !=null) {
+            ViewHolder.editfbtu.setOnClickListener(v -> {
+                dialogExpertise.show(position, item);
+            });
 
-        ViewHolder.editfbtu.setOnClickListener(v -> {
-            dialogExpertise.show(position,item);
-        });
-
-        ViewHolder.delfbtu.setOnClickListener(v -> {
-            dialogExpertise.delete(position);
-        });
+            ViewHolder.delfbtu.setOnClickListener(v -> {
+                dialogExpertise.delete(position);
+            });
+        }else{
+            ViewHolder.editfbtu.setVisibility(View.GONE);
+            ViewHolder.delfbtu.setVisibility(View.GONE);
+        }
     }
 
 

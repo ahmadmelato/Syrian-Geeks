@@ -11,7 +11,7 @@
         android:layout_height="match_parent"
         android:layoutDirection="rtl"
         android:orientation="vertical"
-        android:padding="5dp"
+        android:padding="10dp"
         tools:context=".ui.PublicProfileFragment.AboutFragment">
 
 
@@ -21,7 +21,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/dinnextltarabicregular"
             android:text="خالد محمد - Khaled Mohammed"
-            android:textSize="18sp"
+            android:textSize="19sp"
             android:textStyle="bold" />
 
         <TextView
@@ -30,7 +30,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/dinnextltarabicregular"
             android:text="ذكر - 11/9/1999- سوري"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/edctions_works"
@@ -38,7 +38,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/dinnextltarabicregular"
             android:text="بكالوريوس - مصمم غرافيكي"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/expernice_way"
@@ -46,7 +46,7 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/dinnextltarabicregular"
             android:text="4 سنوات خبرة - UI/UX Designer"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/phone"
@@ -56,7 +56,7 @@
             android:text="+963 954298241"
             android:textAlignment="textStart"
             android:textDirection="ltr"
-            android:textSize="16sp" />
+            android:textSize="18sp" />
 
         <TextView
             android:id="@+id/about_me"
@@ -65,7 +65,7 @@
             android:layout_weight="1"
             android:fontFamily="@font/dinnextltarabicregular"
             android:text="خالد محمد مصمم تجربة مستخدم خبرة 4 سنوات, مقيم في دمشق سوريا و املك شهادة بكالوريوس في التصميم الغرافيكي "
-            android:textSize="14sp" />
+            android:textSize="16sp" />
 
 
     </LinearLayout>

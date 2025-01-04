@@ -125,4 +125,7 @@ public interface InterfaceAPI {
     @POST("/api/v1/student/setting/store-social")
     Call<ResponseBodyModel> store_social(@Body Map<String, Object> queryMap);
 
+    @GET("/api/v1/student/public-profile/{user_id}")
+    Call<ResponseBodyModel> getPublicProfile(@Path("user_id") Integer id);
+
 }

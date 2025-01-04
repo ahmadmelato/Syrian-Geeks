@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private PeopleFragment peopleFragment;
     private AboutUsFragment aboutUsFragment;
     private OnBackPressedCallback onBackPressedCallback;
-    private PublicProfileFragment publicProfileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,7 +81,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         publicEventsFragment = new PublicEventsFragment();
         peopleFragment = new PeopleFragment();
         aboutUsFragment = new AboutUsFragment();
-        publicProfileFragment = new PublicProfileFragment();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
@@ -179,8 +177,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 
-    public void openPublicProfileFragment() {
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, publicProfileFragment).addToBackStack(null).commit();
+    public void openPublicProfileFragment(int user_id) {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, PublicProfileFragment.newInstance(user_id)).addToBackStack(null).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 

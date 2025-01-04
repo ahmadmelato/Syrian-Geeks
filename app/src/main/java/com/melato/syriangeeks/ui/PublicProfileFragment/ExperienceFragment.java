@@ -2,31 +2,37 @@ package com.melato.syriangeeks.ui.PublicProfileFragment;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.gson.Gson;
 import com.melato.syriangeeks.R;
+import com.melato.syriangeeks.databinding.FragmentAboutBinding;
+import com.melato.syriangeeks.databinding.FragmentExperienceBinding;
+import com.melato.syriangeeks.model.ProfileModel;
+import com.melato.syriangeeks.ui.MainActivity.ExperienceRecyclerViewAdapter;
+
+import java.util.ArrayList;
 
 
 public class ExperienceFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
+    private static final String ARG_PARAM1 = "data";
     private String mParam1;
-    private String mParam2;
+    private FragmentExperienceBinding binding;
 
     public ExperienceFragment() {
         // Required empty public constructor
     }
 
-    // TODO: Rename and change types and number of parameters
     public static ExperienceFragment newInstance(String param1) {
         ExperienceFragment fragment = new ExperienceFragment();
         Bundle args = new Bundle();
@@ -40,14 +46,26 @@ public class ExperienceFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        binding.experiencesList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
+        ExperienceRecyclerViewAdapter experienceRecyclerViewAdapter = new ExperienceRecyclerViewAdapter(requireContext(), null);
+        binding.experiencesList.setAdapter(experienceRecyclerViewAdapter);
+        ProfileModel profileModel = new Gson().fromJson(mParam1, ProfileModel.class);
+        if (profileModel != null) {
+            experienceRecyclerViewAdapter.setDatumList(profileModel.experience != null ? profileModel.experience : new ArrayList<>());
+        }
+    }
+
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_experience, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_experience, container, false);
+        return binding.getRoot();
     }
 }

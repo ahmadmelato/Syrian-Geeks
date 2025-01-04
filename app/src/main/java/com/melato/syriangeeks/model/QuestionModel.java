@@ -10,7 +10,7 @@ import java.util.Date;
 
 public class QuestionModel {
 
-    public class Category{
+    public static class Category{
         public int id;
         public String title;
         public String slug;
@@ -23,14 +23,14 @@ public class QuestionModel {
         public Date updated_at;
     }
 
-    public class Datum{
+    public static class Datum{
         public int id;
         public String title;
         public String slug;
         private String question;
         public int forum_category_id;
         public int created_by;
-        public Object updated_by;
+        public Date updated_by;
         public int status_id;
         public int is_featured;
         public Date created_at;
@@ -72,7 +72,7 @@ public class QuestionModel {
         public ArrayList<Category> categories;
 
 
-    public class User{
+    public static class User{
         public int id;
         public String name;
         public String name_ar;

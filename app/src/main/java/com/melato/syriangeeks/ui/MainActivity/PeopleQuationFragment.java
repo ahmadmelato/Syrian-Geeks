@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
+import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -88,7 +89,7 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
 
         binding.listRecyclerView.setHasFixedSize(true);
         binding.listRecyclerView.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-        answerRecyclerViewAdapter = new AnswerRecyclerViewAdapter(requireContext(),this);
+        answerRecyclerViewAdapter = new AnswerRecyclerViewAdapter(requireContext(), this);
         binding.listRecyclerView.setAdapter(answerRecyclerViewAdapter);
 
 
@@ -100,12 +101,18 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
             answerRecyclerViewAdapter.setDatumList(datum);
         });
 
+        answerRecyclerViewAdapter.SetOnItemClickListener(position -> {
+                    if (answerRecyclerViewAdapter.datumList.get(position).user != null) {
+                        openPublicProfileFragment(answerRecyclerViewAdapter.datumList.get(position).user.id);
+                    }
+                });
+
         binding.nointernet.setOnClickListener(this);
         binding.toolbarBack.setOnClickListener(this);
         binding.btuReplay.setOnClickListener(this);
 
         if (viewModel.answerliveData.getValue() == null)
-            viewModel.getQuestionsDetails(requireActivity(),datum.id);
+            viewModel.getQuestionsDetails(requireActivity(), datum.id);
 
         binding.listRecyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
             @Override
@@ -118,7 +125,7 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
                 int secrollOutItem = linearLayoutManager.findFirstVisibleItemPosition();
 
                 if (!Objects.requireNonNull(viewModel.workingLoadMore.getValue()).isRunning() && currentItem + secrollOutItem == totalItem) {
-                    viewModel.getMoreQuestionsDetails(requireContext(),datum.id);
+                    viewModel.getMoreQuestionsDetails(requireContext(), datum.id);
                 }
             }
 
@@ -136,13 +143,14 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.backPressed();
-        } if (v.getId() == R.id.content_item) {
+        }
+        if (v.getId() == R.id.content_item) {
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
-            mainActivity.openPublicProfileFragment();
+            mainActivity.openPublicProfileFragment(datum.user.id);
         } else if (v.getId() == R.id.nointernet) {
-            viewModel.getQuestionsDetails(requireActivity(),datum.id);
-        }else if (v.getId() == R.id.btuReplay){
+            viewModel.getQuestionsDetails(requireActivity(), datum.id);
+        } else if (v.getId() == R.id.btuReplay) {
             if (!ClientAPI.getClientAPI().tokenInterceptor.getToken().isEmpty()) {
                 showCreateAnwserDialog();
             } else {
@@ -150,6 +158,12 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
             }
 
         }
+    }
+
+    public void openPublicProfileFragment(int user_id) {
+        MainActivity mainActivity = (MainActivity) getActivity();
+        assert mainActivity != null;
+        mainActivity.openPublicProfileFragment(user_id);
     }
 
 
@@ -180,7 +194,7 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
                 Toast.makeText(requireContext(), "يرجى ملء جميع الحقول", Toast.LENGTH_SHORT).show();
             } else {
                 // Handle submission
-                viewModel.question_store(requireContext(),datum.id,content);
+                viewModel.question_store(requireContext(), datum.id, content);
                 dialog.dismiss();
             }
         });
@@ -215,7 +229,7 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
                 Toast.makeText(requireContext(), "يرجى ملء جميع الحقول", Toast.LENGTH_SHORT).show();
             } else {
                 // Handle submission
-                viewModel.comment(requireContext(),id,content);
+                viewModel.comment(requireContext(), id, content);
                 dialog.dismiss();
             }
         });

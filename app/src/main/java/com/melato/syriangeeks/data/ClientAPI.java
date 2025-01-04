@@ -233,7 +233,7 @@ public class ClientAPI {
         return interfaceAPI.comment(id, queryMap);
     }
 
-    public Call<ResponseBodyModel> question_store(Integer category,String title,String question) {
+    public Call<ResponseBodyModel> question_store(Integer category, String title, String question) {
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("category", category);
         queryMap.put("title", title);
@@ -241,18 +241,18 @@ public class ClientAPI {
         return interfaceAPI.question_store(queryMap);
     }
 
-    public Call<ResponseBodyModel> answer_store(Integer quesion_id,String answer){
+    public Call<ResponseBodyModel> answer_store(Integer quesion_id, String answer) {
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("quesion_id", quesion_id);
         queryMap.put("answer", answer);
         return interfaceAPI.answer_store(queryMap);
     }
 
-    public Call<ResponseBodyModel> getProfile(){
+    public Call<ResponseBodyModel> getProfile() {
         return interfaceAPI.getProfile();
     }
 
-    public Call<ResponseBodyModel> update_password(String old_password,String password,String password_confirmation){
+    public Call<ResponseBodyModel> update_password(String old_password, String password, String password_confirmation) {
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("old_password", old_password);
         queryMap.put("password", password);
@@ -260,50 +260,55 @@ public class ClientAPI {
         return interfaceAPI.update_password(queryMap);
     }
 
-    public Call<ResponseBodyModel> getMyProfile(){
-       return interfaceAPI.getMyProfile();
+    public Call<ResponseBodyModel> getMyProfile() {
+        return interfaceAPI.getMyProfile();
     }
 
-    public Call<ResponseBodyModel> update_profile(@Body ProfileModel model){
+    public Call<ResponseBodyModel> update_profile(@Body ProfileModel model) {
         System.out.println(new Gson().toJson(model));
         return interfaceAPI.update_profile(model);
     }
 
-    public Call<ResponseBodyModel> store_institute(ProfileModel.Institute model){
+    public Call<ResponseBodyModel> store_institute(ProfileModel.Institute model) {
         return interfaceAPI.store_institute(model);
     }
 
-    public Call<ResponseBodyModel> update_institute(int id,ProfileModel.Institute model){
-        return interfaceAPI.update_institute(id,model);
+    public Call<ResponseBodyModel> update_institute(int id, ProfileModel.Institute model) {
+        return interfaceAPI.update_institute(id, model);
     }
 
-    public Call<ResponseBodyModel> delete_institute(int id){
+    public Call<ResponseBodyModel> delete_institute(int id) {
         return interfaceAPI.delete_institute(id);
     }
 
 
-    public Call<ResponseBodyModel> store_experience(ProfileModel.Experience model){
+    public Call<ResponseBodyModel> store_experience(ProfileModel.Experience model) {
         return interfaceAPI.store_experience(model);
     }
 
-    public Call<ResponseBodyModel> update_experience(int id,ProfileModel.Experience model){
-        return interfaceAPI.update_experience(id,model);
+    public Call<ResponseBodyModel> update_experience(int id, ProfileModel.Experience model) {
+        return interfaceAPI.update_experience(id, model);
     }
 
-    public Call<ResponseBodyModel> delete_experience(int id){
+    public Call<ResponseBodyModel> delete_experience(int id) {
         return interfaceAPI.delete_experience(id);
     }
+
     //;
-    public Call<ResponseBodyModel> store_skills(List<ProfileModel.Skill> skills){
+    public Call<ResponseBodyModel> store_skills(List<ProfileModel.Skill> skills) {
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("skills", skills);
         return interfaceAPI.store_skills(queryMap);
     }
 
-    public Call<ResponseBodyModel> store_social(List<ProfileModel.Skill> social_media_links){
+    public Call<ResponseBodyModel> store_social(List<ProfileModel.Skill> social_media_links) {
         Map<String, Object> queryMap = new HashMap<>();
         queryMap.put("social_media_links", social_media_links);
         return interfaceAPI.store_social(queryMap);
+    }
+
+    public Call<ResponseBodyModel> getPublicProfile(Integer id) {
+        return interfaceAPI.getPublicProfile(id);
     }
 
     public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
