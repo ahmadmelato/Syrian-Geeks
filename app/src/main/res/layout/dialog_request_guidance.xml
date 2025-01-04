@@ -227,17 +227,6 @@
                         android:background="@drawable/ic_rectangle_142"
                         android:fontFamily="@font/dinnextltarabicregular"
                         android:text="إرسال" />
-
-                    <Button
-                        android:id="@+id/cancel_button"
-                        style="@style/Theme.SyrianGeeks.Button"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="5dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/ic_path_2480"
-                        android:fontFamily="@font/dinnextltarabicregular"
-                        android:text="تجاهل" />
                 </LinearLayout>
             </RelativeLayout>
 

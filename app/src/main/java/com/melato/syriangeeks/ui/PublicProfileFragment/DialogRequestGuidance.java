@@ -56,13 +56,12 @@ public class DialogRequestGuidance {
 
 
         binding.startDate.setOnClickListener(v -> new DialogDatePicker(context,binding.startDate).show());
-        binding.endDate.setOnClickListener(v -> new DialogDatePicker(context,binding.endDate).show());
+        binding.endDate.setOnClickListener(v -> new DialogTimePicker(context,binding.endDate).show());
 
         binding.submitButton.setOnClickListener(v -> {
 
         });
 
-        binding.cancelButton.setOnClickListener(v -> dialog.dismiss());
     }
 
     public void show() {
