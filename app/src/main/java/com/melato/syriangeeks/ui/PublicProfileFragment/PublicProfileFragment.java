@@ -34,6 +34,7 @@ public class PublicProfileFragment extends Fragment implements View.OnClickListe
     private MainViewModel viewModel;
     private static final String ARG_PARAM1 = "user_id";
     private Integer user_id;
+    private DialogRequestGuidance dialogRequestGuidance;
 
     public PublicProfileFragment() {
         // Required empty public constructor
@@ -69,8 +70,10 @@ public class PublicProfileFragment extends Fragment implements View.OnClickListe
         super.onViewCreated(view, savedInstanceState);
 
         binding.toolbarBack.setOnClickListener(this);
+        binding.btuSend.setOnClickListener(this);
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
+        dialogRequestGuidance = new DialogRequestGuidance(requireContext(),viewModel);
 
         viewModel.working.observe(getViewLifecycleOwner(), working -> {
             if (working != null) {
@@ -129,6 +132,8 @@ public class PublicProfileFragment extends Fragment implements View.OnClickListe
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.backPressed();
+        }else if(v.getId() == R.id.btuSend){
+            dialogRequestGuidance.show();
         }
     }
 

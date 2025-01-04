@@ -235,7 +235,7 @@
                     android:layout_marginVertical="10dp"
                     android:fontFamily="@font/dinnextltarabicregular"
                     android:minWidth="300dp"
-                    android:text="طلب إرشاد/استشارة" />
+                    android:text="@string/Requestguidance"/>
 
 
                 <com.google.android.material.tabs.TabLayout

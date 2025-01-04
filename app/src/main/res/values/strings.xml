@@ -51,7 +51,8 @@
     <string name="Subscribetoournewsletter">الاشتراك في نشرتنا البريدية</string>
     <string name="Iagreeto">أوافق على</string>
     <string name="privacypolicy">سياسة الخصوصية</string>
-
+    <string name="sessionDate">تاريخ الجلسة</string>
+    <string name="sessionTime">وقت الجلسة</string>
     <string name="currentlystudyinghere">أدرس حاليًا هنا</string>
 
 
@@ -190,6 +191,8 @@
 
     <string name="message">الرسالة</string>
     <string name="subject">الموضوع</string>
+
+    <string name="Requestguidance">طلب إرشاد/استشارة</string>
 
     <string name="privacy_policy">
         1- قد نقوم بجمع معلومات شخصية معينة من المستخدمين من أجل توفير تجربة تعليمية محسنة. تشمل أنواع المعلومات التي قد نجمعها ما يلي:\n
