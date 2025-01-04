@@ -54,7 +54,7 @@ public class ExperienceFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         binding.experiencesList.setLayoutManager(new LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false));
-        ExperienceRecyclerViewAdapter experienceRecyclerViewAdapter = new ExperienceRecyclerViewAdapter(requireContext(), null);
+        PublicExperienceRecyclerViewAdapter experienceRecyclerViewAdapter = new PublicExperienceRecyclerViewAdapter(requireContext());
         binding.experiencesList.setAdapter(experienceRecyclerViewAdapter);
         ProfileModel profileModel = new Gson().fromJson(mParam1, ProfileModel.class);
         if (profileModel != null) {
