@@ -83,6 +83,7 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
         binding.contentDisc.setText(datum.getQuestion());
         binding.dateItem.setText(new SimpleDateFormat("dd MMMM yyyy", new Locale("ar")).format(datum.created_at));
 
+        binding.contentItem.setOnClickListener(this);
 
 
         binding.listRecyclerView.setHasFixedSize(true);
@@ -135,6 +136,10 @@ public class PeopleQuationFragment extends Fragment implements View.OnClickListe
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.backPressed();
+        } if (v.getId() == R.id.content_item) {
+            MainActivity mainActivity = (MainActivity) getActivity();
+            assert mainActivity != null;
+            mainActivity.openPublicProfileFragment();
         } else if (v.getId() == R.id.nointernet) {
             viewModel.getQuestionsDetails(requireActivity(),datum.id);
         }else if (v.getId() == R.id.btuReplay){

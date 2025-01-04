@@ -105,6 +105,7 @@ public class ThirdFragment extends Fragment {
 
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.conutery.setAdapter(adapter1);
+        binding.conutery.setSelection(214);
 
         ArrayAdapter<CharSequence> adapter3 = ArrayAdapter.createFromResource(
                 requireContext(),

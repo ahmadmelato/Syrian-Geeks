@@ -25,6 +25,7 @@ import com.melato.syriangeeks.databinding.ActivityMainBinding;
 import com.melato.syriangeeks.ui.AboutUsFragment.AboutUsFragment;
 import com.melato.syriangeeks.ui.MainViewModel;
 import com.melato.syriangeeks.ui.PublicCourseDetailsActivity.PublicCourseDetailsFragment;
+import com.melato.syriangeeks.ui.PublicProfileFragment.PublicProfileFragment;
 
 import java.util.Objects;
 
@@ -49,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     private PeopleFragment peopleFragment;
     private AboutUsFragment aboutUsFragment;
     private OnBackPressedCallback onBackPressedCallback;
+    private PublicProfileFragment publicProfileFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -80,6 +82,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         publicEventsFragment = new PublicEventsFragment();
         peopleFragment = new PeopleFragment();
         aboutUsFragment = new AboutUsFragment();
+        publicProfileFragment = new PublicProfileFragment();
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, mainFragment).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED);
@@ -173,6 +176,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void openProfileFragment() {
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, profileFragment).addToBackStack(null).commit();
+        binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
+    }
+
+    public void openPublicProfileFragment() {
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, publicProfileFragment).addToBackStack(null).commit();
         binding.drawerLayout.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED);
     }
 

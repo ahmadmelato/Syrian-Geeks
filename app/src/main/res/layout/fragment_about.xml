@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layoutDirection="rtl"
+        android:orientation="vertical"
+        android:padding="5dp"
+        tools:context=".ui.PublicProfileFragment.AboutFragment">
+
+
+        <TextView
+            android:id="@+id/full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="خالد محمد - Khaled Mohammed"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/gender_birthday"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="ذكر - 11/9/1999- سوري"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/edctions_works"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="بكالوريوس - مصمم غرافيكي"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/expernice_way"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="4 سنوات خبرة - UI/UX Designer"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/phone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="+963 954298241"
+            android:textAlignment="textStart"
+            android:textDirection="ltr"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/about_me"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="@font/dinnextltarabicregular"
+            android:text="خالد محمد مصمم تجربة مستخدم خبرة 4 سنوات, مقيم في دمشق سوريا و املك شهادة بكالوريوس في التصميم الغرافيكي "
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+</layout>

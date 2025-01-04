@@ -120,6 +120,7 @@
     <string name="Traindis">تفاصيل التدريب</string>
     <string name="people">المجتمع</string>
     <string name="Whoare">من نحن</string>
+    <string name="profile">الملف الشخصي</string>
 
     <string name="search">ابحث عن دورة , مقالة أو مهارة </string>
     <string name="main">الرئيسية</string>
@@ -155,6 +156,7 @@
     <string name="Replytothediscussion">رد على المناقشة</string>
     <string name="institutestilte">تفاصيل تعليم</string>
     <string name="expertise">تفاصيل خبرة</string>
+    <string name="public_expertise">خبرة</string>
     <string name="typeofemployment">نوع التوظيف</string>
     <string name="Companyname">اسم الشركة</string>
     <string name="thesite">الموقع</string>
@@ -162,6 +164,8 @@
     <string name="currentlyworkrole">أعمل حاليًا في هذا الدور</string>
     <string name="addskill">اضافة مهارة</string>
     <string name="skill">مهارة</string>
+    <string name="public_skill">مهارات</string>
+    <string name="social_skill"> وسائل التواصل الاجتماعي </string>
     <string name="addlink">اضافة روابط التواصل</string>
     <string name="link">روابط التواصل الاجتماعي</string>
 
@@ -230,6 +234,5 @@
         اتصل بنا\n
         8- إذا كانت لديك أي أسئلة أو مخاوف بشأن سياسة الخصوصية هذه أو ممارسات البيانات لدينا، فيرجى الاتصال بنا.\n
     </string>
-
 
 </resources>
