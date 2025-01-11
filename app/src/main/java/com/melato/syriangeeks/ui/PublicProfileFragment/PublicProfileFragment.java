@@ -8,12 +8,14 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProviders;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.material.tabs.TabLayoutMediator;
 import com.google.gson.Gson;
@@ -73,7 +75,7 @@ public class PublicProfileFragment extends Fragment implements View.OnClickListe
         binding.btuSend.setOnClickListener(this);
 
         viewModel = ViewModelProviders.of(this).get(MainViewModel.class);
-        dialogRequestGuidance = new DialogRequestGuidance(requireContext(),viewModel);
+        dialogRequestGuidance = new DialogRequestGuidance(requireContext(), viewModel);
 
         viewModel.working.observe(getViewLifecycleOwner(), working -> {
             if (working != null) {
@@ -110,7 +112,7 @@ public class PublicProfileFragment extends Fragment implements View.OnClickListe
                     binding.layoutExp.setVisibility(View.VISIBLE);
                 }
 
-                SliderPublicProfileAdapter sliderMainAdapter = new SliderPublicProfileAdapter(requireActivity(),new Gson().toJson(model));
+                SliderPublicProfileAdapter sliderMainAdapter = new SliderPublicProfileAdapter(requireActivity(), new Gson().toJson(model));
                 binding.viewpager.setAdapter(sliderMainAdapter);
 
                 new TabLayoutMediator(binding.tabs, binding.viewpager, (tab, position) -> {
@@ -132,8 +134,12 @@ public class PublicProfileFragment extends Fragment implements View.OnClickListe
             MainActivity mainActivity = (MainActivity) getActivity();
             assert mainActivity != null;
             mainActivity.backPressed();
-        }else if(v.getId() == R.id.btuSend){
-            dialogRequestGuidance.show();
+        } else if (v.getId() == R.id.btuSend) {
+            if (MainViewModel.userLiveData.getValue() != null) {
+                dialogRequestGuidance.show();
+            } else {
+                Toast.makeText(requireContext(), "الرجاء تسجيل الدخول الى حسابك", Toast.LENGTH_SHORT).show();
+            }
         }
     }
 

@@ -321,6 +321,16 @@ public class ClientAPI {
         return interfaceAPI.contact(queryMap);
     }
 
+    public Call<ResponseBodyModel> mentoringNew(Integer mentor_id, String title, String phone, String mentoring_date, String content) {
+        Map<String, Object> queryMap = new HashMap<>();
+        queryMap.put("mentor_id", mentor_id);
+        queryMap.put("title", title);
+        queryMap.put("phone", phone);
+        queryMap.put("mentoring_date", mentoring_date);
+        queryMap.put("content", content);
+        return interfaceAPI.mentoringNew(queryMap);
+    }
+
     public Call<ResponseBodyModel> signup(String name, String name_ar, String date_of_birth, String gender, String nationality, String education,
                                           String work_field, String other_work_field, String experience_years, String freelancer, String freelancer_years, String cv_file,
                                           String country, String state, String location, String place, String disability, String email, String phone, String phone_dial,

@@ -137,4 +137,7 @@ public interface InterfaceAPI {
     @POST("/api/v1/student/event/read-all-notification")
     Call<ResponseBodyModel> readAllNotification();
 
+    @POST("/api/v1/student/mentoring/new")
+    Call<ResponseBodyModel> mentoringNew(@Body Map<String, Object> queryMap);
+
 }

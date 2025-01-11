@@ -14,6 +14,8 @@ import com.melato.syriangeeks.model.ProfileModel;
 import com.melato.syriangeeks.ui.MainActivity.DialogDatePicker;
 import com.melato.syriangeeks.ui.MainViewModel;
 
+import java.util.Objects;
+
 public class DialogRequestGuidance {
 
     private Context context;
@@ -37,7 +39,6 @@ public class DialogRequestGuidance {
                 .create();
 
 
-
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawableResource(android.R.color.transparent);
         }
@@ -54,12 +55,18 @@ public class DialogRequestGuidance {
         });
 
 
-
-        binding.startDate.setOnClickListener(v -> new DialogDatePicker(context,binding.startDate).show());
-        binding.endDate.setOnClickListener(v -> new DialogTimePicker(context,binding.endDate).show());
+        binding.startDate.setOnClickListener(v -> new DialogDatePicker(context, binding.startDate).show());
+        binding.endDate.setOnClickListener(v -> new DialogTimePicker(context, binding.endDate).show());
 
         binding.submitButton.setOnClickListener(v -> {
-
+            Integer mentor_id = Objects.requireNonNull(viewModel.profileModelModelLiveData.getValue()).user_id;
+            String title = binding.title.getText().toString();
+            String phone = binding.phoneDail.getText().toString().trim() + binding.phone.getText().toString().trim();
+            String mentoring_date = binding.startDate.getText().toString() + " " + binding.endDate.getText().toString();
+            String content = binding.title.getText().toString();
+            if (!title.isEmpty() && phone.length() > 5 && mentoring_date.length() > 11 && !content.isEmpty()) {
+                viewModel.mentoringNew(context,mentor_id,title,phone,mentoring_date,content);
+            }
         });
 
     }
