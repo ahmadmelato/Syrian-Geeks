@@ -1272,22 +1272,22 @@ public class MainViewModel extends ViewModel {
     }
 
     public void mentoringNew(Context context,Integer mentor_id, String title, String phone, String mentoring_date, String content) {
-        setProgressRun("");
+        workingLoadMore.setValue(new Working(ClientAPI.Run, ""));
         Resources resources = context.getResources();
         ClientAPI.getClientAPI().mentoringNew(mentor_id,title,phone,mentoring_date,content).enqueue(new Callback<ResponseBodyModel>() {
             @Override
             public void onResponse(@NonNull Call<ResponseBodyModel> call, @NonNull Response<ResponseBodyModel> response) {
                 if (response.code() == ClientAPI.OK) {
                     assert response.body() != null;
-                    setProgressOK(response.body().getMessage());
+                    workingLoadMore.setValue(new Working(ClientAPI.OK, ""));
                 } else {
-                    setProgressDeny(ClientAPI.parseError(response).getMessage());
+                    workingLoadMore.setValue(new Working(ClientAPI.Deny, ClientAPI.parseError(response).getMessage()));
                 }
             }
 
             @Override
             public void onFailure(@NonNull Call<ResponseBodyModel> call, @NonNull Throwable t) {
-                setProgressFiled(resources.getString(R.string.FailedtoloaddataChecknetwork));
+                workingLoadMore.setValue(new Working(ClientAPI.Deny, resources.getString(R.string.FailedtoloaddataChecknetwork)));
                 Log.println(Log.ERROR, "Syrian Geeks", Objects.requireNonNull(t.getMessage()));
             }
         });
